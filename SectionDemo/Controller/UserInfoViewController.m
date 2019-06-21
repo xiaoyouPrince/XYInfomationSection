@@ -60,32 +60,21 @@
     item8.valueCode = self.userDetailInfo.cerTypeCode;
     XYInfomationItem *item9 = [XYInfomationItem modelWithTitle:@"证件号码" titleKey:@"idCardNo" type:0 value:self.userDetailInfo.idCardNo placeholderValue:nil disableUserAction:YES];
     XYInfomationItem *item10 = [XYInfomationItem modelWithTitle:@"户口所在地" titleKey:@"householdAddr" type:0 value:self.userDetailInfo.householdAddr placeholderValue:nil disableUserAction:NO];
-    XYInfomationItem *item11 = [XYInfomationItem modelWithTitle:@"现居住地" titleKey:@"conAddr" type:0 value:self.userDetailInfo.conAddr placeholderValue:nil disableUserAction:NO];
-    XYInfomationItem *item12 = [XYInfomationItem modelWithTitle:@"邮政编码" titleKey:@"homePostalcode" type:0 value:self.userDetailInfo.homePostalcode placeholderValue:nil disableUserAction:NO];
-    XYInfomationItem *item13 = [XYInfomationItem modelWithTitle:@"联系方式联系方式联系方式" titleKey:@"conType" type:1 value:@"单纯使用XYInfomationSection自己处理内部布局" placeholderValue:nil disableUserAction:YES];
-    XYInfomationItem *item14 = [XYInfomationItem modelWithTitle:@"联系号码" titleKey:@"conTel" type:0 value:self.userDetailInfo.conTel placeholderValue:nil disableUserAction:NO];
-    section.dataArray = @[item,item2,item3,item4,item5,item6,item7,item8,item9,item10,item11,item12,item13,item14];
-//    [_scrollView addSubview:section];
-//    [self.view addSubview:section];
+    XYInfomationItem *item11 = [XYInfomationItem modelWithTitle:@"现居住地户口所在地户口所在地" titleKey:@"conAddr" type:0 value:@"自己处理内部布局单纯使用自己处理内部布局单纯使用自己处理内部布局单纯使用自己处理内部布局单纯使用" placeholderValue:nil disableUserAction:NO];
+    XYInfomationItem *item12 = [XYInfomationItem modelWithTitle:@"自己处理内部布局单纯使用自己处理内部布局单纯使用自己处理内部布局单纯使用自己处理内部布局单纯使用" titleKey:@"homePostalcode" type:0 value:@"现居住地现居住地现居住地现居住地" placeholderValue:nil disableUserAction:NO];
+    XYInfomationItem *item13 = [XYInfomationItem modelWithTitle:@"联系方式联系方式联系方式" titleKey:@"conType" type:1 value:@"单纯使用XYInfomationSection自己处理内部布局单纯使用XYInfomationSection自己处理内部布局" placeholderValue:nil disableUserAction:NO];
+    XYInfomationItem *item14 = [XYInfomationItem modelWithTitle:@"单纯使用XYInfomationSection自己处理内部布局单纯使用XYInfomationSection自己处理内部布局" titleKey:@"conTel" type:0 value:self.userDetailInfo.conTel placeholderValue:nil disableUserAction:NO];
     
-//    [section setNeedsLayout];
-//    [section layoutIfNeeded];
+    NSArray *dataArray = @[item,item2,item3,item4,item5,item6,item7,item8,item9,item10,item11,item12,item13,item14];
+    for (XYInfomationItem *item in dataArray) {
+        item.type = XYInfoCellTypeChoose;
+    }
+    section.dataArray = dataArray;
+//    section.dataArray = @[dataArray[12]];
     
-//    self.headerView = section;
-    
+    // self.headerView = section;
     [self setHeaderView:section edgeInsets:UIEdgeInsetsMake(10, 20, 20, 20)];
-
-    section.cellClickBlock = ^(NSInteger index, XYInfomationCell * _Nonnull cell) {
-        NSLog(@"index = %ld",index);
-    };
     
-//    return;
-    
-//    [section mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(self.view).offset(100);
-//        make.left.equalTo(self.view).offset(15);
-//        make.right.equalTo(self.view).offset(-15);
-//    }];
     
     // 设置第二组
     XYInfomationSection *section2 = [XYInfomationSection new];
@@ -93,34 +82,17 @@
     XYInfomationItem *item22 = [XYInfomationItem modelWithTitle:@"所属业务部" titleKey:@"ywName" type:0 value:self.userDetailInfo.ywName placeholderValue:nil disableUserAction:YES];
     XYInfomationItem *item23 = [XYInfomationItem modelWithTitle:@"所属业务员" titleKey:@"userName" type:0 value:self.userDetailInfo.userName placeholderValue:nil disableUserAction:YES];
     section2.dataArray = @[item21,item22,item23];
-//    [self.view addSubview:section2];
-//    [section2 mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(section.mas_bottom).offset(15);
-//        make.left.equalTo(self.view).offset(15);
-//        make.right.equalTo(self.view).offset(-15);
-//        //        make.bottom.equalTo(_scrollView.mas_bottom);
-//    }];
-    
-//    [section2 setNeedsLayout];
-//    [section2 layoutIfNeeded];
     
     [self setContentView:section2 edgeInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
     
-    // 手动修改一下scrollView.contentSize
-//    [self autoresizeScrollViewContentSize];
     
-    // cell 的点击回调
-//    section.cellClickBlock = ^(NSInteger index, XYInfomationCell * _Nonnull cell) {
-//        [self section:section didSelectCell:cell];
-//    };
-    
-//    [section mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(self.view).offset(100);
-//        make.left.equalTo(self.view).offset(15);
-//        make.right.equalTo(self.view).offset(-15);
-//        //        make.left.equalTo(self.view).offset(0);
-//        //        make.right.equalTo(self.view).offset(-0);
-//    }];
+    // 点击事件
+    section.cellClickBlock = ^(NSInteger index, XYInfomationCell * _Nonnull cell) {
+        NSLog(@"index = %ld",index);
+    };
+    section2.cellClickBlock = ^(NSInteger index, XYInfomationCell * _Nonnull cell) {
+        NSLog(@"index = %ld",index);
+    };
 }
 
 

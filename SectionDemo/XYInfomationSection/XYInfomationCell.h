@@ -7,6 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+
+
+/*!
+ 
+ @note todos
+ 
+ 1. 设置cell高度  default is 50pt
+ 内部属性有两个
+ cellHeight(用户自定义 cell高度)
+ def_cellHeight(readonly 默认50)，
+ 
+ */
+
+
+
 /*!
  
  @abstract
@@ -27,7 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
 typedef NS_ENUM(NSUInteger, XYInfoCellType) {
     XYInfoCellTypeInput = 0,  // default is input
     XYInfoCellTypeChoose,     // 用于弹出下拉框选择的
-    XYInfoCellTypeDisplay,    // 仅用来展示内容的
+    XYInfoCellTypeDisplay,    // 仅用来展示内容的：[image] + title + [icon]
     XYInfoCellTypeOther,   // 日后扩展，例如cell内部的右边的view
 };
 
@@ -64,6 +79,14 @@ typedef NS_ENUM(NSUInteger, XYInfoCellType) {
  用户预设的右边辅助view
  */
 @property(nonatomic , strong)     UIView *accessoryView;
+/**
+ cellHeight:用户自己设置的初始化cellHeight 默认0，如果未设置会取 def_celleHeight
+ */
+@property(nonatomic , assign)     CGFloat cellHeight;
+/**
+ def_cellHeight: 默认 cellHeight 50pt,优先使用用户自己设置的 cellHeight
+ */
+@property(nonatomic , assign , readonly)     CGFloat def_cellHeight;
 
 /**
  @brief

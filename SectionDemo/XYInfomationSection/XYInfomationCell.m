@@ -35,6 +35,12 @@ MJCodingImplementation;
     // 防止未定义的key报错
 }
 
+/// 默认设置的cell高度
+- (CGFloat)def_cellHeight
+{
+    return 50.f;
+}
+
 //- (void)setValue:(id)value forKey:(NSString *)key{
 //    if ([key isEqualToString:@"title"]) {
 //        [NSException exceptionWithName:@"key为空" reason:<#(nullable NSString *)#> userInfo:<#(nullable NSDictionary *)#>];
@@ -316,8 +322,32 @@ MJCodingImplementation;
     
     
     
-//    [self setNeedsLayout];
-//    [self layoutIfNeeded];
+    // 7. 更新实际高度
+    [self.titleLabel sizeToFit];
+    CGFloat def_cellHeight = model.def_cellHeight;
+    CGFloat title_cellHeight = self.titleLabel.bounds.size.height + 30;
+    CGFloat max_cellHeight = MAX(def_cellHeight, title_cellHeight);
+    
+    if (model.type == XYInfoCellTypeInput) { // 输入类型以 titleLabel为准
+        
+        [self mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.equalTo(@(max_cellHeight));
+        }];
+    }else{
+        // 选择类型，以titleLabel 和 detailLabel的实际高度更大的为准
+        
+        [self.detailLabel sizeToFit];
+        CGFloat detail_cellHeight = self.detailLabel.bounds.size.height + 30;
+        max_cellHeight = MAX(max_cellHeight, detail_cellHeight);
+        
+        [self mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.equalTo(@(max_cellHeight));
+        }];
+    }
+
+    
+    [self setNeedsLayout];
+    [self layoutIfNeeded];
 }
 
 - (void)layoutSubviews

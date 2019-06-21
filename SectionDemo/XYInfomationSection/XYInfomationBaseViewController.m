@@ -16,7 +16,7 @@
 @end
 
 @implementation XYInfomationBaseViewController
-//@dynamic headerView,contentView,footerView;
+
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
     self = [super initWithNibName:NSStringFromClass(self.superclass) bundle:nibBundleOrNil];
     return self;
@@ -28,8 +28,11 @@
     // 可以用来设置基类的背景色
     // self.view.backgroundColor = HEXCOLOR(0xf6f6f6);
     
-    /// 创建基本的内部组件
+    /// 创建基本的内部组件, default is hidden
     self.scrollView = [UIScrollView new];
+    self.scrollView.hidden = YES;
+//    self.automaticallyAdjustsScrollViewInsets = NO;
+//    self.scrollView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
     self.scrollContentView = [UIView new];
     _headerView = [UIView new];
     _contentView = UIView.new;
@@ -67,9 +70,6 @@
         make.right.equalTo(weakSelf.scrollContentView);
         make.bottom.equalTo(weakSelf.scrollContentView);
     }];
-    
-    [self.view setNeedsLayout];
-    [self.view layoutIfNeeded];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -80,18 +80,6 @@
     self.headerView.backgroundColor = UIColor.redColor;
     self.contentView.backgroundColor = UIColor.greenColor;
     self.footerView.backgroundColor = UIColor.yellowColor;
-    
-//    [self.headerView mas_updateConstraints:^(MASConstraintMaker *make) {
-//        make.height.equalTo(@100);
-//    }];
-//
-//    [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.height.equalTo(@100);
-//    }];
-//
-//    [self.footerView mas_updateConstraints:^(MASConstraintMaker *make) {
-//        make.height.equalTo(@100);
-//    }];
     
 }
 
@@ -123,8 +111,7 @@
         make.bottom.equalTo(weakSelf.headerView).offset(-edgeInsets.bottom);
     }];
     
-    [self.headerView setNeedsLayout];
-    [self.headerView layoutIfNeeded];
+    [self hasSetupContent];
 }
 
 - (void)setContentView:(UIView *)contentView edgeInsets:(UIEdgeInsets)edgeInsets
@@ -140,6 +127,8 @@
         make.height.mas_equalTo(contentView.bounds.size.height);
         make.bottom.equalTo(weakSelf.contentView).offset(-edgeInsets.bottom);
     }];
+    
+    [self hasSetupContent];
 }
 
 - (void)setFooterView:(UIView *)footerView edgeInsets:(UIEdgeInsets)edgeInsets
@@ -155,9 +144,14 @@
         make.height.mas_equalTo(footerView.bounds.size.height);
         make.bottom.equalTo(weakSelf.footerView).offset(-edgeInsets.bottom);
     }];
+    
+    [self hasSetupContent];
 }
 
 
-
+- (void)hasSetupContent{
+    // 只要有内容设置就展示对应的scrollView(页面的所有内容)
+    self.scrollView.hidden = NO;
+}
 
 @end

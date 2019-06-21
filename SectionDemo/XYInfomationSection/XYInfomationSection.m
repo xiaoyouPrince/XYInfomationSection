@@ -32,30 +32,6 @@
     self.clipsToBounds = YES;
     self.translatesAutoresizingMaskIntoConstraints = NO;
     
-    [self addObserver:self forKeyPath:@"superview" options:NSKeyValueObservingOptionNew context:nil];
-    
-    if (@available(iOS 10.0, *)) {
-        [NSTimer scheduledTimerWithTimeInterval:0.1f repeats:YES block:^(NSTimer * _Nonnull timer) {
-            if (self.superview) {
-                // 添加到自己父控件完成之后立即布局，确定相关frame属性值
-//                [self setNeedsLayout];
-//                [self layoutIfNeeded];
-                [timer invalidate];
-            }
-        }];
-    } else {
-        
-    }
-}
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
-{
-    
-    if (self.superview) {
-        // 添加到自己父控件完成之后立即布局，确定相关frame属性值
-//        [self setNeedsLayout];
-//        [self layoutIfNeeded];
-    }
 }
 
 - (void)setDataArray:(NSArray *)dataArray
@@ -70,13 +46,8 @@
         [self refreshSectionWithDataArray:dataArray];
     }
     
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.05 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        [self setNeedsLayout];
-//        [self layoutIfNeeded];
-//    });
     [self setNeedsLayout];
     [self layoutIfNeeded];
-    
 }
 
 // 创建内容
