@@ -1,0 +1,24 @@
+//
+//  PrefixHeader.pch
+//  SectionDemo
+//
+//  Created by 渠晓友 on 2019/6/18.
+//  Copyright © 2019年 渠晓友. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#define HEXCOLOR(hexValue) ([UIColor colorWithRed:((float)((hexValue & 0xFF0000) >> 16))/255.0 green:((float)((hexValue & 0xFF00) >> 8))/255.0 blue:((float)(hexValue & 0xFF))/255.0 alpha:1])
+
+
+
+#import "Masonry.h"
+#import "MJExtension.h"
+#import "SVProgressHUD.h"
+#import "DataTool.h"
+
+
+
+
+#endif /* PrefixHeader_pch */
