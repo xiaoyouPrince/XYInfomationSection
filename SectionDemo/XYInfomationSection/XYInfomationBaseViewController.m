@@ -22,6 +22,21 @@
     return self;
 }
 
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    
+    [self.scrollView layoutIfNeeded];
+    
+    NSLog(@"scrollView.bounds = %@",NSStringFromCGRect(self.scrollView.frame));
+    NSLog(@"scrollView.frame = %@",NSStringFromCGRect(self.scrollView.bounds));
+    NSLog(@"scrollView.contentSize = %@",NSStringFromCGSize(self.scrollView.contentSize));
+    NSLog(@"scrollView.contentInset = %@",NSStringFromUIEdgeInsets(self.scrollView.contentInset));
+    if (!self.scrollView.contentInset.top) {
+        self.scrollView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -31,8 +46,6 @@
     /// 创建基本的内部组件, default is hidden
     self.scrollView = [UIScrollView new];
     self.scrollView.hidden = YES;
-//    self.automaticallyAdjustsScrollViewInsets = NO;
-//    self.scrollView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
     self.scrollContentView = [UIView new];
     _headerView = [UIView new];
     _contentView = UIView.new;

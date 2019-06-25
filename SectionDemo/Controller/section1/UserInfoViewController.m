@@ -66,9 +66,9 @@
     XYInfomationItem *item14 = [XYInfomationItem modelWithTitle:@"单纯使用XYInfomationSection自己处理内部布局单纯使用XYInfomationSection自己处理内部布局" titleKey:@"conTel" type:0 value:self.userDetailInfo.conTel placeholderValue:nil disableUserAction:NO];
     
     NSArray *dataArray = @[item,item2,item3,item4,item5,item6,item7,item8,item9,item10,item11,item12,item13,item14];
-    for (XYInfomationItem *item in dataArray) {
-        item.type = XYInfoCellTypeChoose;
-    }
+//    for (XYInfomationItem *item in dataArray) {
+//        item.type = XYInfoCellTypeChoose;
+//    }
     section.dataArray = dataArray;
 //    section.dataArray = @[dataArray[12]];
     
@@ -102,3 +102,4 @@
 
 
 @end
+

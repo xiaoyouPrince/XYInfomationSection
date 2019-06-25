@@ -13,6 +13,8 @@
 		B40F590322BA97AA001C6A53 /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B40F590222BA97AA001C6A53 /* UserInfoViewController.m */; };
 		B40F590622BA9C72001C6A53 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B40F590522BA9C72001C6A53 /* SettingViewController.m */; };
 		B40F590922BA9FAC001C6A53 /* UserCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B40F590822BA9FAC001C6A53 /* UserCenterViewController.m */; };
+		B418918A22C1E8BA00A8B12D /* BaseUseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B418918822C1E8BA00A8B12D /* BaseUseViewController.m */; };
+		B418918B22C1E8BA00A8B12D /* BaseUseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B418918922C1E8BA00A8B12D /* BaseUseViewController.xib */; };
 		B485158922B8B51500779B6B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B485158822B8B51500779B6B /* AppDelegate.m */; };
 		B485158C22B8B51500779B6B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B485158B22B8B51500779B6B /* ViewController.m */; };
 		B485158F22B8B51500779B6B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B485158D22B8B51500779B6B /* Main.storyboard */; };
@@ -67,12 +69,15 @@
 		B40F58FC22BA90EA001C6A53 /* XYInfomationBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYInfomationBaseViewController.h; sourceTree = "<group>"; };
 		B40F58FD22BA90EA001C6A53 /* XYInfomationBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYInfomationBaseViewController.m; sourceTree = "<group>"; };
 		B40F58FE22BA90EA001C6A53 /* XYInfomationBaseViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = XYInfomationBaseViewController.xib; sourceTree = "<group>"; };
-		B40F590122BA97AA001C6A53 /* UserInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = UserInfoViewController.h; path = SectionDemo/Controller/UserInfoViewController.h; sourceTree = SOURCE_ROOT; };
-		B40F590222BA97AA001C6A53 /* UserInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = UserInfoViewController.m; path = SectionDemo/Controller/UserInfoViewController.m; sourceTree = SOURCE_ROOT; };
+		B40F590122BA97AA001C6A53 /* UserInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = UserInfoViewController.h; path = SectionDemo/Controller/section1/UserInfoViewController.h; sourceTree = SOURCE_ROOT; };
+		B40F590222BA97AA001C6A53 /* UserInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = UserInfoViewController.m; path = SectionDemo/Controller/section1/UserInfoViewController.m; sourceTree = SOURCE_ROOT; };
 		B40F590422BA9C72001C6A53 /* SettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
 		B40F590522BA9C72001C6A53 /* SettingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		B40F590722BA9FAC001C6A53 /* UserCenterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserCenterViewController.h; sourceTree = "<group>"; };
 		B40F590822BA9FAC001C6A53 /* UserCenterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserCenterViewController.m; sourceTree = "<group>"; };
+		B418918722C1E8BA00A8B12D /* BaseUseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseUseViewController.h; sourceTree = "<group>"; };
+		B418918822C1E8BA00A8B12D /* BaseUseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseUseViewController.m; sourceTree = "<group>"; };
+		B418918922C1E8BA00A8B12D /* BaseUseViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BaseUseViewController.xib; sourceTree = "<group>"; };
 		B485158422B8B51500779B6B /* SectionDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SectionDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B485158722B8B51500779B6B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B485158822B8B51500779B6B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -160,12 +165,8 @@
 		B40F590A22BB34DE001C6A53 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				B40F590122BA97AA001C6A53 /* UserInfoViewController.h */,
-				B40F590222BA97AA001C6A53 /* UserInfoViewController.m */,
-				B40F590722BA9FAC001C6A53 /* UserCenterViewController.h */,
-				B40F590822BA9FAC001C6A53 /* UserCenterViewController.m */,
-				B40F590422BA9C72001C6A53 /* SettingViewController.h */,
-				B40F590522BA9C72001C6A53 /* SettingViewController.m */,
+				B418918622C1E88000A8B12D /* section0 */,
+				B418918522C1E86700A8B12D /* section1 */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -175,6 +176,29 @@
 			children = (
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		B418918522C1E86700A8B12D /* section1 */ = {
+			isa = PBXGroup;
+			children = (
+				B40F590122BA97AA001C6A53 /* UserInfoViewController.h */,
+				B40F590222BA97AA001C6A53 /* UserInfoViewController.m */,
+				B40F590722BA9FAC001C6A53 /* UserCenterViewController.h */,
+				B40F590822BA9FAC001C6A53 /* UserCenterViewController.m */,
+				B40F590422BA9C72001C6A53 /* SettingViewController.h */,
+				B40F590522BA9C72001C6A53 /* SettingViewController.m */,
+			);
+			path = section1;
+			sourceTree = "<group>";
+		};
+		B418918622C1E88000A8B12D /* section0 */ = {
+			isa = PBXGroup;
+			children = (
+				B418918722C1E8BA00A8B12D /* BaseUseViewController.h */,
+				B418918822C1E8BA00A8B12D /* BaseUseViewController.m */,
+				B418918922C1E8BA00A8B12D /* BaseUseViewController.xib */,
+			);
+			path = section0;
 			sourceTree = "<group>";
 		};
 		B485157B22B8B51500779B6B = {
@@ -387,6 +411,7 @@
 				B40F590022BA90EA001C6A53 /* XYInfomationBaseViewController.xib in Resources */,
 				B485159422B8B51700779B6B /* LaunchScreen.storyboard in Resources */,
 				B48515A622B8B70100779B6B /* XYInfomationSection.xib in Resources */,
+				B418918B22C1E8BA00A8B12D /* BaseUseViewController.xib in Resources */,
 				B40F58FB22BA6C3D001C6A53 /* XYInfomationCell.xib in Resources */,
 				B485159122B8B51700779B6B /* Assets.xcassets in Resources */,
 				B485158F22B8B51500779B6B /* Main.storyboard in Resources */,
@@ -432,6 +457,7 @@
 				B48515F022B8E76600779B6B /* MJPropertyKey.m in Sources */,
 				B48515CD22B8E73D00779B6B /* MASConstraint.m in Sources */,
 				B48515AA22B8E37100779B6B /* DataTool.m in Sources */,
+				B418918A22C1E8BA00A8B12D /* BaseUseViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
