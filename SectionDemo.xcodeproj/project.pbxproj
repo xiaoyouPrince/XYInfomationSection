@@ -15,6 +15,8 @@
 		B40F590922BA9FAC001C6A53 /* UserCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B40F590822BA9FAC001C6A53 /* UserCenterViewController.m */; };
 		B418918A22C1E8BA00A8B12D /* BaseUseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B418918822C1E8BA00A8B12D /* BaseUseViewController.m */; };
 		B418918B22C1E8BA00A8B12D /* BaseUseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B418918922C1E8BA00A8B12D /* BaseUseViewController.xib */; };
+		B418918F22C2203300A8B12D /* FamilyMemberListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B418918E22C2203300A8B12D /* FamilyMemberListViewController.m */; };
+		B418919422C2209000A8B12D /* PersonalTaxBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B418919322C2209000A8B12D /* PersonalTaxBaseViewController.m */; };
 		B485158922B8B51500779B6B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B485158822B8B51500779B6B /* AppDelegate.m */; };
 		B485158C22B8B51500779B6B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B485158B22B8B51500779B6B /* ViewController.m */; };
 		B485158F22B8B51500779B6B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B485158D22B8B51500779B6B /* Main.storyboard */; };
@@ -78,6 +80,10 @@
 		B418918722C1E8BA00A8B12D /* BaseUseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseUseViewController.h; sourceTree = "<group>"; };
 		B418918822C1E8BA00A8B12D /* BaseUseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseUseViewController.m; sourceTree = "<group>"; };
 		B418918922C1E8BA00A8B12D /* BaseUseViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BaseUseViewController.xib; sourceTree = "<group>"; };
+		B418918D22C2203300A8B12D /* FamilyMemberListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FamilyMemberListViewController.h; sourceTree = "<group>"; };
+		B418918E22C2203300A8B12D /* FamilyMemberListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FamilyMemberListViewController.m; sourceTree = "<group>"; };
+		B418919222C2209000A8B12D /* PersonalTaxBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonalTaxBaseViewController.h; sourceTree = "<group>"; };
+		B418919322C2209000A8B12D /* PersonalTaxBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonalTaxBaseViewController.m; sourceTree = "<group>"; };
 		B485158422B8B51500779B6B /* SectionDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SectionDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B485158722B8B51500779B6B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B485158822B8B51500779B6B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -167,6 +173,7 @@
 			children = (
 				B418918622C1E88000A8B12D /* section0 */,
 				B418918522C1E86700A8B12D /* section1 */,
+				B418918C22C21FB500A8B12D /* section2 */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -199,6 +206,33 @@
 				B418918922C1E8BA00A8B12D /* BaseUseViewController.xib */,
 			);
 			path = section0;
+			sourceTree = "<group>";
+		};
+		B418918C22C21FB500A8B12D /* section2 */ = {
+			isa = PBXGroup;
+			children = (
+				B418919122C2205C00A8B12D /* PersonalTax */,
+				B418919022C2203E00A8B12D /* FamilyMember */,
+			);
+			path = section2;
+			sourceTree = "<group>";
+		};
+		B418919022C2203E00A8B12D /* FamilyMember */ = {
+			isa = PBXGroup;
+			children = (
+				B418918D22C2203300A8B12D /* FamilyMemberListViewController.h */,
+				B418918E22C2203300A8B12D /* FamilyMemberListViewController.m */,
+			);
+			path = FamilyMember;
+			sourceTree = "<group>";
+		};
+		B418919122C2205C00A8B12D /* PersonalTax */ = {
+			isa = PBXGroup;
+			children = (
+				B418919222C2209000A8B12D /* PersonalTaxBaseViewController.h */,
+				B418919322C2209000A8B12D /* PersonalTaxBaseViewController.m */,
+			);
+			path = PersonalTax;
 			sourceTree = "<group>";
 		};
 		B485157B22B8B51500779B6B = {
@@ -427,6 +461,7 @@
 			files = (
 				B48515CE22B8E73D00779B6B /* MASViewConstraint.m in Sources */,
 				B48515EA22B8E76600779B6B /* MJProperty.m in Sources */,
+				B418918F22C2203300A8B12D /* FamilyMemberListViewController.m in Sources */,
 				B485158C22B8B51500779B6B /* ViewController.m in Sources */,
 				B48515C922B8E73D00779B6B /* MASConstraintMaker.m in Sources */,
 				B48515EB22B8E76600779B6B /* NSObject+MJCoding.m in Sources */,
@@ -438,6 +473,7 @@
 				B48515F122B8E76600779B6B /* MJFoundation.m in Sources */,
 				B48515C722B8E73D00779B6B /* ViewController+MASAdditions.m in Sources */,
 				B48515EF22B8E76600779B6B /* NSString+MJExtension.m in Sources */,
+				B418919422C2209000A8B12D /* PersonalTaxBaseViewController.m in Sources */,
 				B48515C622B8E73D00779B6B /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				B40F590622BA9C72001C6A53 /* SettingViewController.m in Sources */,
 				B48515C822B8E73D00779B6B /* MASCompositeConstraint.m in Sources */,

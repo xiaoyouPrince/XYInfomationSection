@@ -61,11 +61,11 @@
     XYInfomationSection *section2 = [XYInfomationSection new];
     XYInfomationSection *section3 = [XYInfomationSection new];
     XYInfomationItem *item = [XYInfomationItem modelWithTitle:@"基本使用" titleKey:@"BaseUseViewController" type:1 value:@"仅使用XYInfomationSection,自己处理页面内部布局" placeholderValue:nil disableUserAction:YES];
-    XYInfomationItem *item1 = [XYInfomationItem modelWithTitle:@"用户信息" titleKey:@"UserInfoViewController" type:1 value:@"单纯使用XYInfomationSection自己处理内部布局" placeholderValue:nil disableUserAction:YES];
-    XYInfomationItem *item2 = [XYInfomationItem modelWithTitle:@"个人中心" titleKey:@"UserCenterViewController" type:1 value:self.userDetailInfo.sex placeholderValue:nil disableUserAction:YES];
+    XYInfomationItem *item1 = [XYInfomationItem modelWithTitle:@"个人中心页面" titleKey:@"UserInfoViewController" type:1 value:@"单纯使用XYInfomationSection自己处理内部布局" placeholderValue:nil disableUserAction:YES];
+    XYInfomationItem *item2 = [XYInfomationItem modelWithTitle:@"用户详细信息页面" titleKey:@"UserCenterViewController" type:1 value:self.userDetailInfo.sex placeholderValue:nil disableUserAction:YES];
     XYInfomationItem *item3 = [XYInfomationItem modelWithTitle:@"设置页面" titleKey:@"SettingViewController" type:0 value:@"34" placeholderValue:nil disableUserAction:YES];
-    XYInfomationItem *item4 = [XYInfomationItem modelWithTitle:@"增加家庭成员" titleKey:@"marStatus" type:1 value:self.userDetailInfo.marStatus placeholderValue:nil disableUserAction:NO];
-    XYInfomationItem *item5 = [XYInfomationItem modelWithTitle:@"编辑家庭成员" titleKey:@"nation" type:0 value:self.userDetailInfo.nation placeholderValue:nil disableUserAction:YES];
+    XYInfomationItem *item4 = [XYInfomationItem modelWithTitle:@"添加家庭成员信息" titleKey:@"FamilyMemberListViewController" type:1 value:self.userDetailInfo.marStatus placeholderValue:nil disableUserAction:NO];
+    XYInfomationItem *item5 = [XYInfomationItem modelWithTitle:@"个人所得税" titleKey:@"PersonalTaxBaseViewController" type:0 value:self.userDetailInfo.nation placeholderValue:nil disableUserAction:YES];
     
     section1.dataArray = @[item];
     section2.dataArray = @[item1,item2,item3];

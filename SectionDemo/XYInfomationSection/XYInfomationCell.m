@@ -336,7 +336,10 @@ MJCodingImplementation;
     }else{
         // 选择类型，以titleLabel 和 detailLabel的实际高度更大的为准
         
+        [self.detailLabel setNeedsLayout];
+        [self.detailLabel layoutIfNeeded];
         [self.detailLabel sizeToFit];
+        
         CGFloat detail_cellHeight = self.detailLabel.bounds.size.height + 30;
         max_cellHeight = MAX(max_cellHeight, detail_cellHeight);
         
