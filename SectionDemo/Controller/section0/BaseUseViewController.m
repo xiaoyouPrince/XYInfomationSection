@@ -164,7 +164,10 @@
             item.title = title;
             item.imageName = [NSString stringWithFormat:@"icon_mine_%d",(i-10)%5];
             item.value = type? @"仅用于展示" : @"";
-            
+            item.backgroundImage = ((i-10)%5 == 0)? @"bg_top" : @"bg_middle";
+            if ((i-10)%5 == 4) {
+                item.backgroundImage = @"bg_bottom";
+            }
             
             // 加入数据源
             [array5 addObject:item];
