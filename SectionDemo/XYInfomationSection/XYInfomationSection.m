@@ -14,7 +14,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [self baseUIConfig];
+        [self baseUIConfig:NO];
     }
     return self;
 }
@@ -23,15 +23,34 @@
 {
     [super awakeFromNib];
     
-    [self baseUIConfig];
+    [self baseUIConfig:NO];
 }
 
-- (void)baseUIConfig{
-    self.layer.cornerRadius = 10;
-    self.backgroundColor = UIColor.whiteColor;
-    self.clipsToBounds = YES;
-    self.translatesAutoresizingMaskIntoConstraints = NO;
-    
+- (void)baseUIConfig:(BOOL)original{
+    if (!original) { // 创建默认style
+        self.layer.cornerRadius = 10;
+        self.backgroundColor = UIColor.whiteColor;
+        self.clipsToBounds = YES;
+        self.translatesAutoresizingMaskIntoConstraints = NO;
+    }else
+    {
+        self.layer.cornerRadius = 0;
+        self.backgroundColor = UIColor.whiteColor;
+        self.clipsToBounds = NO;
+        self.translatesAutoresizingMaskIntoConstraints = NO;
+    }
+}
+
++ (instancetype)sectionForOriginal{
+    return [[XYInfomationSection alloc] initForOriginal];
+}
+- (instancetype)initForOriginal{
+    if (self != [super init])
+    {
+        self = [XYInfomationSection new];
+    }
+    [self baseUIConfig:YES];
+    return self;
 }
 
 - (void)setDataArray:(NSArray *)dataArray

@@ -38,17 +38,17 @@
     UILabel *label2 = [[UILabel alloc] init];
     label2.text = @"只有选择类型";
     UILabel *label3 = [[UILabel alloc] init];
-    label3.text = @"选择&输入类型";
+    label3.text = @"设置 imageView";
     UILabel *label4 = [[UILabel alloc] init];
-    label4.text = @"设置 imageView";
+    label4.text = @"选择&输入类型&自定义accessoryView";
     UILabel *label5 = [[UILabel alloc] init];
-    label5.text = @"禁用用户事件，仅展示数据";
+    label5.text = @"自定义背景图片";
     
     XYInfomationSection *section1 = [XYInfomationSection new];
     XYInfomationSection *section2 = [XYInfomationSection new];
     XYInfomationSection *section3 = [XYInfomationSection new];
     XYInfomationSection *section4 = [XYInfomationSection new];
-    XYInfomationSection *section5 = [XYInfomationSection new];
+    XYInfomationSection *section5 = [XYInfomationSection sectionForOriginal];
     
     NSArray *subViews = @[label1,label2,label3,label4,label5,section1,section2,section3,section4,section5];
     for (UIView *subView in subViews) {
@@ -60,12 +60,16 @@
     NSMutableArray *array3 = @[].mutableCopy;
     NSMutableArray *array4 = @[].mutableCopy;
     NSMutableArray *array5 = @[].mutableCopy;
+    
+    static NSString *InputTitle = @"要录入字段title";
+    static NSString *ChooseTitle = @"要选择字段title";
+    
     for (int i = 0; i < 25; i ++){
         XYInfomationItem *item = [XYInfomationItem modelWithTitle:@"自定义标题" titleKey:@" " type:0 value:@"" placeholderValue:nil disableUserAction:YES];
         if (i < 5) {
-            
             item.type = XYInfoCellTypeInput;
-            item.title = @"要录入字段title";
+            NSString *title = item.type ? ChooseTitle : InputTitle;
+            item.title = title;
             item.value = @"仅用来展示值，禁用录入";
             
             if ( (i%5) == 1) {
@@ -96,7 +100,8 @@
         
         if (i >= 5 && i < 10) {
             item.type = XYInfoCellTypeChoose;
-            item.title = @"要选择字段title";
+            NSString *title = item.type ? ChooseTitle : InputTitle;
+            item.title = title;
             item.value = @"仅用来展示值，禁用选择";
             
             if ( (i%5) == 1) {
@@ -129,7 +134,10 @@
         if (i >= 10 && i < 15) {
             int type = arc4random()%2;
             item.type = type;
+            NSString *title = item.type ? ChooseTitle : InputTitle;
+            item.title = title;
             item.imageName = [NSString stringWithFormat:@"icon_mine_%d",(i-10)%5];
+            item.disableUserAction = type;
             
             // 加入数据源
             [array3 addObject:item];
@@ -138,7 +146,13 @@
         if (i >= 15 && i < 20) {
             int type = arc4random()%2;
             item.type = type;
-            
+            NSString *title = item.type ? ChooseTitle : InputTitle;
+            item.title = title;
+            item.imageName = [NSString stringWithFormat:@"icon_mine_%d",(i-10)%5];
+            item.disableUserAction = type;
+            UIButton *addBtn = [UIButton buttonWithType:UIButtonTypeContactAdd];
+            UISwitch *switc = [UISwitch new];
+            item.accessoryView = type ? addBtn : switc;
             
             // 加入数据源
             [array4 addObject:item];
@@ -146,6 +160,11 @@
         if (i >= 20 && i < 25) {
             int type = arc4random()%2;
             item.type = type;
+            NSString *title = item.type ? ChooseTitle : InputTitle;
+            item.title = title;
+            item.imageName = [NSString stringWithFormat:@"icon_mine_%d",(i-10)%5];
+            item.value = type? @"仅用于展示" : @"";
+            
             
             // 加入数据源
             [array5 addObject:item];
@@ -231,7 +250,13 @@
     
     if (cell.model.type == XYInfoCellTypeInput) {
         // 这里控制键盘弹出，能正常展示到 输入框的下面
-        [SVProgressHUD showSuccessWithStatus:@"弹出键盘，输入内容"];
+        if (cell.model.disableUserAction) {
+            [SVProgressHUD showSuccessWithStatus:@"此cell仅用于展示"];
+        }else
+        {
+            [SVProgressHUD showSuccessWithStatus:@"弹出键盘，输入内容"];
+        }
+        
         UITextField *tf = (UITextField *)[cell valueForKey:@"textField"];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [tf resignFirstResponder];
@@ -240,7 +265,12 @@
     
     if (cell.model.type == XYInfoCellTypeChoose) {
         // 这里控制选择类型的cell,根据cell.model.titleKey去加载要展示的正确数据
-        [SVProgressHUD showSuccessWithStatus:@"弹出pickerView，选择对应项目值"];
+        if (cell.model.disableUserAction) {
+            [SVProgressHUD showSuccessWithStatus:@"此cell仅用于展示"];
+        }else
+        {
+            [SVProgressHUD showSuccessWithStatus:@"弹出pickerView，选择对应项目值"];
+        }
     }
 }
 

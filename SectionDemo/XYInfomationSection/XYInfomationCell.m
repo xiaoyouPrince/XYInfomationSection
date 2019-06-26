@@ -321,8 +321,23 @@ MJCodingImplementation;
     }
     
     
+    // 7. 用户预设cell背景图片
+    if (model.backgroundImage) {
+        UIImage *image_temp = [UIImage imageNamed:model.backgroundImage];
+        if (image_temp) {
+            UIImage *bgImage = [image_temp stretchableImageWithLeftCapWidth:0.5 topCapHeight:0.5];
+            UIImageView *bgIV = [[UIImageView alloc] initWithImage:bgImage];
+            [self insertSubview:bgIV atIndex:0];
+            
+            [bgIV mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.equalTo(weakSelf);
+            }];
+        }
+    }
     
-    // 7. 更新实际高度
+    
+    
+    // 8. 更新实际高度
     [self.titleLabel sizeToFit];
     CGFloat def_cellHeight = model.def_cellHeight;
     CGFloat title_cellHeight = self.titleLabel.bounds.size.height + 30;

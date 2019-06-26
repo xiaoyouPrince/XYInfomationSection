@@ -80,6 +80,10 @@ typedef NS_ENUM(NSUInteger, XYInfoCellType) {
  */
 @property(nonatomic , strong)     UIView *accessoryView;
 /**
+ 用户预设的cell背景图片名
+ */
+@property(nonatomic , copy)     NSString *backgroundImage;
+/**
  cellHeight:用户自己设置的初始化cellHeight 默认0，如果未设置会取 def_celleHeight
  */
 @property(nonatomic , assign)     CGFloat cellHeight;

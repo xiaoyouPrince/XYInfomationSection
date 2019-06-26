@@ -47,6 +47,8 @@
     
     self.title = @"SectionDemo";
     
+    [SVProgressHUD setBackgroundColor:UIColor.lightGrayColor];
+    
     self.view.backgroundColor = HEXCOLOR(0xf6f6f6);
     self.userDetailInfo = [DataTool userModel];
     
