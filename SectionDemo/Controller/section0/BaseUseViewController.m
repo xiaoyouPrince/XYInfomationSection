@@ -216,6 +216,32 @@
     self.contentWCons.constant = UIScreen.mainScreen.bounds.size.width;
     self.contentHCons.constant = CGRectGetMaxY(section5.frame) + 3*margin;
     
+    NSArray *sections = @[section1,section2,section3,section4,section5];
+    __weak typeof(self) weakSelf = self;
+    for (XYInfomationSection *section in sections) {
+        section.cellClickBlock = ^(NSInteger index, XYInfomationCell * _Nonnull cell) {
+            [weakSelf sectionCellClicked:cell];
+        };
+    }
+    
+}
+
+
+- (void)sectionCellClicked:(XYInfomationCell *)cell{
+    
+    if (cell.model.type == XYInfoCellTypeInput) {
+        // 这里控制键盘弹出，能正常展示到 输入框的下面
+        [SVProgressHUD showSuccessWithStatus:@"弹出键盘，输入内容"];
+        UITextField *tf = (UITextField *)[cell valueForKey:@"textField"];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [tf resignFirstResponder];
+        });
+    }
+    
+    if (cell.model.type == XYInfoCellTypeChoose) {
+        // 这里控制选择类型的cell,根据cell.model.titleKey去加载要展示的正确数据
+        [SVProgressHUD showSuccessWithStatus:@"弹出pickerView，选择对应项目值"];
+    }
 }
 
 

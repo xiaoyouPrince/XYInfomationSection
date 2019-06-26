@@ -375,6 +375,14 @@ MJCodingImplementation;
     self.model.value = self.textField.text;
 }
 
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    // 内部tf被点击成为第一响应者，也要调用自己被click的回调，通知外部被操作的cell
+    if (self.cellTouchBlock) {
+        self.cellTouchBlock(self);
+    }
+    return YES;
+}
 #pragma mark - actions
 
 //- (void)tapToChoose:(UITapGestureRecognizer *)tap{
@@ -392,6 +400,7 @@ MJCodingImplementation;
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     // 因为内部有 disableUserAction 参数，所以要在这里拦截
+    // 如果是内部tf被点击，也要调用自己被click的回调，通知外部被操作的cell
     if (self.cellTouchBlock) {
         self.cellTouchBlock(self);
     }
