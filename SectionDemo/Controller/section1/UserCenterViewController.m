@@ -7,6 +7,7 @@
 //
 
 #import "UserCenterViewController.h"
+#import "BaseNavigationController.h"
 
 @interface UserCenterViewController ()
 
@@ -16,17 +17,44 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    
+    
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self setupNav];
+    
+    UIButton *addBtn = [UIButton buttonWithType:UIButtonTypeContactAdd];
+    self.headerView = addBtn;
+    
+    UISwitch *swit = [UISwitch new];
+    self.contentView = swit;
 }
-*/
+
+- (void)setupNav{
+    
+    // title
+    UILabel *titleLabel = [UILabel new];
+    UIFont *titleFont = [UIFont boldSystemFontOfSize:18];
+    [titleLabel setText:@"个人中心"];
+    titleLabel.font = titleFont;
+    [titleLabel sizeToFit];
+    self.navigationItem.titleView = titleLabel;
+    
+    
+    //设置导航栏透明
+//    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+//    self.navigationController.navigationBar.shadowImage = [UIImage new];
+//    self.navigationController.navigationBar.userInteractionEnabled = YES;
+    
+
+    [(BaseNavigationController *)self.navigationController setNavBarTransparent];
+}
+
+
 
 @end

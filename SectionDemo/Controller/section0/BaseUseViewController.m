@@ -18,6 +18,7 @@
 
 #import "BaseUseViewController.h"
 #import "XYInfomationSection.h"
+#import "BaseNavigationController.h"
 
 @interface BaseUseViewController ()
 @property (weak, nonatomic) IBOutlet UIView *contentView;
@@ -246,6 +247,9 @@
         };
     }
     
+    
+    [(BaseNavigationController *)self.navigationController setNavBarTransparentWithAutoReset:NO];
+    
 }
 
 
@@ -259,11 +263,6 @@
         {
             [SVProgressHUD showSuccessWithStatus:@"弹出键盘，输入内容"];
         }
-        
-        UITextField *tf = (UITextField *)[cell valueForKey:@"textField"];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [tf resignFirstResponder];
-        });
     }
     
     if (cell.model.type == XYInfoCellTypeChoose) {

@@ -336,6 +336,10 @@ MJCodingImplementation;
     }
     
     
+    // ....  分割线的内边距 颜色
+    // ....  自身背景颜色，圆角，
+    // ....  内部title. 字体&颜色  value 字体和颜色
+    
     
     // 8. 更新实际高度
     [self.titleLabel sizeToFit];
