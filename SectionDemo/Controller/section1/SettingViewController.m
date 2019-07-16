@@ -17,6 +17,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    UIButton *addBtn = [UIButton buttonWithType:UIButtonTypeContactAdd];
+    self.headerView = addBtn;
 }
 
 /*

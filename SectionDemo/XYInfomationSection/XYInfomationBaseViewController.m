@@ -35,6 +35,15 @@
     if (!self.scrollView.contentInset.top) {
         self.scrollView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
     }
+    
+    // scrollView.contentSize 至少能滚动
+    
+    UIView *the_bottom_view = self.scrollContentView.subviews.lastObject;
+    CGFloat max_y = CGRectGetMaxY(the_bottom_view.frame);
+    CGFloat scrollViewH = self.scrollView.frame.size.height;
+    if (max_y < scrollViewH) {
+        self.scrollView.contentSize = CGSizeMake(0, self.scrollView.bounds.size.height + 0.5 - kNavHeight);
+    }
 }
 
 - (void)viewDidLoad {
@@ -89,10 +98,15 @@
 {
     [super viewWillAppear:animated];
     
-    self.scrollView.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.5];
-    self.headerView.backgroundColor = UIColor.redColor;
-    self.contentView.backgroundColor = UIColor.greenColor;
-    self.footerView.backgroundColor = UIColor.yellowColor;
+//    self.scrollView.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.5];
+//    self.headerView.backgroundColor = UIColor.redColor;
+//    self.contentView.backgroundColor = UIColor.greenColor;
+//    self.footerView.backgroundColor = UIColor.yellowColor;
+    
+    self.scrollView.backgroundColor = [UIColor clearColor];
+    self.headerView.backgroundColor = UIColor.clearColor;
+    self.contentView.backgroundColor = UIColor.clearColor;
+    self.footerView.backgroundColor = UIColor.clearColor;
     
 }
 

@@ -16,6 +16,7 @@
 // 可能选择的情况： 出生日期选择(年月日) || 地区选择(省市区) || 单选框
 
 #import "XYInfomationCell.h"
+#import <objc/runtime.h>
 
 @implementation XYInfomationItem
 
@@ -40,16 +41,6 @@ MJCodingImplementation;
 {
     return 50.f;
 }
-
-//- (void)setValue:(id)value forKey:(NSString *)key{
-//    if ([key isEqualToString:@"title"]) {
-//        [NSException exceptionWithName:@"key为空" reason:<#(nullable NSString *)#> userInfo:<#(nullable NSDictionary *)#>];
-//    }
-//
-//    if ([key isEqualToString:@"titleKey"]) {
-//
-//    }
-//}
 
 + (instancetype)modelWithTitle:(NSString *)title
                       titleKey:(NSString *)titleKey
@@ -91,6 +82,35 @@ MJCodingImplementation;
 //    return @" 可能选择的情况： 出生日期选择(年月日) || 地区选择(省市区) || 单选框, 可能选择的情况： 出生日期选择(年月日) || 地区选择(省市区) || 单选框";
 //}
 
+- (nonnull id)copyWithZone:(nullable NSZone *)zone {
+    return [self xy_copy];
+}
+
+- (nonnull id)mutableCopyWithZone:(nullable NSZone *)zone {
+    return [self xy_copy];
+}
+
+- (nonnull id)xy_copy{
+    XYInfomationItem *item = [XYInfomationItem new];
+    
+    NSMutableDictionary *props = @{}.mutableCopy;
+    
+    unsigned int outCount, i;
+    objc_property_t *properties = class_copyPropertyList([self class], &outCount);
+    
+    for (i = 0; i < outCount; i++){
+        objc_property_t property = properties[i];
+        const char* char_f = property_getName(property);
+        NSString *propertyName = [NSString stringWithUTF8String:char_f];
+        id propertyValue = [self valueForKey:(NSString *)propertyName];
+        if (propertyValue) [props setObject:propertyValue forKey:propertyName];
+    }
+    
+    free(properties);
+    
+    [item setValuesForKeysWithDictionary:props];
+    return item;
+}
 
 @end
 

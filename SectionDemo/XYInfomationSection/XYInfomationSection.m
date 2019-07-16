@@ -55,15 +55,19 @@
 
 - (void)setDataArray:(NSArray *)dataArray
 {
-    if (_dataArray.count != dataArray.count) {
-        _dataArray = dataArray;
-        
-        [self setupContent];
-    }else
-    {
-        _dataArray = dataArray;
-        [self refreshSectionWithDataArray:dataArray];
-    }
+    
+    _dataArray = dataArray;
+    [self setupContent];
+    
+//    if (_dataArray.count != dataArray.count) {
+//        _dataArray = dataArray;
+//
+//        [self setupContent];
+//    }else
+//    {
+//        _dataArray = dataArray;
+//        [self refreshSectionWithDataArray:dataArray];
+//    }
     
     [self setNeedsLayout];
     [self layoutIfNeeded];

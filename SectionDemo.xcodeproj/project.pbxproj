@@ -238,10 +238,10 @@
 		B418918522C1E86700A8B12D /* section1 */ = {
 			isa = PBXGroup;
 			children = (
-				B40F590122BA97AA001C6A53 /* UserInfoViewController.h */,
-				B40F590222BA97AA001C6A53 /* UserInfoViewController.m */,
 				B40F590722BA9FAC001C6A53 /* UserCenterViewController.h */,
 				B40F590822BA9FAC001C6A53 /* UserCenterViewController.m */,
+				B40F590122BA97AA001C6A53 /* UserInfoViewController.h */,
+				B40F590222BA97AA001C6A53 /* UserInfoViewController.m */,
 				B40F590422BA9C72001C6A53 /* SettingViewController.h */,
 				B40F590522BA9C72001C6A53 /* SettingViewController.m */,
 			);
