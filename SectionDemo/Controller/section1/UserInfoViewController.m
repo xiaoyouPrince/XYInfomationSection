@@ -7,19 +7,20 @@
 //
 
 #import "UserInfoViewController.h"
+#import "BaseNavigationController.h"
 
 @interface UserInfoViewController ()
 
 /** 数据 */
 @property(nonatomic , strong)     UserModel *userDetailInfo;
 
-@property (nonatomic, strong) UIScrollView  *scrollView;
+//@property (nonatomic, strong) UIScrollView  *scrollView;
 
 @end
 
 
 @implementation UserInfoViewController
-@dynamic scrollView;
+//@dynamic scrollView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -29,9 +30,8 @@
     
     [self buildUI];
     
-    
-//    UIButton *bu = [UIButton buttonWithType:UIButtonTypeContactAdd];
-//    self.headerView = bu;
+    // 设置导航栏透明
+    // [(BaseNavigationController *)self.navigationController setNavBarTransparent];
 }
 
 - (void)buildUI{

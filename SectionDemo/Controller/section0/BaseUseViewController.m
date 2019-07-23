@@ -35,9 +35,9 @@
     self.contentView.backgroundColor = UIColor.groupTableViewBackgroundColor;
     
     UILabel *label1 = [[UILabel alloc] init];
-    label1.text = @"只有输入类型";
+    label1.text = @"只有输入类型(默认圆角样式)";
     UILabel *label2 = [[UILabel alloc] init];
-    label2.text = @"只有选择类型";
+    label2.text = @"只有选择类型(基本样式)";
     UILabel *label3 = [[UILabel alloc] init];
     label3.text = @"设置 imageView";
     UILabel *label4 = [[UILabel alloc] init];
@@ -46,10 +46,10 @@
     label5.text = @"自定义背景图片";
     
     XYInfomationSection *section1 = [XYInfomationSection new];
-    XYInfomationSection *section2 = [XYInfomationSection new];
+    XYInfomationSection *section2 = [XYInfomationSection sectionForOriginal];
     XYInfomationSection *section3 = [XYInfomationSection new];
     XYInfomationSection *section4 = [XYInfomationSection new];
-    XYInfomationSection *section5 = [XYInfomationSection sectionForOriginal];
+    XYInfomationSection *section5 = [XYInfomationSection new];
     
     NSArray *subViews = @[label1,label2,label3,label4,label5,section1,section2,section3,section4,section5];
     for (UIView *subView in subViews) {

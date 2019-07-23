@@ -26,15 +26,21 @@
 {
     [super viewDidLayoutSubviews];
     
+    [self.scrollView setNeedsLayout];
     [self.scrollView layoutIfNeeded];
     
     NSLog(@"scrollView.bounds = %@",NSStringFromCGRect(self.scrollView.frame));
     NSLog(@"scrollView.frame = %@",NSStringFromCGRect(self.scrollView.bounds));
     NSLog(@"scrollView.contentSize = %@",NSStringFromCGSize(self.scrollView.contentSize));
     NSLog(@"scrollView.contentInset = %@",NSStringFromUIEdgeInsets(self.scrollView.contentInset));
+    NSLog(@"scrollIndicatorInsets = %@",NSStringFromUIEdgeInsets(self.scrollView.scrollIndicatorInsets));
     if (!self.scrollView.contentInset.top) {
-        self.scrollView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
+//        self.scrollView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
     }
+    
+    // self.scrollView 滚到顶部，防止展示的时候有问题
+    self.scrollView.scrollsToTop = YES;
+    
     
     // scrollView.contentSize 至少能滚动
     
@@ -42,8 +48,13 @@
     CGFloat max_y = CGRectGetMaxY(the_bottom_view.frame);
     CGFloat scrollViewH = self.scrollView.frame.size.height;
     if (max_y < scrollViewH) {
-        self.scrollView.contentSize = CGSizeMake(0, self.scrollView.bounds.size.height + 0.5 - kNavHeight);
+        self.scrollView.contentSize = CGSizeMake(0, self.scrollView.bounds.size.height + 0.5);
     }
+    
+    NSLog(@"scrollView.contentSize = %@",NSStringFromCGSize(self.scrollView.contentSize));
+    NSLog(@"scrollIndicatorInsets = %@",NSStringFromUIEdgeInsets(self.scrollView.scrollIndicatorInsets));
+    
+    [self.scrollView scrollsToTop];
 }
 
 - (void)viewDidLoad {
@@ -107,6 +118,13 @@
     self.headerView.backgroundColor = UIColor.clearColor;
     self.contentView.backgroundColor = UIColor.clearColor;
     self.footerView.backgroundColor = UIColor.clearColor;
+    
+    if (@available(iOS 11.0, *)) {
+        self.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentAutomatic;
+    } else {
+        self.automaticallyAdjustsScrollViewInsets = YES;
+    }
+    
     
 }
 

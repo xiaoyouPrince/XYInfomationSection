@@ -26,6 +26,11 @@
     [self baseUIConfig:NO];
 }
 
+/**
+ 创建section样式：根据是否创建初始样式
+
+ @param original 是否为初始样式  YES:无圆角&白色背景  NO:圆角为10，背景色透明
+ */
 - (void)baseUIConfig:(BOOL)original{
     if (!original) { // 创建默认style
         self.layer.cornerRadius = 10;
@@ -35,7 +40,7 @@
     }else
     {
         self.layer.cornerRadius = 0;
-        self.backgroundColor = UIColor.clearColor;
+        self.backgroundColor = UIColor.whiteColor;
         self.clipsToBounds = NO;
         self.translatesAutoresizingMaskIntoConstraints = NO;
     }
@@ -68,6 +73,9 @@
 //        _dataArray = dataArray;
 //        [self refreshSectionWithDataArray:dataArray];
 //    }
+    
+    // 重置背景色
+    [self resetSelfBgColor];
     
     [self setNeedsLayout];
     [self layoutIfNeeded];
@@ -138,6 +146,18 @@ static UIView *the_bottom_cell = nil;
     }
     
     // 刷新内容
+}
+
+- (void)resetSelfBgColor{
+    
+    // 如果内部的cell设置背景图片就，设置
+    UIImage *lastBgImage = [UIImage imageNamed:self.dataArray.lastObject.backgroundImage];
+    if (lastBgImage) {
+        self.backgroundColor = UIColor.clearColor;
+    }else
+    {
+        self.backgroundColor = UIColor.whiteColor;
+    }
 }
 
 
