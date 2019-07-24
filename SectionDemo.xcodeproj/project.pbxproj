@@ -441,10 +441,10 @@
 				B4E8AB8622C347F00096208A /* Constants */,
 				B4E8AB8922C347F00096208A /* Resources */,
 				B4E8AB8B22C347F00096208A /* IQKeyboardReturnKeyHandler.h */,
+				B4E8AB9B22C347F00096208A /* IQKeyboardReturnKeyHandler.m */,
 				B4E8AB8C22C347F00096208A /* IQKeyboardManager.h */,
 				B4E8AB8D22C347F00096208A /* IQKeyboardManager.m */,
 				B4E8AB8E22C347F00096208A /* Categories */,
-				B4E8AB9B22C347F00096208A /* IQKeyboardReturnKeyHandler.m */,
 			);
 			path = IQKeyboardManager;
 			sourceTree = "<group>";
@@ -462,15 +462,15 @@
 			isa = PBXGroup;
 			children = (
 				B4E8AB7C22C347F00096208A /* IQUIView+IQKeyboardToolbar.h */,
+				B4E8AB8122C347F00096208A /* IQUIView+IQKeyboardToolbar.m */,
+				B4E8AB8322C347F00096208A /* IQToolbar.h */,
 				B4E8AB7D22C347F00096208A /* IQToolbar.m */,
 				B4E8AB7E22C347F00096208A /* IQPreviousNextView.h */,
-				B4E8AB7F22C347F00096208A /* IQTitleBarButtonItem.m */,
-				B4E8AB8022C347F00096208A /* IQBarButtonItem.m */,
-				B4E8AB8122C347F00096208A /* IQUIView+IQKeyboardToolbar.m */,
 				B4E8AB8222C347F00096208A /* IQPreviousNextView.m */,
-				B4E8AB8322C347F00096208A /* IQToolbar.h */,
-				B4E8AB8422C347F00096208A /* IQBarButtonItem.h */,
 				B4E8AB8522C347F00096208A /* IQTitleBarButtonItem.h */,
+				B4E8AB7F22C347F00096208A /* IQTitleBarButtonItem.m */,
+				B4E8AB8422C347F00096208A /* IQBarButtonItem.h */,
+				B4E8AB8022C347F00096208A /* IQBarButtonItem.m */,
 			);
 			path = IQToolbar;
 			sourceTree = "<group>";
@@ -495,18 +495,18 @@
 		B4E8AB8E22C347F00096208A /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				B4E8AB9622C347F00096208A /* IQNSArray+Sort.h */,
 				B4E8AB8F22C347F00096208A /* IQNSArray+Sort.m */,
+				B4E8AB9522C347F00096208A /* IQUIWindow+Hierarchy.h */,
 				B4E8AB9022C347F00096208A /* IQUIWindow+Hierarchy.m */,
 				B4E8AB9122C347F00096208A /* IQUIViewController+Additions.h */,
-				B4E8AB9222C347F00096208A /* IQUITextFieldView+Additions.m */,
-				B4E8AB9322C347F00096208A /* IQUIScrollView+Additions.m */,
-				B4E8AB9422C347F00096208A /* IQUIView+Hierarchy.m */,
-				B4E8AB9522C347F00096208A /* IQUIWindow+Hierarchy.h */,
-				B4E8AB9622C347F00096208A /* IQNSArray+Sort.h */,
-				B4E8AB9722C347F00096208A /* IQUIScrollView+Additions.h */,
-				B4E8AB9822C347F00096208A /* IQUITextFieldView+Additions.h */,
 				B4E8AB9922C347F00096208A /* IQUIViewController+Additions.m */,
+				B4E8AB9822C347F00096208A /* IQUITextFieldView+Additions.h */,
+				B4E8AB9222C347F00096208A /* IQUITextFieldView+Additions.m */,
+				B4E8AB9722C347F00096208A /* IQUIScrollView+Additions.h */,
+				B4E8AB9322C347F00096208A /* IQUIScrollView+Additions.m */,
 				B4E8AB9A22C347F00096208A /* IQUIView+Hierarchy.h */,
+				B4E8AB9422C347F00096208A /* IQUIView+Hierarchy.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";

@@ -143,12 +143,6 @@ MJCodingImplementation;
 {
     [super awakeFromNib];
     
-    // 给自己添加点击事件，当自己是选择类型的时候，可以弹出选择框
-    //    if (self.cell_type == XYInfoCellTypeChoose) {
-    //        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapToChoose:)];
-    //        [self addGestureRecognizer:tap];
-    //    }
-    
     self.textField.delegate = self;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldTextChanged:) name:UITextFieldTextDidChangeNotification object:nil];
     
@@ -424,11 +418,6 @@ MJCodingImplementation;
 }
 #pragma mark - actions
 
-//- (void)tapToChoose:(UITapGestureRecognizer *)tap{
-//
-//}
-
-
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -436,15 +425,19 @@ MJCodingImplementation;
 
 #pragma mark - touch
 
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    // 因为内部有 disableUserAction 参数，所以要在这里拦截
-    // 如果是内部tf被点击，也要调用自己被click的回调，通知外部被操作的cell
-    if (self.cellTouchBlock) {
-        self.cellTouchBlock(self);
+    
+    CGPoint point = [touches.anyObject locationInView:self];
+    
+    if (CGRectContainsPoint(self.bounds,point)) { // 点必须在self.内部
+        // 如果是内部tf被点击，也要调用自己被click的回调，通知外部被操作的cell
+        if (self.cellTouchBlock) {
+            self.cellTouchBlock(self);
+        }
     }
     
-    [super touchesBegan:touches withEvent:event];
+    [super touchesEnded:touches withEvent:event];
 }
 
 @end
