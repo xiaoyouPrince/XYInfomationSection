@@ -49,6 +49,7 @@
     CGFloat scrollViewH = self.scrollView.frame.size.height;
     if (max_y < scrollViewH) {
         self.scrollView.contentSize = CGSizeMake(0, self.scrollView.bounds.size.height + 0.5);
+        self.scrollView.scrollIndicatorInsets = UIEdgeInsetsMake(-kNavHeight, 0, 0, 0);
     }
     
     NSLog(@"scrollView.contentSize = %@",NSStringFromCGSize(self.scrollView.contentSize));

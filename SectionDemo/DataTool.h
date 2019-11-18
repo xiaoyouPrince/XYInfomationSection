@@ -56,7 +56,7 @@ NS_ASSUME_NONNULL_END
 
 @implementation NSDate (extension)
 
-- (NSString *)stringWithFormat:(NSString *)format{
+- (NSString *_Nullable)stringWithFormat:(NSString *_Nullable)format{
     
     NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
     fmt.dateFormat = format;
