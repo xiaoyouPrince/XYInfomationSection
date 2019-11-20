@@ -128,10 +128,6 @@ MJCodingImplementation;
 @end
 
 @implementation XYInfomationCell
-@synthesize cell_type = _cell_type;
-//{
-//    XYInfoCellType _cell_type;
-//}
 
 #pragma mark - lazyLoad
 

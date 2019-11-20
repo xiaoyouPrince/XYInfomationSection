@@ -104,6 +104,11 @@ typedef NS_ENUM(NSUInteger, XYInfoCellType) {
  */
 @property(nonatomic , assign)   BOOL disableUserAction;
 
+/**
+ model中额外的数据对象。default is nil
+ */
+@property(nonatomic , strong)   id obj;
+
 /// 创建方法(通过dictionary创建)
 + (instancetype)modelWithDict:(NSDictionary *)dict;
 

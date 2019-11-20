@@ -75,7 +75,7 @@
         UIControl *backView = [UIControl new];
         [backView addSubview:iv];
         backView.frame = CGRectMake(0, 0, 100, 44);
-        iv.frame = CGRectMake(10, (44-backImage.size.height)/2, backImage.size.width, backImage.size.height);
+        iv.frame = CGRectMake(-10, (44-backImage.size.height)/2, backImage.size.width, backImage.size.height);
         backView.backgroundColor = UIColor.clearColor;
         [backView addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
         
