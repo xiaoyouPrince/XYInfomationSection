@@ -15,6 +15,10 @@ MJCodingImplementation;
 
 @end
 
+@interface DataTool ()
+@property(nonatomic , strong)     NSArray *citiesArray;
+@end
+
 @implementation DataTool
 
 + (UserModel *)userModel
@@ -49,6 +53,52 @@ MJCodingImplementation;
     
     UserModel *userModel = [UserModel mj_objectWithKeyValues:user];
     return userModel;
+}
+
++ (NSArray *)dataArrayForKey:(NSString *)key
+{
+    if ([key isEqualToString:@""]) {
+        return [self citiesArray];
+    }
+    
+    return [self citiesArray];
+}
+
++ (NSArray *)citiesArray
+{
+    
+    NSArray *array = @[
+        
+        @{
+            @"title": @"北京",
+            @"code": @"1"
+        },
+        @{
+            @"title": @"上海",
+            @"code": @"2"
+        },
+        @{
+            @"title": @"广州",
+            @"code": @"3"
+        },
+        @{
+            @"title": @"深圳",
+            @"code": @"4"
+        },
+        @{
+            @"title": @"定州",
+            @"code": @"5"
+        },
+    ];
+    
+    
+    NSMutableArray *arrayM = @[].mutableCopy;
+    for (NSDictionary *dict in array) {
+        XYPickerViewItem *item = [XYPickerViewItem modelWithDict:dict];
+        [arrayM addObject:item];
+    }
+    
+    return arrayM;
 }
 
 @end

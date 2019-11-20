@@ -50,6 +50,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (UserModel *)userModel;
 
+/// 根据要请求的数据key返回对应数据数组
++ (NSArray *)dataArrayForKey:(NSString *)key;
+
 @end
 
 NS_ASSUME_NONNULL_END

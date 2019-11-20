@@ -116,7 +116,26 @@
             [SVProgressHUD showSuccessWithStatus:@"此cell仅用于展示"];
         }else
         {
-            [SVProgressHUD showSuccessWithStatus:@"弹出pickerView，选择对应项目值"];
+            // 请求对应选择项目的数据
+            [XYPickerView showPickerWithConfig:^(XYPickerView * _Nonnull picker) {
+               
+                picker.dataArray = [DataTool dataArrayForKey:@""];
+                picker.title = @"选择城市";
+                
+                // 可以自己设置默认选中行                
+                for (int i = 0; i < picker.dataArray.count; i++) {
+                    XYPickerViewItem *item = picker.dataArray[i];
+                    if ([item.title isEqualToString:cell.model.value]) {
+                        picker.defaultSelectedRow = i;
+                    }
+                }
+                
+            } result:^(XYPickerViewItem * _Nonnull selectedItem) {
+                NSLog(@"选择完成，结果为:%@",selectedItem);
+                cell.model.value = selectedItem.title;
+                cell.model.valueCode = selectedItem.code;
+                cell.model = cell.model;
+            }];
         }
     }
 }
