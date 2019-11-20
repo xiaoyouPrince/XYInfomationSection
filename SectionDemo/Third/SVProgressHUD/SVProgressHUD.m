@@ -931,7 +931,7 @@ static const CGFloat SVProgressHUDUndefinedProgress = -1;
         _stringLabel.numberOfLines = 0;
     }
     
-    if(!_stringLabel.superview)
+    if(!_stringLabel.superview.superview)
         [self.hudView addSubview:_stringLabel];
 
     _stringLabel.textColor = SVProgressHUDForegroundColor;
@@ -944,7 +944,7 @@ static const CGFloat SVProgressHUDUndefinedProgress = -1;
     if (!_imageView)
         _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 28.0f, 28.0f)];
     
-    if(!_imageView.superview)
+    if(!_imageView.superview.superview)
         [self.hudView addSubview:_imageView];
     
     return _imageView;
