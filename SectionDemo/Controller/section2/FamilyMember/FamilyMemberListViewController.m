@@ -39,8 +39,44 @@
         section.cellClickBlock = ^(NSInteger index, XYInfomationCell * _Nonnull cell) {
             [weakSelf sectionCellClicked:cell];
         };
+        
+        // 监听出生日期，如果身份类型:身份证，身份证号码为正确的身份证号--->自动输入出生日期
+        [item4 addObserver:weakSelf forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
     }
     return _section;
+}
+
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
+{
+    
+    if ([[object valueForKey:@"titleKey"] isEqualToString:@"memberIdCardNo"]) {
+        
+        // 最新输入的身份证号
+        NSString *value = change[NSKeyValueChangeNewKey];
+        
+        // 证件类型
+        XYInfomationItem *item = self.section.dataArray[2];
+        if ([value isIDCard] && [item.valueCode isEqualToString:@"1"]) {
+            
+            NSString *birthday = [value birthdayFromIDCard];
+                    
+            XYInfomationItem *item = self.section.dataArray[4];
+            item.value = birthday;
+            item.valueCode = birthday;
+            XYInfomationCell *cell = [self.section.subviews objectAtIndex:4];
+            cell.model = item;
+        }else
+        {
+            XYInfomationItem *item = self.section.dataArray[4];
+            item.value = nil;
+            item.valueCode = nil;
+            XYInfomationCell *cell = [self.section.subviews objectAtIndex:4];
+            cell.model = item;
+        }
+    }
+    
+    
 }
 
 - (UIButton *)saveBtn
@@ -88,6 +124,18 @@
 
     // 2. 确定按钮
     [self setFooterView:self.saveBtn edgeInsets:UIEdgeInsetsMake(0, 50, 50, 50)];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    
+    // 移除证件号码监听
+    for (XYInfomationItem *item in self.section.dataArray) {
+        if ([item.titleKey isEqualToString:@"memberIdCardNo"]) {
+            [item removeObserver:self forKeyPath:@"value"];
+        }
+    }
 }
 
 #pragma mark - actions
@@ -151,7 +199,7 @@
         datePicker.title = [@"选择" stringByAppendingString:cell.model.title];
         
         // 如果已经有选好的时间，默认展示对应的时间
-        if ([self matchesDate:cell.model.value]) {
+        if ([cell.model.value isDateFromat]) {
             NSDateFormatter *mft = [NSDateFormatter new];
             mft.dateFormat = @"yyyy-MM-dd";
             NSDate *date = [mft dateFromString:cell.model.value];
@@ -173,28 +221,8 @@
     }];
 }
 
-
-- (BOOL)matchesDate:(NSString *)dateStr
+- (void)dealloc
 {
-    if (!dateStr.length) {
-        return NO;
-    }
-    // 匹配是否为已经选好的时间，格式如下 yyyy-MM-dd
-    
-    NSString *pattern = @"\\d{4}-\\d{2}-\\d{2}";
-    NSRegularExpression *regx = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:nil];
-    
-    __block BOOL _result = NO;
-    [regx enumerateMatchesInString:dateStr options:NSMatchingReportProgress range:NSMakeRange(0, dateStr.length) usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
-        
-            if (result.range.location != NSNotFound) {
-                *stop = YES;
-                _result = YES;
-            }
-    }];
-    
-    return _result;
+    NSLog(@"%@--%s",self,_cmd);
 }
-
-
 @end

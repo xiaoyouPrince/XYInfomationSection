@@ -26,6 +26,7 @@
 #import "XYPickerView.h"
 #import "XYDatePickerView.h"
 #import "DataTool.h"
+#import "NSString+Tool.h"
 
 
 

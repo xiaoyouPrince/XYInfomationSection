@@ -18,6 +18,7 @@
 		B418918F22C2203300A8B12D /* FamilyMemberListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B418918E22C2203300A8B12D /* FamilyMemberListViewController.m */; };
 		B418919422C2209000A8B12D /* PersonalTaxBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B418919322C2209000A8B12D /* PersonalTaxBaseViewController.m */; };
 		B44A3E5A23866D81001D9E81 /* XYDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = B44A3E5923866D81001D9E81 /* XYDatePickerView.m */; };
+		B44A3E5D2386B8C4001D9E81 /* NSString+Tool.m in Sources */ = {isa = PBXBuildFile; fileRef = B44A3E5C2386B8C4001D9E81 /* NSString+Tool.m */; };
 		B46D51AB2385B89000C56CFB /* XYPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = B46D51A92385B89000C56CFB /* XYPickerView.m */; };
 		B485158922B8B51500779B6B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B485158822B8B51500779B6B /* AppDelegate.m */; };
 		B485158C22B8B51500779B6B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B485158B22B8B51500779B6B /* ViewController.m */; };
@@ -104,6 +105,8 @@
 		B418919322C2209000A8B12D /* PersonalTaxBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonalTaxBaseViewController.m; sourceTree = "<group>"; };
 		B44A3E5823866D81001D9E81 /* XYDatePickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYDatePickerView.h; sourceTree = "<group>"; };
 		B44A3E5923866D81001D9E81 /* XYDatePickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYDatePickerView.m; sourceTree = "<group>"; };
+		B44A3E5B2386B8C4001D9E81 /* NSString+Tool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Tool.h"; sourceTree = "<group>"; };
+		B44A3E5C2386B8C4001D9E81 /* NSString+Tool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Tool.m"; sourceTree = "<group>"; };
 		B46D51A92385B89000C56CFB /* XYPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYPickerView.m; sourceTree = "<group>"; };
 		B46D51AA2385B89000C56CFB /* XYPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYPickerView.h; sourceTree = "<group>"; };
 		B485158422B8B51500779B6B /* SectionDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SectionDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -226,6 +229,7 @@
 		B40F590A22BB34DE001C6A53 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				B44A3E5E2386B8E3001D9E81 /* Tool */,
 				B4E8ABAB22C3ABDB0096208A /* Base */,
 				B418918622C1E88000A8B12D /* section0 */,
 				B418918522C1E86700A8B12D /* section1 */,
@@ -300,6 +304,17 @@
 			path = XYDatePickerView;
 			sourceTree = "<group>";
 		};
+		B44A3E5E2386B8E3001D9E81 /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				B48515A822B8E37100779B6B /* DataTool.h */,
+				B48515A922B8E37100779B6B /* DataTool.m */,
+				B44A3E5B2386B8C4001D9E81 /* NSString+Tool.h */,
+				B44A3E5C2386B8C4001D9E81 /* NSString+Tool.m */,
+			);
+			path = Tool;
+			sourceTree = "<group>";
+		};
 		B46D51A82385B87400C56CFB /* XYPickerView */ = {
 			isa = PBXGroup;
 			children = (
@@ -341,8 +356,6 @@
 				B485159222B8B51700779B6B /* LaunchScreen.storyboard */,
 				B485159522B8B51700779B6B /* Info.plist */,
 				B485159622B8B51700779B6B /* main.m */,
-				B48515A822B8E37100779B6B /* DataTool.h */,
-				B48515A922B8E37100779B6B /* DataTool.m */,
 				B48515FD22B8E84700779B6B /* PrefixHeader.pch */,
 			);
 			path = SectionDemo;
@@ -630,6 +643,7 @@
 				B418918F22C2203300A8B12D /* FamilyMemberListViewController.m in Sources */,
 				B4E8ABAE22C3AC470096208A /* BaseNavigationController.m in Sources */,
 				B4E8ABA522C347F00096208A /* IQUIWindow+Hierarchy.m in Sources */,
+				B44A3E5D2386B8C4001D9E81 /* NSString+Tool.m in Sources */,
 				B485158C22B8B51500779B6B /* ViewController.m in Sources */,
 				B48515C922B8E73D00779B6B /* MASConstraintMaker.m in Sources */,
 				B48515EB22B8E76600779B6B /* NSObject+MJCoding.m in Sources */,
