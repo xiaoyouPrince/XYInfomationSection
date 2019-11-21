@@ -278,6 +278,7 @@ MJCodingImplementation;
         label.font = self.textField.font;
         label.textColor = self.textField.textColor;
         label.textAlignment = NSTextAlignmentRight;
+        label.lineBreakMode = NSLineBreakByCharWrapping;
         label.numberOfLines = 0;
         label.text = self.textField.text;
         label.tag = 100;
