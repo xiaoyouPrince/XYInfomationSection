@@ -280,6 +280,7 @@ MJCodingImplementation;
         label.textAlignment = NSTextAlignmentRight;
         label.numberOfLines = 0;
         label.text = self.textField.text;
+        label.tag = 100;
         
         [self addSubview:label];
         [label mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -291,6 +292,14 @@ MJCodingImplementation;
         
         // self.textField 隐藏
         self.textField.hidden = YES;
+    }else
+    {
+        UILabel *label = [self viewWithTag:100];
+        if (label) {
+            [label removeFromSuperview];
+        }
+        // self.textField 展示
+        self.textField.hidden = NO;
     }
     
     // 6. 用户设置的的 accessoryView 【1.以用户设置的为准，2.当类型为choose时候，默认为向右箭头】
