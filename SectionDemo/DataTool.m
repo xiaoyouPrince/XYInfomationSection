@@ -57,13 +57,131 @@ MJCodingImplementation;
 
 + (NSArray *)dataArrayForKey:(NSString *)key
 {
-    if ([key isEqualToString:@""]) {
-        return [self citiesArray];
+    /// 性别类型
+    if ([key isEqualToString:@"memberSex"]) {
+        return [self sexArray];
+    }
+    
+    /// 用户证件类型
+    if ([key isEqualToString:@"memberCardType"]) {
+        return [self cardTypeArray];
+    }
+    
+    /// 用户关系类型
+    if ([key isEqualToString:@"relationShip"]) {
+        return [self relationShipArray];
     }
     
     return [self citiesArray];
 }
 
+/// 用户证件类型
++ (NSArray *)cardTypeArray
+{
+    
+    NSArray *array = @[
+        @{
+            @"title": @"身份证",
+            @"code": @"1"
+        },
+        @{
+            @"title": @"军官证",
+            @"code": @"2"
+        },
+        @{
+            @"title": @"护照",
+            @"code": @"3"
+        },
+        @{
+            @"title": @"海外侨胞证",
+            @"code": @"4"
+        },
+        @{
+            @"title": @"台湾同胞证",
+            @"code": @"5"
+        },
+    ];
+    
+    NSMutableArray *arrayM = @[].mutableCopy;
+    for (NSDictionary *dict in array) {
+        XYPickerViewItem *item = [XYPickerViewItem modelWithDict:dict];
+        [arrayM addObject:item];
+    }
+    return arrayM;
+}
+
+/// 用户关系类型
++ (NSArray *)relationShipArray
+{
+    
+    NSArray *array = @[
+        @{
+            @"title": @"父亲",
+            @"code": @"1"
+        },
+        @{
+            @"title": @"母亲",
+            @"code": @"2"
+        },
+        @{
+            @"title": @"夫/妻",
+            @"code": @"3"
+        },
+        @{
+            @"title": @"儿子",
+            @"code": @"4"
+        },
+        @{
+            @"title": @"女儿",
+            @"code": @"5"
+        },
+    ];
+    
+    NSMutableArray *arrayM = @[].mutableCopy;
+    for (NSDictionary *dict in array) {
+        XYPickerViewItem *item = [XYPickerViewItem modelWithDict:dict];
+        [arrayM addObject:item];
+    }
+    return arrayM;
+}
+
+
+/// 返回用户性别类型
++ (NSArray *)sexArray
+{
+    
+    NSArray *array = @[
+        @{
+            @"title": @"男",
+            @"code": @"1"
+        },
+        @{
+            @"title": @"女",
+            @"code": @"2"
+        },
+        @{
+            @"title": @"不明性别",
+            @"code": @"3"
+        },
+        @{
+            @"title": @"变性人",
+            @"code": @"4"
+        },
+        @{
+            @"title": @"死变态",
+            @"code": @"5"
+        },
+    ];
+    
+    NSMutableArray *arrayM = @[].mutableCopy;
+    for (NSDictionary *dict in array) {
+        XYPickerViewItem *item = [XYPickerViewItem modelWithDict:dict];
+        [arrayM addObject:item];
+    }
+    return arrayM;
+}
+
+/// 返回城市列表
 + (NSArray *)citiesArray
 {
     
@@ -91,13 +209,11 @@ MJCodingImplementation;
         },
     ];
     
-    
     NSMutableArray *arrayM = @[].mutableCopy;
     for (NSDictionary *dict in array) {
         XYPickerViewItem *item = [XYPickerViewItem modelWithDict:dict];
         [arrayM addObject:item];
     }
-    
     return arrayM;
 }
 

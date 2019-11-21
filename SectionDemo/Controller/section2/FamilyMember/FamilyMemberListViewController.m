@@ -99,45 +99,102 @@
 }
 
 - (void)sectionCellClicked:(XYInfomationCell *)cell{
-    
-    if (cell.model.type == XYInfoCellTypeInput) {
-        // 这里控制键盘弹出，能正常展示到 输入框的下面
-        if (cell.model.disableUserAction) {
-            [SVProgressHUD showSuccessWithStatus:@"此cell仅用于展示"];
-        }else
-        {
-            [SVProgressHUD showSuccessWithStatus:@"弹出键盘，输入内容"];
-        }
-    }
-    
+
     if (cell.model.type == XYInfoCellTypeChoose) {
-        // 这里控制选择类型的cell,根据cell.model.titleKey去加载要展示的正确数据
-        if (cell.model.disableUserAction) {
-            [SVProgressHUD showSuccessWithStatus:@"此cell仅用于展示"];
+        
+        // 处理要请求何种数据picker / datePicker / location
+        if ([cell.model.titleKey isEqualToString:@"memberBirthDate"]) {
+            [self showDatePickerForCell:cell];
         }else
         {
-            // 请求对应选择项目的数据
-            [XYPickerView showPickerWithConfig:^(XYPickerView * _Nonnull picker) {
-               
-                picker.dataArray = [DataTool dataArrayForKey:@""];
-                picker.title = @"选择城市";
-                
-                // 可以自己设置默认选中行                
-                for (int i = 0; i < picker.dataArray.count; i++) {
-                    XYPickerViewItem *item = picker.dataArray[i];
-                    if ([item.title isEqualToString:cell.model.value]) {
-                        picker.defaultSelectedRow = i;
-                    }
-                }
-                
-            } result:^(XYPickerViewItem * _Nonnull selectedItem) {
-                NSLog(@"选择完成，结果为:%@",selectedItem);
-                cell.model.value = selectedItem.title;
-                cell.model.valueCode = selectedItem.code;
-                cell.model = cell.model;
-            }];
+            [self showPickerForCell:cell];
         }
     }
 }
+
+
+#pragma XYPickerView 处理
+
+- (void)showPickerForCell:(XYInfomationCell *)cell
+{
+    // 此处可以模拟比较耗时的数据请求,下面直接写到代码中了
+    
+    [XYPickerView showPickerWithConfig:^(XYPickerView * _Nonnull picker) {
+       
+        picker.dataArray = [DataTool dataArrayForKey:cell.model.titleKey];
+        picker.title = @"选择城市";
+        
+        // 可以自己设置默认选中行
+        for (int i = 0; i < picker.dataArray.count; i++) {
+            XYPickerViewItem *item = picker.dataArray[i];
+            if ([item.title isEqualToString:cell.model.value]) {
+                picker.defaultSelectedRow = i;
+            }
+        }
+        
+    } result:^(XYPickerViewItem * _Nonnull selectedItem) {
+        NSLog(@"选择完成，结果为:%@",selectedItem);
+        cell.model.value = selectedItem.title;
+        cell.model.valueCode = selectedItem.code;
+        cell.model = cell.model;
+    }];
+}
+
+
+- (void)showDatePickerForCell:(XYInfomationCell *)cell{
+    
+    NSTimeInterval yearSecond = 365 * 24 * 60 * 60;
+    [XYDatePickerView showDatePickerWithConfig:^(XYDatePickerView * _Nonnull datePicker) {
+        datePicker.datePickerMode = UIDatePickerModeDate;
+        datePicker.minimumDate = [NSDate dateWithTimeIntervalSinceNow: -50 * yearSecond];
+        datePicker.maximumDate = [NSDate dateWithTimeIntervalSinceNow: -2 * yearSecond];
+        datePicker.title = [@"选择" stringByAppendingString:cell.model.title];
+        
+        // 如果已经有选好的时间，默认展示对应的时间
+        if ([self matchesDate:cell.model.value]) {
+            NSDateFormatter *mft = [NSDateFormatter new];
+            mft.dateFormat = @"yyyy-MM-dd";
+            NSDate *date = [mft dateFromString:cell.model.value];
+            datePicker.date = date;
+        }
+        
+    } result:^(NSDate * _Nonnull choosenDate) {
+        
+        NSLog(@"选择完成，结果为:%@",choosenDate);
+        
+        NSDateFormatter *mft = [NSDateFormatter new];
+        mft.dateFormat = @"yyyy-MM-dd";
+        NSString *dateStr = [mft stringFromDate:choosenDate];
+        
+        NSLog(@"选择完成，结果为:%@",dateStr);
+        cell.model.value = dateStr;
+        cell.model.valueCode = dateStr;
+        cell.model = cell.model;
+    }];
+}
+
+
+- (BOOL)matchesDate:(NSString *)dateStr
+{
+    if (!dateStr.length) {
+        return NO;
+    }
+    // 匹配是否为已经选好的时间，格式如下 yyyy-MM-dd
+    
+    NSString *pattern = @"\\d{4}-\\d{2}-\\d{2}";
+    NSRegularExpression *regx = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:nil];
+    
+    __block BOOL _result = NO;
+    [regx enumerateMatchesInString:dateStr options:NSMatchingReportProgress range:NSMakeRange(0, dateStr.length) usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
+        
+            if (result.range.location != NSNotFound) {
+                *stop = YES;
+                _result = YES;
+            }
+    }];
+    
+    return _result;
+}
+
 
 @end

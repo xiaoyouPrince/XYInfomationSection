@@ -17,6 +17,7 @@
 		B418918B22C1E8BA00A8B12D /* BaseUseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B418918922C1E8BA00A8B12D /* BaseUseViewController.xib */; };
 		B418918F22C2203300A8B12D /* FamilyMemberListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B418918E22C2203300A8B12D /* FamilyMemberListViewController.m */; };
 		B418919422C2209000A8B12D /* PersonalTaxBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B418919322C2209000A8B12D /* PersonalTaxBaseViewController.m */; };
+		B44A3E5A23866D81001D9E81 /* XYDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = B44A3E5923866D81001D9E81 /* XYDatePickerView.m */; };
 		B46D51AB2385B89000C56CFB /* XYPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = B46D51A92385B89000C56CFB /* XYPickerView.m */; };
 		B485158922B8B51500779B6B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B485158822B8B51500779B6B /* AppDelegate.m */; };
 		B485158C22B8B51500779B6B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B485158B22B8B51500779B6B /* ViewController.m */; };
@@ -101,6 +102,8 @@
 		B418918E22C2203300A8B12D /* FamilyMemberListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FamilyMemberListViewController.m; sourceTree = "<group>"; };
 		B418919222C2209000A8B12D /* PersonalTaxBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonalTaxBaseViewController.h; sourceTree = "<group>"; };
 		B418919322C2209000A8B12D /* PersonalTaxBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonalTaxBaseViewController.m; sourceTree = "<group>"; };
+		B44A3E5823866D81001D9E81 /* XYDatePickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYDatePickerView.h; sourceTree = "<group>"; };
+		B44A3E5923866D81001D9E81 /* XYDatePickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYDatePickerView.m; sourceTree = "<group>"; };
 		B46D51A92385B89000C56CFB /* XYPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYPickerView.m; sourceTree = "<group>"; };
 		B46D51AA2385B89000C56CFB /* XYPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYPickerView.h; sourceTree = "<group>"; };
 		B485158422B8B51500779B6B /* SectionDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SectionDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -288,6 +291,15 @@
 			path = PersonalTax;
 			sourceTree = "<group>";
 		};
+		B44A3E5723866D4A001D9E81 /* XYDatePickerView */ = {
+			isa = PBXGroup;
+			children = (
+				B44A3E5823866D81001D9E81 /* XYDatePickerView.h */,
+				B44A3E5923866D81001D9E81 /* XYDatePickerView.m */,
+			);
+			path = XYDatePickerView;
+			sourceTree = "<group>";
+		};
 		B46D51A82385B87400C56CFB /* XYPickerView */ = {
 			isa = PBXGroup;
 			children = (
@@ -355,6 +367,7 @@
 		B48515AB22B8E6FA00779B6B /* Third */ = {
 			isa = PBXGroup;
 			children = (
+				B44A3E5723866D4A001D9E81 /* XYDatePickerView */,
 				B46D51A82385B87400C56CFB /* XYPickerView */,
 				B4E8AB7722C347F00096208A /* IQKeyboardManager */,
 				B48515F322B8E78000779B6B /* SVProgressHUD */,
@@ -656,6 +669,7 @@
 				B48515E822B8E76600779B6B /* MJPropertyType.m in Sources */,
 				B48515CF22B8E73D00779B6B /* MASViewAttribute.m in Sources */,
 				B4E8ABA322C347F00096208A /* IQKeyboardManager.m in Sources */,
+				B44A3E5A23866D81001D9E81 /* XYDatePickerView.m in Sources */,
 				B48515EE22B8E76600779B6B /* NSObject+MJClass.m in Sources */,
 				B48515F022B8E76600779B6B /* MJPropertyKey.m in Sources */,
 				B48515CD22B8E73D00779B6B /* MASConstraint.m in Sources */,
