@@ -46,6 +46,13 @@
     }
 }
 
++ (instancetype)sectionWithData:(NSArray<XYInfomationItem *> *)dataArray
+{
+    XYInfomationSection *section = [XYInfomationSection new];
+    section.dataArray = dataArray;
+    return section;
+}
+
 + (instancetype)sectionForOriginal{
     return [[XYInfomationSection alloc] initForOriginal];
 }

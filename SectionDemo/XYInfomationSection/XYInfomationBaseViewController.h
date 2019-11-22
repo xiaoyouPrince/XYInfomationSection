@@ -15,7 +15,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface XYInfomationBaseViewController : UIViewController
 
+/// @note 子类中请勿重写以下属性和自动合成相关方法
+/// @note 相关方法赋值参数View，在入参之前需要自行设置好高度约束
+
+
 @property (nonatomic, strong) UIScrollView  *scrollView;
+@property (nonatomic, strong) UIView  *headerView;
+@property (nonatomic, strong) UIView  *contentView;
+@property (nonatomic, strong) UIView  *footerView;
 
 - (void)setHeaderView:(UIView * _Nonnull)headerView;
 - (void)setContentView:(UIView * _Nonnull)contentView;

@@ -24,6 +24,8 @@ typedef void(^SectionCellClickBlock)(NSInteger index,XYInfomationCell *cell);
 /** 使用数据源刷新 section UI */
 - (void)refreshSectionWithDataArray:(NSArray *)dataArray;
 
++ (instancetype)sectionWithData:(NSArray <XYInfomationItem *> *)dataArray;
+
 /** 快速创建最原始没有圆角的section对象 */
 + (instancetype)sectionForOriginal;
 - (instancetype)initForOriginal;

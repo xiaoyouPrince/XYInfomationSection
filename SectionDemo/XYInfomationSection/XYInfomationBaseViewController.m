@@ -12,9 +12,6 @@
 
 /** 内部使用的ScrollViewContentView */
 @property(nonatomic , strong)     UIView *scrollContentView;
-@property (nonatomic, strong) UIView  *headerView;
-@property (nonatomic, strong) UIView  *contentView;
-@property (nonatomic, strong) UIView  *footerView;
 
 @end
 
@@ -156,7 +153,7 @@
         make.top.equalTo(weakSelf.headerView).offset(edgeInsets.top);
         make.left.equalTo(weakSelf.headerView).offset(edgeInsets.left);
         make.right.equalTo(weakSelf.headerView).offset(-edgeInsets.right);
-        make.height.mas_equalTo(headerView.bounds.size.height);
+        make.height.mas_equalTo(headerView);
         make.bottom.equalTo(weakSelf.headerView).offset(-edgeInsets.bottom);
     }];
     
@@ -173,7 +170,7 @@
         make.top.equalTo(weakSelf.contentView).offset(edgeInsets.top);
         make.left.equalTo(weakSelf.contentView).offset(edgeInsets.left);
         make.right.equalTo(weakSelf.contentView).offset(-edgeInsets.right);
-        make.height.mas_equalTo(contentView.bounds.size.height);
+        make.height.mas_equalTo(contentView);
         make.bottom.equalTo(weakSelf.contentView).offset(-edgeInsets.bottom);
     }];
     
@@ -190,7 +187,7 @@
         make.top.equalTo(weakSelf.footerView).offset(edgeInsets.top);
         make.left.equalTo(weakSelf.footerView).offset(edgeInsets.left);
         make.right.equalTo(weakSelf.footerView).offset(-edgeInsets.right);
-        make.height.mas_equalTo(footerView.bounds.size.height);
+        make.height.mas_equalTo(footerView);
         make.bottom.equalTo(weakSelf.footerView).offset(-edgeInsets.bottom);
     }];
     
