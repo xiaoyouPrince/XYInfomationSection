@@ -110,69 +110,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self buildUI];
+//    self.view.backgroundColor = HEXCOLOR(0xf6f6f6);
     
-    [self loadData];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
-}
-
-- (void)loadData{
     
-    // 可以做一些基础数据请求，根据数据展示下面的内容
+    [self buildUI];    
 }
 
 - (void)buildUI{
-    
-    // 1.设置导航栏样式
-    [self setupNav];
     
     // 顶部
     [self setHeaderView:self.bannerView];
     // 入口列表
     [self setContentView:self.entranceView];
 }
-
-- (void)setupNav{
-    
-    // 颜色设置(可能需要单独设置)
-//    self.navigationController.navigationBar.barTintColor = HEXCOLOR(0xf6f6f6);
-    [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
-    
-    // 内部自定义控件
-}
-
-
-#pragma mark - contentDelegates
-
-#pragma mark - content Actions
-
-
-#pragma mark - privateMethods
-
-
-#pragma mark - publicMethods
-
-
-
-
-- (void)dealloc
-{
-    // 移除通知
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    
-    // 移除KVO
-    // [self removeObserver:self forKeyPath:@""];;
-}
-
 
 @end
 

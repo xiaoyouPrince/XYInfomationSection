@@ -17,10 +17,10 @@
 
 @implementation XYInfomationBaseViewController
 
-- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
-    self = [super initWithNibName:NSStringFromClass(XYInfomationBaseViewController.class) bundle:nibBundleOrNil];
-    return self;
-}
+//- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
+//    self = [super initWithNibName:NSStringFromClass(XYInfomationBaseViewController.class) bundle:nibBundleOrNil];
+//    return self;
+//}
 
 - (void)viewDidLayoutSubviews
 {

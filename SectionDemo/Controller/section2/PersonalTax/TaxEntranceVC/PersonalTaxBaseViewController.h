@@ -6,7 +6,9 @@
 //  Copyright © 2019 渠晓友. All rights reserved.
 //
 
-//  个税相关基础内容封装
+//  个税相关基础内容封装，因为六个税种之间页面有很多相同的地方，统一处理
+//  页面布局: header + [各自内容，子页面单独设置] + footer
+//  
 
 #import "XYInfomationBaseViewController.h"
 
@@ -30,6 +32,8 @@ typedef NS_ENUM(NSUInteger, TaxType) {
  个税类型
  */
 @property(nonatomic , assign)   TaxType taxType;
+
+
 
 @end
 

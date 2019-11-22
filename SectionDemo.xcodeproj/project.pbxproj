@@ -17,6 +17,7 @@
 		B418918B22C1E8BA00A8B12D /* BaseUseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B418918922C1E8BA00A8B12D /* BaseUseViewController.xib */; };
 		B418918F22C2203300A8B12D /* FamilyMemberListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B418918E22C2203300A8B12D /* FamilyMemberListViewController.m */; };
 		B418919422C2209000A8B12D /* PersonalTaxBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B418919322C2209000A8B12D /* PersonalTaxBaseViewController.m */; };
+		B42DADA0238836FF009E1CC3 /* XYExtendBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = B42DAD9F238836FF009E1CC3 /* XYExtendBtn.m */; };
 		B44A3E5A23866D81001D9E81 /* XYDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = B44A3E5923866D81001D9E81 /* XYDatePickerView.m */; };
 		B44A3E5D2386B8C4001D9E81 /* NSString+Tool.m in Sources */ = {isa = PBXBuildFile; fileRef = B44A3E5C2386B8C4001D9E81 /* NSString+Tool.m */; };
 		B44A3E612386F80D001D9E81 /* XYTaxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B44A3E602386F80D001D9E81 /* XYTaxViewController.m */; };
@@ -190,6 +191,8 @@
 		B418918E22C2203300A8B12D /* FamilyMemberListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FamilyMemberListViewController.m; sourceTree = "<group>"; };
 		B418919222C2209000A8B12D /* PersonalTaxBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonalTaxBaseViewController.h; sourceTree = "<group>"; };
 		B418919322C2209000A8B12D /* PersonalTaxBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonalTaxBaseViewController.m; sourceTree = "<group>"; };
+		B42DAD9E238836FF009E1CC3 /* XYExtendBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYExtendBtn.h; sourceTree = "<group>"; };
+		B42DAD9F238836FF009E1CC3 /* XYExtendBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYExtendBtn.m; sourceTree = "<group>"; };
 		B44A3E5823866D81001D9E81 /* XYDatePickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYDatePickerView.h; sourceTree = "<group>"; };
 		B44A3E5923866D81001D9E81 /* XYDatePickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYDatePickerView.m; sourceTree = "<group>"; };
 		B44A3E5B2386B8C4001D9E81 /* NSString+Tool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Tool.h"; sourceTree = "<group>"; };
@@ -470,11 +473,21 @@
 		B418919122C2205C00A8B12D /* PersonalTax */ = {
 			isa = PBXGroup;
 			children = (
+				B42DAD9D238836EB009E1CC3 /* View */,
 				B44D7B1923879F1400173869 /* TaxEntranceVC */,
 				B44D7B1A23879F4F00173869 /* independenceTaxVC */,
 				B44D7A78238771EF00173869 /* TaxImages */,
 			);
 			path = PersonalTax;
+			sourceTree = "<group>";
+		};
+		B42DAD9D238836EB009E1CC3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B42DAD9E238836FF009E1CC3 /* XYExtendBtn.h */,
+				B42DAD9F238836FF009E1CC3 /* XYExtendBtn.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		B44A3E5723866D4A001D9E81 /* XYDatePickerView */ = {
@@ -1018,6 +1031,7 @@
 			files = (
 				B48515CE22B8E73D00779B6B /* MASViewConstraint.m in Sources */,
 				B44A3E612386F80D001D9E81 /* XYTaxViewController.m in Sources */,
+				B42DADA0238836FF009E1CC3 /* XYExtendBtn.m in Sources */,
 				B4E8ABAA22C347F00096208A /* IQKeyboardReturnKeyHandler.m in Sources */,
 				B48515EA22B8E76600779B6B /* MJProperty.m in Sources */,
 				B418918F22C2203300A8B12D /* FamilyMemberListViewController.m in Sources */,
