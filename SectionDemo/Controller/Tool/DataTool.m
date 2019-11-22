@@ -217,6 +217,59 @@ MJCodingImplementation;
     return arrayM;
 }
 
+
++ (NSArray *)dataArrayForPersonTaxEntrance
+{
+    // 一共六种个税报销减免
+    
+    NSArray *array = @[
+        @{
+            @"image": @"icon_znjy",
+            @"title": @"子女教育",
+            @"titleKey": @"XYChildEducationNewController",
+            @"value": @"",
+            @"valueCode": @""
+        },
+        @{
+            @"image": @"icon_jxjy",
+            @"title": @"继续教育",
+            @"titleKey": @"XYMoreEducationNewController",
+            @"value": @"",
+            @"valueCode": @""
+        },
+        @{
+            @"image": @"icon_zfdkxx",
+            @"title": @"住房贷款利息",
+            @"titleKey": @"XYHouseLoansController",
+            @"value": @"",
+            @"valueCode": @""
+        },
+        @{
+            @"image": @"icon_zfzj",
+            @"title": @"住房租金",
+            @"titleKey": @"XYHouseRentNewController",
+            @"value": @"",
+            @"valueCode": @""
+        },
+        @{
+            @"image": @"icon_dbyl",
+            @"title": @"大病医疗",
+            @"titleKey": @"XYDabingyiliaoController",
+            @"value": @"",
+            @"valueCode": @""
+        },
+        @{
+            @"image": @"icon_sylr",
+            @"title": @"赡养老人",
+            @"titleKey": @"XYAlimonyPayController",
+            @"value": @"",
+            @"valueCode": @""
+        }
+    ];
+    
+    return array;
+}
+
 @end
 
 

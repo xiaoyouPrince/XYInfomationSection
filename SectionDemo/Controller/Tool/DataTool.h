@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface UserModel : NSObject
 @property (nonatomic, copy)   NSString *nationCode;
 @property (nonatomic, copy)   NSString *conAddr;
@@ -43,9 +45,6 @@
  
  */
 
-NS_ASSUME_NONNULL_BEGIN
-
-
 @interface DataTool : NSObject
 
 + (UserModel *)userModel;
@@ -53,9 +52,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// 根据要请求的数据key返回对应数据数组
 + (NSArray *)dataArrayForKey:(NSString *)key;
 
-@end
+/// 返回个税入口页面列表数据
++ (NSArray *)dataArrayForPersonTaxEntrance;
 
-NS_ASSUME_NONNULL_END
+@end
 
 @implementation NSDate (extension)
 
@@ -68,4 +68,6 @@ NS_ASSUME_NONNULL_END
 }
 
 @end
+
+NS_ASSUME_NONNULL_END
 

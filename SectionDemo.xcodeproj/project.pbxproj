@@ -100,6 +100,12 @@
 		B44D7B16238771EF00173869 /* icon_tax_renzhi@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B44D7AC6238771EF00173869 /* icon_tax_renzhi@3x.png */; };
 		B44D7B17238771EF00173869 /* tax_right_arraw@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B44D7AC7238771EF00173869 /* tax_right_arraw@2x.png */; };
 		B44D7B18238771EF00173869 /* icon_geshui@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B44D7AC8238771EF00173869 /* icon_geshui@2x.png */; };
+		B44D7B1D2387A09200173869 /* XYChildEducationNewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B44D7B1C2387A09200173869 /* XYChildEducationNewController.m */; };
+		B44D7B202387A0AB00173869 /* XYMoreEducationNewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B44D7B1F2387A0AB00173869 /* XYMoreEducationNewController.m */; };
+		B44D7B232387A0C900173869 /* XYHouseLoansController.m in Sources */ = {isa = PBXBuildFile; fileRef = B44D7B222387A0C900173869 /* XYHouseLoansController.m */; };
+		B44D7B262387A0E100173869 /* XYHouseRentNewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B44D7B252387A0E100173869 /* XYHouseRentNewController.m */; };
+		B44D7B292387A0F900173869 /* XYDabingyiliaoController.m in Sources */ = {isa = PBXBuildFile; fileRef = B44D7B282387A0F900173869 /* XYDabingyiliaoController.m */; };
+		B44D7B2C2387A10900173869 /* XYAlimonyPayController.m in Sources */ = {isa = PBXBuildFile; fileRef = B44D7B2B2387A10900173869 /* XYAlimonyPayController.m */; };
 		B46D51AB2385B89000C56CFB /* XYPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = B46D51A92385B89000C56CFB /* XYPickerView.m */; };
 		B485158922B8B51500779B6B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B485158822B8B51500779B6B /* AppDelegate.m */; };
 		B485158C22B8B51500779B6B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B485158B22B8B51500779B6B /* ViewController.m */; };
@@ -270,6 +276,18 @@
 		B44D7AC6238771EF00173869 /* icon_tax_renzhi@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_tax_renzhi@3x.png"; sourceTree = "<group>"; };
 		B44D7AC7238771EF00173869 /* tax_right_arraw@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tax_right_arraw@2x.png"; sourceTree = "<group>"; };
 		B44D7AC8238771EF00173869 /* icon_geshui@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_geshui@2x.png"; sourceTree = "<group>"; };
+		B44D7B1B2387A09200173869 /* XYChildEducationNewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYChildEducationNewController.h; sourceTree = "<group>"; };
+		B44D7B1C2387A09200173869 /* XYChildEducationNewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYChildEducationNewController.m; sourceTree = "<group>"; };
+		B44D7B1E2387A0AB00173869 /* XYMoreEducationNewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYMoreEducationNewController.h; sourceTree = "<group>"; };
+		B44D7B1F2387A0AB00173869 /* XYMoreEducationNewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYMoreEducationNewController.m; sourceTree = "<group>"; };
+		B44D7B212387A0C900173869 /* XYHouseLoansController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYHouseLoansController.h; sourceTree = "<group>"; };
+		B44D7B222387A0C900173869 /* XYHouseLoansController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYHouseLoansController.m; sourceTree = "<group>"; };
+		B44D7B242387A0E100173869 /* XYHouseRentNewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYHouseRentNewController.h; sourceTree = "<group>"; };
+		B44D7B252387A0E100173869 /* XYHouseRentNewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYHouseRentNewController.m; sourceTree = "<group>"; };
+		B44D7B272387A0F900173869 /* XYDabingyiliaoController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYDabingyiliaoController.h; sourceTree = "<group>"; };
+		B44D7B282387A0F900173869 /* XYDabingyiliaoController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYDabingyiliaoController.m; sourceTree = "<group>"; };
+		B44D7B2A2387A10900173869 /* XYAlimonyPayController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYAlimonyPayController.h; sourceTree = "<group>"; };
+		B44D7B2B2387A10900173869 /* XYAlimonyPayController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYAlimonyPayController.m; sourceTree = "<group>"; };
 		B46D51A92385B89000C56CFB /* XYPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYPickerView.m; sourceTree = "<group>"; };
 		B46D51AA2385B89000C56CFB /* XYPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYPickerView.h; sourceTree = "<group>"; };
 		B485158422B8B51500779B6B /* SectionDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SectionDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -452,11 +470,9 @@
 		B418919122C2205C00A8B12D /* PersonalTax */ = {
 			isa = PBXGroup;
 			children = (
+				B44D7B1923879F1400173869 /* TaxEntranceVC */,
+				B44D7B1A23879F4F00173869 /* independenceTaxVC */,
 				B44D7A78238771EF00173869 /* TaxImages */,
-				B418919222C2209000A8B12D /* PersonalTaxBaseViewController.h */,
-				B418919322C2209000A8B12D /* PersonalTaxBaseViewController.m */,
-				B44A3E5F2386F80D001D9E81 /* XYTaxViewController.h */,
-				B44A3E602386F80D001D9E81 /* XYTaxViewController.m */,
 			);
 			path = PersonalTax;
 			sourceTree = "<group>";
@@ -566,6 +582,36 @@
 				B44D7AC8238771EF00173869 /* icon_geshui@2x.png */,
 			);
 			path = TaxImages;
+			sourceTree = "<group>";
+		};
+		B44D7B1923879F1400173869 /* TaxEntranceVC */ = {
+			isa = PBXGroup;
+			children = (
+				B418919222C2209000A8B12D /* PersonalTaxBaseViewController.h */,
+				B418919322C2209000A8B12D /* PersonalTaxBaseViewController.m */,
+				B44A3E5F2386F80D001D9E81 /* XYTaxViewController.h */,
+				B44A3E602386F80D001D9E81 /* XYTaxViewController.m */,
+			);
+			path = TaxEntranceVC;
+			sourceTree = "<group>";
+		};
+		B44D7B1A23879F4F00173869 /* independenceTaxVC */ = {
+			isa = PBXGroup;
+			children = (
+				B44D7B1B2387A09200173869 /* XYChildEducationNewController.h */,
+				B44D7B1C2387A09200173869 /* XYChildEducationNewController.m */,
+				B44D7B1E2387A0AB00173869 /* XYMoreEducationNewController.h */,
+				B44D7B1F2387A0AB00173869 /* XYMoreEducationNewController.m */,
+				B44D7B212387A0C900173869 /* XYHouseLoansController.h */,
+				B44D7B222387A0C900173869 /* XYHouseLoansController.m */,
+				B44D7B242387A0E100173869 /* XYHouseRentNewController.h */,
+				B44D7B252387A0E100173869 /* XYHouseRentNewController.m */,
+				B44D7B272387A0F900173869 /* XYDabingyiliaoController.h */,
+				B44D7B282387A0F900173869 /* XYDabingyiliaoController.m */,
+				B44D7B2A2387A10900173869 /* XYAlimonyPayController.h */,
+				B44D7B2B2387A10900173869 /* XYAlimonyPayController.m */,
+			);
+			path = independenceTaxVC;
 			sourceTree = "<group>";
 		};
 		B46D51A82385B87400C56CFB /* XYPickerView */ = {
@@ -984,6 +1030,7 @@
 				B40F590322BA97AA001C6A53 /* UserInfoViewController.m in Sources */,
 				B40F58FF22BA90EA001C6A53 /* XYInfomationBaseViewController.m in Sources */,
 				B4E8ABA822C347F00096208A /* IQUIView+Hierarchy.m in Sources */,
+				B44D7B232387A0C900173869 /* XYHouseLoansController.m in Sources */,
 				B4E8ABA922C347F00096208A /* IQUIViewController+Additions.m in Sources */,
 				B48515FA22B8E78000779B6B /* SVProgressHUD.m in Sources */,
 				B48515A722B8B70100779B6B /* XYInfomationSection.m in Sources */,
@@ -993,6 +1040,7 @@
 				B48515E922B8E76600779B6B /* NSObject+MJKeyValue.m in Sources */,
 				B48515F122B8E76600779B6B /* MJFoundation.m in Sources */,
 				B48515C722B8E73D00779B6B /* ViewController+MASAdditions.m in Sources */,
+				B44D7B202387A0AB00173869 /* XYMoreEducationNewController.m in Sources */,
 				B48515EF22B8E76600779B6B /* NSString+MJExtension.m in Sources */,
 				B418919422C2209000A8B12D /* PersonalTaxBaseViewController.m in Sources */,
 				B48515C622B8E73D00779B6B /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
@@ -1000,6 +1048,7 @@
 				B48515C822B8E73D00779B6B /* MASCompositeConstraint.m in Sources */,
 				B485159722B8B51700779B6B /* main.m in Sources */,
 				B4E8AB9F22C347F00096208A /* IQBarButtonItem.m in Sources */,
+				B44D7B1D2387A09200173869 /* XYChildEducationNewController.m in Sources */,
 				B4E8ABA722C347F00096208A /* IQUIScrollView+Additions.m in Sources */,
 				B48515CA22B8E73D00779B6B /* MASLayoutConstraint.m in Sources */,
 				B4E8ABA622C347F00096208A /* IQUITextFieldView+Additions.m in Sources */,
@@ -1012,6 +1061,7 @@
 				B4E8AB9C22C347F00096208A /* IQTextView.m in Sources */,
 				B48515FB22B8E78000779B6B /* SVIndefiniteAnimatedView.m in Sources */,
 				B485158922B8B51500779B6B /* AppDelegate.m in Sources */,
+				B44D7B292387A0F900173869 /* XYDabingyiliaoController.m in Sources */,
 				B4E8ABA122C347F00096208A /* IQPreviousNextView.m in Sources */,
 				B48515EC22B8E76600779B6B /* MJExtensionConst.m in Sources */,
 				B48515E822B8E76600779B6B /* MJPropertyType.m in Sources */,
@@ -1020,10 +1070,12 @@
 				B44A3E5A23866D81001D9E81 /* XYDatePickerView.m in Sources */,
 				B48515EE22B8E76600779B6B /* NSObject+MJClass.m in Sources */,
 				B48515F022B8E76600779B6B /* MJPropertyKey.m in Sources */,
+				B44D7B262387A0E100173869 /* XYHouseRentNewController.m in Sources */,
 				B48515CD22B8E73D00779B6B /* MASConstraint.m in Sources */,
 				B48515AA22B8E37100779B6B /* DataTool.m in Sources */,
 				B4E8ABA422C347F00096208A /* IQNSArray+Sort.m in Sources */,
 				B418918A22C1E8BA00A8B12D /* BaseUseViewController.m in Sources */,
+				B44D7B2C2387A10900173869 /* XYAlimonyPayController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

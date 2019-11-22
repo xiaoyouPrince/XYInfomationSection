@@ -18,6 +18,7 @@
     [super viewDidLoad];
     
     // 创建个税页面
+    self.view.backgroundColor = HEXCOLOR(0xf6f6f6);
 }
 
 
