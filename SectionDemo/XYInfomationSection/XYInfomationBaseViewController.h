@@ -16,9 +16,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface XYInfomationBaseViewController : UIViewController
 
 @property (nonatomic, strong) UIScrollView  *scrollView;
-@property (nonatomic, strong) UIView  *headerView;
-@property (nonatomic, strong) UIView  *contentView;
-@property (nonatomic, strong) UIView  *footerView;
 
 - (void)setHeaderView:(UIView * _Nonnull)headerView;
 - (void)setContentView:(UIView * _Nonnull)contentView;

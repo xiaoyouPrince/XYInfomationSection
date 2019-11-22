@@ -12,13 +12,16 @@
 
 /** 内部使用的ScrollViewContentView */
 @property(nonatomic , strong)     UIView *scrollContentView;
+@property (nonatomic, strong) UIView  *headerView;
+@property (nonatomic, strong) UIView  *contentView;
+@property (nonatomic, strong) UIView  *footerView;
 
 @end
 
 @implementation XYInfomationBaseViewController
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
-    self = [super initWithNibName:NSStringFromClass(self.superclass) bundle:nibBundleOrNil];
+    self = [super initWithNibName:NSStringFromClass(XYInfomationBaseViewController.class) bundle:nibBundleOrNil];
     return self;
 }
 

@@ -6,11 +6,30 @@
 //  Copyright © 2019 渠晓友. All rights reserved.
 //
 
+//  个税相关基础内容封装
+
 #import "XYInfomationBaseViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
+#define kDescDefaultHeight 285  // 顶部描述默认的高度
+
+typedef NS_ENUM(NSUInteger, TaxType) {
+    TaxTypeChildEducation = 1,          // 子女教育 1
+    TaxTypeMoreEducation,               // 继续教育 2
+    TaxTypeHouseLoans,                  // 住房贷款 3
+    TaxTypeHouseRent,                   // 住房租金 4
+    TaxTypeDabingyiliao,                // 大病医疗 5
+    TaxTypeAlimonyPay,                  // 赡养老人 6
+    TaxTypeOther                        // 其他 7
+};
+
 @interface PersonalTaxBaseViewController : XYInfomationBaseViewController
+
+/**
+ 个税类型
+ */
+@property(nonatomic , assign)   TaxType taxType;
 
 @end
 

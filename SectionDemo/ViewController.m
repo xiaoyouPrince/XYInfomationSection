@@ -67,7 +67,7 @@
     XYInfomationItem *item2 = [XYInfomationItem modelWithTitle:@"用户详细信息页面" titleKey:@"UserInfoViewController" type:1 value:@"基于XYInfomationBaseViewController" placeholderValue:nil disableUserAction:YES];
     XYInfomationItem *item3 = [XYInfomationItem modelWithTitle:@"设置页面" titleKey:@"SettingViewController" type:1 value:@"基于XYInfomationBaseViewController" placeholderValue:nil disableUserAction:YES];
     XYInfomationItem *item4 = [XYInfomationItem modelWithTitle:@"添加家庭成员信息" titleKey:@"FamilyMemberListViewController" type:1 value:@"基于XYInfomationBaseViewController" placeholderValue:nil disableUserAction:NO];
-    XYInfomationItem *item5 = [XYInfomationItem modelWithTitle:@"个人所得税" titleKey:@"PersonalTaxBaseViewController" type:1 value:@"基于XYInfomationBaseViewController" placeholderValue:nil disableUserAction:YES];
+    XYInfomationItem *item5 = [XYInfomationItem modelWithTitle:@"个人所得税" titleKey:@"XYTaxViewController" type:1 value:@"基于XYInfomationBaseViewController" placeholderValue:nil disableUserAction:YES];
     
     section1.dataArray = @[item];
     section2.dataArray = @[item1,item2,item3];
