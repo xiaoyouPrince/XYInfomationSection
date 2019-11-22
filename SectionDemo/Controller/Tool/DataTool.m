@@ -228,6 +228,7 @@ MJCodingImplementation;
             @"title": @"子女教育",
             @"titleKey": @"XYChildEducationNewController",
             @"value": @"",
+            @"taxType": @"1",
             @"valueCode": @""
         },
         @{
@@ -235,6 +236,7 @@ MJCodingImplementation;
             @"title": @"继续教育",
             @"titleKey": @"XYMoreEducationNewController",
             @"value": @"",
+            @"taxType": @"2",
             @"valueCode": @""
         },
         @{
@@ -242,6 +244,7 @@ MJCodingImplementation;
             @"title": @"住房贷款利息",
             @"titleKey": @"XYHouseLoansController",
             @"value": @"",
+            @"taxType": @"3",
             @"valueCode": @""
         },
         @{
@@ -249,6 +252,7 @@ MJCodingImplementation;
             @"title": @"住房租金",
             @"titleKey": @"XYHouseRentNewController",
             @"value": @"",
+            @"taxType": @"4",
             @"valueCode": @""
         },
         @{
@@ -256,6 +260,7 @@ MJCodingImplementation;
             @"title": @"大病医疗",
             @"titleKey": @"XYDabingyiliaoController",
             @"value": @"",
+            @"taxType": @"5",
             @"valueCode": @""
         },
         @{
@@ -263,6 +268,7 @@ MJCodingImplementation;
             @"title": @"赡养老人",
             @"titleKey": @"XYAlimonyPayController",
             @"value": @"",
+            @"taxType": @"6",
             @"valueCode": @""
         }
     ];

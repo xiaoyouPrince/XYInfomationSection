@@ -72,8 +72,9 @@
             section.cellClickBlock = ^(NSInteger index, XYInfomationCell * _Nonnull cell) {
                 
                 // 进入对应的页面
-                UIViewController *detail = [NSClassFromString(dict[@"titleKey"]) new];
+                PersonalTaxBaseViewController *detail = [NSClassFromString(dict[@"titleKey"]) new];
                 detail.title = dict[@"title"];
+                detail.taxType = [dict[@"taxType"] integerValue];
                 [self.navigationController pushViewController:detail animated:YES];
             };
             
