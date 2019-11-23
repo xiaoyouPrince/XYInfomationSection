@@ -8,6 +8,7 @@
 
 #import "PersonalTaxBaseViewController.h"
 #import "XYExtendBtn.h"
+#import "XYTaxBaseCompanySection.h"
 
 @interface PersonalTaxBaseViewController ()
 
@@ -192,9 +193,29 @@
 {
     if (!_taxBottomView) {
         
+        _taxBottomView = [UIView new];
+        
         // 1.公司信息。网络请求，有则展示，没有则不展示
+        UIView *companyListView = nil;
+        NSArray <XYTaxBaseCompany *> *companies = [DataTool dataArrayForPersonTaxCompanies];
+        if (companies.count) {
+            XYTaxBaseCompanySection *companySection = [XYTaxBaseCompanySection new];
+            companySection.companies = companies;
+            companyListView = companySection;
+            [_taxBottomView addSubview:companySection];
+        }
+        
+        if (companyListView) {
+            [companyListView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(_taxBottomView).offset(0);
+                make.left.equalTo(_taxBottomView).offset(0);
+                make.right.equalTo(_taxBottomView).offset(0);
+                make.bottom.equalTo(_taxBottomView).offset(-23);
+            }];
+        }
         
         // 2.个税信息
+        
         
         // 3.同意按钮
     }
@@ -231,7 +252,7 @@
     // 2. 中间部分为各个税种自己内容个，子页面单独处理
     
     // 3. 设置底部视图
-    [self setFooterView:self.taxBottomView];
+    [self setFooterView:self.taxBottomView edgeInsets:UIEdgeInsetsMake(15, 0, 0, 0)];
 }
 
 - (void)setupNav{

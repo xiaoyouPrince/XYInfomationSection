@@ -9,10 +9,11 @@
 #import "DataTool.h"
 
 @implementation UserModel
-
 MJCodingImplementation;
+@end
 
-
+@implementation XYTaxBaseCompany
+MJCodingImplementation;
 @end
 
 @interface DataTool ()
@@ -274,6 +275,41 @@ MJCodingImplementation;
     ];
     
     return array;
+}
+
++ (NSArray *)dataArrayForPersonTaxCompanies
+{
+    // 历史供职信息有可能是多个或者0个
+    NSDictionary *dict1 = @{
+                           @"nsrsbh" : @"15151515151212",
+                           @"qymc" : @"百度网络科技有限公司",
+                           @"rzrq" : @"20181010"
+                           };
+    NSDictionary *dict2 = @{
+                            @"nsrsbh" : @"1234567890",
+                            @"qymc" : @"灵虎科技有限公司",
+                            @"rzrq" : @"20181010"
+                            };
+    NSDictionary *dict3 = @{
+                           @"nsrsbh" : @"15151515151212",
+                           @"qymc" : @"北京外企科技有限公司",
+                           @"lzrq" : @"20181010"
+                           };
+    NSDictionary *dict4 = @{
+                            @"nsrsbh" : @"1234567890",
+                            @"qymc" : @"阿里巴巴有限公司",
+                            @"rzrq" : @"20181010"
+                            };
+    
+    NSArray *array = @[dict1, dict2, dict3, dict4];
+    
+    NSMutableArray *arrayM = @[].mutableCopy;
+    for (int i = 0; i < arc4random()%4; i++) {
+        XYTaxBaseCompany *company = [XYTaxBaseCompany mj_objectWithKeyValues:array[i]];
+        [arrayM addObject:company];
+    }
+    
+    return arrayM;
 }
 
 @end

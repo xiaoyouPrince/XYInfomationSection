@@ -18,6 +18,9 @@
 		B418918F22C2203300A8B12D /* FamilyMemberListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B418918E22C2203300A8B12D /* FamilyMemberListViewController.m */; };
 		B418919422C2209000A8B12D /* PersonalTaxBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B418919322C2209000A8B12D /* PersonalTaxBaseViewController.m */; };
 		B42DADA0238836FF009E1CC3 /* XYExtendBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = B42DAD9F238836FF009E1CC3 /* XYExtendBtn.m */; };
+		B42DADA32388551C009E1CC3 /* XYTaxBaseSection.m in Sources */ = {isa = PBXBuildFile; fileRef = B42DADA22388551C009E1CC3 /* XYTaxBaseSection.m */; };
+		B42DADA623885828009E1CC3 /* XYTaxBaseCompanyInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B42DADA523885828009E1CC3 /* XYTaxBaseCompanyInfoCell.m */; };
+		B42DADA923885BF0009E1CC3 /* XYTaxBaseCompanySection.m in Sources */ = {isa = PBXBuildFile; fileRef = B42DADA823885BF0009E1CC3 /* XYTaxBaseCompanySection.m */; };
 		B44A3E5A23866D81001D9E81 /* XYDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = B44A3E5923866D81001D9E81 /* XYDatePickerView.m */; };
 		B44A3E5D2386B8C4001D9E81 /* NSString+Tool.m in Sources */ = {isa = PBXBuildFile; fileRef = B44A3E5C2386B8C4001D9E81 /* NSString+Tool.m */; };
 		B44A3E612386F80D001D9E81 /* XYTaxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B44A3E602386F80D001D9E81 /* XYTaxViewController.m */; };
@@ -193,6 +196,12 @@
 		B418919322C2209000A8B12D /* PersonalTaxBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonalTaxBaseViewController.m; sourceTree = "<group>"; };
 		B42DAD9E238836FF009E1CC3 /* XYExtendBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYExtendBtn.h; sourceTree = "<group>"; };
 		B42DAD9F238836FF009E1CC3 /* XYExtendBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYExtendBtn.m; sourceTree = "<group>"; };
+		B42DADA12388551C009E1CC3 /* XYTaxBaseSection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYTaxBaseSection.h; sourceTree = "<group>"; };
+		B42DADA22388551C009E1CC3 /* XYTaxBaseSection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYTaxBaseSection.m; sourceTree = "<group>"; };
+		B42DADA423885828009E1CC3 /* XYTaxBaseCompanyInfoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYTaxBaseCompanyInfoCell.h; sourceTree = "<group>"; };
+		B42DADA523885828009E1CC3 /* XYTaxBaseCompanyInfoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYTaxBaseCompanyInfoCell.m; sourceTree = "<group>"; };
+		B42DADA723885BF0009E1CC3 /* XYTaxBaseCompanySection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYTaxBaseCompanySection.h; sourceTree = "<group>"; };
+		B42DADA823885BF0009E1CC3 /* XYTaxBaseCompanySection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYTaxBaseCompanySection.m; sourceTree = "<group>"; };
 		B44A3E5823866D81001D9E81 /* XYDatePickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYDatePickerView.h; sourceTree = "<group>"; };
 		B44A3E5923866D81001D9E81 /* XYDatePickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYDatePickerView.m; sourceTree = "<group>"; };
 		B44A3E5B2386B8C4001D9E81 /* NSString+Tool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Tool.h"; sourceTree = "<group>"; };
@@ -486,6 +495,12 @@
 			children = (
 				B42DAD9E238836FF009E1CC3 /* XYExtendBtn.h */,
 				B42DAD9F238836FF009E1CC3 /* XYExtendBtn.m */,
+				B42DADA12388551C009E1CC3 /* XYTaxBaseSection.h */,
+				B42DADA22388551C009E1CC3 /* XYTaxBaseSection.m */,
+				B42DADA423885828009E1CC3 /* XYTaxBaseCompanyInfoCell.h */,
+				B42DADA523885828009E1CC3 /* XYTaxBaseCompanyInfoCell.m */,
+				B42DADA723885BF0009E1CC3 /* XYTaxBaseCompanySection.h */,
+				B42DADA823885BF0009E1CC3 /* XYTaxBaseCompanySection.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1042,6 +1057,7 @@
 				B48515C922B8E73D00779B6B /* MASConstraintMaker.m in Sources */,
 				B48515EB22B8E76600779B6B /* NSObject+MJCoding.m in Sources */,
 				B40F590322BA97AA001C6A53 /* UserInfoViewController.m in Sources */,
+				B42DADA32388551C009E1CC3 /* XYTaxBaseSection.m in Sources */,
 				B40F58FF22BA90EA001C6A53 /* XYInfomationBaseViewController.m in Sources */,
 				B4E8ABA822C347F00096208A /* IQUIView+Hierarchy.m in Sources */,
 				B44D7B232387A0C900173869 /* XYHouseLoansController.m in Sources */,
@@ -1082,8 +1098,10 @@
 				B48515CF22B8E73D00779B6B /* MASViewAttribute.m in Sources */,
 				B4E8ABA322C347F00096208A /* IQKeyboardManager.m in Sources */,
 				B44A3E5A23866D81001D9E81 /* XYDatePickerView.m in Sources */,
+				B42DADA623885828009E1CC3 /* XYTaxBaseCompanyInfoCell.m in Sources */,
 				B48515EE22B8E76600779B6B /* NSObject+MJClass.m in Sources */,
 				B48515F022B8E76600779B6B /* MJPropertyKey.m in Sources */,
+				B42DADA923885BF0009E1CC3 /* XYTaxBaseCompanySection.m in Sources */,
 				B44D7B262387A0E100173869 /* XYHouseRentNewController.m in Sources */,
 				B48515CD22B8E73D00779B6B /* MASConstraint.m in Sources */,
 				B48515AA22B8E37100779B6B /* DataTool.m in Sources */,

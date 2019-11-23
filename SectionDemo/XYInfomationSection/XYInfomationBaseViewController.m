@@ -110,11 +110,6 @@
 {
     [super viewWillAppear:animated];
     
-//    self.scrollView.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.5];
-//    self.headerView.backgroundColor = UIColor.redColor;
-//    self.contentView.backgroundColor = UIColor.greenColor;
-//    self.footerView.backgroundColor = UIColor.yellowColor;
-    
     self.scrollView.backgroundColor = [UIColor clearColor];
     self.headerView.backgroundColor = UIColor.clearColor;
     self.contentView.backgroundColor = UIColor.clearColor;

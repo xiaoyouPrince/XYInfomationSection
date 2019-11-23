@@ -38,6 +38,19 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy)   NSString *highDegree;
 @end
 
+@interface XYTaxBaseCompany : NSObject
+//nsrsbh": "15151515151212",
+//"qymc": "企业名称",
+//"lzrq": "20181010"
+/** 纳税人识别号 */
+@property(nonatomic , copy)     NSString *nsrsbh;
+/** 企业名称 */
+@property(nonatomic , copy)     NSString *qymc;
+/** 入职日期 */
+@property(nonatomic , copy)     NSString *rzrq;
+
+@end
+
 /*!
  
  @abstract
@@ -54,6 +67,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 返回个税入口页面列表数据
 + (NSArray *)dataArrayForPersonTaxEntrance;
+
+/// 返回个税纳税人历史供职公司信息
++ (NSArray *)dataArrayForPersonTaxCompanies;
 
 @end
 
