@@ -9,6 +9,7 @@
 #import "PersonalTaxBaseViewController.h"
 #import "XYExtendBtn.h"
 #import "XYTaxBaseCompanySection.h"
+#import "XYTaxBaseBottomView.h"
 
 @interface PersonalTaxBaseViewController ()
 
@@ -99,6 +100,57 @@
     [desc_A setAttributes:@{NSParagraphStyleAttributeName : ps} range:NSMakeRange(0, desc.length-1)];
     
     return desc_A;
+}
+
+- (NSArray <XYInfomationItem *>*)taxInfos{
+    
+    // 年度 + 类型 + 扣除标准
+    NSString *type = nil;
+    NSString *desc = nil;
+    switch (self.taxType) {
+        case TaxTypeChildEducation:
+            type = @"子女教育个税专项附加扣除申请";
+            desc = @"子女教育定额扣除 每个子女1000元/月";
+            break;
+        case TaxTypeMoreEducation:
+            type = @"继续教育个税专项附加扣除申请";
+            desc = @"学历(学位)继续教育400元/月,职业资格继续教育3600元/年";
+            break;
+        case TaxTypeHouseRent:
+            type = @"住房租金个税专项附加扣除申请";
+            desc = @"定额扣除 1500/1100/800/月 按城市划分";
+            break;
+        case TaxTypeHouseLoans:
+            type = @"住房贷款利息个税专项附加扣除申请";
+            desc = @"住房贷款利息支出定额  1000元/月";
+            break;
+        case TaxTypeDabingyiliao:
+            type = @"大病医疗个税专项附加扣除申请";
+            desc = @"根据病情，病种，各地支付能力，减少报销金额70%";
+            break;
+        case TaxTypeAlimonyPay:
+            type = @"赡养老人个税专项附加扣除申请";
+            desc = @"独生子女2000/月 非独生子女分摊 每个不超过1000/月";
+            break;
+        case TaxTypeOther:
+            break;
+        default:
+            break;
+    }
+    
+    // 年份
+    NSDate *date = [NSDate date];
+    NSDateFormatter *fmt = [NSDateFormatter new];
+    fmt.dateFormat = @"yyyy年";
+    NSString *currentYear = [fmt stringFromDate:date];
+    
+    // 数据
+    XYInfomationItem *item = [XYInfomationItem modelWithTitle:@"个税抵扣年度" titleKey:@"gsdkqj" type:XYInfoCellTypeInput value:currentYear placeholderValue:nil disableUserAction:YES];
+    XYInfomationItem *item2 = [XYInfomationItem modelWithTitle:@"类型" titleKey:@"lx" type:XYInfoCellTypeInput value:type placeholderValue:nil disableUserAction:YES];
+    XYInfomationItem *item3 = [XYInfomationItem modelWithTitle:@"扣除标准" titleKey:@"kcbz" type:XYInfoCellTypeInput value:desc placeholderValue:nil disableUserAction:YES];
+    
+    return @[item, item2, item3];
+    
 }
 
 - (UIView *)taxBannerView
@@ -194,6 +246,7 @@
     if (!_taxBottomView) {
         
         _taxBottomView = [UIView new];
+//        _taxBottomView.backgroundColor = UIColor.redColor;
         
         // 1.公司信息。网络请求，有则展示，没有则不展示
         UIView *companyListView = nil;
@@ -210,14 +263,41 @@
                 make.top.equalTo(_taxBottomView).offset(0);
                 make.left.equalTo(_taxBottomView).offset(0);
                 make.right.equalTo(_taxBottomView).offset(0);
-                make.bottom.equalTo(_taxBottomView).offset(-23);
             }];
         }
         
         // 2.个税信息
+        XYTaxBaseTaxinfoSection *taxInfo = [XYTaxBaseTaxinfoSection taxSectionWithImage:@"" title:@"个税信息" infoItems:[self taxInfos] disable:YES];
+        [_taxBottomView addSubview:taxInfo];
         
+        [taxInfo mas_makeConstraints:^(MASConstraintMaker *make) {
+            if (companyListView) {
+                make.top.equalTo(companyListView.mas_bottom).offset(15);
+            }else
+            {
+               make.top.equalTo(_taxBottomView).offset(15);
+            }
+            make.left.equalTo(_taxBottomView).offset(0);
+            make.right.equalTo(_taxBottomView).offset(-0);
+        }];
         
         // 3.同意按钮
+        XYTaxBaseBottomView *bottomView = [XYTaxBaseBottomView bottomView];
+        bottomView.backgroundColor = self.view.backgroundColor;
+        __weak typeof(self) weakSelf = self;
+        bottomView.block = ^{
+            NSLog(@"确定按钮点击 --- 应该在子类中具体实现数据校验");
+            
+            [weakSelf ensureBtnClick];
+        };
+        [_taxBottomView addSubview:bottomView];
+        [bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(taxInfo.mas_bottom).offset(15);
+            make.left.equalTo(_taxBottomView).offset(0);
+            make.right.equalTo(_taxBottomView).offset(-0);
+            make.bottom.equalTo(_taxBottomView).offset(-20);
+        }];
+        
     }
     return _taxBottomView;
 }
@@ -299,6 +379,11 @@
 
 
 #pragma mark - publicMethods
+
+- (void)ensureBtnClick
+{
+    // subClass 实现
+}
 
 
 

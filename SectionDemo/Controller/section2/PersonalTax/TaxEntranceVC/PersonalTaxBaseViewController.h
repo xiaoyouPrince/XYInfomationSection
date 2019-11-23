@@ -11,6 +11,7 @@
 //  
 
 #import "XYInfomationBaseViewController.h"
+#import "XYTaxBaseTaxinfoSection.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -34,6 +35,8 @@ typedef NS_ENUM(NSUInteger, TaxType) {
 @property(nonatomic , assign)   TaxType taxType;
 
 
+/// 由子类实现点击确定按钮，提交操作
+- (void)ensureBtnClick;
 
 @end
 

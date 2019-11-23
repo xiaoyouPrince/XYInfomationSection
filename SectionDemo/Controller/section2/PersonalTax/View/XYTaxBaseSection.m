@@ -67,7 +67,11 @@
 
 
 + (instancetype)groupWithTitle:(NSString *)title icon:(nullable NSString *)iconName
-{
+{    
+    if (!iconName.length) {
+        iconName = @"icon_tax_renzhi";
+    }
+    
     XYTaxBaseSection *section = [[self alloc] init];
     section.titleLabel.text = title;
     section.iconView.image = [UIImage imageNamed:iconName];
