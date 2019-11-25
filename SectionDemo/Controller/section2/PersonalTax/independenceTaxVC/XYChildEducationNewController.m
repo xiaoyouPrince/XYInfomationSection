@@ -61,8 +61,8 @@
     NSMutableArray *arrayM = @[].mutableCopy;
     for (NSDictionary *dict in childInfos) {
         NSString *value = nil;
-        if ([dict[@"value"] length]) {
-            value = dict[@"value"];
+        if ([dict[@"detail"] length]) {
+            value = dict[@"detail"];
         }
         XYInfomationItem *item = [XYInfomationItem modelWithTitle:dict[@"title"] titleKey:dict[@"titleKey"] type:[dict[@"type"] integerValue] value:value placeholderValue:nil disableUserAction:NO];
         [arrayM addObject:item];
@@ -72,6 +72,124 @@
 }
 
 
+/// 配偶信息数据
+- (NSArray <XYInfomationItem *>*)mateInfos{
+    
+    // 0. 配偶信息
+    NSArray *poInfos = @[
+                            @{
+                                @"title" : @"是否有配偶",
+                                @"titleKey" : @"sfypo",
+                                @"type" : @"1",
+                                @"detail" : @""
+                                },
+                            @{
+                                @"title" : @"配偶姓名",
+                                @"titleKey" : @"nsrpoxm",
+                                @"type" : @"0",
+                                @"detail" : @"请输入姓名"
+                                },
+                            @{
+                                @"title" : @"配偶证件类型",
+                                @"titleKey" : @"nsrposfzjlx",
+                                @"type" : @"1",
+                                @"detail" : @"居民身份证"
+                                },
+                            @{
+                                @"title" : @"配偶证件号码",
+                                @"titleKey" : @"nsrposfzjhm",
+                                @"type" : @"0",
+                                @"detail" : @"请输入证件号码" // 选择身份证自带出生日期
+                                },
+                            @{
+                                @"title" : @"配偶出生日期",
+                                @"titleKey" : @"nsrpocsrq",
+                                @"type" : @"1",
+                                @"detail" : @"请选择出生日期"
+                                },
+                            @{
+                                @"title" : @"配偶国籍",
+                                @"titleKey" : @"nsrpogj",
+                                @"type" : @"1",
+                                @"detail" : @"中国"
+                                }
+                            ];
+    
+    NSMutableArray *arrayM = @[].mutableCopy;
+    for (NSDictionary *dict in poInfos) {
+        NSString *value = nil;
+        if ([dict[@"detail"] length]) {
+            value = dict[@"detail"];
+        }
+        XYInfomationItem *item = [XYInfomationItem modelWithTitle:dict[@"title"] titleKey:dict[@"titleKey"] type:[dict[@"type"] integerValue] value:value placeholderValue:nil disableUserAction:NO];
+        [arrayM addObject:item];
+    }
+    
+    return arrayM;
+}
+
+
+/// 配偶信息数据
+- (NSArray <XYInfomationItem *>*)eduInfos{
+    
+    // 受教育信息
+    NSArray *eduInfos = @[
+                         @{
+                             @"title" : @"当前受教育阶段",
+                             @"titleKey" : @"sjyjd",
+                             @"type" : @"1",
+                             @"detail" : @"请选择受教育阶段"
+                             },
+                         @{
+                             @"title" : @"当前教育时间起",
+                             @"titleKey" : @"sjyrqq",
+                             @"type" : @"1",
+                             @"detail" : @"请选择开始时间"
+                             },
+                         @{
+                             @"title" : @"当前教育时间止",
+                             @"titleKey" : @"yjbysj",
+                             @"type" : @"1",
+                             @"detail" : @"选填"
+                             },
+                         @{
+                             @"title" : @"教育终止时间",
+                             @"titleKey" : @"zjsjysj",
+                             @"type" : @"1",
+                             @"detail" : @"不再接受教育时填写"
+                             },
+                         @{
+                             @"title" : @"就读国家（地区）",
+                             @"titleKey" : @"jdgjhdqsz",
+                             @"type" : @"1",
+                             @"detail" : @"中国"
+                             },
+                         @{
+                             @"title" : @"就读学校名称",
+                             @"titleKey" : @"jdxx",
+                             @"type" : @"0",
+                             @"detail" : @""
+                             },
+                         @{
+                             @"title" : @"分配比例",
+                             @"titleKey" : @"fpbl",
+                             @"type" : @"1",
+                             @"detail" : @""
+                             }
+                         ];
+    
+    NSMutableArray *arrayM = @[].mutableCopy;
+    for (NSDictionary *dict in eduInfos) {
+        NSString *value = nil;
+        if ([dict[@"detail"] length]) {
+            value = dict[@"detail"];
+        }
+        XYInfomationItem *item = [XYInfomationItem modelWithTitle:dict[@"title"] titleKey:dict[@"titleKey"] type:[dict[@"type"] integerValue] value:value placeholderValue:nil disableUserAction:NO];
+        [arrayM addObject:item];
+    }
+    
+    return arrayM;
+}
 
 
 #pragma mark - LazyLoad properties
@@ -85,17 +203,14 @@
         _myContentView = [UIView new];
         
         // 2.
-        XYTaxBaseTaxinfoSection *taxInfo = [XYTaxBaseTaxinfoSection taxSectionWithImage:@"" title:@"子女信息" infoItems:[self zinvInfos] handler:^(XYInfomationCell * _Nonnull cell) {
-            
-            
+        XYTaxBaseTaxinfoSection *taxInfo = [XYTaxBaseTaxinfoSection taxSectionWithImage:@"icon_tax_zinv" title:@"子女信息" infoItems:[self zinvInfos] handler:^(XYInfomationCell * _Nonnull cell) {
+            [self sectionCellClicked:cell];
         }];
-        XYTaxBaseTaxinfoSection *taxInfo2 = [XYTaxBaseTaxinfoSection taxSectionWithImage:@"" title:@"配偶信息" infoItems:[self zinvInfos] handler:^(XYInfomationCell * _Nonnull cell) {
-            
-            
+        XYTaxBaseTaxinfoSection *taxInfo2 = [XYTaxBaseTaxinfoSection taxSectionWithImage:@"icon_tax_peiou" title:@"配偶信息" infoItems:[self mateInfos] handler:^(XYInfomationCell * _Nonnull cell) {
+            [self sectionCellClicked:cell];
         }];
-        XYTaxBaseTaxinfoSection *taxInfo3 = [XYTaxBaseTaxinfoSection taxSectionWithImage:@"" title:@"受教育信息" infoItems:[self zinvInfos] handler:^(XYInfomationCell * _Nonnull cell) {
-            
-            
+        XYTaxBaseTaxinfoSection *taxInfo3 = [XYTaxBaseTaxinfoSection taxSectionWithImage:@"icon_tax_jiaoyu" title:@"受教育信息" infoItems:[self eduInfos] handler:^(XYInfomationCell * _Nonnull cell) {
+            [self sectionCellClicked:cell];
         }];
         
         [_myContentView addSubview:taxInfo];
@@ -123,54 +238,19 @@
     }
     return _myContentView;
 }
-//- (XYInfomationSection *)section
-//{
-//    if (!_section) {
-//        XYInfomationSection *section = [XYInfomationSection new];
-//        _section = section;
-//
-//        XYInfomationItem *item1 = [XYInfomationItem modelWithTitle:@"姓名" titleKey:@"memberName" type:0 value:nil placeholderValue:nil disableUserAction:NO];
-//        XYInfomationItem *item2 = [XYInfomationItem modelWithTitle:@"用户性别" titleKey:@"memberSex" type:1 value:nil placeholderValue:nil disableUserAction:NO];
-//        XYInfomationItem *item3 = [XYInfomationItem modelWithTitle:@"证件类型" titleKey:@"memberCardType" type:1 value:nil placeholderValue:nil disableUserAction:NO];
-//        XYInfomationItem *item4 = [XYInfomationItem modelWithTitle:@"证件号码" titleKey:@"memberIdCardNo" type:0 value:nil placeholderValue:nil disableUserAction:NO];
-//        XYInfomationItem *item5 = [XYInfomationItem modelWithTitle:@"出生日期" titleKey:@"memberBirthDate" type:1 value:nil placeholderValue:nil disableUserAction:NO];
-//        XYInfomationItem *item6 = [XYInfomationItem modelWithTitle:@"与本人关系" titleKey:@"relationShip" type:1 value:nil placeholderValue:nil disableUserAction:NO];
-//
-//        section.dataArray = @[item1,item2,item3,item4,item5,item6];
-//        __weak typeof(self) weakSelf = self;
-//        section.cellClickBlock = ^(NSInteger index, XYInfomationCell * _Nonnull cell) {
-//            [weakSelf sectionCellClicked:cell];
-//        };
-//
-//        // 监听出生日期，如果身份类型:身份证，身份证号码为正确的身份证号--->自动输入出生日期
-////        [item4 addObserver:weakSelf forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
-//    }
-//    return _section;
-//}
+
 
 #pragma mark - life circle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
-    
-    
-    
+    // 填充内容
     [self setContentView:self.myContentView];
     
     // 添加监听 - 出生日期 是否有配偶
     
 }
-
-
-
-#pragma mark - contentDelegates
-
-#pragma mark - content Actions
-
-
-#pragma mark - privateMethods
 
 
 #pragma mark - publicMethods
@@ -202,7 +282,7 @@
     }
 }
 
-#pragma XYPickerView 处理
+#pragma mark - XYPickerView 处理
 
 - (void)showPickerForCell:(XYInfomationCell *)cell
 {
@@ -229,7 +309,7 @@
     }];
 }
 
-#pragma XYDatePicker 处理
+#pragma mark - XYDatePicker 处理
 
 - (void)showDatePickerForCell:(XYInfomationCell *)cell{
     

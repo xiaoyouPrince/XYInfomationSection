@@ -323,7 +323,7 @@
 
 - (void)buildUI{
     
-    // 1.设置导航栏样式
+    // 0.设置导航栏样式
     [self setupNav];
     
     // 创建个税页面
@@ -408,6 +408,10 @@
 }
 
 
+- (void)dealloc
+{
+    NSLog(@"%@ -- dealloc",self);
+}
 
 
 @end

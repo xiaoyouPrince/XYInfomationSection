@@ -60,6 +60,8 @@
         // 拿到入口数据，真实项目中应该是网络获取
         NSArray *entranceData = [DataTool dataArrayForPersonTaxEntrance];
         
+        __weak typeof(self) weakSelf = self;
+        
         UIView *lastSection = nil;
         for (int index = 0; index < entranceData.count; index++) {
             
@@ -75,7 +77,7 @@
                 PersonalTaxBaseViewController *detail = [NSClassFromString(dict[@"titleKey"]) new];
                 detail.title = dict[@"title"];
                 detail.taxType = [dict[@"taxType"] integerValue];
-                [self.navigationController pushViewController:detail animated:YES];
+                [weakSelf.navigationController pushViewController:detail animated:YES];
             };
             
             [_entranceView addSubview:section];

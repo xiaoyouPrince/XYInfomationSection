@@ -43,7 +43,7 @@
     
     // iconView
     UIImageView *icon = [UIImageView new];
-    icon.image = [UIImage imageNamed:@"icon_tax_renzhi"];
+    icon.image = [UIImage imageNamed:@"icon_tax_geshui"];
     [self addSubview:icon];
     self.iconView = icon;
     
@@ -69,7 +69,7 @@
 + (instancetype)groupWithTitle:(NSString *)title icon:(nullable NSString *)iconName
 {    
     if (!iconName.length) {
-        iconName = @"icon_tax_renzhi";
+        iconName = @"icon_tax_geshui";
     }
     
     XYTaxBaseSection *section = [[self alloc] init];
