@@ -23,6 +23,7 @@
 
 @implementation PersonalTaxBaseViewController
 {
+    NSMutableArray *_allSections;
     UIImageView *_bannerIconView;
     UILabel *_bannerLabel;
 }
@@ -267,7 +268,7 @@
         }
         
         // 2.个税信息
-        XYTaxBaseTaxinfoSection *taxInfo = [XYTaxBaseTaxinfoSection taxSectionWithImage:@"" title:@"个税信息" infoItems:[self taxInfos] disable:YES];
+        XYTaxBaseTaxinfoSection *taxInfo = [XYTaxBaseTaxinfoSection taxSectionWithImage:@"" title:@"个税信息" infoItems:[self taxInfos] handler:nil];
         [_taxBottomView addSubview:taxInfo];
         
         [taxInfo mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -307,6 +308,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    _allSections = @[].mutableCopy;
     self.view.backgroundColor = HEXCOLOR(0xf6f6f6);
     
     [self buildUI];
@@ -376,9 +378,29 @@
 }
 
 #pragma mark - privateMethods
+- (void)getSectionFormView:(UIView *)view
+{
+    for (UIView *subView in view.subviews) {
+        if ([subView isKindOfClass:XYInfomationSection.class]) {
+            [_allSections addObject:subView];
+            continue;
+        }else
+        {
+            [self getSectionFormView:subView];
+        }
+    }
+}
 
+- (NSMutableArray *)allSections
+{
+    [_allSections removeAllObjects];
+    [self getSectionFormView:self.view];
+    return _allSections;
+}
 
 #pragma mark - publicMethods
+
+
 
 - (void)ensureBtnClick
 {

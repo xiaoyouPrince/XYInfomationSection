@@ -18,17 +18,23 @@
 /** dataArray */
 @property (nonatomic, strong)       NSArray<XYInfomationItem *> * dataArray;
 
+/** handler */
+@property (nonatomic, copy)         XYTaxBaseTaxinfoSectionHandler handler;
+
 @end
 
 @implementation XYTaxBaseTaxinfoSection
 
-+ (instancetype)taxSectionWithImage:(NSString *)imageName title:(NSString *)title infoItems:(NSArray<XYInfomationItem *> *)dataArray disable:(BOOL)diable
++ (instancetype)taxSectionWithImage:(NSString *)imageName title:(NSString *)title infoItems:(NSArray<XYInfomationItem *> *)dataArray handler:(nullable XYTaxBaseTaxinfoSectionHandler)handler
 {
     XYTaxBaseTaxinfoSection *instance = [XYTaxBaseTaxinfoSection new];
     instance.imageName = imageName;
     instance.title = title;
     instance.dataArray = dataArray;
-    instance.userInteractionEnabled = !diable;
+    instance.handler = handler;
+    if (!handler) {
+        instance.userInteractionEnabled = NO;
+    }
     return instance;
 }
 
@@ -86,11 +92,10 @@
     }];
     __weak typeof(self) weakSelf = self;
     section.cellClickBlock = ^(NSInteger index, XYInfomationCell * _Nonnull cell) {
-//        [weakSelf sectionCellClicked:cell];
+        if (weakSelf.handler) {
+            weakSelf.handler(cell);
+        }
     };
-    
-    // 监听出生日期，如果身份类型:身份证，身份证号码为正确的身份证号--->自动输入出生日期
-//    [item4 addObserver:weakSelf forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
 }
 
 

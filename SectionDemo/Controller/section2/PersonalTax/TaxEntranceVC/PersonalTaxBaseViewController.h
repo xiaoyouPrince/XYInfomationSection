@@ -34,6 +34,12 @@ typedef NS_ENUM(NSUInteger, TaxType) {
  */
 @property(nonatomic , assign)   TaxType taxType;
 
+/**
+ 提交数据，最终数据
+ /// @note 此方法，仅仅在子类页面提交时使用
+ */
+@property(nonatomic , assign, readonly, getter=allSections)   NSMutableArray *allSections;
+
 
 /// 由子类实现点击确定按钮，提交操作
 - (void)ensureBtnClick;

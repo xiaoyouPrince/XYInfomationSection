@@ -12,12 +12,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void(^XYTaxBaseTaxinfoSectionHandler)(XYInfomationCell *cell);
+
 @interface XYTaxBaseTaxinfoSection : UIView
 
 + (instancetype)taxSectionWithImage:(NSString *)imageName
                               title:(NSString *)title
                           infoItems:(NSArray <XYInfomationItem *>*)dataArray
-                            disable:(BOOL)diable;
+                            handler:(nullable XYTaxBaseTaxinfoSectionHandler)handler;
 
 @end
 
