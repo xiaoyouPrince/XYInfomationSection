@@ -63,22 +63,46 @@ MJCodingImplementation;
         return [self sexArray];
     }
     
-    /// 用户证件类型
-    if ([key isEqualToString:@"memberCardType"]) {
+    /// 用户证件类型[子女，配偶]
+    if ([key isEqualToString:@"sfzjlx"] ||
+        [key isEqualToString:@"nsrposfzjlx"]) {
+        
         return [self cardTypeArray];
     }
     
     /// 用户关系类型
-    if ([key isEqualToString:@"relationShip"]) {
+    if ([key isEqualToString:@"relationShip"] ||
+        [key isEqualToString:@"ynsrgx"]) {
         return [self relationShipArray];
     }
     
+    /// 选择国籍【子女国籍，o配偶国籍，受教育国家】
+    if ([key isEqualToString:@"nsrpogj"] ||
+        [key isEqualToString:@"gjhdqsz"] ||
+        [key isEqualToString:@"jdgjhdqsz"]) {
+        return [self counttiesArray];
+    }
+    
+    /// 是否有配偶，是否独生子女
     if ([key isEqualToString:@"sfypo"]) {
         return [self boolArray];
     }
     
+    /// 教育部分
+    /// 教育阶段
+    if ([key isEqualToString:@"sjyjd"]) {
+        return [self jyjdArray];
+    }
+    
+    /// 教育阶段
+    if ([key isEqualToString:@"fpbl"]) {
+        return [self fpblArray];
+    }
+    
     return [self citiesArray];
 }
+
+
 
 
 /// 返回是否类型的数据
@@ -102,6 +126,96 @@ MJCodingImplementation;
     }
     return arrayM;
 }
+
++ (NSArray *)counttiesArray{
+    NSArray *array = @[
+        @{
+            @"title": @"中国",
+            @"code": @"1"
+        },
+        @{
+            @"title": @"美国",
+            @"code": @"2"
+        },
+        @{
+            @"title": @"日本",
+            @"code": @"3"
+        },
+        @{
+            @"title": @"韩国",
+            @"code": @"4"
+        },
+        @{
+            @"title": @"俄罗斯",
+            @"code": @"5"
+        },
+    ];
+    
+    NSMutableArray *arrayM = @[].mutableCopy;
+    for (NSDictionary *dict in array) {
+        XYPickerViewItem *item = [XYPickerViewItem modelWithDict:dict];
+        [arrayM addObject:item];
+    }
+    return arrayM;
+}
+
++ (NSArray *)jyjdArray{
+    NSArray *array = @[
+        @{
+            @"title": @"学前教育",
+            @"code": @"1"
+        },
+        @{
+            @"title": @"义务教育",
+            @"code": @"2"
+        },
+        @{
+            @"title": @"高等教育",
+            @"code": @"3"
+        },
+        @{
+            @"title": @"博硕教育",
+            @"code": @"4"
+        },
+        @{
+            @"title": @"PhD",
+            @"code": @"5"
+        },
+    ];
+    
+    NSMutableArray *arrayM = @[].mutableCopy;
+    for (NSDictionary *dict in array) {
+        XYPickerViewItem *item = [XYPickerViewItem modelWithDict:dict];
+        [arrayM addObject:item];
+    }
+    return arrayM;
+}
+
+/// 分配比例
++ (NSArray *)fpblArray{
+    NSArray *array = @[
+        @{
+            @"title": @"0%",
+            @"code": @"1"
+        },
+        @{
+            @"title": @"50%",
+            @"code": @"2"
+        },
+        @{
+            @"title": @"100%",
+            @"code": @"3"
+        }
+    ];
+    
+    NSMutableArray *arrayM = @[].mutableCopy;
+    for (NSDictionary *dict in array) {
+        XYPickerViewItem *item = [XYPickerViewItem modelWithDict:dict];
+        [arrayM addObject:item];
+    }
+    return arrayM;
+}
+
 
 /// 用户证件类型
 + (NSArray *)cardTypeArray

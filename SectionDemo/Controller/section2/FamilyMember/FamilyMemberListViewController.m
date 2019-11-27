@@ -29,7 +29,7 @@
         
         XYInfomationItem *item1 = [XYInfomationItem modelWithTitle:@"姓名" titleKey:@"memberName" type:0 value:nil placeholderValue:nil disableUserAction:NO];
         XYInfomationItem *item2 = [XYInfomationItem modelWithTitle:@"用户性别" titleKey:@"memberSex" type:1 value:nil placeholderValue:nil disableUserAction:NO];
-        XYInfomationItem *item3 = [XYInfomationItem modelWithTitle:@"证件类型" titleKey:@"memberCardType" type:1 value:nil placeholderValue:nil disableUserAction:NO];
+        XYInfomationItem *item3 = [XYInfomationItem modelWithTitle:@"证件类型" titleKey:@"sfzjlx" type:1 value:nil placeholderValue:nil disableUserAction:NO];
         XYInfomationItem *item4 = [XYInfomationItem modelWithTitle:@"证件号码" titleKey:@"memberIdCardNo" type:0 value:nil placeholderValue:nil disableUserAction:NO];
         XYInfomationItem *item5 = [XYInfomationItem modelWithTitle:@"出生日期" titleKey:@"memberBirthDate" type:1 value:nil placeholderValue:nil disableUserAction:NO];
         XYInfomationItem *item6 = [XYInfomationItem modelWithTitle:@"与本人关系" titleKey:@"relationShip" type:1 value:nil placeholderValue:nil disableUserAction:NO];

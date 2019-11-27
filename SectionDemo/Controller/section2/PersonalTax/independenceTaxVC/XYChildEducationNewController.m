@@ -58,17 +58,7 @@
                                 }
                             ];
     
-    NSMutableArray *arrayM = @[].mutableCopy;
-    for (NSDictionary *dict in childInfos) {
-        NSString *value = nil;
-        if ([dict[@"detail"] length]) {
-            value = dict[@"detail"];
-        }
-        XYInfomationItem *item = [XYInfomationItem modelWithTitle:dict[@"title"] titleKey:dict[@"titleKey"] type:[dict[@"type"] integerValue] value:value placeholderValue:nil disableUserAction:NO];
-        [arrayM addObject:item];
-    }
-    
-    return arrayM;
+    return [self modelsArrayWithDictArr:childInfos];
 }
 
 
@@ -115,17 +105,7 @@
                                 }
                             ];
     
-    NSMutableArray *arrayM = @[].mutableCopy;
-    for (NSDictionary *dict in poInfos) {
-        NSString *value = nil;
-        if ([dict[@"detail"] length]) {
-            value = dict[@"detail"];
-        }
-        XYInfomationItem *item = [XYInfomationItem modelWithTitle:dict[@"title"] titleKey:dict[@"titleKey"] type:[dict[@"type"] integerValue] value:value placeholderValue:nil disableUserAction:NO];
-        [arrayM addObject:item];
-    }
-    
-    return arrayM;
+    return [self modelsArrayWithDictArr:poInfos];
 }
 
 
@@ -178,19 +158,25 @@
                              }
                          ];
     
+    return [self modelsArrayWithDictArr:eduInfos];
+}
+
+/// 通过dict数据源返回model数据源
+/// @param array 字典数据源
+- (NSArray <XYInfomationItem *>*)modelsArrayWithDictArr:(NSArray *)array{
+    
     NSMutableArray *arrayM = @[].mutableCopy;
-    for (NSDictionary *dict in eduInfos) {
+    for (NSDictionary *dict in array) {
         NSString *value = nil;
-        if ([dict[@"detail"] length]) {
-            value = dict[@"detail"];
-        }
+//        if ([dict[@"detail"] length]) {
+//            value = dict[@"detail"];
+//        }
         XYInfomationItem *item = [XYInfomationItem modelWithTitle:dict[@"title"] titleKey:dict[@"titleKey"] type:[dict[@"type"] integerValue] value:value placeholderValue:nil disableUserAction:NO];
         [arrayM addObject:item];
     }
     
     return arrayM;
 }
-
 
 #pragma mark - LazyLoad properties
 
@@ -262,7 +248,7 @@
     // 配偶监听出生日期，如果身份类型:身份证，身份证号码为正确的身份证号--->自动输入出生日期
     XYInfomationItem *poHas = poSection.cellsArray[0].model;
     [poHas addObserver:self forKeyPath:@"valueCode" options:NSKeyValueObservingOptionNew context:nil];
-    XYInfomationItem *poBirth = poSection.cellsArray[4].model;
+    XYInfomationItem *poBirth = poSection.cellsArray[3].model;
     [poBirth addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
 }
 
@@ -270,7 +256,7 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
 {
     
-    // 1. 子女出生日期
+    // 1. 子女出生日期-判断证件号码
     if ([[object valueForKey:@"titleKey"] isEqualToString:@"sfzjhm"]) {
         
         XYTaxBaseTaxinfoSection *znSection = [_myContentView.subviews firstObject];
@@ -313,41 +299,45 @@
         XYInfomationItem *item = poSection.cellsArray[0].model;
         if ( value && [item.valueCode isEqualToString:@"2"]) {
             
-            // 展开配偶项目
+            // 合并配偶项目
             [section foldCellWithoutIndexs:@[@0]];
         }else
         {
+            // 展开配偶项目
             [section foldCellWithIndexs:@[]];
         }
     }
-//    
-//    
-//    // 1. 配偶出生日期
-//    if ([[object valueForKey:@"titleKey"] isEqualToString:@"csrq"]) {
-//        
-//        // 最新输入的身份证号
-//        NSString *value = change[NSKeyValueChangeNewKey];
-//        
-//        // 证件类型
-//        XYInfomationItem *item = self.section.dataArray[2];
-//        if ([value isIDCard] && [item.valueCode isEqualToString:@"1"]) {
-//            
-//            NSString *birthday = [value birthdayFromIDCard];
-//                    
-//            XYInfomationItem *item = self.section.dataArray[4];
-//            item.value = birthday;
-//            item.valueCode = birthday;
-//            XYInfomationCell *cell = [self.section.subviews objectAtIndex:4];
-//            cell.model = item;
-//        }else
-//        {
-//            XYInfomationItem *item = self.section.dataArray[4];
-//            item.value = nil;
-//            item.valueCode = nil;
-//            XYInfomationCell *cell = [self.section.subviews objectAtIndex:4];
-//            cell.model = item;
-//        }
-//    }
+    
+    
+    // 3. 配偶出生日期-判断证件号码
+    if ([[object valueForKey:@"titleKey"] isEqualToString:@"nsrposfzjhm"]) {
+        
+        // 最新输入的身份证号
+        NSString *value = change[NSKeyValueChangeNewKey];
+        
+        XYTaxBaseTaxinfoSection *poSection = [_myContentView.subviews objectAtIndex:1];
+        XYInfomationSection *section = [poSection.subviews lastObject];
+        
+        // 证件类型
+        XYInfomationItem *item = section.dataArray[2];
+        if ([value isIDCard] && [item.valueCode isEqualToString:@"1"]) {
+            
+            NSString *birthday = [value birthdayFromIDCard];
+                    
+            XYInfomationItem *item = section.dataArray[4];
+            item.value = birthday;
+            item.valueCode = birthday;
+            XYInfomationCell *cell = [section.subviews objectAtIndex:4];
+            cell.model = item;
+        }else
+        {
+            XYInfomationItem *item = section.dataArray[4];
+            item.value = nil;
+            item.valueCode = nil;
+            XYInfomationCell *cell = [section.subviews objectAtIndex:4];
+            cell.model = item;
+        }
+    }
     
 }
 
@@ -366,7 +356,7 @@
     // 2. 是否有配偶，配偶出生日期
     XYInfomationItem *poHas = poSection.cellsArray[0].model;
     [poHas removeObserver:self forKeyPath:@"valueCode"];
-    XYInfomationItem *poBirth = poSection.cellsArray[4].model;
+    XYInfomationItem *poBirth = poSection.cellsArray[3].model;
     [poBirth removeObserver:self forKeyPath:@"value"];
 }
 
@@ -380,6 +370,25 @@
     NSMutableArray *arrayM = @[].mutableCopy;
     for (XYInfomationSection *section in [self allSections]) {
         [arrayM addObject:section.contentKeyValues];
+        
+        // 1.进行参数校验,这里进行强检验，使用者可以根据
+        for (XYInfomationItem *item in section.dataArray) {
+            if ([item.titleKey isEqualToString:@"remark"]) {
+                continue;
+            }
+            
+            // 对内容进行匹配
+            if (item.type == XYInfoCellTypeInput && !item.value.length) {
+                [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请输入%@",item.title]];
+                return;
+            }
+            
+            // 对内容进行匹配
+            if (item.type == XYInfoCellTypeChoose && !item.valueCode.length) {
+                [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请选择%@",item.title]];
+                return;
+            }
+        }
     }
     
     NSString *content = [NSString stringWithFormat:@"%@",arrayM];
@@ -391,7 +400,12 @@
     if (cell.model.type == XYInfoCellTypeChoose) {
         
         // 处理要请求何种数据picker / datePicker / location
-        if ([cell.model.titleKey isEqualToString:@"memberBirthDate"]) {
+        if ([cell.model.titleKey isEqualToString:@"csrq"] ||
+            [cell.model.titleKey isEqualToString:@"nsrpocsrq"] ||
+            [cell.model.titleKey isEqualToString:@"sjyrqq"] ||
+            [cell.model.titleKey isEqualToString:@"yjbysj"] ||
+            [cell.model.titleKey isEqualToString:@"zjsjysj"]
+            ) {// 出生日期 & 受教育起止时间等
             [self showDatePickerForCell:cell];
         }else
         {
