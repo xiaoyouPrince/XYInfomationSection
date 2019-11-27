@@ -8,6 +8,10 @@
 
 #import "XYInfomationSection.h"
 
+@interface XYInfomationSection ()
+/** foldIndexs */
+@property (nonatomic, strong)       NSMutableArray * foldIndexs;
+@end
 @implementation XYInfomationSection
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -32,6 +36,8 @@
  @param original 是否为初始样式  YES:无圆角&白色背景  NO:圆角为10，背景色透明
  */
 - (void)baseUIConfig:(BOOL)original{
+    _foldIndexs = @[].mutableCopy;
+    
     if (!original) { // 创建默认style
         self.layer.cornerRadius = 10;
         self.backgroundColor = UIColor.whiteColor;
@@ -132,12 +138,6 @@ static UIView *the_bottom_cell = nil;
         the_bottom_cell = cell;
     }
     
-    // 自适应self.height
-//    NSLayoutConstraint *con_Bottom = [NSLayoutConstraint constraintWithItem:the_bottom_cell attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0.0];
-//    [NSLayoutConstraint activateConstraints:@[con_Bottom]];
-//    [self addConstraint:con_Bottom];
-
-    
     [the_bottom_cell mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self).offset(0);
     }];
@@ -145,7 +145,7 @@ static UIView *the_bottom_cell = nil;
     
 }
 
-
+#warning todo - will add 刷新数据
 - (void)refreshSectionWithDataArray:(NSArray *)dataArray
 {
     if (self.dataArray.count != dataArray) {
@@ -165,6 +165,110 @@ static UIView *the_bottom_cell = nil;
     {
         self.backgroundColor = UIColor.whiteColor;
     }
+}
+
+/** 折叠数据 */
+- (void)foldCellWithIndexs:(NSArray <NSNumber *>*)indexsArr
+{
+    if (indexsArr.count) { // 传入有数据
+        for (XYInfomationCell *cell in self.subviews) {
+            
+            for (NSLayoutConstraint *layout in cell.constraints) {
+                if ([layout respondsToSelector:@selector(uninstall)]) {
+                    [layout performSelector:@selector(uninstall)];
+                }else
+                {
+                    [NSLayoutConstraint deactivateConstraints:cell.constraints];
+                }
+            }
+            
+            [cell removeFromSuperview];
+        }
+    }
+    
+    
+    // 更新内部 foldIndexs
+    for (NSNumber *index in indexsArr) {
+        if (![self.foldIndexs containsObject:index]) {
+            [self.foldIndexs addObject:index];
+        }
+    }
+    
+    // 跟新折叠UI
+    [self updateFoldUI];
+
+}
+
+// 要避免折叠的项目
+- (void)foldCellWithoutIndexs:(NSArray <NSNumber *>*)indexsArr
+{
+    if (indexsArr.count) { // 传入有数据
+        for (XYInfomationCell *cell in self.subviews) {
+            
+            for (NSLayoutConstraint *layout in cell.constraints) {
+                if ([layout respondsToSelector:@selector(uninstall)]) {
+                    [layout performSelector:@selector(uninstall)];
+                }else
+                {
+                    [NSLayoutConstraint deactivateConstraints:cell.constraints];
+                }
+            }
+            
+            [cell removeFromSuperview];
+        }
+    }
+    
+    // 更新内部 foldIndexs
+    for (id obj in self.dataArray) {
+        NSInteger index = [self.dataArray indexOfObject:obj];
+        if ([indexsArr containsObject:[NSNumber numberWithInteger:index]]) {
+            continue;
+        }
+        [self.foldIndexs addObject:[NSNumber numberWithInteger:index]];
+    }
+    
+    // 跟新折叠UI
+    [self updateFoldUI];
+}
+
+/////** 展开数据 */
+//- (void)unfoldCellWithIndexs:(NSArray <NSNumber *>*)indexs{
+//
+//}
+// 要展开的项目
+//- (void)unfoldCellWithoutIndexs:(NSArray <NSNumber *>*)indexs;  // 要避免展开的项目
+
+/// 更新展开，合并的UI
+- (void)updateFoldUI{
+    
+    // 1. 处理是否越界
+    for (NSNumber *index in self.foldIndexs) {
+        if ([index integerValue] >= self.dataArray.count) {
+            NSException *e = [NSException exceptionWithName:@"更新数据的数组越界" reason:nil userInfo:nil];
+            [e raise];
+        }
+    }
+    
+    // 2.更新数据
+    for (NSNumber *indexNumber in self.foldIndexs) {
+        NSInteger index = [indexNumber integerValue];
+        XYInfomationItem *item = self.dataArray[index];
+        item.fold = YES;
+    }
+    
+    // 3.刷新页面
+    self.dataArray = self.dataArray;
+    
+    
+    // 4.不保存当前折叠状态
+    for (NSNumber *indexNumber in self.foldIndexs) {
+        NSInteger index = [indexNumber integerValue];
+        XYInfomationItem *item = self.dataArray[index];
+        if (item.isFold) {
+            item.fold = !item.isFold;
+        }
+    }
+    [_foldIndexs removeAllObjects];
 }
 
 

@@ -84,13 +84,18 @@ typedef NS_ENUM(NSUInteger, XYInfoCellType) {
  */
 @property(nonatomic , copy)     NSString *backgroundImage;
 /**
- cellHeight:用户自己设置的初始化cellHeight 默认0，如果未设置会取 def_celleHeight
+ cellHeight:用户自己设置的初始化cellHeight 默认0，如果其值小于50 会取 def_celleHeight
  */
 @property(nonatomic , assign)     CGFloat cellHeight;
 /**
  def_cellHeight: 默认 cellHeight 50pt,优先使用用户自己设置的 cellHeight
  */
 @property(nonatomic , assign , readonly)     CGFloat def_cellHeight;
+
+/**
+ fold: 设置cell是否隐藏,默认 NO ,用户设置为YES则，本行折叠
+ */
+@property(nonatomic , assign, getter=isFold)     BOOL fold;
 
 /**
  @brief

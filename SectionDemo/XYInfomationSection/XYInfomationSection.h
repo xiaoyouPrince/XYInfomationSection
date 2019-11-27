@@ -30,6 +30,13 @@ typedef void(^SectionCellClickBlock)(NSInteger index,XYInfomationCell *cell);
 + (instancetype)sectionForOriginal;
 - (instancetype)initForOriginal;
 
+/** 折叠数据 */
+- (void)foldCellWithIndexs:(NSArray <NSNumber *>*)indexs;  // 要折叠的项目
+- (void)foldCellWithoutIndexs:(NSArray <NSNumber *>*)indexs;  // 要避免折叠的项目
+/** 展开数据 */
+- (void)unfoldCellWithIndexs:(NSArray <NSNumber *>*)indexs;  // 要展开的项目
+- (void)unfoldCellWithoutIndexs:(NSArray <NSNumber *>*)indexs;  // 要避免展开的项目
+
 /** 获取 section 中内部所有的参数 key-values */
 @property(nonatomic , strong , readonly)     NSDictionary *contentKeyValues;
 
