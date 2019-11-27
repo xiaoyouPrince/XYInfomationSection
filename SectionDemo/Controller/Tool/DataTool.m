@@ -90,7 +90,9 @@ MJCodingImplementation;
     
     /// 教育部分
     /// 教育阶段
-    if ([key isEqualToString:@"sjyjd"]) {
+    if ([key isEqualToString:@"sjyjd"] ||
+        [key isEqualToString:@"xljxjyjd"]
+        ) {
         return [self jyjdArray];
     }
     
@@ -99,11 +101,107 @@ MJCodingImplementation;
         return [self fpblArray];
     }
     
+    /// 继续教育类型
+    if ([key isEqualToString:@"jxjyqk"]) {
+        return [self jxjylxArray];
+    }
+    
+    /// 职业继续教育类型的具体类型
+    if ([key isEqualToString:@"fxljxjylx"]) {
+        return [self zyjxjylxArray];
+    }
+    
+    /// 职业继续教育类型的证书名称
+    if ([key isEqualToString:@"zsmc"]) {
+        return [self zsmcArray];
+    }
+    
+    
     return [self citiesArray];
 }
 
 
+/// 返回继续教育类型数据
++ (NSArray *)jxjylxArray
+{
+    NSArray *array = @[
+        @{
+            @"title": @"学历学位继续教育",
+            @"code": @"1"
+        },
+        @{
+            @"title": @"职业资格继续教育",
+            @"code": @"2"
+        }
+    ];
+    
+    NSMutableArray *arrayM = @[].mutableCopy;
+    for (NSDictionary *dict in array) {
+        XYPickerViewItem *item = [XYPickerViewItem modelWithDict:dict];
+        [arrayM addObject:item];
+    }
+    return arrayM;
+}
 
+/// 返回继续教育类型数据
++ (NSArray *)zyjxjylxArray
+{
+    NSArray *array = @[
+        @{
+            @"title": @"技能人员职业资格",
+            @"code": @"1"
+        },
+        @{
+            @"title": @"专业技术人员职业资格",
+            @"code": @"2"
+        }
+    ];
+    
+    NSMutableArray *arrayM = @[].mutableCopy;
+    for (NSDictionary *dict in array) {
+        XYPickerViewItem *item = [XYPickerViewItem modelWithDict:dict];
+        [arrayM addObject:item];
+    }
+    return arrayM;
+}
+
+/// 返回职业继续教育类型-证书名称
++ (NSArray *)zsmcArray
+{
+    NSArray *array = @[
+        @{
+            @"title": @"电工证",
+            @"code": @"1"
+        },
+        @{
+            @"title": @"催乳师证",
+            @"code": @"2"
+        },
+        @{
+            @"title": @"厨师证",
+            @"code": @"3"
+        },
+        @{
+            @"title": @"挖掘机证",
+            @"code": @"4"
+        },
+        @{
+            @"title": @"消防工程师证",
+            @"code": @"5"
+        },
+        @{
+            @"title": @"建筑工程师证",
+            @"code": @"6"
+        }
+    ];
+    
+    NSMutableArray *arrayM = @[].mutableCopy;
+    for (NSDictionary *dict in array) {
+        XYPickerViewItem *item = [XYPickerViewItem modelWithDict:dict];
+        [arrayM addObject:item];
+    }
+    return arrayM;
+}
 
 /// 返回是否类型的数据
 + (NSArray *)boolArray

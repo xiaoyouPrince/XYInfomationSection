@@ -78,8 +78,8 @@
     
     // 设置第二组
     XYInfomationSection *section2 = [XYInfomationSection new];
-    XYInfomationItem *item21 = [XYInfomationItem modelWithTitle:@"所属公司" titleKey:@"custName" type:0 value:self.userDetailInfo.custName placeholderValue:nil disableUserAction:YES];
-    XYInfomationItem *item22 = [XYInfomationItem modelWithTitle:@"所属业务部" titleKey:@"ywName" type:0 value:self.userDetailInfo.ywName placeholderValue:nil disableUserAction:YES];
+    XYInfomationItem *item21 = [XYInfomationItem modelWithTitle:@"所属公司" titleKey:@"custName" type:0 value:@"自己处理内部布局单纯使用自己处理内部布局单纯使用自己处理内部布局单纯使用自己处理内部布局单纯使用" placeholderValue:nil disableUserAction:YES];
+    XYInfomationItem *item22 = [XYInfomationItem modelWithTitle:@"所属业务部" titleKey:@"ywName" type:1 value:@"自己处理内部布局单纯使用自己处理内部布局单纯使用自己处理内部布局单纯使用自己处理内部布局单纯使用" placeholderValue:nil disableUserAction:YES];
     XYInfomationItem *item23 = [XYInfomationItem modelWithTitle:@"所属业务员" titleKey:@"userName" type:0 value:self.userDetailInfo.userName placeholderValue:nil disableUserAction:YES];
     section2.dataArray = @[item21,item22,item23];
     

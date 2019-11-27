@@ -196,6 +196,10 @@
         XYTaxBaseTaxinfoSection *taxInfo2 = [XYTaxBaseTaxinfoSection taxSectionWithImage:@"icon_tax_peiou" title:@"配偶信息" infoItems:[self mateInfos] handler:^(XYInfomationCell * _Nonnull cell) {
             [weakSelf sectionCellClicked:cell];
         }];
+        // 配偶默认只有选择是否有配偶
+        XYInfomationSection *poSection = taxInfo2.subviews.lastObject;
+        [poSection foldCellWithoutIndexs:@[@0]];
+        
         XYTaxBaseTaxinfoSection *taxInfo3 = [XYTaxBaseTaxinfoSection taxSectionWithImage:@"icon_tax_jiaoyu" title:@"受教育信息" infoItems:[self eduInfos] handler:^(XYInfomationCell * _Nonnull cell) {
             [weakSelf sectionCellClicked:cell];
         }];

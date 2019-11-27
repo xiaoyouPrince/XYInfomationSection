@@ -43,6 +43,7 @@ typedef void(^XYDatePickerDoneBlock)(NSDate *choosenDate);
         UIDatePicker *datePicker = [[UIDatePicker alloc] init];
         datePicker.frame = CGRectMake(0, kScreenH+toolBarHight, kScreenW, pickerHight);
         datePicker.backgroundColor = [UIColor whiteColor];
+        datePicker.locale = [NSLocale localeWithLocaleIdentifier:@"zh_Hans_CN"];
         _datePicker = datePicker;
     }
     return _datePicker;

@@ -109,6 +109,10 @@
             [weakSelf sectionCellClicked:cell];
         }];
         
+        // 默认只有一个选择教育类型
+        XYInfomationSection *section = taxInfo.subviews.lastObject;
+        [section foldCellWithoutIndexs:@[@0]];
+        
         [_myContentView addSubview:taxInfo];
         
         [taxInfo mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -130,10 +134,50 @@
     // 填充内容
     [self setContentView:self.myContentView];
     
-    // 添加监听 - 出生日期 是否有配偶
+    // 添加监听 - 监听用户所选教育类型，加载不同对应项目
+    XYTaxBaseTaxinfoSection *taxSection = self.myContentView.subviews.firstObject;
+    XYInfomationSection *section = taxSection.subviews.lastObject;
+    XYInfomationItem *item = section.dataArray[0];
+    [item addObserver:self forKeyPath:@"valueCode" options:NSKeyValueObservingOptionNew context:nil];
     
 }
 
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    
+    // 移除首个教育类型监听
+    XYTaxBaseTaxinfoSection *taxSection = self.myContentView.subviews.firstObject;
+    XYInfomationSection *section = taxSection.subviews.lastObject;
+    XYInfomationItem *item = section.dataArray[0];
+    [item removeObserver:self forKeyPath:@"valueCode"];
+    
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
+{
+    // 1. 教育类型
+    if ([[object valueForKey:@"titleKey"] isEqualToString:@"jxjyqk"]) {
+        
+        XYTaxBaseTaxinfoSection *znSection = [_myContentView.subviews firstObject];
+        XYInfomationSection *section = znSection.subviews.lastObject;
+        // 最新输入的title
+        NSString *value = change[NSKeyValueChangeNewKey];
+        // 证件类型
+        XYInfomationItem *item = znSection.cellsArray[0].model;
+        if ([value length] && [item.valueCode isEqualToString:@"1"]) {
+            
+            
+            // 1.学历型继续教育 - 展示前3项
+            [section foldCellWithoutIndexs:@[@0,@1,@2,@3]];
+            
+        }else
+        {
+            // 2. 职业性继续教育 - 隐藏前3项
+            [section foldCellWithIndexs:@[@1,@2,@3]];
+        }
+    }
+}
 
 #pragma mark - publicMethods
 
@@ -155,7 +199,10 @@
     if (cell.model.type == XYInfoCellTypeChoose) {
         
         // 处理要请求何种数据picker / datePicker / location
-        if ([cell.model.titleKey isEqualToString:@"memberBirthDate"]) {
+        if ([cell.model.titleKey isEqualToString:@"rxsj"] ||
+            [cell.model.titleKey isEqualToString:@"yjbysj"] ||
+            [cell.model.titleKey isEqualToString:@"zsqdsj"]
+            ) {
             [self showDatePickerForCell:cell];
         }else
         {
@@ -173,7 +220,7 @@
     [XYPickerView showPickerWithConfig:^(XYPickerView * _Nonnull picker) {
        
         picker.dataArray = [DataTool dataArrayForKey:cell.model.titleKey];
-        picker.title = @"选择城市";
+        picker.title = [NSString stringWithFormat:@"选择%@",cell.model.title];
         
         // 可以自己设置默认选中行
         for (int i = 0; i < picker.dataArray.count; i++) {
