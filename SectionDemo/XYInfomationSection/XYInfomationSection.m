@@ -98,6 +98,9 @@
 static UIView *the_bottom_cell = nil;
 - (void)setupContent
 {
+    // 移除之前内容
+    [self.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    
     // 根据内容数组来创建对应的cells，自己适应高度
     int index = -1;
     for (XYInfomationItem *item in self.dataArray) {
@@ -138,8 +141,11 @@ static UIView *the_bottom_cell = nil;
         the_bottom_cell = cell;
     }
     
-    [the_bottom_cell mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self).offset(0);
+//    [the_bottom_cell mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.bottom.equalTo(self).offset(0);
+//    }];
+    [self mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(the_bottom_cell).offset(0);
     }];
     
     
@@ -170,21 +176,21 @@ static UIView *the_bottom_cell = nil;
 /** 折叠数据 */
 - (void)foldCellWithIndexs:(NSArray <NSNumber *>*)indexsArr
 {
-    if (indexsArr.count) { // 传入有数据
-        for (XYInfomationCell *cell in self.subviews) {
-            
-            for (NSLayoutConstraint *layout in cell.constraints) {
-                if ([layout respondsToSelector:@selector(uninstall)]) {
-                    [layout performSelector:@selector(uninstall)];
-                }else
-                {
-                    [NSLayoutConstraint deactivateConstraints:cell.constraints];
-                }
-            }
-            
-            [cell removeFromSuperview];
-        }
-    }
+//    if (indexsArr.count) { // 传入有数据
+//        for (XYInfomationCell *cell in self.subviews) {
+//
+//            for (NSLayoutConstraint *layout in cell.constraints) {
+//                if ([layout respondsToSelector:@selector(uninstall)]) {
+//                    [layout performSelector:@selector(uninstall)];
+//                }else
+//                {
+//                    [NSLayoutConstraint deactivateConstraints:cell.constraints];
+//                }
+//            }
+//
+//            [cell removeFromSuperview];
+//        }
+//    }
     
     
     // 更新内部 foldIndexs
@@ -202,21 +208,21 @@ static UIView *the_bottom_cell = nil;
 // 要避免折叠的项目
 - (void)foldCellWithoutIndexs:(NSArray <NSNumber *>*)indexsArr
 {
-    if (indexsArr.count) { // 传入有数据
-        for (XYInfomationCell *cell in self.subviews) {
-            
-            for (NSLayoutConstraint *layout in cell.constraints) {
-                if ([layout respondsToSelector:@selector(uninstall)]) {
-                    [layout performSelector:@selector(uninstall)];
-                }else
-                {
-                    [NSLayoutConstraint deactivateConstraints:cell.constraints];
-                }
-            }
-            
-            [cell removeFromSuperview];
-        }
-    }
+//    if (indexsArr.count) { // 传入有数据
+//        for (XYInfomationCell *cell in self.subviews) {
+//
+//            for (NSLayoutConstraint *layout in cell.constraints) {
+//                if ([layout respondsToSelector:@selector(uninstall)]) {
+//                    [layout performSelector:@selector(uninstall)];
+//                }else
+//                {
+//                    [NSLayoutConstraint deactivateConstraints:cell.constraints];
+//                }
+//            }
+//
+//            [cell removeFromSuperview];
+//        }
+//    }
     
     // 更新内部 foldIndexs
     for (id obj in self.dataArray) {
@@ -257,6 +263,12 @@ static UIView *the_bottom_cell = nil;
     }
     
     // 3.刷新页面
+    // 3.1 移除自己之前的约束
+    for (NSLayoutConstraint *cons in self.constraints) {
+        cons.active = NO;
+    }
+    
+    // 3.2 重新刷新数据
     self.dataArray = self.dataArray;
     
     

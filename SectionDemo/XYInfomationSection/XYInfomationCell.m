@@ -228,14 +228,16 @@ MJCodingImplementation;
         [self.titleLabel mas_updateConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(weakSelf.imageView.mas_right).offset(10);
         }];
+
     }else{
-        [self.imageView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.width.equalTo(@(0));
-        }];
         
-        [self.titleLabel mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(weakSelf).offset(15);
-        }];
+#warning - mark todo 001 更新约束，不能直接混用，要么XIB要么MAS
+        for (NSLayoutConstraint *cons in self.imageView.constraints) {
+            if (cons.constant == 22) { // xib 中设置width为22，不能直接用mas_update
+                cons.constant = 0;
+                break;
+            }
+        }
     }
     
     // 3. title
