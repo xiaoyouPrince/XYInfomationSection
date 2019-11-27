@@ -98,7 +98,10 @@
     };
 }
 
-
+- (NSArray<XYInfomationCell *> *)cellsArray
+{
+    return self.subviews.lastObject.subviews;
+}
 
 
 @end

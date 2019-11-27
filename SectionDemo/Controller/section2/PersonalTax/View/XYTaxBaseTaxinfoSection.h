@@ -21,6 +21,9 @@ typedef void(^XYTaxBaseTaxinfoSectionHandler)(XYInfomationCell *cell);
                           infoItems:(NSArray <XYInfomationItem *>*)dataArray
                             handler:(nullable XYTaxBaseTaxinfoSectionHandler)handler;
 
+/// 返回内部数据
+- (NSArray <XYInfomationCell *>*)cellsArray;
+
 @end
 
 NS_ASSUME_NONNULL_END

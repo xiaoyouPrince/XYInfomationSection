@@ -73,7 +73,34 @@ MJCodingImplementation;
         return [self relationShipArray];
     }
     
+    if ([key isEqualToString:@"sfypo"]) {
+        return [self boolArray];
+    }
+    
     return [self citiesArray];
+}
+
+
+/// 返回是否类型的数据
++ (NSArray *)boolArray
+{
+    NSArray *array = @[
+        @{
+            @"title": @"是",
+            @"code": @"1"
+        },
+        @{
+            @"title": @"否",
+            @"code": @"2"
+        }
+    ];
+    
+    NSMutableArray *arrayM = @[].mutableCopy;
+    for (NSDictionary *dict in array) {
+        XYPickerViewItem *item = [XYPickerViewItem modelWithDict:dict];
+        [arrayM addObject:item];
+    }
+    return arrayM;
 }
 
 /// 用户证件类型

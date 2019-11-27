@@ -102,9 +102,11 @@
         
         _myContentView = [UIView new];
         
+        __weak typeof(self) weakSelf = self;
+        
         // 2.
         XYTaxBaseTaxinfoSection *taxInfo = [XYTaxBaseTaxinfoSection taxSectionWithImage:@"icon_tax_jiaoyu" title:@"教育信息" infoItems:[self jxjyInfos] handler:^(XYInfomationCell * _Nonnull cell) {
-            [self sectionCellClicked:cell];
+            [weakSelf sectionCellClicked:cell];
         }];
         
         [_myContentView addSubview:taxInfo];

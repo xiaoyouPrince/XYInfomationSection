@@ -189,15 +189,17 @@
         
         _myContentView = [UIView new];
         
+        __weak typeof(self) weakSelf = self;
+        
         // 2.
         XYTaxBaseTaxinfoSection *taxInfo = [XYTaxBaseTaxinfoSection taxSectionWithImage:@"icon_tax_peiou" title:@"配偶信息" infoItems:[self zinvInfos] handler:^(XYInfomationCell * _Nonnull cell) {
-            [self sectionCellClicked:cell];
+            [weakSelf sectionCellClicked:cell];
         }];
         XYTaxBaseTaxinfoSection *taxInfo2 = [XYTaxBaseTaxinfoSection taxSectionWithImage:@"icon_tax_zhufang" title:@"住房信息" infoItems:[self zhufangInfos] handler:^(XYInfomationCell * _Nonnull cell) {
-            [self sectionCellClicked:cell];
+            [weakSelf sectionCellClicked:cell];
         }];
         XYTaxBaseTaxinfoSection *taxInfo3 = [XYTaxBaseTaxinfoSection taxSectionWithImage:@"icon_tax_fangdai" title:@"房贷信息" infoItems:[self fangdaiInfos] handler:^(XYInfomationCell * _Nonnull cell) {
-            [self sectionCellClicked:cell];
+            [weakSelf sectionCellClicked:cell];
         }];
         
         [_myContentView addSubview:taxInfo];

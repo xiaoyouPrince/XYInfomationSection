@@ -174,16 +174,17 @@
     if (!_myContentView) {
         
         _myContentView = [UIView new];
+        __weak typeof(self) weakSelf = self;
         
         // 2.
-        XYTaxBaseTaxinfoSection *taxInfo = [XYTaxBaseTaxinfoSection taxSectionWithImage:@"" title:@"子女信息" infoItems:[self zinvInfos] handler:^(XYInfomationCell * _Nonnull cell) {
-            [self sectionCellClicked:cell];
+        XYTaxBaseTaxinfoSection *taxInfo = [XYTaxBaseTaxinfoSection taxSectionWithImage:@"icon_tax_zinv" title:@"纳税人信息" infoItems:[self zinvInfos] handler:^(XYInfomationCell * _Nonnull cell) {
+            [weakSelf sectionCellClicked:cell];
         }];
-        XYTaxBaseTaxinfoSection *taxInfo2 = [XYTaxBaseTaxinfoSection taxSectionWithImage:@"" title:@"配偶信息" infoItems:[self zinvInfos] handler:^(XYInfomationCell * _Nonnull cell) {
-            [self sectionCellClicked:cell];
+        XYTaxBaseTaxinfoSection *taxInfo2 = [XYTaxBaseTaxinfoSection taxSectionWithImage:@"icon_tax_profile" title:@"被赡养人信息" infoItems:[self beishanyangrenInfos] handler:^(XYInfomationCell * _Nonnull cell) {
+            [weakSelf sectionCellClicked:cell];
         }];
-        XYTaxBaseTaxinfoSection *taxInfo3 = [XYTaxBaseTaxinfoSection taxSectionWithImage:@"" title:@"受教育信息" infoItems:[self zinvInfos] handler:^(XYInfomationCell * _Nonnull cell) {
-            [self sectionCellClicked:cell];
+        XYTaxBaseTaxinfoSection *taxInfo3 = [XYTaxBaseTaxinfoSection taxSectionWithImage:@"icon_tax_profile" title:@"共同赡养人信息" infoItems:[self gontongInfos] handler:^(XYInfomationCell * _Nonnull cell) {
+            [weakSelf sectionCellClicked:cell];
         }];
         
         [_myContentView addSubview:taxInfo];

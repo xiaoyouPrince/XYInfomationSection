@@ -170,7 +170,7 @@
     [XYPickerView showPickerWithConfig:^(XYPickerView * _Nonnull picker) {
        
         picker.dataArray = [DataTool dataArrayForKey:cell.model.titleKey];
-        picker.title = @"选择城市";
+        picker.title = [NSString stringWithFormat:@"选择%@",cell.model.title];
         
         // 可以自己设置默认选中行
         for (int i = 0; i < picker.dataArray.count; i++) {
