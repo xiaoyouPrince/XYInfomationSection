@@ -296,6 +296,10 @@ MJCodingImplementation;
             make.bottom.equalTo(weakSelf).offset(-12);
         }];
         
+        
+        [label setNeedsDisplay];
+        [label layoutIfNeeded];
+        
         // self.textField 隐藏
         self.textField.hidden = YES;
     }else
@@ -382,9 +386,23 @@ MJCodingImplementation;
         
         if (model.type == XYInfoCellTypeInput) { // 输入类型以 titleLabel为准
             
-            [self mas_updateConstraints:^(MASConstraintMaker *make) {
-                make.height.equalTo(@(max_cellHeight));
-            }];
+            // 处理禁用已经将textField替换成Label的情况
+            UILabel *label = [self viewWithTag:100];
+            if (label) {
+                
+                [label sizeToFit];
+                CGFloat final_max_height = MAX(max_cellHeight, label.bounds.size.height+30);
+                
+                [self mas_updateConstraints:^(MASConstraintMaker *make) {
+                    make.height.equalTo(@(final_max_height));
+                }];
+            }else
+            {
+                [self mas_updateConstraints:^(MASConstraintMaker *make) {
+                    make.height.equalTo(@(max_cellHeight));
+                }];
+            }
+            
         }else{
             // 选择类型，以titleLabel 和 detailLabel的实际高度更大的为准
             
