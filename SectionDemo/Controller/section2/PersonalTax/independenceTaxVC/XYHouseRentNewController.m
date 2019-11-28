@@ -7,6 +7,7 @@
 //
 
 #import "XYHouseRentNewController.h"
+#import "XYChooseLocationView.h"
 
 @interface XYHouseRentNewController ()
 /** section 信息输入项 */
@@ -361,7 +362,15 @@
             [cell.model.titleKey isEqualToString:@"zlrqz"]
             ) {
             [self showDatePickerForCell:cell];
-        }else
+            
+        }else if(
+                 [cell.model.titleKey isEqualToString:@"gzcs"] ||
+                 [cell.model.titleKey isEqualToString:@"fwdz"]
+                 )
+        {
+            [self showChooseLocationViewForCell:cell];
+        }
+        else
         {
             [self showPickerForCell:cell];
         }
@@ -394,6 +403,74 @@
         cell.model = cell.model;
     }];
 }
+
+#pragma mark - XYChooseLocationView
+
+- (void)showChooseLocationViewForCell:(XYInfomationCell *)cell
+{
+    // 外围地址数据
+    NSArray *array = [DataTool cityArrayForPid:@"0"];
+    NSArray *locations = [XYLocation mj_objectArrayWithKeyValuesArray:array];
+    
+    // 创建内容
+    XYChooseLocationView *view = [XYChooseLocationView new];
+    [self.view addSubview:view];
+    view.baseDataArray = locations;
+    [view mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(ScreenH*0.45);
+        make.left.equalTo(self.view).offset(0);
+        make.right.equalTo(self.view).offset(-0);
+        make.bottom.equalTo(self.view).offset(-0);
+    }];
+    
+    /// 创建一个coverView
+    UIButton *btn = [UIButton new];
+    btn.backgroundColor = [UIColor.blackColor colorWithAlphaComponent:0.3];
+    [btn addTarget:self action:@selector(coverBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view insertSubview:btn belowSubview:view];
+    
+    [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
+    
+    __weak typeof(cell) weakCell = cell;
+    view.finishChooseBlock = ^(NSArray <NSString *>*locations) {
+      
+        [btn removeFromSuperview];
+        
+        if (!locations || [locations.firstObject isEqualToString:@"请选择"]) {
+            return ;
+        }
+        
+        NSLog(@"locations = %@",locations);
+        
+        NSMutableString *stringM = @"".mutableCopy;
+        for (NSString *str in locations) {
+            if ([str isEqualToString:locations.lastObject]) {
+                [stringM appendFormat:@"%@",str];
+            }else
+            {
+                [stringM appendFormat:@"%@,",str];
+            }
+            
+        }
+        
+        weakCell.model.value = stringM;
+        weakCell.model.valueCode = stringM;
+        weakCell.model = weakCell.model;
+    };
+}
+
+- (void)coverBtnClick:(id)sender
+{
+    for (UIView *subView in self.view.subviews) {
+        if ([subView isKindOfClass:XYChooseLocationView.class]) {
+            [subView removeFromSuperview];
+        }
+    }
+    [sender removeFromSuperview];
+}
+
 
 #pragma mark - XYDatePicker 处理
 

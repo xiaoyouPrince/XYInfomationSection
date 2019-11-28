@@ -111,6 +111,17 @@
 		B44D7B292387A0F900173869 /* XYDabingyiliaoController.m in Sources */ = {isa = PBXBuildFile; fileRef = B44D7B282387A0F900173869 /* XYDabingyiliaoController.m */; };
 		B44D7B2C2387A10900173869 /* XYAlimonyPayController.m in Sources */ = {isa = PBXBuildFile; fileRef = B44D7B2B2387A10900173869 /* XYAlimonyPayController.m */; };
 		B46D51AB2385B89000C56CFB /* XYPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = B46D51A92385B89000C56CFB /* XYPickerView.m */; };
+		B483E15E238FF7D0007DDAB7 /* XYLocationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B483E154238FF7D0007DDAB7 /* XYLocationBar.m */; };
+		B483E15F238FF7D0007DDAB7 /* XYChooseLocationView.m in Sources */ = {isa = PBXBuildFile; fileRef = B483E155238FF7D0007DDAB7 /* XYChooseLocationView.m */; };
+		B483E160238FF7D0007DDAB7 /* XYLocationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B483E156238FF7D0007DDAB7 /* XYLocationCell.m */; };
+		B483E161238FF7D0007DDAB7 /* XYLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = B483E159238FF7D0007DDAB7 /* XYLocation.m */; };
+		B483E16E238FFB23007DDAB7 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = B483E164238FFB22007DDAB7 /* FMDatabaseQueue.m */; };
+		B483E16F238FFB23007DDAB7 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = B483E167238FFB22007DDAB7 /* FMDatabaseAdditions.m */; };
+		B483E170238FFB23007DDAB7 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = B483E168238FFB22007DDAB7 /* FMDatabase.m */; };
+		B483E171238FFB23007DDAB7 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = B483E16C238FFB22007DDAB7 /* FMDatabasePool.m */; };
+		B483E172238FFB23007DDAB7 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = B483E16D238FFB22007DDAB7 /* FMResultSet.m */; };
+		B483E174238FFB56007DDAB7 /* cityArray.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = B483E173238FFB56007DDAB7 /* cityArray.sqlite */; };
+		B483E17723901B35007DDAB7 /* UIView+XYAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = B483E17523901B35007DDAB7 /* UIView+XYAdd.m */; };
 		B485158922B8B51500779B6B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B485158822B8B51500779B6B /* AppDelegate.m */; };
 		B485158C22B8B51500779B6B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B485158B22B8B51500779B6B /* ViewController.m */; };
 		B485158F22B8B51500779B6B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B485158D22B8B51500779B6B /* Main.storyboard */; };
@@ -306,6 +317,28 @@
 		B44D7B2B2387A10900173869 /* XYAlimonyPayController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYAlimonyPayController.m; sourceTree = "<group>"; };
 		B46D51A92385B89000C56CFB /* XYPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYPickerView.m; sourceTree = "<group>"; };
 		B46D51AA2385B89000C56CFB /* XYPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYPickerView.h; sourceTree = "<group>"; };
+		B483E154238FF7D0007DDAB7 /* XYLocationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYLocationBar.m; sourceTree = "<group>"; };
+		B483E155238FF7D0007DDAB7 /* XYChooseLocationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYChooseLocationView.m; sourceTree = "<group>"; };
+		B483E156238FF7D0007DDAB7 /* XYLocationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYLocationCell.m; sourceTree = "<group>"; };
+		B483E158238FF7D0007DDAB7 /* XYLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYLocation.h; sourceTree = "<group>"; };
+		B483E159238FF7D0007DDAB7 /* XYLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYLocation.m; sourceTree = "<group>"; };
+		B483E15A238FF7D0007DDAB7 /* XYChooseLocationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYChooseLocationView.h; sourceTree = "<group>"; };
+		B483E15C238FF7D0007DDAB7 /* XYLocationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYLocationBar.h; sourceTree = "<group>"; };
+		B483E15D238FF7D0007DDAB7 /* XYLocationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYLocationCell.h; sourceTree = "<group>"; };
+		B483E163238FFB22007DDAB7 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		B483E164238FFB22007DDAB7 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		B483E165238FFB22007DDAB7 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		B483E166238FFB22007DDAB7 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		B483E167238FFB22007DDAB7 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		B483E168238FFB22007DDAB7 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		B483E169238FFB22007DDAB7 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		B483E16A238FFB22007DDAB7 /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
+		B483E16B238FFB22007DDAB7 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		B483E16C238FFB22007DDAB7 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		B483E16D238FFB22007DDAB7 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		B483E173238FFB56007DDAB7 /* cityArray.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = cityArray.sqlite; sourceTree = "<group>"; };
+		B483E17523901B35007DDAB7 /* UIView+XYAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+XYAdd.m"; sourceTree = "<group>"; };
+		B483E17623901B35007DDAB7 /* UIView+XYAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+XYAdd.h"; sourceTree = "<group>"; };
 		B485158422B8B51500779B6B /* SectionDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SectionDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B485158722B8B51500779B6B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B485158822B8B51500779B6B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -666,6 +699,57 @@
 			path = XYPickerView;
 			sourceTree = "<group>";
 		};
+		B483E153238FF7D0007DDAB7 /* XYChooseLocationView */ = {
+			isa = PBXGroup;
+			children = (
+				B483E17623901B35007DDAB7 /* UIView+XYAdd.h */,
+				B483E17523901B35007DDAB7 /* UIView+XYAdd.m */,
+				B483E15B238FF7D0007DDAB7 /* icon */,
+				B483E157238FF7D0007DDAB7 /* Model */,
+				B483E15A238FF7D0007DDAB7 /* XYChooseLocationView.h */,
+				B483E155238FF7D0007DDAB7 /* XYChooseLocationView.m */,
+				B483E15C238FF7D0007DDAB7 /* XYLocationBar.h */,
+				B483E154238FF7D0007DDAB7 /* XYLocationBar.m */,
+				B483E15D238FF7D0007DDAB7 /* XYLocationCell.h */,
+				B483E156238FF7D0007DDAB7 /* XYLocationCell.m */,
+			);
+			path = XYChooseLocationView;
+			sourceTree = "<group>";
+		};
+		B483E157238FF7D0007DDAB7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B483E158238FF7D0007DDAB7 /* XYLocation.h */,
+				B483E159238FF7D0007DDAB7 /* XYLocation.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B483E15B238FF7D0007DDAB7 /* icon */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = icon;
+			sourceTree = "<group>";
+		};
+		B483E162238FFB22007DDAB7 /* fmdb */ = {
+			isa = PBXGroup;
+			children = (
+				B483E163238FFB22007DDAB7 /* FMDatabase.h */,
+				B483E164238FFB22007DDAB7 /* FMDatabaseQueue.m */,
+				B483E165238FFB22007DDAB7 /* FMResultSet.h */,
+				B483E166238FFB22007DDAB7 /* FMDatabasePool.h */,
+				B483E167238FFB22007DDAB7 /* FMDatabaseAdditions.m */,
+				B483E168238FFB22007DDAB7 /* FMDatabase.m */,
+				B483E169238FFB22007DDAB7 /* FMDatabaseQueue.h */,
+				B483E16A238FFB22007DDAB7 /* FMDB.h */,
+				B483E16B238FFB22007DDAB7 /* FMDatabaseAdditions.h */,
+				B483E16C238FFB22007DDAB7 /* FMDatabasePool.m */,
+				B483E16D238FFB22007DDAB7 /* FMResultSet.m */,
+			);
+			path = fmdb;
+			sourceTree = "<group>";
+		};
 		B485157B22B8B51500779B6B = {
 			isa = PBXGroup;
 			children = (
@@ -700,6 +784,7 @@
 				B485159522B8B51700779B6B /* Info.plist */,
 				B485159622B8B51700779B6B /* main.m */,
 				B48515FD22B8E84700779B6B /* PrefixHeader.pch */,
+				B483E173238FFB56007DDAB7 /* cityArray.sqlite */,
 			);
 			path = SectionDemo;
 			sourceTree = "<group>";
@@ -723,6 +808,8 @@
 		B48515AB22B8E6FA00779B6B /* Third */ = {
 			isa = PBXGroup;
 			children = (
+				B483E162238FFB22007DDAB7 /* fmdb */,
+				B483E153238FF7D0007DDAB7 /* XYChooseLocationView */,
 				B44A3E5723866D4A001D9E81 /* XYDatePickerView */,
 				B46D51A82385B87400C56CFB /* XYPickerView */,
 				B4E8AB7722C347F00096208A /* IQKeyboardManager */,
@@ -1020,6 +1107,7 @@
 				B44D7B01238771EF00173869 /* icon_geshui@3x.png in Resources */,
 				B44D7ACD238771EF00173869 /* icon_banner_zfdk@2x.png in Resources */,
 				B44D7AF9238771EF00173869 /* icon_zfzj@2x.png in Resources */,
+				B483E174238FFB56007DDAB7 /* cityArray.sqlite in Resources */,
 				B44D7AF8238771EF00173869 /* icon_extend_down@3x.png in Resources */,
 				B44D7B13238771EF00173869 /* tex_help@3x.png in Resources */,
 				B485159422B8B51700779B6B /* LaunchScreen.storyboard in Resources */,
@@ -1067,21 +1155,26 @@
 				B42DADA0238836FF009E1CC3 /* XYExtendBtn.m in Sources */,
 				B4E8ABAA22C347F00096208A /* IQKeyboardReturnKeyHandler.m in Sources */,
 				B48515EA22B8E76600779B6B /* MJProperty.m in Sources */,
+				B483E161238FF7D0007DDAB7 /* XYLocation.m in Sources */,
 				B418918F22C2203300A8B12D /* FamilyMemberListViewController.m in Sources */,
+				B483E160238FF7D0007DDAB7 /* XYLocationCell.m in Sources */,
 				B4E8ABAE22C3AC470096208A /* BaseNavigationController.m in Sources */,
 				B4E8ABA522C347F00096208A /* IQUIWindow+Hierarchy.m in Sources */,
 				B44A3E5D2386B8C4001D9E81 /* NSString+Tool.m in Sources */,
 				B485158C22B8B51500779B6B /* ViewController.m in Sources */,
 				B48515C922B8E73D00779B6B /* MASConstraintMaker.m in Sources */,
 				B48515EB22B8E76600779B6B /* NSObject+MJCoding.m in Sources */,
+				B483E170238FFB23007DDAB7 /* FMDatabase.m in Sources */,
 				B40F590322BA97AA001C6A53 /* UserInfoViewController.m in Sources */,
 				B42DADA32388551C009E1CC3 /* XYTaxBaseSection.m in Sources */,
+				B483E16E238FFB23007DDAB7 /* FMDatabaseQueue.m in Sources */,
 				B40F58FF22BA90EA001C6A53 /* XYInfomationBaseViewController.m in Sources */,
 				B4F0F8FB2389C1080094B521 /* LYLUnicode.m in Sources */,
 				B4E8ABA822C347F00096208A /* IQUIView+Hierarchy.m in Sources */,
 				B44D7B232387A0C900173869 /* XYHouseLoansController.m in Sources */,
 				B4E8ABA922C347F00096208A /* IQUIViewController+Additions.m in Sources */,
 				B48515FA22B8E78000779B6B /* SVProgressHUD.m in Sources */,
+				B483E15E238FF7D0007DDAB7 /* XYLocationBar.m in Sources */,
 				B48515A722B8B70100779B6B /* XYInfomationSection.m in Sources */,
 				B4E8AB9D22C347F00096208A /* IQToolbar.m in Sources */,
 				B4E8ABA022C347F00096208A /* IQUIView+IQKeyboardToolbar.m in Sources */,
@@ -1093,9 +1186,12 @@
 				B48515EF22B8E76600779B6B /* NSString+MJExtension.m in Sources */,
 				B418919422C2209000A8B12D /* PersonalTaxBaseViewController.m in Sources */,
 				B48515C622B8E73D00779B6B /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
+				B483E171238FFB23007DDAB7 /* FMDatabasePool.m in Sources */,
 				B40F590622BA9C72001C6A53 /* SettingViewController.m in Sources */,
+				B483E16F238FFB23007DDAB7 /* FMDatabaseAdditions.m in Sources */,
 				B48515C822B8E73D00779B6B /* MASCompositeConstraint.m in Sources */,
 				B485159722B8B51700779B6B /* main.m in Sources */,
+				B483E15F238FF7D0007DDAB7 /* XYChooseLocationView.m in Sources */,
 				B4E8AB9F22C347F00096208A /* IQBarButtonItem.m in Sources */,
 				B44D7B1D2387A09200173869 /* XYChildEducationNewController.m in Sources */,
 				B4E8ABA722C347F00096208A /* IQUIScrollView+Additions.m in Sources */,
@@ -1115,6 +1211,7 @@
 				B4E8ABA122C347F00096208A /* IQPreviousNextView.m in Sources */,
 				B48515EC22B8E76600779B6B /* MJExtensionConst.m in Sources */,
 				B48515E822B8E76600779B6B /* MJPropertyType.m in Sources */,
+				B483E172238FFB23007DDAB7 /* FMResultSet.m in Sources */,
 				B48515CF22B8E73D00779B6B /* MASViewAttribute.m in Sources */,
 				B4E8ABA322C347F00096208A /* IQKeyboardManager.m in Sources */,
 				B44A3E5A23866D81001D9E81 /* XYDatePickerView.m in Sources */,
@@ -1128,6 +1225,7 @@
 				B4E8ABA422C347F00096208A /* IQNSArray+Sort.m in Sources */,
 				B418918A22C1E8BA00A8B12D /* BaseUseViewController.m in Sources */,
 				B44D7B2C2387A10900173869 /* XYAlimonyPayController.m in Sources */,
+				B483E17723901B35007DDAB7 /* UIView+XYAdd.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

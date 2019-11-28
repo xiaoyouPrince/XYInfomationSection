@@ -71,6 +71,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// 返回个税纳税人历史供职公司信息
 + (NSArray *)dataArrayForPersonTaxCompanies;
 
+
+/// 通过对应的父级别ID返回子集别城市
+/// @param pid 父级id
++ (NSArray *)cityArrayForPid:(NSString *)pid;
+
 @end
 
 @implementation NSDate (extension)

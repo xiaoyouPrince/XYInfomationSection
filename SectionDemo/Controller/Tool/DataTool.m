@@ -7,6 +7,7 @@
 //
 
 #import "DataTool.h"
+#import "FMDB.h"
 
 @implementation UserModel
 MJCodingImplementation;
@@ -578,6 +579,32 @@ MJCodingImplementation;
         XYTaxBaseCompany *company = [XYTaxBaseCompany mj_objectWithKeyValues:array[i]];
         [arrayM addObject:company];
     }
+    
+    return arrayM;
+}
+
++ (NSArray *)cityArrayForPid:(NSString *)pid
+{
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"cityArray" ofType:@"sqlite"];
+    FMDatabaseQueue *queue = [FMDatabaseQueue databaseQueueWithPath:path];
+    
+    NSMutableArray *arrayM = @[].mutableCopy;
+    
+    [queue inDatabase:^(FMDatabase *db) {
+        FMResultSet *rs = [db executeQuery:@"SELECT * FROM t_allCities WHERE pid = (?)",pid];
+    
+        while (rs.next) {
+            long cid = [rs longForColumn:@"id"];
+            long pid = [rs longForColumn:@"pid"];
+            NSString * name = [rs stringForColumn:@"name"];
+            NSMutableDictionary *dict = @{}.mutableCopy;
+            
+            [dict setValue:@(cid) forKey:@"id"];
+            [dict setValue:@(pid) forKey:@"pid"];
+            [dict setValue:name forKey:@"name"];
+            [arrayM addObject:dict];
+        }
+    }];
     
     return arrayM;
 }
