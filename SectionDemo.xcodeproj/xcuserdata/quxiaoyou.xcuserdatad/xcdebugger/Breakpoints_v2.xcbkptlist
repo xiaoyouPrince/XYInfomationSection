@@ -84,7 +84,23 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "DB5B96A0-E847-43B0-A0A2-00CE3063BA0F"
+            uuid = "1D1142CD-C5E1-434B-BFD4-E6CEB2FDD15C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SectionDemo/Controller/section2/PersonalTax/independenceTaxVC/XYHouseRentNewController.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "231"
+            endingLineNumber = "231"
+            landmarkName = "-observeValueForKeyPath:ofObject:change:context:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C2F8DB11-05EF-4248-BBA2-C5504FD6C621"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -100,32 +116,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "DE4E6DFB-FBB7-4FDD-81B4-F85277CDD89A"
+            uuid = "58621388-2C03-4D71-B190-2693E162791E"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SectionDemo/Controller/Tool/DataTool.m"
+            filePath = "SectionDemo/Controller/section2/PersonalTax/independenceTaxVC/XYHouseRentNewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
-            landmarkName = "+dataArrayForKey:"
+            startingLineNumber = "295"
+            endingLineNumber = "295"
+            landmarkName = "-observeValueForKeyPath:ofObject:change:context:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "227328C8-27CB-4040-8BCC-FA5AFB860E73"
+            uuid = "9890AD7A-D6CE-4C9C-B062-888C4743B554"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SectionDemo/Third/XYDatePickerView/XYDatePickerView.m"
+            filePath = "SectionDemo/Controller/section2/PersonalTax/independenceTaxVC/XYHouseRentNewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
-            landmarkName = "-datePicker"
+            startingLineNumber = "310"
+            endingLineNumber = "310"
+            landmarkName = "-observeValueForKeyPath:ofObject:change:context:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

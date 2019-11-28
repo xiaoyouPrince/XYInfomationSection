@@ -238,11 +238,11 @@ static UIView *the_bottom_cell = nil;
 }
 
 /////** 展开数据 */
-//- (void)unfoldCellWithIndexs:(NSArray <NSNumber *>*)indexs{
-//
-//}
-// 要展开的项目
-//- (void)unfoldCellWithoutIndexs:(NSArray <NSNumber *>*)indexs;  // 要避免展开的项目
+- (void)unfoldAllCells
+{
+    [self foldCellWithIndexs:nil];
+}
+
 
 /// 更新展开，合并的UI
 - (void)updateFoldUI{

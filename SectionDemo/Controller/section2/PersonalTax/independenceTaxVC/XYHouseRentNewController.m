@@ -156,7 +156,7 @@
 
 #pragma mark - LazyLoad properties
 
-// 内容有: 子女信息,配偶信息,教育信息
+// 内容有:配偶信息,租房信息
 
 - (UIView *)myContentView
 {
@@ -170,7 +170,12 @@
         XYTaxBaseTaxinfoSection *taxInfo = [XYTaxBaseTaxinfoSection taxSectionWithImage:@"icon_tax_peiou" title:@"配偶信息" infoItems:[self zinvInfos] handler:^(XYInfomationCell * _Nonnull cell) {
             [weakSelf sectionCellClicked:cell];
         }];
-        XYTaxBaseTaxinfoSection *taxInfo2 = [XYTaxBaseTaxinfoSection taxSectionWithImage:@"icon_tax_zufang" title:@"租房信息" infoItems:[self zinvInfos] handler:^(XYInfomationCell * _Nonnull cell) {
+        
+        // 配偶信息默认展示选择是否有配偶
+        XYInfomationSection *poSection = taxInfo.subviews.lastObject;
+        [poSection foldCellWithoutIndexs:@[@0]];
+        
+        XYTaxBaseTaxinfoSection *taxInfo2 = [XYTaxBaseTaxinfoSection taxSectionWithImage:@"icon_tax_zufang" title:@"租房信息" infoItems:[self zufangInfos] handler:^(XYInfomationCell * _Nonnull cell) {
             [weakSelf sectionCellClicked:cell];
         }];
         
@@ -203,10 +208,133 @@
     // 填充内容
     [self setContentView:self.myContentView];
     
-    // 添加监听 - 出生日期 是否有配偶
+    // 添加监听 - 是否有配偶 & 出生日期
+    XYTaxBaseTaxinfoSection *poSection = [_myContentView.subviews firstObject];
+    XYTaxBaseTaxinfoSection *zfSection = [_myContentView.subviews lastObject];
+    
+    // 配偶监听是否有配偶，没有配偶隐藏项目内其剩余他项目
+    // 配偶监听出生日期，如果身份类型:身份证，身份证号码为正确的身份证号--->自动输入出生日期
+    XYInfomationItem *poHas = poSection.cellsArray[0].model;
+    [poHas addObserver:self forKeyPath:@"valueCode" options:NSKeyValueObservingOptionNew context:nil];
+    XYInfomationItem *poBirth = poSection.cellsArray[3].model;
+    [poBirth addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
+    
+    // 监听出租方类型 - 企业 or 个人
+    XYInfomationItem *zflx = zfSection.cellsArray[1].model;
+    [zflx addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
+
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
+{
+    // 1. 是否有配偶
+    if ([[object valueForKey:@"titleKey"] isEqualToString:@"sfypo"]) {
+        
+        // 选择是否有配偶
+        NSString *value = change[NSKeyValueChangeNewKey];
+        
+        XYTaxBaseTaxinfoSection *poSection = [_myContentView.subviews objectAtIndex:0];
+        XYInfomationSection *section = [poSection.subviews lastObject];
+        
+        // 是否有配偶
+        XYInfomationItem *item = poSection.cellsArray[0].model;
+        if ( value && [item.valueCode isEqualToString:@"2"]) {
+            
+            // 合并配偶项目
+            [section foldCellWithoutIndexs:@[@0]];
+        }else
+        {
+            // 展开配偶项目
+            [section foldCellWithIndexs:@[]];
+        }
+    }
+    
+    
+    // 2. 配偶出生日期-判断证件号码
+    if ([[object valueForKey:@"titleKey"] isEqualToString:@"nsrposfzjhm"]) {
+        
+        // 最新输入的身份证号
+        NSString *value = change[NSKeyValueChangeNewKey];
+        
+        XYTaxBaseTaxinfoSection *poSection = [_myContentView.subviews objectAtIndex:0];
+        XYInfomationSection *section = [poSection.subviews lastObject];
+        
+        // 证件类型
+        XYInfomationItem *item = section.dataArray[2];
+        if ([value isIDCard] && [item.valueCode isEqualToString:@"1"]) {
+            
+            NSString *birthday = [value birthdayFromIDCard];
+                    
+            XYInfomationItem *item = section.dataArray[4];
+            item.value = birthday;
+            item.valueCode = birthday;
+            XYInfomationCell *cell = [section.subviews objectAtIndex:4];
+            cell.model = item;
+        }else
+        {
+            XYInfomationItem *item = section.dataArray[4];
+            item.value = nil;
+            item.valueCode = nil;
+            XYInfomationCell *cell = [section.subviews objectAtIndex:4];
+            cell.model = item;
+        }
+    }
+    
+    // 3.监听出租方类型 企业-个人
+    if ([[object valueForKey:@"titleKey"] isEqualToString:@"czflx"]) {
+        
+        // 最新输入的类型“个人”“企业”
+        NSString *value = change[NSKeyValueChangeNewKey];
+        
+        XYTaxBaseTaxinfoSection *zfSection = [_myContentView.subviews objectAtIndex:1];
+        XYInfomationSection *section = [zfSection.subviews lastObject];
+        
+        // 证件类型
+        XYInfomationItem *item = section.dataArray[1];
+        if ([item.value isEqualToString:@"个人"]) {
+            
+            // 1.修改title为出租方名称
+            XYInfomationItem *czfmcItem = section.dataArray[2];
+            czfmcItem.title = @"出租方名称";
+
+            // 2.g修改证件号码为出租方证件号码
+            XYInfomationItem *czfzjhmItem = section.dataArray[4];
+            czfzjhmItem.title = @"出租方证件号码";
+            
+            // 3.展示个人证件类型.index = 3
+            [section unfoldAllCells];
+            
+        }else // 企业
+        {
+            // 1.修改title为出租方名称
+            XYInfomationItem *czfmcItem = section.dataArray[2];
+            czfmcItem.title = @"单位名称";
+
+            // 2.g修改证件号码为出租方证件号码
+            XYInfomationItem *czfzjhmItem = section.dataArray[4];
+            czfzjhmItem.title = @"社会统一信用代码";
+            
+            // 3.展示个人证件类型.index = 3
+            [section foldCellWithIndexs:@[@3]];
+        }
+    }
     
 }
 
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    
+    // 移除监听
+    XYTaxBaseTaxinfoSection *poSection = [_myContentView.subviews firstObject];
+    
+    // 配偶监听是否有配偶，没有配偶隐藏项目内其剩余他项目
+    // 配偶监听出生日期，如果身份类型:身份证，身份证号码为正确的身份证号--->自动输入出生日期
+    XYInfomationItem *poHas = poSection.cellsArray[0].model;
+    [poHas removeObserver:self forKeyPath:@"valueCode"];
+    XYInfomationItem *poBirth = poSection.cellsArray[3].model;
+    [poBirth removeObserver:self forKeyPath:@"value"];
+}
 
 #pragma mark - publicMethods
 
@@ -228,7 +356,10 @@
     if (cell.model.type == XYInfoCellTypeChoose) {
         
         // 处理要请求何种数据picker / datePicker / location
-        if ([cell.model.titleKey isEqualToString:@"memberBirthDate"]) {
+        if ([cell.model.titleKey isEqualToString:@"nsrpocsrq"] ||
+            [cell.model.titleKey isEqualToString:@"zlrqq"] ||
+            [cell.model.titleKey isEqualToString:@"zlrqz"]
+            ) {
             [self showDatePickerForCell:cell];
         }else
         {
@@ -246,7 +377,7 @@
     [XYPickerView showPickerWithConfig:^(XYPickerView * _Nonnull picker) {
        
         picker.dataArray = [DataTool dataArrayForKey:cell.model.titleKey];
-        picker.title = @"选择城市";
+        picker.title = [NSString stringWithFormat:@"选择%@",cell.model.title];
         
         // 可以自己设置默认选中行
         for (int i = 0; i < picker.dataArray.count; i++) {

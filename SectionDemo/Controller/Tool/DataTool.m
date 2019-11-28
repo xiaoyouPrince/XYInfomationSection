@@ -65,7 +65,9 @@ MJCodingImplementation;
     
     /// 用户证件类型[子女，配偶]
     if ([key isEqualToString:@"sfzjlx"] ||
-        [key isEqualToString:@"nsrposfzjlx"]) {
+        [key isEqualToString:@"nsrposfzjlx"] ||
+        [key isEqualToString:@"czrsfzjlx"]
+        ) {
         
         return [self cardTypeArray];
     }
@@ -116,10 +118,39 @@ MJCodingImplementation;
         return [self zsmcArray];
     }
     
+    /// 租房相关
+    /// 出租方类型
+    if ([key isEqualToString:@"czflx"]) {
+        return [self czflxArray];
+    }
+    
+    
     
     return [self citiesArray];
 }
 
+
+/// 出租方类型
++ (NSArray *)czflxArray
+{
+    NSArray *array = @[
+        @{
+            @"title": @"个人",
+            @"code": @"1"
+        },
+        @{
+            @"title": @"企业",
+            @"code": @"2"
+        }
+    ];
+    
+    NSMutableArray *arrayM = @[].mutableCopy;
+    for (NSDictionary *dict in array) {
+        XYPickerViewItem *item = [XYPickerViewItem modelWithDict:dict];
+        [arrayM addObject:item];
+    }
+    return arrayM;
+}
 
 /// 返回继续教育类型数据
 + (NSArray *)jxjylxArray
