@@ -29,14 +29,14 @@
     [self.scrollView setNeedsLayout];
     [self.scrollView layoutIfNeeded];
     
-    NSLog(@"scrollView.bounds = %@",NSStringFromCGRect(self.scrollView.frame));
-    NSLog(@"scrollView.frame = %@",NSStringFromCGRect(self.scrollView.bounds));
-    NSLog(@"scrollView.contentSize = %@",NSStringFromCGSize(self.scrollView.contentSize));
-    NSLog(@"scrollView.contentInset = %@",NSStringFromUIEdgeInsets(self.scrollView.contentInset));
-    NSLog(@"scrollIndicatorInsets = %@",NSStringFromUIEdgeInsets(self.scrollView.scrollIndicatorInsets));
-    if (!self.scrollView.contentInset.top) {
-//        self.scrollView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
-    }
+//    NSLog(@"scrollView.bounds = %@",NSStringFromCGRect(self.scrollView.frame));
+//    NSLog(@"scrollView.frame = %@",NSStringFromCGRect(self.scrollView.bounds));
+//    NSLog(@"scrollView.contentSize = %@",NSStringFromCGSize(self.scrollView.contentSize));
+//    NSLog(@"scrollView.contentInset = %@",NSStringFromUIEdgeInsets(self.scrollView.contentInset));
+//    NSLog(@"scrollIndicatorInsets = %@",NSStringFromUIEdgeInsets(self.scrollView.scrollIndicatorInsets));
+//    if (!self.scrollView.contentInset.top) {
+////        self.scrollView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
+//    }
     
     // self.scrollView 滚到顶部，防止展示的时候有问题
     self.scrollView.scrollsToTop = YES;
@@ -51,8 +51,8 @@
         self.scrollView.contentSize = CGSizeMake(0, self.scrollView.bounds.size.height + 0.5);
     }
     
-    NSLog(@"scrollView.contentSize = %@",NSStringFromCGSize(self.scrollView.contentSize));
-    NSLog(@"scrollIndicatorInsets = %@",NSStringFromUIEdgeInsets(self.scrollView.scrollIndicatorInsets));
+//    NSLog(@"scrollView.contentSize = %@",NSStringFromCGSize(self.scrollView.contentSize));
+//    NSLog(@"scrollIndicatorInsets = %@",NSStringFromUIEdgeInsets(self.scrollView.scrollIndicatorInsets));
     
     [self.scrollView scrollsToTop];
 }
