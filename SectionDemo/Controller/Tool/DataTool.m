@@ -87,7 +87,10 @@ MJCodingImplementation;
     }
     
     /// 是否有配偶，是否独生子女
-    if ([key isEqualToString:@"sfypo"]) {
+    if ([key isEqualToString:@"sfypo"] ||
+        [key isEqualToString:@"sfgzkc"] ||  // 是否婚前贷款且婚后平均分配
+        [key isEqualToString:@"dkrsfbr"]    // 是否本人贷款
+        ) {
         return [self boolArray];
     }
     
@@ -119,6 +122,17 @@ MJCodingImplementation;
         return [self zsmcArray];
     }
     
+    /// 房贷
+    /// 房屋产权类型
+    if ([key isEqualToString:@"fwzslx"]) {
+        return [self fwzslxArray];
+    }
+    
+    /// 房屋产权类型
+    if ([key isEqualToString:@"fdlx"]) {
+        return [self fdlxArray];
+    }
+    
     /// 租房相关
     /// 出租方类型
     if ([key isEqualToString:@"czflx"]) {
@@ -142,6 +156,58 @@ MJCodingImplementation;
         @{
             @"title": @"企业",
             @"code": @"2"
+        }
+    ];
+    
+    NSMutableArray *arrayM = @[].mutableCopy;
+    for (NSDictionary *dict in array) {
+        XYPickerViewItem *item = [XYPickerViewItem modelWithDict:dict];
+        [arrayM addObject:item];
+    }
+    return arrayM;
+}
+
+/// 贷款类型
++ (NSArray *)fdlxArray
+{
+    NSArray *array = @[
+        @{
+            @"title": @"公积金贷款",
+            @"code": @"1"
+        },
+        @{
+            @"title": @"商业贷款",
+            @"code": @"2"
+        }
+    ];
+    
+    NSMutableArray *arrayM = @[].mutableCopy;
+    for (NSDictionary *dict in array) {
+        XYPickerViewItem *item = [XYPickerViewItem modelWithDict:dict];
+        [arrayM addObject:item];
+    }
+    return arrayM;
+}
+
+/// 房屋产权证明类型
++ (NSArray *)fwzslxArray
+{
+    NSArray *array = @[
+        @{
+            @"title": @"房屋所有权证",
+            @"code": @"1"
+        },
+        @{
+            @"title": @"不动产权证",
+            @"code": @"2"
+        },
+        @{
+            @"title": @"房屋买卖合同",
+            @"code": @"3"
+        },
+        @{
+            @"title": @"房屋预售合同",
+            @"code": @"4"
         }
     ];
     

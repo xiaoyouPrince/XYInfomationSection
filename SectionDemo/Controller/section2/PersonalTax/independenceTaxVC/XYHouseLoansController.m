@@ -7,6 +7,7 @@
 //
 
 #import "XYHouseLoansController.h"
+#import "XYChooseLocationView.h"
 
 @interface XYHouseLoansController ()
 /** section 信息输入项 */
@@ -195,10 +196,14 @@
         XYTaxBaseTaxinfoSection *taxInfo = [XYTaxBaseTaxinfoSection taxSectionWithImage:@"icon_tax_peiou" title:@"配偶信息" infoItems:[self zinvInfos] handler:^(XYInfomationCell * _Nonnull cell) {
             [weakSelf sectionCellClicked:cell];
         }];
+        // 配偶信息默认展示选择是否有配偶
+        XYInfomationSection *poSection = taxInfo.subviews.lastObject;
+        [poSection foldCellWithoutIndexs:@[@0]];
+        
         XYTaxBaseTaxinfoSection *taxInfo2 = [XYTaxBaseTaxinfoSection taxSectionWithImage:@"icon_tax_zhufang" title:@"住房信息" infoItems:[self zhufangInfos] handler:^(XYInfomationCell * _Nonnull cell) {
             [weakSelf sectionCellClicked:cell];
         }];
-        XYTaxBaseTaxinfoSection *taxInfo3 = [XYTaxBaseTaxinfoSection taxSectionWithImage:@"icon_tax_fangdai" title:@"房贷信息" infoItems:[self fangdaiInfos] handler:^(XYInfomationCell * _Nonnull cell) {
+        XYTaxBaseTaxinfoSection *taxInfo3 = [XYTaxBaseTaxinfoSection taxSectionCanAddWithImage:@"icon_tax_fangdai" title:@"房贷信息" infoItems:[self fangdaiInfos] handler:^(XYInfomationCell * _Nonnull cell) {
             [weakSelf sectionCellClicked:cell];
         }];
         
@@ -237,8 +242,72 @@
     // 填充内容
     [self setContentView:self.myContentView];
     
-    // 添加监听 - 出生日期 是否有配偶
+    // 添加监听 - 是否有配偶 出生日期
+    // 配偶信息默认展示选择是否有配偶
+    XYTaxBaseTaxinfoSection *poSection = [_myContentView.subviews firstObject];
+
+    // 配偶监听是否有配偶，没有配偶隐藏项目内其剩余他项目
+    // 配偶监听出生日期，如果身份类型:身份证，身份证号码为正确的身份证号--->自动输入出生日期
+    XYInfomationItem *poHas = poSection.cellsArray[0].model;
+    [poHas addObserver:self forKeyPath:@"valueCode" options:NSKeyValueObservingOptionNew context:nil];
+    XYInfomationItem *poBirth = poSection.cellsArray[3].model;
+    [poBirth addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:nil];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
+{
+    // 1. 是否有配偶
+    if ([[object valueForKey:@"titleKey"] isEqualToString:@"sfypo"]) {
+        
+        // 选择是否有配偶
+        NSString *value = change[NSKeyValueChangeNewKey];
+        
+        XYTaxBaseTaxinfoSection *poSection = [_myContentView.subviews objectAtIndex:0];
+        XYInfomationSection *section = [poSection.subviews lastObject];
+        
+        // 是否有配偶
+        XYInfomationItem *item = poSection.cellsArray[0].model;
+        if ( value && [item.valueCode isEqualToString:@"2"]) {
+            
+            // 合并配偶项目
+            [section foldCellWithoutIndexs:@[@0]];
+        }else
+        {
+            // 展开配偶项目
+            [section foldCellWithIndexs:@[]];
+        }
+    }
     
+    
+    // 2. 配偶出生日期-判断证件号码
+    if ([[object valueForKey:@"titleKey"] isEqualToString:@"nsrposfzjhm"]) {
+        
+        // 最新输入的身份证号
+        NSString *value = change[NSKeyValueChangeNewKey];
+        
+        XYTaxBaseTaxinfoSection *poSection = [_myContentView.subviews objectAtIndex:0];
+        XYInfomationSection *section = [poSection.subviews lastObject];
+        
+        // 证件类型
+        XYInfomationItem *item = section.dataArray[2];
+        if ([value isIDCard] && [item.valueCode isEqualToString:@"1"]) {
+            
+            NSString *birthday = [value birthdayFromIDCard];
+                    
+            XYInfomationItem *item = section.dataArray[4];
+            item.value = birthday;
+            item.valueCode = birthday;
+            XYInfomationCell *cell = [section.subviews objectAtIndex:4];
+            cell.model = item;
+        }else
+        {
+            XYInfomationItem *item = section.dataArray[4];
+            item.value = nil;
+            item.valueCode = nil;
+            XYInfomationCell *cell = [section.subviews objectAtIndex:4];
+            cell.model = item;
+        }
+    }
 }
 
 
@@ -262,9 +331,17 @@
     if (cell.model.type == XYInfoCellTypeChoose) {
         
         // 处理要请求何种数据picker / datePicker / location
-        if ([cell.model.titleKey isEqualToString:@"memberBirthDate"]) {
+        if ([cell.model.titleKey isEqualToString:@"nsrpocsrq"] ||
+            [cell.model.titleKey isEqualToString:@"schkrq"]) {
             [self showDatePickerForCell:cell];
-        }else
+        }else if(
+                 [cell.model.titleKey isEqualToString:@"gzcs"] ||
+                 [cell.model.titleKey isEqualToString:@"fwdz"]
+                 )
+        {
+            [self showChooseLocationViewForCell:cell];
+        }
+        else
         {
             [self showPickerForCell:cell];
         }
@@ -280,7 +357,7 @@
     [XYPickerView showPickerWithConfig:^(XYPickerView * _Nonnull picker) {
        
         picker.dataArray = [DataTool dataArrayForKey:cell.model.titleKey];
-        picker.title = @"选择城市";
+        picker.title = [NSString stringWithFormat:@"选择%@",cell.model.title];
         
         // 可以自己设置默认选中行
         for (int i = 0; i < picker.dataArray.count; i++) {
@@ -296,6 +373,73 @@
         cell.model.valueCode = selectedItem.code;
         cell.model = cell.model;
     }];
+}
+
+#pragma mark - XYChooseLocationView
+
+- (void)showChooseLocationViewForCell:(XYInfomationCell *)cell
+{
+    // 外围地址数据
+    NSArray *array = [DataTool cityArrayForPid:@"0"];
+    NSArray *locations = [XYLocation mj_objectArrayWithKeyValuesArray:array];
+    
+    // 创建内容
+    XYChooseLocationView *view = [XYChooseLocationView new];
+    [self.view addSubview:view];
+    view.baseDataArray = locations;
+    [view mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(ScreenH*0.45);
+        make.left.equalTo(self.view).offset(0);
+        make.right.equalTo(self.view).offset(-0);
+        make.bottom.equalTo(self.view).offset(-0);
+    }];
+    
+    /// 创建一个coverView
+    UIButton *btn = [UIButton new];
+    btn.backgroundColor = [UIColor.blackColor colorWithAlphaComponent:0.3];
+    [btn addTarget:self action:@selector(coverBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view insertSubview:btn belowSubview:view];
+    
+    [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
+    
+    __weak typeof(cell) weakCell = cell;
+    view.finishChooseBlock = ^(NSArray <NSString *>*locations) {
+      
+        [btn removeFromSuperview];
+        
+        if (!locations || [locations.firstObject isEqualToString:@"请选择"]) {
+            return ;
+        }
+        
+        NSLog(@"locations = %@",locations);
+        
+        NSMutableString *stringM = @"".mutableCopy;
+        for (NSString *str in locations) {
+            if ([str isEqualToString:locations.lastObject]) {
+                [stringM appendFormat:@"%@",str];
+            }else
+            {
+                [stringM appendFormat:@"%@,",str];
+            }
+            
+        }
+        
+        weakCell.model.value = stringM;
+        weakCell.model.valueCode = stringM;
+        weakCell.model = weakCell.model;
+    };
+}
+
+- (void)coverBtnClick:(id)sender
+{
+    for (UIView *subView in self.view.subviews) {
+        if ([subView isKindOfClass:XYChooseLocationView.class]) {
+            [subView removeFromSuperview];
+        }
+    }
+    [sender removeFromSuperview];
 }
 
 #pragma mark - XYDatePicker 处理

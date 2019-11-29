@@ -15,6 +15,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)groupWithTitle:(NSString *)title icon:(nullable NSString *)iconName;
 
+/// 使用第几组更新title
+- (void)updateTitleWithIndex:(int)index;
+
+/** 取消按钮点击回调 */
+@property (nonatomic, copy)  void(^delteteBlock)(void);
+
 @end
 
 NS_ASSUME_NONNULL_END

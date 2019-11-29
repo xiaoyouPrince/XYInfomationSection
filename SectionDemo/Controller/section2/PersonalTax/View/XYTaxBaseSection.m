@@ -10,10 +10,16 @@
 
 @interface XYTaxBaseSection ()
 
+/** title */
+@property (nonatomic, copy)         NSString * title;
+
 /** iconView */
 @property (nonatomic, weak)         UIImageView * iconView;
 /** titleLabel */
 @property (nonatomic, weak)         UILabel * titleLabel;
+
+/** deleteBtn */
+@property (nonatomic, strong)       UIButton * deleteBtn;
 
 @end
 
@@ -63,6 +69,20 @@
         make.left.equalTo(icon.mas_right).offset(10);
     }];
     
+    // deleteBtn
+    UIButton *deleteBtn = [UIButton new];
+    [deleteBtn setImage:[UIImage imageNamed:@"visa_delete"] forState:UIControlStateNormal];
+    deleteBtn.hidden = YES;
+    self.deleteBtn = deleteBtn;
+    [deleteBtn addTarget:self action:@selector(deleteBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:deleteBtn];
+    
+    [deleteBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self).offset(0);
+        make.right.equalTo(self).offset(-15);
+        make.bottom.equalTo(self).offset(-0);
+    }];
+    
 }
 
 
@@ -73,10 +93,32 @@
     }
     
     XYTaxBaseSection *section = [[self alloc] init];
+    section.title = title;
     section.titleLabel.text = title;
     section.iconView.image = [UIImage imageNamed:iconName];
     
     return section;
+}
+
+/// 使用第几组更新title
+- (void)updateTitleWithIndex:(int)index
+{
+    // 第0组不变.后面的
+    if (index > 0) {
+        
+        self.titleLabel.text = [self.title stringByAppendingFormat:@"(%d)",index+1];
+        
+        // 展示删除按钮
+        self.deleteBtn.hidden = NO;
+    }
+}
+
+
+- (void)deleteBtnClick:(UIButton *)sender{
+    
+    if (self.delteteBlock) {
+        self.delteteBlock();
+    }
 }
 
 @end
