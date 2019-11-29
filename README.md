@@ -1,4 +1,4 @@
-# SectionDemo
+# XYInfomationSection
 
 一组可自定义的表单组件 **XYInfomationSection**.
 
@@ -17,7 +17,100 @@
 
 此项目主旨为信息录入也兼顾信息展示功能，以 **"组"** 的样式展示，主要示例如下：
 
-1.基本样式(以5条数据为例)
+1.基本使用(以5条数据为例)
 
 <image src="image/base_01.png" width=270 height=198/> <image src="image/base_02.png" width=270 height=198/> <image src="image/base_03.png" width=270 height=198/> <image src="image/base_04.png" width=270 height=198/> <image src="image/base_05.png" width=270 height=198/>
+
+2.高级使用(简单交互如:个人中心页面、个人信息页面、设置页面)
+
+此页面中以展示为主，有响应用户交互，具体可以下载 Demo 查看
+
+<image src="image/user_center.png" width=270 height=536/> <image src="image/userInfo.png" width=270 height=536/> <image src="image/setting.png" width=270 height=536/>
+
+3.综合使用示例(添加家庭成员信息 & **个人所得税页面**)
+
+添加家庭成员页面，加入用户交互，监听用户录入自动填充生日
+
+<image src="image/add_user_01.png" width=270 height=536/> <image src="image/add_user_02.png" width=270 height=536/> 
+
+**个人所得税**是一个综合模块，包括「子女教育」「继续教育」「住房贷款」「住房租金」「大病医疗」「赡养老人」6个独立税种。每个页面都会收集用户的相关信息。每个页面均有不同的用户输入监听，根据用户输入信息动态填充信息、隐藏信息、调整信息等，示例如下，详情请下载 DEMO 可看
+
+<image src="image/tax_01.png" width=270 height=536/> <image src="image/tax_02.png" width=270 height=536/> <image src="image/tax_03.png" width=270 height=536/> <image src="image/tax_04.png" width=270 height=536/> <image src="image/tax_05.png" width=270 height=536/> <image src="image/tax_06.png" width=270 height=536/>
+
+### XYInfomationSection 优势
+
+本 Demo 中页面内容均仅基于 XYInfomationSection 组件，其主要优势
+
+- 方便集成与使用，仅需 1.创建对象 2.赋值内容数据 3.监听回调 即可
+- 提供 ViewController 基类，可子类化使用，个税页面均继承于 XYInfomationBaseViewController 基类，使用只需赋值内容，可更专心于业务逻辑
+- 方便监听:可以方便监听某项录入内容，如监听证件类型、证件号码，动态加载用户出生日期。根据是否有配偶，可动态展示/隐藏配偶信息相关条目，等等
+- XYInfomationSection 内条目可随意折叠，只需要折叠条目 index 即可，适应更多场景。
+- 一键校验录入结果，自动按顺序检验并提示未填项目。校验规则可自行实现。
+- UI 和 数据分离，仅需数据即可加载 UI，使用者可以仅关心业务代码
+- 适应场景广，详见DEMO示例，可处理大量数据，详见个人所得税Demo
+
+### 安装
+
+项目内布局依赖 Masonry ，请务必保证项目中 Masonry 可用。
+
+#### CocoaPods
+
+更新你的本地仓库以同步最新版本
+
+```
+pod repo update
+```
+在你项目的Podfile中配置
+
+```
+pod 'XYInfomationSection'
+```
+
+####手动导入
+
+请把 XYInfomationSection 文件夹拷贝到你的项目。
+
+### 使用示例
+
+- 单纯使用展示
+
+```
+/// 创建数据Model，代表一行数据
+XYInfomationItem *item = [XYInfomationItem modelWithTitle:@"自定义标题" titleKey:@" " type:0 value:@"" placeholderValue:nil disableUserAction:YES];
+
+/// 创建 XYInfomationSection 对象
+XYInfomationSection *section = [XYInfomationSection new];
+
+/// 赋值数据
+section.dataArray = @[item];
+
+/// 监听内部Cell点击
+section.cellClickBlock = ^(NSInteger index, XYInfomationCell * _Nonnull cell) {
+    /// 处理cell点击事件
+};
+```
+
+- 详情请查看Demo中对不同功能的具体实现
+
+### TODO
+
+- 已知 XIB 约束与 Masonry 约束共同使用，容易导致无法同事满足约束问题，此问题预计下个版本完全使用代码布局
+
+### 感谢
+
+本 Demo 使用到的三方库如下，感谢作者开源
+
+- Masonry
+- FMDB
+- IQKeyboardManager
+- SVProgressHUD
+- MJExtension
+
+### 协议
+
+本项目代码基于 MIT 开源协议，请在该协议框架下使用
+
+### End
+
+PS. 若使用过程中有任何问题，请issues我。 ^_^
 
