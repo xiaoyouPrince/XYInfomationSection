@@ -180,10 +180,15 @@
         XYTaxBaseTaxinfoSection *taxInfo = [XYTaxBaseTaxinfoSection taxSectionWithImage:@"icon_tax_zinv" title:@"纳税人信息" infoItems:[self zinvInfos] handler:^(XYInfomationCell * _Nonnull cell) {
             [weakSelf sectionCellClicked:cell];
         }];
-        XYTaxBaseTaxinfoSection *taxInfo2 = [XYTaxBaseTaxinfoSection taxSectionWithImage:@"icon_tax_profile" title:@"被赡养人信息" infoItems:[self beishanyangrenInfos] handler:^(XYInfomationCell * _Nonnull cell) {
+        // 默认值展示纳税人类型 index = 0
+        XYInfomationSection *typeSection = taxInfo.subviews.lastObject;
+        [typeSection foldCellWithoutIndexs:@[@0]];
+        
+        
+        XYTaxBaseTaxinfoSection *taxInfo2 = [XYTaxBaseTaxinfoSection taxSectionCanAddWithImage:@"icon_tax_profile" title:@"被赡养人信息" infoItems:[self beishanyangrenInfos] handler:^(XYInfomationCell * _Nonnull cell) {
             [weakSelf sectionCellClicked:cell];
         }];
-        XYTaxBaseTaxinfoSection *taxInfo3 = [XYTaxBaseTaxinfoSection taxSectionWithImage:@"icon_tax_profile" title:@"共同赡养人信息" infoItems:[self gontongInfos] handler:^(XYInfomationCell * _Nonnull cell) {
+        XYTaxBaseTaxinfoSection *taxInfo3 = [XYTaxBaseTaxinfoSection taxSectionCanAddWithImage:@"icon_tax_profile" title:@"共同赡养人信息" infoItems:[self gontongInfos] handler:^(XYInfomationCell * _Nonnull cell) {
             [weakSelf sectionCellClicked:cell];
         }];
         
@@ -222,8 +227,95 @@
     // 填充内容
     [self setContentView:self.myContentView];
     
-    // 添加监听 - 出生日期 是否有配偶
+    // 默认共同赡养人不展示
+    XYTaxBaseTaxinfoSection *beiSection = _myContentView.subviews[1];
+    XYTaxBaseTaxinfoSection *gtSection = _myContentView.subviews.lastObject;
+    gtSection.hidden = YES;
+    [gtSection mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(beiSection.mas_bottom).offset(0);
+        make.bottom.equalTo(gtSection.mas_top).offset(0);
+    }];
     
+    // 添加监听 - 纳税人类型（是否为独生子）
+    XYTaxBaseTaxinfoSection *typeSection = [_myContentView.subviews firstObject];
+    
+    // 配偶监听是否有配偶，没有配偶隐藏项目内其剩余他项目
+    // 配偶监听出生日期，如果身份类型:身份证，身份证号码为正确的身份证号--->自动输入出生日期
+    XYInfomationItem *poHas = typeSection.cellsArray[0].model;
+    [poHas addObserver:self forKeyPath:@"valueCode" options:NSKeyValueObservingOptionNew context:nil];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
+{
+    // 1. 纳税人身份 1.独生子，2.非独生子
+    if ([[object valueForKey:@"titleKey"] isEqualToString:@"nsrsf"]) {
+        
+        // 选择身份类型
+        NSString *value = change[NSKeyValueChangeNewKey];
+        
+        XYTaxBaseTaxinfoSection *poSection = [_myContentView.subviews objectAtIndex:0];
+        XYInfomationSection *section = [poSection.subviews lastObject];
+        
+        // 是否为独生子女
+        XYInfomationItem *item = poSection.cellsArray[0].model;
+        if ( value && [item.valueCode isEqualToString:@"1"]) {
+            
+            // 独生子 - 展示分摊比例，全部由我承担..隐藏分本年度金额
+            XYInfomationItem *item1 = poSection.cellsArray[1].model;
+            item1.title = @"分摊比例";
+            item1.value = @"全部由我扣除";
+            item1.disableUserAction = YES;
+            
+            [section foldCellWithIndexs:@[@2]];
+            
+            // 隐藏共同赡养人组
+            XYTaxBaseTaxinfoSection *gtSection = [_myContentView.subviews lastObject];
+            XYTaxBaseTaxinfoSection *beiSection = [_myContentView.subviews objectAtIndex:1];
+            gtSection.hidden = YES;
+            
+            // 隐藏
+            [gtSection mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(beiSection.mas_bottom).offset(0);
+                make.bottom.equalTo(gtSection.mas_top).offset(0);
+            }];
+            
+        }else
+        {
+            // 非独生子
+            XYInfomationItem *item1 = poSection.cellsArray[1].model;
+            item1.title = @"分摊方式";
+            item1.value = nil;
+            item1.disableUserAction = NO;
+            
+            [section unfoldAllCells];
+            
+            // 展示共同赡养人组
+            XYTaxBaseTaxinfoSection *gtSection = [_myContentView.subviews lastObject];
+            XYTaxBaseTaxinfoSection *beiSection = [_myContentView.subviews objectAtIndex:1];
+            gtSection.hidden = NO;
+            
+            // 移除之前约束
+            [gtSection mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(beiSection.mas_bottom).offset(15);
+                make.left.equalTo(_myContentView).offset(0);
+                make.right.equalTo(_myContentView).offset(-0);
+                make.bottom.equalTo(_myContentView);
+            }];
+        }
+    }
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    
+    // 移除监听
+    XYTaxBaseTaxinfoSection *poSection = [_myContentView.subviews firstObject];
+    
+    // 配偶监听是否有配偶，没有配偶隐藏项目内其剩余他项目
+    // 配偶监听出生日期，如果身份类型:身份证，身份证号码为正确的身份证号--->自动输入出生日期
+    XYInfomationItem *poHas = poSection.cellsArray[0].model;
+    [poHas removeObserver:self forKeyPath:@"valueCode"];
 }
 
 
@@ -247,7 +339,7 @@
     if (cell.model.type == XYInfoCellTypeChoose) {
         
         // 处理要请求何种数据picker / datePicker / location
-        if ([cell.model.titleKey isEqualToString:@"memberBirthDate"]) {
+        if ([cell.model.titleKey isEqualToString:@"csrq"]) {
             [self showDatePickerForCell:cell];
         }else
         {
@@ -265,7 +357,7 @@
     [XYPickerView showPickerWithConfig:^(XYPickerView * _Nonnull picker) {
        
         picker.dataArray = [DataTool dataArrayForKey:cell.model.titleKey];
-        picker.title = @"选择城市";
+        picker.title = [NSString stringWithFormat:@"选择%@",cell.model.title];
         
         // 可以自己设置默认选中行
         for (int i = 0; i < picker.dataArray.count; i++) {

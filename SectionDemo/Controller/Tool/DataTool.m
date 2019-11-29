@@ -140,6 +140,12 @@ MJCodingImplementation;
     }
     
     
+    /// 赡养老人
+    /// 纳税人身份类型
+    if ([key isEqualToString:@"nsrsf"]) {
+        return [self nsrsfArray];
+    }
+    
     
     return [self citiesArray];
 }
@@ -155,6 +161,28 @@ MJCodingImplementation;
         },
         @{
             @"title": @"企业",
+            @"code": @"2"
+        }
+    ];
+    
+    NSMutableArray *arrayM = @[].mutableCopy;
+    for (NSDictionary *dict in array) {
+        XYPickerViewItem *item = [XYPickerViewItem modelWithDict:dict];
+        [arrayM addObject:item];
+    }
+    return arrayM;
+}
+
+/// 纳税人身份类型
++ (NSArray *)nsrsfArray
+{
+    NSArray *array = @[
+        @{
+            @"title": @"独生子女",
+            @"code": @"1"
+        },
+        @{
+            @"title": @"非独生子女",
             @"code": @"2"
         }
     ];
