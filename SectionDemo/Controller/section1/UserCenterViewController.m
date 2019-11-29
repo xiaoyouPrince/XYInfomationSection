@@ -91,6 +91,10 @@
     headerCell.textLabel.text = @"小明";
     headerCell.detailTextLabel.text = @"天行健，君子以自强不息";
     headerCell.frame = CGRectMake(0, 0, ScreenW, 60);
+    [headerCell sizeToFit];
+    [headerCell mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(headerCell.bounds.size.height);
+    }];
     [self setHeaderView:headerCell edgeInsets:UIEdgeInsetsMake(10, 15, 10, 15)];
     // self.headerView = headerCell;
     
