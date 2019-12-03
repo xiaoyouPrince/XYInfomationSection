@@ -264,7 +264,7 @@
             XYInfomationItem *item1 = poSection.cellsArray[1].model;
             item1.title = @"分摊比例";
             item1.value = @"全部由我扣除";
-            item1.disableUserAction = YES;
+            item1.disableTouchGuesture = YES;
             
             [section foldCellWithIndexs:@[@2]];
             
@@ -285,7 +285,7 @@
             XYInfomationItem *item1 = poSection.cellsArray[1].model;
             item1.title = @"分摊方式";
             item1.value = nil;
-            item1.disableUserAction = NO;
+            item1.disableTouchGuesture = NO;
             
             [section unfoldAllCells];
             

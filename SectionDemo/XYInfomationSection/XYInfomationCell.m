@@ -75,16 +75,6 @@ MJCodingImplementation;
     return instance;
 }
 
-//- (NSString *)title
-//{
-//    return @"title";
-//}
-//
-//- (NSString *)value
-//{
-//    return @" 可能选择的情况： 出生日期选择(年月日) || 地区选择(省市区) || 单选框, 可能选择的情况： 出生日期选择(年月日) || 地区选择(省市区) || 单选框";
-//}
-
 - (nonnull id)copyWithZone:(nullable NSZone *)zone {
     return [self xy_copy];
 }
@@ -210,6 +200,7 @@ MJCodingImplementation;
             subView.userInteractionEnabled = !model.disableUserAction;
         }
     }
+    self.userInteractionEnabled = !model.disableTouchGuesture;
     
     
     // 2. image

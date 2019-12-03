@@ -22,7 +22,7 @@ typedef void(^SectionCellClickBlock)(NSInteger index,XYInfomationCell *cell);
 @property(nonatomic , copy)     SectionCellClickBlock cellClickBlock;
 
 /** 使用数据源刷新 section UI */
-- (void)refreshSectionWithDataArray:(NSArray *)dataArray;
+- (void)refreshSectionWithDataArray:(NSArray <XYInfomationItem *> *)dataArray;
 
 + (instancetype)sectionWithData:(NSArray <XYInfomationItem *> *)dataArray;
 

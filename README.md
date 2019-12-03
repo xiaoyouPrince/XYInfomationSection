@@ -66,7 +66,7 @@ pod repo update
 pod 'XYInfomationSection'
 ```
 
-####手动导入
+#### 手动导入
 
 请把 XYInfomationSection 文件夹拷贝到你的项目。
 

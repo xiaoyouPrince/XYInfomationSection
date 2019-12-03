@@ -146,6 +146,11 @@ MJCodingImplementation;
         return [self nsrsfArray];
     }
     
+    /// 纳税人身份类型
+    if ([key isEqualToString:@"ftfs"]) {
+        return [self ftfsArray];
+    }
+    
     
     return [self citiesArray];
 }
@@ -183,6 +188,28 @@ MJCodingImplementation;
         },
         @{
             @"title": @"非独生子女",
+            @"code": @"2"
+        }
+    ];
+    
+    NSMutableArray *arrayM = @[].mutableCopy;
+    for (NSDictionary *dict in array) {
+        XYPickerViewItem *item = [XYPickerViewItem modelWithDict:dict];
+        [arrayM addObject:item];
+    }
+    return arrayM;
+}
+
+/// 纳税人身份类型
++ (NSArray *)ftfsArray
+{
+    NSArray *array = @[
+        @{
+            @"title": @"平均分配",
+            @"code": @"1"
+        },
+        @{
+            @"title": @"协商分配",
             @"code": @"2"
         }
     ];

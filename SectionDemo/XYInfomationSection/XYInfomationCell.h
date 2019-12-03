@@ -102,12 +102,24 @@ typedef NS_ENUM(NSUInteger, XYInfoCellType) {
  设置是否可以接受用户事件,default is NO, 可以自己赋值
  
  @discussion 重要，
- 此属性用于禁用用户操作的情况下
+ 此属性用于禁用用户操作，但仍然能响应cell的点击。如彻底阻断cell点击，请使用 disableTouchGuesture
  
  @note
  当设置此值的时候，如果cellType为input且最终取值为code，即需要自己提前设置valueCode值，最终取整体参数值会以codeValue为准
  */
 @property(nonatomic , assign)   BOOL disableUserAction;
+
+/**
+ @brief
+ 设置是否禁用touch手势识别,default is NO, 可以自己赋值
+ 
+ @discussion 重要，
+ 此属性用于彻底阻断用户手势，中断一切cell点击事件，如仍需要响应cell点击请使用 disableUserAction
+ 
+ @note
+ 当设置此值的时候，如果cellType为input且最终取值为code，即需要自己提前设置valueCode值，最终取整体参数值会以codeValue为准
+ */
+@property(nonatomic , assign)   BOOL disableTouchGuesture;
 
 /**
  model中额外的数据对象。default is nil

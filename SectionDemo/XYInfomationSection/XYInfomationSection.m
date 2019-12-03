@@ -77,16 +77,6 @@
     _dataArray = dataArray;
     [self setupContent];
     
-//    if (_dataArray.count != dataArray.count) {
-//        _dataArray = dataArray;
-//
-//        [self setupContent];
-//    }else
-//    {
-//        _dataArray = dataArray;
-//        [self refreshSectionWithDataArray:dataArray];
-//    }
-    
     // 重置背景色
     [self resetSelfBgColor];
     
@@ -140,25 +130,26 @@ static UIView *the_bottom_cell = nil;
         // 设置此cell为底部的cell
         the_bottom_cell = cell;
     }
-    
-//    [the_bottom_cell mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.bottom.equalTo(self).offset(0);
-//    }];
+
     [self mas_updateConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(the_bottom_cell).offset(0);
     }];
-    
-    
 }
 
 #warning todo - will add 刷新数据
 - (void)refreshSectionWithDataArray:(NSArray *)dataArray
 {
-    if (self.dataArray.count != dataArray) {
+//    if (self.dataArray.count != dataArray) {
+//        return;
+//    }
+    if (dataArray.count == 0) {
         return;
     }
     
     // 刷新内容
+    
+    self.dataArray = dataArray;
+    
 }
 
 - (void)resetSelfBgColor{
@@ -176,22 +167,6 @@ static UIView *the_bottom_cell = nil;
 /** 折叠数据 */
 - (void)foldCellWithIndexs:(NSArray <NSNumber *>*)indexsArr
 {
-//    if (indexsArr.count) { // 传入有数据
-//        for (XYInfomationCell *cell in self.subviews) {
-//
-//            for (NSLayoutConstraint *layout in cell.constraints) {
-//                if ([layout respondsToSelector:@selector(uninstall)]) {
-//                    [layout performSelector:@selector(uninstall)];
-//                }else
-//                {
-//                    [NSLayoutConstraint deactivateConstraints:cell.constraints];
-//                }
-//            }
-//
-//            [cell removeFromSuperview];
-//        }
-//    }
-    
     
     // 更新内部 foldIndexs
     for (NSNumber *index in indexsArr) {
@@ -208,21 +183,6 @@ static UIView *the_bottom_cell = nil;
 // 要避免折叠的项目
 - (void)foldCellWithoutIndexs:(NSArray <NSNumber *>*)indexsArr
 {
-//    if (indexsArr.count) { // 传入有数据
-//        for (XYInfomationCell *cell in self.subviews) {
-//
-//            for (NSLayoutConstraint *layout in cell.constraints) {
-//                if ([layout respondsToSelector:@selector(uninstall)]) {
-//                    [layout performSelector:@selector(uninstall)];
-//                }else
-//                {
-//                    [NSLayoutConstraint deactivateConstraints:cell.constraints];
-//                }
-//            }
-//
-//            [cell removeFromSuperview];
-//        }
-//    }
     
     // 更新内部 foldIndexs
     for (id obj in self.dataArray) {
