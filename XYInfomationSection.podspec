@@ -35,9 +35,9 @@ Pod::Spec.new do |s|
       core.source_files = 'XYInfomationSection/Classes/**/*'
     end
   
-   s.resource_bundles = {
-     'XYInfomationSection' => ['XYInfomationSection/Assets/*.png']
-   }
+  # s.resource_bundles = {
+  #   'XYInfomationSection' => ['XYInfomationSection/Assets/*.png']
+  # }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
