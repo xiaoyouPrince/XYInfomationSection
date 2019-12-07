@@ -17,10 +17,9 @@
 
 #import "XYInfomationCell.h"
 #import <objc/runtime.h>
+#import "Masonry.h"
 
 @implementation XYInfomationItem
-
-MJCodingImplementation;
 
 /// 创建方法(通过dictionary创建)
 + (instancetype)modelWithDict:(NSDictionary *)dict{
@@ -164,7 +163,7 @@ MJCodingImplementation;
         cellType = type;
     }
     
-    XYInfomationCell *cell = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass(self) owner:nil options:nil][cellType];
+    XYInfomationCell *cell = [[NSBundle bundleForClass:self] loadNibNamed:NSStringFromClass(self) owner:nil options:nil][cellType];
     cell->_cell_type = cellType;
     
     return cell;
@@ -177,7 +176,7 @@ MJCodingImplementation;
         cellModel = model;
     }
     
-    XYInfomationCell *cell = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass(self) owner:nil options:nil][cellModel.type];
+    XYInfomationCell *cell = [[NSBundle bundleForClass:self] loadNibNamed:NSStringFromClass(self) owner:nil options:nil][cellModel.type];
     cell->_cell_type = cellModel.type;
     cell.model = cellModel;
     
@@ -333,6 +332,12 @@ MJCodingImplementation;
         }
         if (model.type == XYInfoCellTypeChoose) {
             // 默认 _accessoryView = 向右的箭头
+            NSString *bundlePath = [[NSBundle bundleForClass:self.class] pathForResource:@"XYInfomationSection" ofType:@"bundle"];
+            NSString *arrawPath = [[NSBundle bundleWithPath:bundlePath] pathForResource:@"rightArraw_lightGray@3x" ofType:@"png"];
+            UIImage *image = [UIImage imageWithContentsOfFile:arrawPath];
+            
+            UIImageView *rightArraw = (UIImageView *)_accessoryView;
+            rightArraw.image = image;
             _accessoryView.hidden = NO;
             [_accessoryView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.width.mas_equalTo(10);

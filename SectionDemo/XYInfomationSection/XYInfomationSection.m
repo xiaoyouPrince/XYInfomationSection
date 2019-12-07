@@ -7,6 +7,7 @@
 //
 
 #import "XYInfomationSection.h"
+#import "Masonry.h"
 
 @interface XYInfomationSection ()
 /** foldIndexs */
@@ -200,7 +201,7 @@ static UIView *the_bottom_cell = nil;
 /////** 展开数据 */
 - (void)unfoldAllCells
 {
-    [self foldCellWithIndexs:nil];
+    [self foldCellWithIndexs:@[]];
 }
 
 

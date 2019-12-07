@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		B40F58FB22BA6C3D001C6A53 /* XYInfomationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B40F58FA22BA6C3D001C6A53 /* XYInfomationCell.xib */; };
 		B40F58FF22BA90EA001C6A53 /* XYInfomationBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B40F58FD22BA90EA001C6A53 /* XYInfomationBaseViewController.m */; };
-		B40F590022BA90EA001C6A53 /* XYInfomationBaseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B40F58FE22BA90EA001C6A53 /* XYInfomationBaseViewController.xib */; };
 		B40F590322BA97AA001C6A53 /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B40F590222BA97AA001C6A53 /* UserInfoViewController.m */; };
 		B40F590622BA9C72001C6A53 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B40F590522BA9C72001C6A53 /* SettingViewController.m */; };
 		B40F590922BA9FAC001C6A53 /* UserCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B40F590822BA9FAC001C6A53 /* UserCenterViewController.m */; };
@@ -110,6 +109,7 @@
 		B44D7B262387A0E100173869 /* XYHouseRentNewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B44D7B252387A0E100173869 /* XYHouseRentNewController.m */; };
 		B44D7B292387A0F900173869 /* XYDabingyiliaoController.m in Sources */ = {isa = PBXBuildFile; fileRef = B44D7B282387A0F900173869 /* XYDabingyiliaoController.m */; };
 		B44D7B2C2387A10900173869 /* XYAlimonyPayController.m in Sources */ = {isa = PBXBuildFile; fileRef = B44D7B2B2387A10900173869 /* XYAlimonyPayController.m */; };
+		B44D8D4D239BD48F0033AACB /* XYInfomationSection.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B44D8D4C239BD48F0033AACB /* XYInfomationSection.bundle */; };
 		B46D51AB2385B89000C56CFB /* XYPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = B46D51A92385B89000C56CFB /* XYPickerView.m */; };
 		B483E15E238FF7D0007DDAB7 /* XYLocationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B483E154238FF7D0007DDAB7 /* XYLocationBar.m */; };
 		B483E15F238FF7D0007DDAB7 /* XYChooseLocationView.m in Sources */ = {isa = PBXBuildFile; fileRef = B483E155238FF7D0007DDAB7 /* XYChooseLocationView.m */; };
@@ -156,7 +156,6 @@
 		B48515FA22B8E78000779B6B /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = B48515F722B8E78000779B6B /* SVProgressHUD.m */; };
 		B48515FB22B8E78000779B6B /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = B48515F822B8E78000779B6B /* SVIndefiniteAnimatedView.m */; };
 		B48515FC22B8E78000779B6B /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B48515F922B8E78000779B6B /* SVProgressHUD.bundle */; };
-		B49B91AD239665C300CB16D6 /* XYInfomationBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B49B91AC239665C300CB16D6 /* XYInfomationBundle.bundle */; };
 		B4E835B82390E12700349AC3 /* visa_delete@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4E835B72390E12700349AC3 /* visa_delete@3x.png */; };
 		B4E8AB9C22C347F00096208A /* IQTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E8AB7922C347F00096208A /* IQTextView.m */; };
 		B4E8AB9D22C347F00096208A /* IQToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E8AB7D22C347F00096208A /* IQToolbar.m */; };
@@ -197,7 +196,6 @@
 		B40F58FA22BA6C3D001C6A53 /* XYInfomationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XYInfomationCell.xib; sourceTree = "<group>"; };
 		B40F58FC22BA90EA001C6A53 /* XYInfomationBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYInfomationBaseViewController.h; sourceTree = "<group>"; };
 		B40F58FD22BA90EA001C6A53 /* XYInfomationBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYInfomationBaseViewController.m; sourceTree = "<group>"; };
-		B40F58FE22BA90EA001C6A53 /* XYInfomationBaseViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = XYInfomationBaseViewController.xib; sourceTree = "<group>"; };
 		B40F590122BA97AA001C6A53 /* UserInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = UserInfoViewController.h; path = SectionDemo/Controller/section1/UserInfoViewController.h; sourceTree = SOURCE_ROOT; };
 		B40F590222BA97AA001C6A53 /* UserInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = UserInfoViewController.m; path = SectionDemo/Controller/section1/UserInfoViewController.m; sourceTree = SOURCE_ROOT; };
 		B40F590422BA9C72001C6A53 /* SettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
@@ -317,6 +315,7 @@
 		B44D7B282387A0F900173869 /* XYDabingyiliaoController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYDabingyiliaoController.m; sourceTree = "<group>"; };
 		B44D7B2A2387A10900173869 /* XYAlimonyPayController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYAlimonyPayController.h; sourceTree = "<group>"; };
 		B44D7B2B2387A10900173869 /* XYAlimonyPayController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYAlimonyPayController.m; sourceTree = "<group>"; };
+		B44D8D4C239BD48F0033AACB /* XYInfomationSection.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = XYInfomationSection.bundle; sourceTree = "<group>"; };
 		B46D51A92385B89000C56CFB /* XYPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYPickerView.m; sourceTree = "<group>"; };
 		B46D51AA2385B89000C56CFB /* XYPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYPickerView.h; sourceTree = "<group>"; };
 		B483E154238FF7D0007DDAB7 /* XYLocationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYLocationBar.m; sourceTree = "<group>"; };
@@ -412,7 +411,6 @@
 		B48515F822B8E78000779B6B /* SVIndefiniteAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVIndefiniteAnimatedView.m; sourceTree = "<group>"; };
 		B48515F922B8E78000779B6B /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
 		B48515FD22B8E84700779B6B /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
-		B49B91AC239665C300CB16D6 /* XYInfomationBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = XYInfomationBundle.bundle; sourceTree = "<group>"; };
 		B4E835B72390E12700349AC3 /* visa_delete@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "visa_delete@3x.png"; sourceTree = "<group>"; };
 		B4E8AB7922C347F00096208A /* IQTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IQTextView.m; sourceTree = "<group>"; };
 		B4E8AB7A22C347F00096208A /* IQTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IQTextView.h; sourceTree = "<group>"; };
@@ -797,7 +795,7 @@
 		B485159D22B8B64C00779B6B /* XYInfomationSection */ = {
 			isa = PBXGroup;
 			children = (
-				B49B91AC239665C300CB16D6 /* XYInfomationBundle.bundle */,
+				B44D8D4C239BD48F0033AACB /* XYInfomationSection.bundle */,
 				B48515A222B8B70100779B6B /* XYInfomationCell.h */,
 				B485159E22B8B70100779B6B /* XYInfomationCell.m */,
 				B40F58FA22BA6C3D001C6A53 /* XYInfomationCell.xib */,
@@ -806,7 +804,6 @@
 				B48515A122B8B70100779B6B /* XYInfomationSection.xib */,
 				B40F58FC22BA90EA001C6A53 /* XYInfomationBaseViewController.h */,
 				B40F58FD22BA90EA001C6A53 /* XYInfomationBaseViewController.m */,
-				B40F58FE22BA90EA001C6A53 /* XYInfomationBaseViewController.xib */,
 			);
 			path = XYInfomationSection;
 			sourceTree = "<group>";
@@ -1061,7 +1058,6 @@
 				B44D7B0A238771EF00173869 /* icon_applyed@3x.png in Resources */,
 				B44D7AF5238771EF00173869 /* icon_tax_shenpi@3x.png in Resources */,
 				B44D7AFE238771EF00173869 /* tax_msg_bc@2x.png in Resources */,
-				B49B91AD239665C300CB16D6 /* XYInfomationBundle.bundle in Resources */,
 				B44D7B06238771EF00173869 /* icon_zfdkxx@2x.png in Resources */,
 				B44D7ACF238771EF00173869 /* icon_tax_geshui@3x.png in Resources */,
 				B44D7AFB238771EF00173869 /* icon_tax_jiaoyu@3x.png in Resources */,
@@ -1110,7 +1106,6 @@
 				B44D7AD4238771EF00173869 /* icon_return@2x.png in Resources */,
 				B44D7AD0238771EF00173869 /* icon_tax_peiou@2x.png in Resources */,
 				B44D7AEB238771EF00173869 /* icon_tax_zhufang@2x.png in Resources */,
-				B40F590022BA90EA001C6A53 /* XYInfomationBaseViewController.xib in Resources */,
 				B44D7B01238771EF00173869 /* icon_geshui@3x.png in Resources */,
 				B44D7ACD238771EF00173869 /* icon_banner_zfdk@2x.png in Resources */,
 				B44D7AF9238771EF00173869 /* icon_zfzj@2x.png in Resources */,
@@ -1140,6 +1135,7 @@
 				B44D7AF7238771EF00173869 /* icon_extend_down@2x.png in Resources */,
 				B44D7AED238771EF00173869 /* tax_comp_sel@3x.png in Resources */,
 				B44D7B04238771EF00173869 /* headerBottonImage@3x.png in Resources */,
+				B44D8D4D239BD48F0033AACB /* XYInfomationSection.bundle in Resources */,
 				B44D7AFC238771EF00173869 /* icon_tax_fangdai@3x.png in Resources */,
 				B44D7AD7238771EF00173869 /* icon_tax_peiou@3x.png in Resources */,
 				B44D7B0F238771EF00173869 /* icon_banner_zfzj@2x.png in Resources */,

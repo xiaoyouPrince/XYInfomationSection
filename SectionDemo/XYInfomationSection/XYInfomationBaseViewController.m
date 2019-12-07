@@ -7,6 +7,7 @@
 //
 
 #import "XYInfomationBaseViewController.h"
+#import "Masonry.h"
 
 @interface XYInfomationBaseViewController ()
 
