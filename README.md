@@ -4,7 +4,11 @@
 
 ### 更新
 
-**Version 1.0.0 2019年11月29日**
+**Version 0.1.1 2019年12月8日**
+1. 更新资源加载方式，使用内部bundle，避免资源冲突
+2. 移除无用的 XYInfomationBaseViewController.xib 和 XYInfomationSection.xib 文件
+
+**Version 0.1.0 2019年11月29日**
 1. 基本功能完成。附有完整Demo
 
 ### 项目简介
