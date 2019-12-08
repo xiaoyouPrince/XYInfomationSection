@@ -129,7 +129,6 @@
 		B485159422B8B51700779B6B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B485159222B8B51700779B6B /* LaunchScreen.storyboard */; };
 		B485159722B8B51700779B6B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B485159622B8B51700779B6B /* main.m */; };
 		B48515A422B8B70100779B6B /* XYInfomationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B485159E22B8B70100779B6B /* XYInfomationCell.m */; };
-		B48515A622B8B70100779B6B /* XYInfomationSection.xib in Resources */ = {isa = PBXBuildFile; fileRef = B48515A122B8B70100779B6B /* XYInfomationSection.xib */; };
 		B48515A722B8B70100779B6B /* XYInfomationSection.m in Sources */ = {isa = PBXBuildFile; fileRef = B48515A322B8B70100779B6B /* XYInfomationSection.m */; };
 		B48515AA22B8E37100779B6B /* DataTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B48515A922B8E37100779B6B /* DataTool.m */; };
 		B48515C622B8E73D00779B6B /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = B48515AE22B8E73D00779B6B /* NSLayoutConstraint+MASDebugAdditions.m */; };
@@ -352,7 +351,6 @@
 		B485159622B8B51700779B6B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B485159E22B8B70100779B6B /* XYInfomationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYInfomationCell.m; sourceTree = "<group>"; };
 		B48515A022B8B70100779B6B /* XYInfomationSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYInfomationSection.h; sourceTree = "<group>"; };
-		B48515A122B8B70100779B6B /* XYInfomationSection.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XYInfomationSection.xib; sourceTree = "<group>"; };
 		B48515A222B8B70100779B6B /* XYInfomationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYInfomationCell.h; sourceTree = "<group>"; };
 		B48515A322B8B70100779B6B /* XYInfomationSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYInfomationSection.m; sourceTree = "<group>"; };
 		B48515A822B8E37100779B6B /* DataTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataTool.h; sourceTree = "<group>"; };
@@ -801,7 +799,6 @@
 				B40F58FA22BA6C3D001C6A53 /* XYInfomationCell.xib */,
 				B48515A022B8B70100779B6B /* XYInfomationSection.h */,
 				B48515A322B8B70100779B6B /* XYInfomationSection.m */,
-				B48515A122B8B70100779B6B /* XYInfomationSection.xib */,
 				B40F58FC22BA90EA001C6A53 /* XYInfomationBaseViewController.h */,
 				B40F58FD22BA90EA001C6A53 /* XYInfomationBaseViewController.m */,
 			);
@@ -1113,7 +1110,6 @@
 				B44D7AF8238771EF00173869 /* icon_extend_down@3x.png in Resources */,
 				B44D7B13238771EF00173869 /* tex_help@3x.png in Resources */,
 				B485159422B8B51700779B6B /* LaunchScreen.storyboard in Resources */,
-				B48515A622B8B70100779B6B /* XYInfomationSection.xib in Resources */,
 				B44D7ADE238771EF00173869 /* icon_banner_jxjy@3x.png in Resources */,
 				B418918B22C1E8BA00A8B12D /* BaseUseViewController.xib in Resources */,
 				B44D7AFF238771EF00173869 /* icon_tax_unchoose@3x.png in Resources */,
