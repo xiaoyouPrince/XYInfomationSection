@@ -186,7 +186,7 @@ typedef NS_ENUM(NSUInteger, XYInfoCellType) {
 
 
 
-/// 默认是default
+/// 默认是 StyleInput
 @interface XYInfomationCell : UIView
 
 typedef void(^XYInfomationCellTouchBlock)(XYInfomationCell *cell);
@@ -199,15 +199,6 @@ typedef void(^XYInfomationCellTouchBlock)(XYInfomationCell *cell);
 
 /** 自己整体的touch 回调 */
 @property(nonatomic , copy)    XYInfomationCellTouchBlock cellTouchBlock;
-
-
-/**
- 快速创建一个infoCell 此方法创建的cell赋值model必须内部的cellType一致
- 
- @param type 可以为空，默认为input
- @return infoCell
- */
-+ (instancetype)cellWithType:(XYInfoCellType)type;
 
 /**
  快速创建一个infoCell

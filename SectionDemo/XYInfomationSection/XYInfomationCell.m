@@ -106,13 +106,17 @@
 
 @end
 
+#define kTitleRate 0.3  // 设置titleLabel占整体宽度比例
+
 @interface XYInfomationCell ()<UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *detailLabel; // chooseType
-@property (weak, nonatomic) IBOutlet UITextField *textField; // inputType
+@property (weak, nonatomic) UITextField *inputTF; // inputType
 @property (weak, nonatomic) IBOutlet UIView *accessoryView;
+
+
 
 /** cellType */
 @property(nonatomic, assign ,readonly)     XYInfoCellType cell_type;
@@ -126,20 +130,142 @@
 
 #pragma mark - init
 
-
-- (void)awakeFromNib
+- (void)buildUIForInput
 {
-    [super awakeFromNib];
+    // base
+    // image + titleLabel + inputTF + accessoryView
     
-    self.textField.delegate = self;
+    // imageView
+    UIImageView *imageView = [UIImageView new];
+    self.imageView = imageView;
+    [self addSubview:imageView];
+    
+    // titleLabel
+    UILabel *titleLabel = [[UILabel alloc] init];
+    self.titleLabel = titleLabel;
+    [self addSubview:titleLabel];
+    
+    titleLabel.textAlignment = NSTextAlignmentLeft;
+    titleLabel.numberOfLines = 0;
+    titleLabel.lineBreakMode = NSLineBreakByCharWrapping;
+    
+    // inputTF
+    UITextField *inputTF = [UITextField new];
+    self.inputTF = inputTF;
+    [self addSubview:inputTF];
+    
+    inputTF.textAlignment = NSTextAlignmentRight;
+    inputTF.font = [UIFont systemFontOfSize:14];
+    
+    // accessoryView
+    UIView *accessoryView = [[UIView alloc] init];
+    self.accessoryView = accessoryView;
+    [self addSubview:accessoryView];
+    
+    // constraint
+    [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self);
+        make.left.equalTo(self).offset(15);
+        make.top.greaterThanOrEqualTo(self).offset(8); // 最多和高底8pt
+    }];
+    
+    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.greaterThanOrEqualTo(self).offset(15);
+        make.centerY.equalTo(self);
+        make.bottom.greaterThanOrEqualTo(self).offset(-15);
+        make.left.equalTo(self.imageView.mas_right).offset(10);
+        make.width.equalTo(self).multipliedBy(kTitleRate); // 占整体宽度
+    }];
+    
+    [self.accessoryView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self);
+        make.right.equalTo(self).offset(-10);
+        make.top.greaterThanOrEqualTo(self).offset(8); // 最多和高底8pt
+    }];
+    
+    [self.inputTF mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.bottom.equalTo(self);
+        make.left.equalTo(self.titleLabel.mas_right).offset(15);
+        make.right.equalTo(self.accessoryView.mas_left).offset(-5);
+    }];
+}
+
+- (void)buildUIForChoose
+{
+    // base
+    // image + titleLabel + inputTF + accessoryView
+    
+    // imageView
+    UIImageView *imageView = [UIImageView new];
+    self.imageView = imageView;
+    [self addSubview:imageView];
+    
+    // titleLabel
+    UILabel *titleLabel = [[UILabel alloc] init];
+    self.titleLabel = titleLabel;
+    [self addSubview:titleLabel];
+    
+    titleLabel.textAlignment = NSTextAlignmentLeft;
+    titleLabel.numberOfLines = 0;
+    titleLabel.lineBreakMode = NSLineBreakByCharWrapping;
+    
+    // detailLabel
+    UILabel *detailLabel = [[UILabel alloc] init];
+    self.detailLabel = detailLabel;
+    [self addSubview:detailLabel];
+    
+    detailLabel.textAlignment = NSTextAlignmentRight;
+    detailLabel.numberOfLines = 0;
+    detailLabel.lineBreakMode = NSLineBreakByCharWrapping;
+    
+    // accessoryView
+    UIView *accessoryView = [[UIView alloc] init];
+    self.accessoryView = accessoryView;
+    [self addSubview:accessoryView];
+    
+    // constraint
+    [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self);
+        make.left.equalTo(self).offset(15);
+        make.top.greaterThanOrEqualTo(self).offset(8); // 最多和高底8pt
+    }];
+    
+    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.greaterThanOrEqualTo(self).offset(15);
+        make.centerY.equalTo(self);
+        make.bottom.greaterThanOrEqualTo(self).offset(-15);
+        make.left.equalTo(self.imageView.mas_right).offset(10);
+        make.width.equalTo(self).multipliedBy(kTitleRate); // 占整体宽度
+    }];
+    
+    [self.accessoryView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self);
+        make.right.equalTo(self).offset(-10);
+        make.top.greaterThanOrEqualTo(self).offset(8); // 最多和高底8pt
+    }];
+    
+    [self.detailLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.greaterThanOrEqualTo(self).offset(15);
+        make.centerY.equalTo(self);
+        make.bottom.greaterThanOrEqualTo(self).offset(-15);
+        make.left.equalTo(self.titleLabel.mas_right).offset(15);
+        make.right.equalTo(self.accessoryView.mas_left).offset(-5);
+    }];
+    
+    
+}
+
+- (void)setupContent{
+    
+    self.inputTF.delegate = self;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldTextChanged:) name:UITextFieldTextDidChangeNotification object:nil];
     
     self.backgroundColor = UIColor.clearColor;
     self.titleLabel.font = [UIFont systemFontOfSize:14];
     self.titleLabel.textColor = HEXCOLOR(0x999999);
     
-    self.textField.font = [UIFont systemFontOfSize:14];
-    self.textField.textColor = HEXCOLOR(0x333333);
+    self.inputTF.font = [UIFont systemFontOfSize:14];
+    self.inputTF.textColor = HEXCOLOR(0x333333);
     
     self.detailLabel.font = [UIFont systemFontOfSize:14];
     self.detailLabel.textColor = HEXCOLOR(0x333333);
@@ -156,18 +282,6 @@
     }];
 }
 
-+ (instancetype)cellWithType:(XYInfoCellType)type
-{
-    XYInfoCellType cellType = XYInfoCellTypeInput;
-    if (type) {
-        cellType = type;
-    }
-    
-    XYInfomationCell *cell = [[NSBundle bundleForClass:self] loadNibNamed:NSStringFromClass(self) owner:nil options:nil][cellType];
-    cell->_cell_type = cellType;
-    
-    return cell;
-}
 
 + (instancetype)cellWithModel:(XYInfomationItem *)model
 {
@@ -176,12 +290,37 @@
         cellModel = model;
     }
     
-    XYInfomationCell *cell = [[NSBundle bundleForClass:self] loadNibNamed:NSStringFromClass(self) owner:nil options:nil][cellModel.type];
-    cell->_cell_type = cellModel.type;
-    cell.model = cellModel;
+    // 根据model创建不同内容
+    XYInfomationCell *cell = [XYInfomationCell new];
+    switch (model.type) {
+        case XYInfoCellTypeInput:
+        {
+            cell->_cell_type = XYInfoCellTypeInput;
+            [cell buildUIForInput];
+            cell.model = model;
+        }
+            break;
+        case XYInfoCellTypeChoose:
+        {
+            cell->_cell_type = XYInfoCellTypeChoose;
+            [cell buildUIForChoose];
+            cell.model = model;
+        }
+            break;
+        case XYInfoCellTypeOther: // 如果是自定义类型，那就根据model中自定义类来创建
+        {
+//            XYInfomationCell *cell = [XYInfomationCell new];
+//            cell->_cell_type = XYInfoCellTypeChoose;
+        }
+            break;
+        default:
+            break;
+    }
     
+    [cell setupContent];
     return cell;
 }
+
 
 
 #pragma mark - 赋值
@@ -213,6 +352,11 @@
         }
         self.imageView.image = image;
         
+        // image
+        [self.imageView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(image.size);
+        }];
+        
         // titleLabel
         self.titleLabel.textColor = HEXCOLOR(0x333333);
         [self.titleLabel mas_updateConstraints:^(MASConstraintMaker *make) {
@@ -220,35 +364,33 @@
         }];
 
     }else{
+        // imageView
+        [self.imageView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeZero);
+        }];
         
-#warning - mark todo 001 更新约束，不能直接混用，要么XIB要么MAS
-        for (NSLayoutConstraint *cons in self.imageView.constraints) {
-            if (cons.constant == 22) { // xib 中设置width为22，不能直接用mas_update
-                cons.constant = 0;
-                break;
-            }
-        }
+        // 没有设置icon
+        [self.titleLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(weakSelf.imageView.mas_right).offset(0);
+        }];
     }
     
     // 3. title
     self.titleLabel.text = model.title;
     
-    // 站位颜色
-    // self.textField.placeholderColor = self.textField.textColor;
-    
     // 4. type value placeholderValue
     if (model.type == XYInfoCellTypeInput) {
         if (model.value) {
-            self.textField.text = model.value;
+            self.inputTF.text = model.value;
         }else
         {
-            self.textField.text = @" ";
+            self.inputTF.text = @" ";
         }
         
         if (model.placeholderValue) {
-            self.textField.placeholder = model.placeholderValue;
+            self.inputTF.placeholder = model.placeholderValue;
         }else{
-            self.textField.placeholder = [@"请输入" stringByAppendingString:model.title];
+            self.inputTF.placeholder = [@"请输入" stringByAppendingString:model.title];
         }
         
     }else // chooseType
@@ -267,31 +409,33 @@
     
     
     // 5. 处理禁用用户点击且cellType为input的情况，防止展示的文字过多，tf也不能进行文字折行
-    if (self.textField && model.disableUserAction) { // 如果是textField这种输入的情况，因为TF不能换行，这里禁用了用户操作之后，就替替换成label，这样就能正常根据文字多少进行折行操作了，也能正确展示对应的自适应高度
+    if (self.inputTF && model.disableUserAction) { // 如果是textField这种输入的情况，因为TF不能换行，这里禁用了用户操作之后，就替替换成label，这样就能正常根据文字多少进行折行操作了，也能正确展示对应的自适应高度
         
         UILabel *label = [UILabel new];
-        label.font = self.textField.font;
-        label.textColor = self.textField.textColor;
+        label.font = self.inputTF.font;
+        label.textColor = self.inputTF.textColor;
         label.textAlignment = NSTextAlignmentRight;
         label.lineBreakMode = NSLineBreakByCharWrapping;
         label.numberOfLines = 0;
-        label.text = self.textField.text;
+        label.text = self.inputTF.text;
         label.tag = 100;
         
         [self addSubview:label];
         [label mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(weakSelf).offset(12);
-            make.left.greaterThanOrEqualTo(self.titleLabel.mas_right).offset(10);
-            make.right.equalTo(weakSelf).offset(-15);
-            make.bottom.equalTo(weakSelf).offset(-12);
+            make.top.greaterThanOrEqualTo(self).offset(15);
+            make.centerY.equalTo(self);
+            make.bottom.greaterThanOrEqualTo(self).offset(-15);
+            make.left.equalTo(self.titleLabel.mas_right).offset(15);
+            make.right.equalTo(self.accessoryView).offset(0); // 默认无accessoryView
         }];
+        
         
         
         [label setNeedsDisplay];
         [label layoutIfNeeded];
         
         // self.textField 隐藏
-        self.textField.hidden = YES;
+        self.inputTF.hidden = YES;
     }else
     {
         UILabel *label = [self viewWithTag:100];
@@ -299,7 +443,7 @@
             [label removeFromSuperview];
         }
         // self.textField 展示
-        self.textField.hidden = NO;
+        self.inputTF.hidden = NO;
     }
     
     // 6. 用户设置的的 accessoryView 【1.以用户设置的为准，2.当类型为choose时候，默认为向右箭头】
@@ -311,7 +455,7 @@
         [self addSubview:self.accessoryView];
         [_accessoryView mas_remakeConstraints:^(MASConstraintMaker *make) {
             if (model.type == XYInfoCellTypeInput) {
-                make.leading.equalTo(weakSelf.textField.mas_trailing).offset(5);
+                make.leading.equalTo(weakSelf.inputTF.mas_trailing).offset(5);
             }
             if (model.type == XYInfoCellTypeChoose) {
                 make.leading.equalTo(weakSelf.detailLabel.mas_trailing).offset(5);
@@ -336,9 +480,13 @@
             NSString *arrawPath = [[NSBundle bundleWithPath:bundlePath] pathForResource:@"rightArraw_lightGray@3x" ofType:@"png"];
             UIImage *image = [UIImage imageWithContentsOfFile:arrawPath];
             
-            UIImageView *rightArraw = (UIImageView *)_accessoryView;
+            UIImageView *rightArraw = [UIImageView new];
             rightArraw.image = image;
             _accessoryView.hidden = NO;
+            [_accessoryView addSubview:rightArraw];
+            [rightArraw mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.equalTo(_accessoryView);
+            }];
             [_accessoryView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.width.mas_equalTo(10);
             }];
@@ -375,44 +523,12 @@
     }else
     {
         self.hidden = NO;
-        [self.titleLabel sizeToFit];
-        CGFloat def_cellHeight = model.def_cellHeight;
-        CGFloat title_cellHeight = self.titleLabel.bounds.size.height + 30;
-        CGFloat max_cellHeight = MAX(def_cellHeight, title_cellHeight);
         
-        if (model.type == XYInfoCellTypeInput) { // 输入类型以 titleLabel为准
-            
-            // 处理禁用已经将textField替换成Label的情况
-            UILabel *label = [self viewWithTag:100];
-            if (label) {
-                
-                [label sizeToFit];
-                CGFloat final_max_height = MAX(max_cellHeight, label.bounds.size.height+30);
-                
-                [self mas_updateConstraints:^(MASConstraintMaker *make) {
-                    make.height.equalTo(@(final_max_height));
-                }];
-            }else
-            {
-                [self mas_updateConstraints:^(MASConstraintMaker *make) {
-                    make.height.equalTo(@(max_cellHeight));
-                }];
-            }
-            
-        }else{
-            // 选择类型，以titleLabel 和 detailLabel的实际高度更大的为准
-            
-            [self.detailLabel setNeedsLayout];
-            [self.detailLabel layoutIfNeeded];
-            [self.detailLabel sizeToFit];
-            
-            CGFloat detail_cellHeight = self.detailLabel.bounds.size.height + 30;
-            max_cellHeight = MAX(max_cellHeight, detail_cellHeight);
-            
-            [self mas_updateConstraints:^(MASConstraintMaker *make) {
-                make.height.equalTo(@(max_cellHeight));
-            }];
-        }
+        // 设置自己默认最低高度
+        [self mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.height.greaterThanOrEqualTo(@(model.def_cellHeight));
+        }];
+        
     }
 
     
@@ -425,8 +541,8 @@
     [super layoutSubviews];
     
     if (!self.model.value) { // 如果是用户自己设置的value就按用户自己设置的来
-        if ([self.textField.text isEqualToString:@" "]) {
-            self.textField.text = @"";
+        if ([self.inputTF.text isEqualToString:@" "]) {
+            self.inputTF.text = @"";
         }
         if ([self.detailLabel.text isEqualToString:@" "]) {
             self.detailLabel.text = nil;
@@ -439,7 +555,7 @@
 {
     // 文字已经修改了，修改自己的数据模型
     
-    self.model.value = self.textField.text;
+    self.model.value = self.inputTF.text;
 }
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField

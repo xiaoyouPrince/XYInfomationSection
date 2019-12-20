@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B40F58FB22BA6C3D001C6A53 /* XYInfomationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B40F58FA22BA6C3D001C6A53 /* XYInfomationCell.xib */; };
 		B40F58FF22BA90EA001C6A53 /* XYInfomationBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B40F58FD22BA90EA001C6A53 /* XYInfomationBaseViewController.m */; };
 		B40F590322BA97AA001C6A53 /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B40F590222BA97AA001C6A53 /* UserInfoViewController.m */; };
 		B40F590622BA9C72001C6A53 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B40F590522BA9C72001C6A53 /* SettingViewController.m */; };
@@ -192,7 +191,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		B40F58FA22BA6C3D001C6A53 /* XYInfomationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XYInfomationCell.xib; sourceTree = "<group>"; };
 		B40F58FC22BA90EA001C6A53 /* XYInfomationBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYInfomationBaseViewController.h; sourceTree = "<group>"; };
 		B40F58FD22BA90EA001C6A53 /* XYInfomationBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYInfomationBaseViewController.m; sourceTree = "<group>"; };
 		B40F590122BA97AA001C6A53 /* UserInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = UserInfoViewController.h; path = SectionDemo/Controller/section1/UserInfoViewController.h; sourceTree = SOURCE_ROOT; };
@@ -796,7 +794,6 @@
 				B44D8D4C239BD48F0033AACB /* XYInfomationSection.bundle */,
 				B48515A222B8B70100779B6B /* XYInfomationCell.h */,
 				B485159E22B8B70100779B6B /* XYInfomationCell.m */,
-				B40F58FA22BA6C3D001C6A53 /* XYInfomationCell.xib */,
 				B48515A022B8B70100779B6B /* XYInfomationSection.h */,
 				B48515A322B8B70100779B6B /* XYInfomationSection.m */,
 				B40F58FC22BA90EA001C6A53 /* XYInfomationBaseViewController.h */,
@@ -1122,7 +1119,6 @@
 				B44D7B07238771EF00173869 /* tax_water_maker的副本.png in Resources */,
 				B44D7B10238771EF00173869 /* icon_tax_choose@3x.png in Resources */,
 				B44D7AFA238771EF00173869 /* icon_tax_shenpi@2x.png in Resources */,
-				B40F58FB22BA6C3D001C6A53 /* XYInfomationCell.xib in Resources */,
 				B44D7ACA238771EF00173869 /* icon_znjy@3x.png in Resources */,
 				B44D7B0C238771EF00173869 /* icon_banner_zfzj@3x.png in Resources */,
 				B44D7AD5238771EF00173869 /* icon_tax_laoren@3x.png in Resources */,
