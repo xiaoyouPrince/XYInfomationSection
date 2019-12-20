@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Masonry.h"
 
 #define ScreenW [UIScreen mainScreen].bounds.size.width
 #define ScreenH [UIScreen mainScreen].bounds.size.height
