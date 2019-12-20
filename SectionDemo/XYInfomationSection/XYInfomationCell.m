@@ -130,130 +130,33 @@
 
 #pragma mark - init
 
-- (void)buildUIForInput
+- (instancetype)initWithFrame:(CGRect)frame
 {
-    // base
-    // image + titleLabel + inputTF + accessoryView
-    
-    // imageView
-    UIImageView *imageView = [UIImageView new];
-    self.imageView = imageView;
-    [self addSubview:imageView];
-    
-    // titleLabel
-    UILabel *titleLabel = [[UILabel alloc] init];
-    self.titleLabel = titleLabel;
-    [self addSubview:titleLabel];
-    
-    titleLabel.textAlignment = NSTextAlignmentLeft;
-    titleLabel.numberOfLines = 0;
-    titleLabel.lineBreakMode = NSLineBreakByCharWrapping;
-    
-    // inputTF
-    UITextField *inputTF = [UITextField new];
-    self.inputTF = inputTF;
-    [self addSubview:inputTF];
-    
-    inputTF.textAlignment = NSTextAlignmentRight;
-    inputTF.font = [UIFont systemFontOfSize:14];
-    
-    // accessoryView
-    UIView *accessoryView = [[UIView alloc] init];
-    self.accessoryView = accessoryView;
-    [self addSubview:accessoryView];
-    
-    // constraint
-    [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self);
-        make.left.equalTo(self).offset(15);
-        make.top.greaterThanOrEqualTo(self).offset(8); // 最多和高底8pt
-    }];
-    
-    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.greaterThanOrEqualTo(self).offset(15);
-        make.centerY.equalTo(self);
-        make.bottom.greaterThanOrEqualTo(self).offset(-15);
-        make.left.equalTo(self.imageView.mas_right).offset(10);
-        make.width.equalTo(self).multipliedBy(kTitleRate); // 占整体宽度
-    }];
-    
-    [self.accessoryView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self);
-        make.right.equalTo(self).offset(-10);
-        make.top.greaterThanOrEqualTo(self).offset(8); // 最多和高底8pt
-    }];
-    
-    [self.inputTF mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.bottom.equalTo(self);
-        make.left.equalTo(self.titleLabel.mas_right).offset(15);
-        make.right.equalTo(self.accessoryView.mas_left).offset(-5);
-    }];
+    self = [super initWithFrame:frame];
+    if (self) {
+        // base(input/choose)
+        // image + titleLabel + [inputTF | detailLabel] + accessoryView
+        UIImageView *imageView = [UIImageView new];
+        self.imageView = imageView;
+        [self addSubview:imageView];
+        
+        // titleLabel
+        UILabel *titleLabel = [[UILabel alloc] init];
+        self.titleLabel = titleLabel;
+        [self addSubview:titleLabel];
+        
+        titleLabel.textAlignment = NSTextAlignmentLeft;
+        titleLabel.numberOfLines = 0;
+        titleLabel.lineBreakMode = NSLineBreakByCharWrapping;
+        
+        // accessoryView
+        UIView *accessoryView = [[UIView alloc] init];
+        self.accessoryView = accessoryView;
+        [self addSubview:accessoryView];
+    }
+    return self;
 }
 
-- (void)buildUIForChoose
-{
-    // base
-    // image + titleLabel + inputTF + accessoryView
-    
-    // imageView
-    UIImageView *imageView = [UIImageView new];
-    self.imageView = imageView;
-    [self addSubview:imageView];
-    
-    // titleLabel
-    UILabel *titleLabel = [[UILabel alloc] init];
-    self.titleLabel = titleLabel;
-    [self addSubview:titleLabel];
-    
-    titleLabel.textAlignment = NSTextAlignmentLeft;
-    titleLabel.numberOfLines = 0;
-    titleLabel.lineBreakMode = NSLineBreakByCharWrapping;
-    
-    // detailLabel
-    UILabel *detailLabel = [[UILabel alloc] init];
-    self.detailLabel = detailLabel;
-    [self addSubview:detailLabel];
-    
-    detailLabel.textAlignment = NSTextAlignmentRight;
-    detailLabel.numberOfLines = 0;
-    detailLabel.lineBreakMode = NSLineBreakByCharWrapping;
-    
-    // accessoryView
-    UIView *accessoryView = [[UIView alloc] init];
-    self.accessoryView = accessoryView;
-    [self addSubview:accessoryView];
-    
-    // constraint
-    [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self);
-        make.left.equalTo(self).offset(15);
-        make.top.greaterThanOrEqualTo(self).offset(8); // 最多和高底8pt
-    }];
-    
-    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.greaterThanOrEqualTo(self).offset(15);
-        make.centerY.equalTo(self);
-        make.bottom.greaterThanOrEqualTo(self).offset(-15);
-        make.left.equalTo(self.imageView.mas_right).offset(10);
-        make.width.equalTo(self).multipliedBy(kTitleRate); // 占整体宽度
-    }];
-    
-    [self.accessoryView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self);
-        make.right.equalTo(self).offset(-10);
-        make.top.greaterThanOrEqualTo(self).offset(8); // 最多和高底8pt
-    }];
-    
-    [self.detailLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.greaterThanOrEqualTo(self).offset(15);
-        make.centerY.equalTo(self);
-        make.bottom.greaterThanOrEqualTo(self).offset(-15);
-        make.left.equalTo(self.titleLabel.mas_right).offset(15);
-        make.right.equalTo(self.accessoryView.mas_left).offset(-5);
-    }];
-    
-    
-}
 
 - (void)setupContent{
     
@@ -296,14 +199,12 @@
         case XYInfoCellTypeInput:
         {
             cell->_cell_type = XYInfoCellTypeInput;
-            [cell buildUIForInput];
             cell.model = model;
         }
             break;
         case XYInfoCellTypeChoose:
         {
             cell->_cell_type = XYInfoCellTypeChoose;
-            [cell buildUIForChoose];
             cell.model = model;
         }
             break;
@@ -332,6 +233,31 @@
     model.type = self.cell_type;
     __weak typeof(self) weakSelf = self;
     
+    
+    // 0. 依据cellType创建对应的 inputTF | detailLabel
+    if (model.type == XYInfoCellTypeInput) {
+        
+        // inputTF
+        UITextField *inputTF = [UITextField new];
+        self.inputTF = inputTF;
+        [self addSubview:inputTF];
+        
+        inputTF.textAlignment = NSTextAlignmentRight;
+        inputTF.font = [UIFont systemFontOfSize:14];
+        
+    }else if (model.type == XYInfoCellTypeChoose)
+    {
+        // detailLabel
+        UILabel *detailLabel = [[UILabel alloc] init];
+        self.detailLabel = detailLabel;
+        [self addSubview:detailLabel];
+        
+        detailLabel.textAlignment = NSTextAlignmentRight;
+        detailLabel.numberOfLines = 0;
+        detailLabel.lineBreakMode = NSLineBreakByCharWrapping;
+    }
+    
+    
     // 1. 设置自己是否接受用户事件,自己能接收touch，但是内部subView不可接收事件
     for (UIView *subView in self.subviews) {
         if (model.disableUserAction) {
@@ -352,27 +278,6 @@
         }
         self.imageView.image = image;
         
-        // image
-        [self.imageView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(image.size);
-        }];
-        
-        // titleLabel
-        self.titleLabel.textColor = HEXCOLOR(0x333333);
-        [self.titleLabel mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(weakSelf.imageView.mas_right).offset(10);
-        }];
-
-    }else{
-        // imageView
-        [self.imageView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeZero);
-        }];
-        
-        // 没有设置icon
-        [self.titleLabel mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(weakSelf.imageView.mas_right).offset(0);
-        }];
     }
     
     // 3. title
@@ -425,14 +330,9 @@
             make.top.greaterThanOrEqualTo(self).offset(15);
             make.centerY.equalTo(self);
             make.bottom.greaterThanOrEqualTo(self).offset(-15);
-            make.left.equalTo(self.titleLabel.mas_right).offset(15);
+            make.left.greaterThanOrEqualTo(self.titleLabel.mas_right).offset(15);
             make.right.equalTo(self.accessoryView).offset(0); // 默认无accessoryView
         }];
-        
-        
-        
-        [label setNeedsDisplay];
-        [label layoutIfNeeded];
         
         // self.textField 隐藏
         self.inputTF.hidden = YES;
@@ -453,25 +353,26 @@
         self.accessoryView = nil;
         self.accessoryView = model.accessoryView;
         [self addSubview:self.accessoryView];
-        [_accessoryView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            if (model.type == XYInfoCellTypeInput) {
-                make.leading.equalTo(weakSelf.inputTF.mas_trailing).offset(5);
-            }
-            if (model.type == XYInfoCellTypeChoose) {
-                make.leading.equalTo(weakSelf.detailLabel.mas_trailing).offset(5);
-            }
-            make.trailing.equalTo(weakSelf).offset(-10);
-            make.centerY.equalTo(weakSelf.imageView);
-            make.size.mas_equalTo(weakSelf.accessoryView.frame.size);
-        }];
+        
+        if (model.accessoryView.bounds.size.height) {
+            [_accessoryView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.size.mas_equalTo(model.accessoryView.frame.size);
+            }];
+        }else
+        {
+            [_accessoryView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.size.mas_equalTo(model.accessoryView);
+            }];
+        }
     }else
     {
+        // 默认 accessoryView.size = {10,10}
         // 用户没有设置accessoryView。这里根据自定类型来设置对应的默认accessoryView
         if (model.type == XYInfoCellTypeInput) {
             // 默认 _accessoryView = nil
             _accessoryView.hidden = YES;
             [_accessoryView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.width.mas_equalTo(10);
+                make.size.mas_equalTo(CGSizeMake(10, 10));
             }];
         }
         if (model.type == XYInfoCellTypeChoose) {
@@ -482,13 +383,11 @@
             
             UIImageView *rightArraw = [UIImageView new];
             rightArraw.image = image;
+            self.accessoryView = rightArraw;
+            [self addSubview:self.accessoryView];
             _accessoryView.hidden = NO;
-            [_accessoryView addSubview:rightArraw];
-            [rightArraw mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.edges.equalTo(_accessoryView);
-            }];
             [_accessoryView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.width.mas_equalTo(10);
+                make.size.mas_equalTo(image.size);
             }];
         }
     }
@@ -513,8 +412,63 @@
     // ....  自身背景颜色，圆角，
     // ....  内部title. 字体&颜色  value 字体和颜色
     
+    // 8. 约束
+    if (self.imageView.image) {
+        
+        [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(self);
+            make.left.equalTo(self).offset(15);
+            make.top.greaterThanOrEqualTo(self).offset(8); // 最多和高底8pt
+            make.size.mas_equalTo(self.imageView.image.size);
+        }];
+        
+        [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.greaterThanOrEqualTo(self).offset(15);
+            make.centerY.equalTo(self);
+            make.bottom.greaterThanOrEqualTo(self).offset(-15);
+            make.left.equalTo(self.imageView.mas_right).offset(10);
+            make.width.equalTo(self).multipliedBy(kTitleRate); // 占整体宽度
+        }];
+        
+    }else
+    {
+        [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.greaterThanOrEqualTo(self).offset(15);
+            make.centerY.equalTo(self);
+            make.bottom.greaterThanOrEqualTo(self).offset(-15);
+            make.left.equalTo(self).offset(15);
+            make.width.equalTo(self).multipliedBy(kTitleRate); // 占整体宽度
+        }];
+    }
     
-    // 8. 更新实际高度
+    [self.accessoryView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self);
+        make.right.equalTo(self).offset(-10);
+        make.top.greaterThanOrEqualTo(self).offset(8); // 最多和高底8pt
+        // 上面已经设置size
+    }];
+    
+    if (self.cell_type == XYInfoCellTypeInput) {
+        
+        [self.inputTF mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.bottom.equalTo(self);
+            make.left.equalTo(self.titleLabel.mas_right).offset(15);
+            make.right.equalTo(self.accessoryView.mas_left).offset(-5);
+        }];
+    }
+    
+    if (self.cell_type == XYInfoCellTypeChoose) {
+        
+        [self.detailLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.greaterThanOrEqualTo(self).offset(15);
+            make.centerY.equalTo(self);
+            make.bottom.greaterThanOrEqualTo(self).offset(-15);
+            make.left.greaterThanOrEqualTo(self.titleLabel.mas_right).offset(15);
+            make.right.equalTo(self.accessoryView.mas_left).offset(-5);
+        }];
+    }
+    
+    // 9. 更新实际高度
     if (model.isFold) {// 用户设置折叠
         self.hidden = YES;
         [self mas_updateConstraints:^(MASConstraintMaker *make) {
@@ -530,7 +484,6 @@
         }];
         
     }
-
     
     [self setNeedsLayout];
     [self layoutIfNeeded];
