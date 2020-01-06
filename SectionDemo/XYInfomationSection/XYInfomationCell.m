@@ -124,6 +124,10 @@
 @end
 
 @implementation XYInfomationCell
+{
+    // 默认的accessoryView只设置一次
+    BOOL _hasSetDefaultAccessoryView;
+}
 
 #pragma mark - lazyLoad
 
@@ -238,23 +242,26 @@
     if (model.type == XYInfoCellTypeInput) {
         
         // inputTF
-        UITextField *inputTF = [UITextField new];
-        self.inputTF = inputTF;
-        [self addSubview:inputTF];
-        
-        inputTF.textAlignment = NSTextAlignmentRight;
-        inputTF.font = [UIFont systemFontOfSize:14];
+        if (!self.inputTF) {
+            UITextField *inputTF = [UITextField new];
+            self.inputTF = inputTF;
+            [self addSubview:inputTF];
+            inputTF.textAlignment = NSTextAlignmentRight;
+            inputTF.font = [UIFont systemFontOfSize:14];
+        }
         
     }else if (model.type == XYInfoCellTypeChoose)
     {
         // detailLabel
-        UILabel *detailLabel = [[UILabel alloc] init];
-        self.detailLabel = detailLabel;
-        [self addSubview:detailLabel];
-        
-        detailLabel.textAlignment = NSTextAlignmentRight;
-        detailLabel.numberOfLines = 0;
-        detailLabel.lineBreakMode = NSLineBreakByCharWrapping;
+        if (!self.detailLabel) {
+            UILabel *detailLabel = [[UILabel alloc] init];
+            self.detailLabel = detailLabel;
+            [self addSubview:detailLabel];
+            
+            detailLabel.textAlignment = NSTextAlignmentRight;
+            detailLabel.numberOfLines = 0;
+            detailLabel.lineBreakMode = NSLineBreakByCharWrapping;
+        }
     }
     
     
@@ -381,10 +388,14 @@
             NSString *arrawPath = [[NSBundle bundleWithPath:bundlePath] pathForResource:@"rightArraw_lightGray@3x" ofType:@"png"];
             UIImage *image = [UIImage imageWithContentsOfFile:arrawPath];
             
-            UIImageView *rightArraw = [UIImageView new];
-            rightArraw.image = image;
-            self.accessoryView = rightArraw;
-            [self addSubview:self.accessoryView];
+            if (_hasSetDefaultAccessoryView == NO) {
+                _hasSetDefaultAccessoryView = YES;
+                UIImageView *rightArraw = [UIImageView new];
+                rightArraw.image = image;
+                self.accessoryView = rightArraw;
+                [self addSubview:self.accessoryView];
+            }
+            
             _accessoryView.hidden = NO;
             [_accessoryView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.size.mas_equalTo(image.size);
