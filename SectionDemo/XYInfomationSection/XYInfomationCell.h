@@ -54,10 +54,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSUInteger, XYInfoCellType) {
-    XYInfoCellTypeInput = 0,  // default is input
-    XYInfoCellTypeChoose,     // 用于弹出下拉框选择的
-    XYInfoCellTypeDisplay,    // 仅用来展示内容的：[image] + title + [icon]
-    XYInfoCellTypeOther,   // 日后扩展，例如cell内部的右边的view
+    XYInfoCellTypeInput = 0,    // default is input
+    XYInfoCellTypeChoose,       // 用于弹出下拉框选择的
+    XYInfoCellTypeTextView,     // 可以用于多行输入的，textView
+    XYInfoCellTypeOther,        // 日后扩展，例如cell内部的右边的view
 };
 
 @interface XYInfomationItem : NSObject

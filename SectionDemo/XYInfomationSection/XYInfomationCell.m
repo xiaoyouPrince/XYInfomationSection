@@ -15,6 +15,7 @@
 
 // 可能选择的情况： 出生日期选择(年月日) || 地区选择(省市区) || 单选框
 
+#import "UITextView+XYInfomationSection.h"
 #import "XYInfomationCell.h"
 #import <objc/runtime.h>
 #import "Masonry.h"
@@ -108,13 +109,14 @@
 
 #define kTitleRate 0.3  // 设置titleLabel占整体宽度比例
 
-@interface XYInfomationCell ()<UITextFieldDelegate>
+@interface XYInfomationCell ()<UITextFieldDelegate,UITextViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *detailLabel; // chooseType
+@property (weak, nonatomic) UIImageView *imageView;
+@property (weak, nonatomic) UILabel *titleLabel;
+@property (weak, nonatomic) UILabel *detailLabel; // chooseType
 @property (weak, nonatomic) UITextField *inputTF; // inputType
-@property (weak, nonatomic) IBOutlet UIView *accessoryView;
+@property (weak, nonatomic) UITextView *inputTV;  // tvType
+@property (weak, nonatomic) UIView *accessoryView;
 
 
 
@@ -167,6 +169,9 @@
     self.inputTF.delegate = self;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldTextChanged:) name:UITextFieldTextDidChangeNotification object:nil];
     
+    self.inputTV.delegate = self;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textViewTextChanged:) name:UITextViewTextDidChangeNotification object:nil];
+    
     self.backgroundColor = UIColor.clearColor;
     self.titleLabel.font = [UIFont systemFontOfSize:14];
     self.titleLabel.textColor = HEXCOLOR(0x999999);
@@ -209,6 +214,12 @@
         case XYInfoCellTypeChoose:
         {
             cell->_cell_type = XYInfoCellTypeChoose;
+            cell.model = model;
+        }
+            break;
+        case XYInfoCellTypeTextView:
+        {
+            cell->_cell_type = XYInfoCellTypeTextView;
             cell.model = model;
         }
             break;
@@ -263,6 +274,17 @@
             detailLabel.lineBreakMode = NSLineBreakByCharWrapping;
         }
     }
+    else if (model.type == XYInfoCellTypeTextView)
+    {
+        // detailLabel
+        if (!self.inputTV) {
+            UITextView *inputTV = [UITextView new];
+            self.inputTV = inputTV;
+            [self addSubview:inputTV];
+            inputTV.textAlignment = NSTextAlignmentLeft;
+            inputTV.font = [UIFont systemFontOfSize:14];
+        }
+    }
     
     
     // 1. 设置自己是否接受用户事件,自己能接收touch，但是内部subView不可接收事件
@@ -305,7 +327,7 @@
             self.inputTF.placeholder = [@"请输入" stringByAppendingString:model.title];
         }
         
-    }else // chooseType
+    }else if (model.type == XYInfoCellTypeChoose)// chooseType
     {
         if (model.value) {
             self.detailLabel.text = model.value;
@@ -316,6 +338,20 @@
             }else{
                 self.detailLabel.text = [@"请选择" stringByAppendingString:model.title];
             }
+        }
+    }else if (model.type == XYInfoCellTypeTextView)// textViewType
+    {
+        if (model.value) {
+            self.inputTV.text = model.value;
+        }else
+        {
+            self.inputTV.text = @" ";
+        }
+        
+        if (model.placeholderValue) {
+            self.inputTV.placeholder = model.placeholderValue;
+        }else{
+            self.inputTV.placeholder = [@"请输入" stringByAppendingString:model.title];
         }
     }
     
@@ -376,6 +412,13 @@
         // 默认 accessoryView.size = {10,10}
         // 用户没有设置accessoryView。这里根据自定类型来设置对应的默认accessoryView
         if (model.type == XYInfoCellTypeInput) {
+            // 默认 _accessoryView = nil
+            _accessoryView.hidden = YES;
+            [_accessoryView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.size.mas_equalTo(CGSizeMake(10, 10));
+            }];
+        }
+        if (model.type == XYInfoCellTypeTextView) {
             // 默认 _accessoryView = nil
             _accessoryView.hidden = YES;
             [_accessoryView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -467,6 +510,15 @@
             make.right.equalTo(self.accessoryView.mas_left).offset(-5);
         }];
     }
+    if (self.cell_type == XYInfoCellTypeTextView) {
+        
+        [self.inputTV mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self).offset(5);
+            make.bottom.equalTo(self).offset(-5);
+            make.left.equalTo(self.titleLabel.mas_right).offset(15);
+            make.right.equalTo(self.accessoryView.mas_left).offset(-5);
+        }];
+    }
     
     if (self.cell_type == XYInfoCellTypeChoose) {
         
@@ -508,6 +560,9 @@
         if ([self.inputTF.text isEqualToString:@" "]) {
             self.inputTF.text = @"";
         }
+        if ([self.inputTV.text isEqualToString:@" "]) {
+            self.inputTV.text = @"";
+        }
         if ([self.detailLabel.text isEqualToString:@" "]) {
             self.detailLabel.text = nil;
         }
@@ -518,8 +573,12 @@
 - (void)textFieldTextChanged:(NSNotification *)noty
 {
     // 文字已经修改了，修改自己的数据模型
+    UITextField *tf = noty.object;
+    // NSLog(@"tv文字修改 --- %@",tv.text);
     
-    self.model.value = self.inputTF.text;
+    if (tf == self.inputTF) { // 回调，值调用有用的一次，上面无用的打印会有多次
+        self.model.value = self.inputTF.text;
+    }
 }
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
@@ -530,6 +589,29 @@
     }
     return YES;
 }
+
+#pragma Mark - UITextViewDelegate 监听文字修改
+- (void)textViewTextChanged:(NSNotification *)noty
+{
+    // 文字已经修改了，修改自己的数据模型
+    UITextView *tv = noty.object;
+    //NSLog(@"tv文字修改 --- %@",tv.text);
+    
+    if (tv == self.inputTV) { // 回调，值调用有用的一次，上面无用的打印会有多次
+        self.model.value = self.inputTV.text;
+    }
+    
+}
+
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView
+{
+    // 内部tf被点击成为第一响应者，也要调用自己被click的回调，通知外部被操作的cell
+    if (self.cellTouchBlock) {
+        self.cellTouchBlock(self);
+    }
+    return YES;
+}
+
 #pragma mark - actions
 
 - (void)dealloc

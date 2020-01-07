@@ -154,6 +154,7 @@
 		B48515FA22B8E78000779B6B /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = B48515F722B8E78000779B6B /* SVProgressHUD.m */; };
 		B48515FB22B8E78000779B6B /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = B48515F822B8E78000779B6B /* SVIndefiniteAnimatedView.m */; };
 		B48515FC22B8E78000779B6B /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B48515F922B8E78000779B6B /* SVProgressHUD.bundle */; };
+		B4D80E4223C47A7000A11769 /* UITextView+XYInfomationSection.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D80E4123C47A7000A11769 /* UITextView+XYInfomationSection.m */; };
 		B4E835B82390E12700349AC3 /* visa_delete@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4E835B72390E12700349AC3 /* visa_delete@3x.png */; };
 		B4E8AB9C22C347F00096208A /* IQTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E8AB7922C347F00096208A /* IQTextView.m */; };
 		B4E8AB9D22C347F00096208A /* IQToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E8AB7D22C347F00096208A /* IQToolbar.m */; };
@@ -407,6 +408,8 @@
 		B48515F822B8E78000779B6B /* SVIndefiniteAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVIndefiniteAnimatedView.m; sourceTree = "<group>"; };
 		B48515F922B8E78000779B6B /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
 		B48515FD22B8E84700779B6B /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		B4D80E4023C47A7000A11769 /* UITextView+XYInfomationSection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITextView+XYInfomationSection.h"; sourceTree = "<group>"; };
+		B4D80E4123C47A7000A11769 /* UITextView+XYInfomationSection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITextView+XYInfomationSection.m"; sourceTree = "<group>"; };
 		B4E835B72390E12700349AC3 /* visa_delete@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "visa_delete@3x.png"; sourceTree = "<group>"; };
 		B4E8AB7922C347F00096208A /* IQTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IQTextView.m; sourceTree = "<group>"; };
 		B4E8AB7A22C347F00096208A /* IQTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IQTextView.h; sourceTree = "<group>"; };
@@ -798,6 +801,8 @@
 				B48515A322B8B70100779B6B /* XYInfomationSection.m */,
 				B40F58FC22BA90EA001C6A53 /* XYInfomationBaseViewController.h */,
 				B40F58FD22BA90EA001C6A53 /* XYInfomationBaseViewController.m */,
+				B4D80E4023C47A7000A11769 /* UITextView+XYInfomationSection.h */,
+				B4D80E4123C47A7000A11769 /* UITextView+XYInfomationSection.m */,
 			);
 			path = XYInfomationSection;
 			sourceTree = "<group>";
@@ -1203,6 +1208,7 @@
 				B4E8AB9C22C347F00096208A /* IQTextView.m in Sources */,
 				B48515FB22B8E78000779B6B /* SVIndefiniteAnimatedView.m in Sources */,
 				B485158922B8B51500779B6B /* AppDelegate.m in Sources */,
+				B4D80E4223C47A7000A11769 /* UITextView+XYInfomationSection.m in Sources */,
 				B44D7B292387A0F900173869 /* XYDabingyiliaoController.m in Sources */,
 				B4E8ABA122C347F00096208A /* IQPreviousNextView.m in Sources */,
 				B48515EC22B8E76600779B6B /* MJExtensionConst.m in Sources */,
