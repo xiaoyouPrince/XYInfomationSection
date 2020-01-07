@@ -1,5 +1,5 @@
 //
-//  UITextView+XYInfomationSection.h
+//  XYInfoTextView.h
 //  SectionDemo
 //
 //  Created by 渠晓友 on 2020/1/7.
@@ -10,8 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UITextView (XYInfomationSection)
-
+@interface XYInfoTextView : UITextView
 /**
  Set textView's placeholder text. Default is nil.
  */

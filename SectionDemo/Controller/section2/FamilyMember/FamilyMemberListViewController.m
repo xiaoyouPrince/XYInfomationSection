@@ -35,9 +35,8 @@
         XYInfomationItem *item6 = [XYInfomationItem modelWithTitle:@"与本人关系" titleKey:@"relationShip" type:1 value:nil placeholderValue:nil disableUserAction:NO];
         XYInfomationItem *item7 = [XYInfomationItem modelWithTitle:@"备注信息" titleKey:@"other" type:XYInfoCellTypeTextView value:nil placeholderValue:nil disableUserAction:NO];
         item7.cellHeight = 150;
-        XYInfomationItem *item8 = [XYInfomationItem modelWithTitle:@"与本人关系" titleKey:@"relationShip" type:1 value:nil placeholderValue:nil disableUserAction:NO];
         
-        section.dataArray = @[item1,item2,item3,item4,item5,item6,item7,item8];
+        section.dataArray = @[item1,item2,item3,item4,item5,item6,item7];
         __weak typeof(self) weakSelf = self;
         section.cellClickBlock = ^(NSInteger index, XYInfomationCell * _Nonnull cell) {
             [weakSelf sectionCellClicked:cell];

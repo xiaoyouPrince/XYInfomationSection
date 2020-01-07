@@ -15,8 +15,8 @@
 
 // 可能选择的情况： 出生日期选择(年月日) || 地区选择(省市区) || 单选框
 
-#import "UITextView+XYInfomationSection.h"
 #import "XYInfomationCell.h"
+#import "XYInfoTextView.h"
 #import <objc/runtime.h>
 #import "Masonry.h"
 
@@ -115,7 +115,7 @@
 @property (weak, nonatomic) UILabel *titleLabel;
 @property (weak, nonatomic) UILabel *detailLabel; // chooseType
 @property (weak, nonatomic) UITextField *inputTF; // inputType
-@property (weak, nonatomic) UITextView *inputTV;  // tvType
+@property (weak, nonatomic) XYInfoTextView *inputTV;  // tvType
 @property (weak, nonatomic) UIView *accessoryView;
 
 
@@ -278,7 +278,7 @@
     {
         // detailLabel
         if (!self.inputTV) {
-            UITextView *inputTV = [UITextView new];
+            XYInfoTextView *inputTV = [XYInfoTextView new];
             self.inputTV = inputTV;
             [self addSubview:inputTV];
             inputTV.textAlignment = NSTextAlignmentLeft;
