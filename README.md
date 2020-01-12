@@ -4,6 +4,9 @@
 
 ### 更新
 
+**Version 0.3.0 2020年1月12日**
+1. 添加XYInfomationCell类型，新增inputTextView类型，可以更方便输入长串数据
+
 **Version 0.2.0 2019年12月20日**
 1. 完全移除 XYInfomationCell.xib，全部代码使用代码约束，有效避免手动约束和xib约束冲突问题
 
@@ -101,7 +104,7 @@ section.cellClickBlock = ^(NSInteger index, XYInfomationCell * _Nonnull cell) {
 
 ### TODO
 
-- 已知 XIB 约束与 Masonry 约束共同使用，容易导致无法同事满足约束问题，此问题预计下个版本完全使用代码布局
+- 0.3.1 更新一个Switch类型的cell
 
 ### 感谢
 
