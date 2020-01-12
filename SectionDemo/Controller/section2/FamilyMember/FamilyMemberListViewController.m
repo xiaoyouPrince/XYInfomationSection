@@ -33,7 +33,7 @@
         XYInfomationItem *item4 = [XYInfomationItem modelWithTitle:@"证件号码" titleKey:@"memberIdCardNo" type:0 value:nil placeholderValue:nil disableUserAction:NO];
         XYInfomationItem *item5 = [XYInfomationItem modelWithTitle:@"出生日期" titleKey:@"memberBirthDate" type:1 value:nil placeholderValue:nil disableUserAction:NO];
         XYInfomationItem *item6 = [XYInfomationItem modelWithTitle:@"与本人关系" titleKey:@"relationShip" type:1 value:nil placeholderValue:nil disableUserAction:NO];
-        XYInfomationItem *item7 = [XYInfomationItem modelWithTitle:@"备注信息" titleKey:@"other" type:XYInfoCellTypeTextView value:nil placeholderValue:nil disableUserAction:NO];
+        XYInfomationItem *item7 = [XYInfomationItem modelWithTitle:@"备注信息埃菲尔无法哈维和我哈我改噶范围发哈哈尬舞个 乏味和欧发我个" titleKey:@"other" type:XYInfoCellTypeTextView value:nil placeholderValue:nil disableUserAction:NO];
         item7.cellHeight = 150;
         
         section.dataArray = @[item1,item2,item3,item4,item5,item6,item7];
