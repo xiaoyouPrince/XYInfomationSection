@@ -74,7 +74,7 @@ typedef NS_ENUM(NSUInteger, XYInfoCellType) {
  */
 @property(nonatomic , copy)     NSString *titleKey;
 /**
- 类型，输入还是选择  0 输入  1 选择, default is inputType
+ 类型，输入还是选择  0 输入  1 选择  2 文本录入, default is inputType
  */
 @property(nonatomic , assign)     XYInfoCellType type;
 /**
@@ -139,6 +139,24 @@ typedef NS_ENUM(NSUInteger, XYInfoCellType) {
  model中额外的数据对象。default is nil
  */
 @property(nonatomic , strong)   id obj;
+
+/// 一些 cell 内部元素的 textColor, font,
+
+///  titleColor  default is #333333
+@property (nonatomic, strong)   UIColor *titleColor;
+///  titleFont   default is 15号
+@property (nonatomic, strong)   UIFont *titleFont;
+
+///  valueColor  default is #000000
+@property (nonatomic, strong)   UIColor *valueColor;
+///  valueFont    default is 14号
+@property (nonatomic, strong)   UIFont *valueFont;
+
+///  placeholderColor  default is #999999
+@property (nonatomic, strong)   UIColor *placeholderColor;
+///  placeholderFont    default is valueFont
+@property (nonatomic, strong)   UIFont *placeholderFont;
+
 
 /// 创建方法(通过dictionary创建)
 + (instancetype)modelWithDict:(NSDictionary *)dict;

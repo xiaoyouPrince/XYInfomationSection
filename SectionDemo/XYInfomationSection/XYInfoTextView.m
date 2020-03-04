@@ -105,6 +105,16 @@
     [self refreshPlaceholder];
 }
 
+- (void)setPlaceholderColor:(UIColor *)placeholderColor
+{
+    placeHolderLabel.textColor = placeholderColor;
+}
+
+- (void)setPlaceholderFont:(UIFont *)placeholderFont
+{
+    placeHolderLabel.font = placeholderFont;
+}
+
 //When any text changes on textField, the delegate getter is called. At this time we refresh the textView's placeholder
 -(id<UITextViewDelegate>)delegate
 {

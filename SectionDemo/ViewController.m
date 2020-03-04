@@ -59,6 +59,12 @@
     UILabel *label3 = [[UILabel alloc] init];
     label3.text = @"综合使用";
     
+    UILabel *label4 = [[UILabel alloc] init];
+    label4.text = @"开启试试";
+    UISwitch *open = [UISwitch new];
+    [open addTarget:self action:@selector(openValueChanged:) forControlEvents:UIControlEventValueChanged];
+    
+    
     XYInfomationSection *section1 = [XYInfomationSection new];
     XYInfomationSection *section2 = [XYInfomationSection new];
     XYInfomationSection *section3 = [XYInfomationSection new];
@@ -76,6 +82,8 @@
     [self.view addSubview:label1];
     [self.view addSubview:label2];
     [self.view addSubview:label3];
+    [self.view addSubview:label4];
+    [self.view addSubview:open];
     [self.view addSubview:section1];
     [self.view addSubview:section2];
     [self.view addSubview:section3];
@@ -86,6 +94,17 @@
         make.left.equalTo(self.view).offset(15);
         make.right.equalTo(self.view).offset(-15);
     }];
+    
+    [open mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(label1).offset(0);
+        make.right.equalTo(self.view).offset(-15);
+    }];
+    
+    [label4 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(label1).offset(0);
+        make.right.equalTo(open.mas_left).offset(-15);
+    }];
+    
     [section1 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(label1.mas_bottom).offset(margin);
         make.left.equalTo(self.view).offset(15);
@@ -134,11 +153,47 @@
 }
 
 
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+- (void)openValueChanged:(UISwitch *)sender
 {
-
+    // NSLog(@"open = %@",sender.isOn?@"开启":@"关闭");
+    [[NSUserDefaults standardUserDefaults] setBool:sender.isOn forKey:@"open"];
+    
+    NSMutableArray *sections = @[].mutableCopy;
+    for (UIView *view in self.view.subviews) {
+        if ([view isKindOfClass:XYInfomationSection.class]) {
+            [sections addObject:view];
+        }
+    }
+    
+    [UIView animateWithDuration:0.1 animations:^{
+        for (XYInfomationSection *section in sections) {
+            for (XYInfomationItem *item in section.dataArray) {
+                
+                if (sender.isOn) {
+                    item.titleColor = UIColor.greenColor;
+                    item.titleFont = [UIFont systemFontOfSize:19];
+                    
+                    item.valueColor = [UIColor cyanColor];
+                    item.valueFont = [UIFont systemFontOfSize:25];
+                    
+                    item.placeholderColor = [UIColor redColor];
+                    item.placeholderFont = [UIFont systemFontOfSize:15];
+                }else
+                {
+                    item.titleColor = UIColor.blackColor;
+                    item.titleFont = [UIFont systemFontOfSize:14];
+                    
+                    item.valueColor = [UIColor blackColor];
+                    item.valueFont = [UIFont systemFontOfSize:14];
+                    
+                    item.placeholderColor = [UIColor lightGrayColor];
+                    item.placeholderFont = [UIFont systemFontOfSize:14];
+                }
+            }
+            section.dataArray = section.dataArray;
+        }
+    }];
 }
-
 
 @end
 

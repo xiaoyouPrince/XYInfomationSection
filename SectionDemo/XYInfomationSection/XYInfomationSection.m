@@ -108,7 +108,19 @@ static UIView *the_bottom_cell = nil;
             }
         };
         
-#warning todo - will add 组内的内距
+        // 添加底边和内边距
+        if (self.separatorColor) {
+            UIView *lineView = cell.subviews.lastObject;
+            lineView.backgroundColor = self.separatorColor;
+        }
+        if (!UIEdgeInsetsEqualToEdgeInsets(self.separatorInset, UIEdgeInsetsZero)) {
+            UIView *lineView = cell.subviews.lastObject;
+            [lineView mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(lineView.superview).offset(self.separatorInset.left);
+                make.right.equalTo(lineView.superview).offset(-self.separatorInset.right);
+            }];
+        }
+        
         NSInteger offset = 0;
         [cell mas_makeConstraints:^(MASConstraintMaker *make) {
 

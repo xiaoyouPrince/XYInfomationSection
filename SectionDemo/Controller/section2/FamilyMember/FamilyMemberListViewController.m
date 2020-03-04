@@ -36,6 +36,28 @@
         XYInfomationItem *item7 = [XYInfomationItem modelWithTitle:@"备注信息埃菲尔无法哈维和我哈我改噶范围发哈哈尬舞个 乏味和欧发我个" titleKey:@"other" type:XYInfoCellTypeTextView value:nil placeholderValue:nil disableUserAction:NO];
         item7.cellHeight = 150;
         
+        
+        
+        /**
+         测试新属性，自定义的颜色样式
+         */
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:@"open"]) {
+            for (XYInfomationItem *item in @[item1,item2,item3,item4,item5,item6,item7]) {
+                
+                item.titleColor = UIColor.greenColor;
+                item.titleFont = [UIFont systemFontOfSize:19];
+                
+                item.valueColor = [UIColor yellowColor];
+                item.valueFont = [UIFont systemFontOfSize:25];
+                
+                item.placeholderColor = [UIColor redColor];
+                item.placeholderFont = [UIFont systemFontOfSize:18];
+            }
+            
+            section.separatorInset = UIEdgeInsetsMake(0, 0, 0, 30);
+            section.separatorColor = UIColor.redColor;
+        }
+        
         section.dataArray = @[item1,item2,item3,item4,item5,item6,item7];
         __weak typeof(self) weakSelf = self;
         section.cellClickBlock = ^(NSInteger index, XYInfomationCell * _Nonnull cell) {

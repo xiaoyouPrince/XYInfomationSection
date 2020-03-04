@@ -14,24 +14,8 @@
             filePath = "SectionDemo/XYInfomationSection/XYInfomationCell.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "245"
-            endingLineNumber = "245"
-            landmarkName = "-setModel:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "15B65BEC-12EB-4A1C-BD25-95C6D3B05150"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SectionDemo/XYInfomationSection/XYInfomationCell.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "394"
-            endingLineNumber = "394"
+            startingLineNumber = "302"
+            endingLineNumber = "302"
             landmarkName = "-setModel:"
             landmarkType = "7">
          </BreakpointContent>
@@ -57,8 +41,8 @@
             filePath = "SectionDemo/Controller/section2/FamilyMember/FamilyMemberListViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "189"
-            endingLineNumber = "189"
+            startingLineNumber = "211"
+            endingLineNumber = "211"
             landmarkName = "-showPickerForCell:"
             landmarkType = "7">
          </BreakpointContent>

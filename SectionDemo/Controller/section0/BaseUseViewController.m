@@ -173,6 +173,20 @@
             // 加入数据源
             [array5 addObject:item];
         }
+        
+        
+        // 根据是否开启样式测试
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:@"open"]) {
+            item.titleColor = UIColor.greenColor;
+            item.titleFont = [UIFont systemFontOfSize:19];
+            
+            item.valueColor = [UIColor cyanColor];
+            item.valueFont = [UIFont systemFontOfSize:25];
+            
+            item.placeholderColor = [UIColor redColor];
+            item.placeholderFont = [UIFont systemFontOfSize:15];
+        }
+        
     }
     
     section1.dataArray = array1;

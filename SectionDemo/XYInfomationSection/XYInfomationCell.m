@@ -45,6 +45,55 @@
     return 50.f;
 }
 
+- (UIColor *)titleColor
+{
+    if (!_titleColor) {
+        return HEXCOLOR(0x333333);
+    }
+    return _titleColor;
+}
+
+- (UIFont *)titleFont
+{
+    if (!_titleFont) {
+        return [UIFont systemFontOfSize:15];
+    }
+    return _titleFont;
+}
+
+- (UIColor *)valueColor
+{
+    if (!_valueColor) {
+        return HEXCOLOR(0x000000);
+    }
+    return _valueColor;
+}
+
+- (UIFont *)valueFont
+{
+    if (!_valueFont) {
+        return [UIFont systemFontOfSize:14];
+    }
+    return _valueFont;
+}
+
+- (UIColor *)placeholderColor
+{
+    if (!_placeholderColor) {
+        return HEXCOLOR(0x999999);
+    }
+    return _placeholderColor;
+}
+
+
+- (UIFont *)placeholderFont
+{
+    if (!_placeholderFont) {
+        return [UIFont systemFontOfSize:14];
+    }
+    return _placeholderFont;
+}
+
 + (instancetype)modelWithTitle:(NSString *)title
                       titleKey:(NSString *)titleKey
                           type:(XYInfoCellType)type
@@ -173,14 +222,22 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textViewTextChanged:) name:UITextViewTextDidChangeNotification object:nil];
     
     self.backgroundColor = UIColor.clearColor;
-    self.titleLabel.font = [UIFont systemFontOfSize:14];
-    self.titleLabel.textColor = HEXCOLOR(0x999999);
+    self.titleLabel.font = self.model.titleFont;
+    self.titleLabel.textColor = self.model.titleColor;
     
-    self.inputTF.font = [UIFont systemFontOfSize:14];
-    self.inputTF.textColor = HEXCOLOR(0x333333);
+    self.inputTF.font = self.model.valueFont;
+    self.inputTF.textColor = self.model.valueColor;
     
-    self.detailLabel.font = [UIFont systemFontOfSize:14];
-    self.detailLabel.textColor = HEXCOLOR(0x333333);
+    self.inputTV.font = self.model.valueFont;
+    self.inputTV.textColor = self.model.valueColor;
+    
+    self.detailLabel.font = self.model.valueFont;
+    self.detailLabel.textColor = self.model.valueColor;
+    
+    UILabel *placeholderLabel = [self.inputTF valueForKey:@"placeholderLabel"];
+    placeholderLabel.textColor = self.model.placeholderColor;
+    self.inputTV.placeholderColor = self.model.placeholderColor;
+    
     
     // 添加一个底部的线
     UIView *line = [UIView new];
@@ -360,8 +417,8 @@
     if (self.inputTF && model.disableUserAction) { // 如果是textField这种输入的情况，因为TF不能换行，这里禁用了用户操作之后，就替替换成label，这样就能正常根据文字多少进行折行操作了，也能正确展示对应的自适应高度
         
         UILabel *label = [UILabel new];
-        label.font = self.inputTF.font;
-        label.textColor = self.inputTF.textColor;
+        label.font = self.model.valueFont;
+        label.textColor = self.model.valueColor;
         label.textAlignment = NSTextAlignmentRight;
         label.lineBreakMode = NSLineBreakByCharWrapping;
         label.numberOfLines = 0;

@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
  Set textView's placeholder text. Default is nil.
  */
 @property(nullable, nonatomic,copy) IBInspectable NSString    *placeholder;
+@property(nullable, nonatomic,copy) UIColor *placeholderColor;
+@property(nullable, nonatomic,copy) UIFont *placeholderFont;
 
 @end
 
