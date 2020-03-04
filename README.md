@@ -4,6 +4,10 @@
 
 ### 更新
 
+**Version 0.4.0 2020年3月4日**
+1. 增加对 XYInfomationCell 样式自定义的支持，新增 title/value/placeholder 的颜色、字体设置接口
+2. 增加 XYInfomationSection 中设置 separateColor 和 separateInset 支持
+
 **Version 0.3.0 2020年1月12日**
 1. 添加XYInfomationCell类型，新增inputTextView类型，可以更方便输入长串数据
 
