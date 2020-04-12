@@ -33,7 +33,7 @@
 
 1.基本使用(以5条数据为例)
 
-<image src="https://github.com/xiaoyouPrince/XYInfomationSection/tree/master/image/base_01.png" width=270 height=198/> <image src="https://github.com/xiaoyouPrince/XYInfomationSection/tree/master/image/base_02.png" width=270 height=198/> <image src="https://github.com/xiaoyouPrince/XYInfomationSection/tree/master/image/base_03.png" width=270 height=198/> <image src="https://github.com/xiaoyouPrince/XYInfomationSection/tree/master/image/base_04.png" width=270 height=198/> <image src="https://github.com/xiaoyouPrince/XYInfomationSection/tree/master/image/base_05.png" width=270 height=198/>
+<image src=”image/base_01.png” width=270 height=198/> <image src=”image/base_02.png” width=270 height=198/> <image src=”image/base_03.png” width=270 height=198/> <image src=”image/base_04.png” width=270 height=198/> <image src=”image/base_05.png” width=270 height=198/>
 
 2.高级使用(简单交互如:个人中心页面、个人信息页面、设置页面)
 
