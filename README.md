@@ -106,9 +106,6 @@ section.cellClickBlock = ^(NSInteger index, XYInfomationCell * _Nonnull cell) {
 
 - 详情请查看Demo中对不同功能的具体实现
 
-### TODO
-
-- 0.3.1 更新一个Switch类型的cell
 
 ### 感谢
 
