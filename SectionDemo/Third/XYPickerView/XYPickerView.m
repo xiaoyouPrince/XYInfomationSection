@@ -119,7 +119,7 @@
 {
     if (!_titleLabel) {
         UILabel *titleLabel = [UILabel new];
-        titleLabel.font = [UIFont systemFontOfSize:20];
+        titleLabel.font = [UIFont systemFontOfSize:15];
         [titleLabel sizeToFit];
         titleLabel.textColor = UIColor.grayColor;
         titleLabel.textAlignment = NSTextAlignmentCenter;
