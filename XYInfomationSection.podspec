@@ -11,10 +11,10 @@ Pod::Spec.new do |s|
 								   本模块提供基类控制器，支持使用者只关心业务代码，方便实用。
 		                       DESC
 
-  s.homepage         		= 'https://github.com/xiaoyouPrince/SectionDemo'
+  s.homepage         		= 'https://github.com/xiaoyouPrince/XYInfomationSection'
   s.license          		= { :type => 'MIT', :file => 'LICENSE' }
   s.author           		= { 'xiaoyouPrince' => 'xiaoyouPrince@163.com' }
-  s.source           		= { :git => 'https://github.com/xiaoyouPrince/SectionDemo.git', :tag => s.version.to_s }
+  s.source           		= { :git => 'https://github.com/xiaoyouPrince/XYInfomationSection.git', :tag => s.version.to_s }
 
   s.ios.deployment_target 	= '8.0'
   s.requires_arc 			= true
