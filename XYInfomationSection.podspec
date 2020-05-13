@@ -3,7 +3,7 @@
 Pod::Spec.new do |s|
 
   s.name             		= 'XYInfomationSection'
-  s.version          		= '0.4.0'
+  s.version          		= '0.4.1'
   s.summary          		= 'a custom formdata component view, it decouple、elegant and efficient.'
   s.description      		= <<-DESC
 								   一组可定制化的表单组件，该组件将表单录入组件化，模块化。
