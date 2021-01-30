@@ -284,6 +284,9 @@
         {
             if (NSClassFromString(model.customCellClass)) {
                 cell = [NSClassFromString(model.customCellClass) new];
+            }else
+            {
+                @throw [[NSException alloc] initWithName:@"入参错误" reason:@"model.type为Other，必须传入 customCellClass" userInfo:nil];
             }
             cell->_cell_type = XYInfoCellTypeOther;
             cell.model = model;
