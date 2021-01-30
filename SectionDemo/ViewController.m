@@ -79,6 +79,8 @@
     item4.customCellClass = NSStringFromClass(XYCustomCell.class);
     XYInfomationItem *item5 = [XYInfomationItem modelWithTitle:@"个人所得税" titleKey:@"XYTaxViewController" type:XYInfoCellTypeOther value:@"基于XYInfomationBaseViewController" placeholderValue:nil disableUserAction:YES];
     item5.customCellClass = NSStringFromClass(XYCustomCell.class);
+    section3.separatorInset = UIEdgeInsetsMake(10, 50, 20, 40);
+    section3.separatorColor = UIColor.redColor;
     
     section1.dataArray = @[item];
     section2.dataArray = @[item1,item2,item3];

@@ -17,8 +17,8 @@
 
 #define kNotificationCenter [NSNotificationCenter defaultCenter]
 
-#define iPhoneX (ScreenH >= 812)
-#define kNavHeight              (iPhoneX ? (88.f) : (64.f))  // statusBarH + TopBarH
+#define iPhoneX (UIApplication.sharedApplication.statusBarFrame.size.height != 20)
+#define kNavHeight              (UIApplication.sharedApplication.statusBarFrame.size.height + 44)  // statusBarH + TopBarH
 
 
 
