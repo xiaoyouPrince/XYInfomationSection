@@ -157,6 +157,8 @@ typedef NS_ENUM(NSUInteger, XYInfoCellType) {
 ///  placeholderFont    default is valueFont
 @property (nonatomic, strong)   UIFont *placeholderFont;
 
+///  custom cell class - 当type == other 时候有效
+@property (nonatomic, strong)   NSString *customCellClass;
 
 /// 创建方法(通过dictionary创建)
 + (instancetype)modelWithDict:(NSDictionary *)dict;

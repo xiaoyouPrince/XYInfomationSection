@@ -155,6 +155,7 @@
 		B48515FB22B8E78000779B6B /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = B48515F822B8E78000779B6B /* SVIndefiniteAnimatedView.m */; };
 		B48515FC22B8E78000779B6B /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B48515F922B8E78000779B6B /* SVProgressHUD.bundle */; };
 		B49398DD23C4D41A00CA3D86 /* XYInfoTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = B49398DC23C4D41A00CA3D86 /* XYInfoTextView.m */; };
+		B4E6FCF625C4613E00ABA292 /* XYCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E6FCF525C4613E00ABA292 /* XYCustomCell.m */; };
 		B4E835B82390E12700349AC3 /* visa_delete@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4E835B72390E12700349AC3 /* visa_delete@3x.png */; };
 		B4E8AB9C22C347F00096208A /* IQTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E8AB7922C347F00096208A /* IQTextView.m */; };
 		B4E8AB9D22C347F00096208A /* IQToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E8AB7D22C347F00096208A /* IQToolbar.m */; };
@@ -410,6 +411,8 @@
 		B48515FD22B8E84700779B6B /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		B49398DB23C4D41A00CA3D86 /* XYInfoTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYInfoTextView.h; sourceTree = "<group>"; };
 		B49398DC23C4D41A00CA3D86 /* XYInfoTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYInfoTextView.m; sourceTree = "<group>"; };
+		B4E6FCF425C4613E00ABA292 /* XYCustomCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYCustomCell.h; sourceTree = "<group>"; };
+		B4E6FCF525C4613E00ABA292 /* XYCustomCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYCustomCell.m; sourceTree = "<group>"; };
 		B4E835B72390E12700349AC3 /* visa_delete@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "visa_delete@3x.png"; sourceTree = "<group>"; };
 		B4E8AB7922C347F00096208A /* IQTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IQTextView.m; sourceTree = "<group>"; };
 		B4E8AB7A22C347F00096208A /* IQTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IQTextView.h; sourceTree = "<group>"; };
@@ -478,6 +481,8 @@
 		B40F590C22BB3507001C6A53 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B4E6FCF425C4613E00ABA292 /* XYCustomCell.h */,
+				B4E6FCF525C4613E00ABA292 /* XYCustomCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1214,6 +1219,7 @@
 				B48515EC22B8E76600779B6B /* MJExtensionConst.m in Sources */,
 				B48515E822B8E76600779B6B /* MJPropertyType.m in Sources */,
 				B483E172238FFB23007DDAB7 /* FMResultSet.m in Sources */,
+				B4E6FCF625C4613E00ABA292 /* XYCustomCell.m in Sources */,
 				B48515CF22B8E73D00779B6B /* MASViewAttribute.m in Sources */,
 				B4E8ABA322C347F00096208A /* IQKeyboardManager.m in Sources */,
 				B44A3E5A23866D81001D9E81 /* XYDatePickerView.m in Sources */,

@@ -282,8 +282,11 @@
             break;
         case XYInfoCellTypeOther: // 如果是自定义类型，那就根据model中自定义类来创建
         {
-//            XYInfomationCell *cell = [XYInfomationCell new];
-//            cell->_cell_type = XYInfoCellTypeChoose;
+            if (NSClassFromString(model.customCellClass)) {
+                cell = [NSClassFromString(model.customCellClass) new];
+            }
+            cell->_cell_type = XYInfoCellTypeOther;
+            cell.model = model;
         }
             break;
         default:

@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "XYInfomationSection.h"
+#import "XYCustomCell.h"
 
 // 此页面为菜单列表页面
 /**
@@ -72,8 +73,12 @@
     XYInfomationItem *item1 = [XYInfomationItem modelWithTitle:@"个人中心页面" titleKey:@"UserCenterViewController" type:1 value:@"基于XYInfomationBaseViewController" placeholderValue:nil disableUserAction:YES];
     XYInfomationItem *item2 = [XYInfomationItem modelWithTitle:@"用户详细信息页面" titleKey:@"UserInfoViewController" type:1 value:@"基于XYInfomationBaseViewController" placeholderValue:nil disableUserAction:YES];
     XYInfomationItem *item3 = [XYInfomationItem modelWithTitle:@"设置页面" titleKey:@"SettingViewController" type:1 value:@"基于XYInfomationBaseViewController" placeholderValue:nil disableUserAction:YES];
-    XYInfomationItem *item4 = [XYInfomationItem modelWithTitle:@"添加家庭成员信息" titleKey:@"FamilyMemberListViewController" type:1 value:@"基于XYInfomationBaseViewController" placeholderValue:nil disableUserAction:NO];
-    XYInfomationItem *item5 = [XYInfomationItem modelWithTitle:@"个人所得税" titleKey:@"XYTaxViewController" type:1 value:@"基于XYInfomationBaseViewController" placeholderValue:nil disableUserAction:YES];
+//    XYInfomationItem *item4 = [XYInfomationItem modelWithTitle:@"添加家庭成员信息" titleKey:@"FamilyMemberListViewController" type:1 value:@"基于XYInfomationBaseViewController" placeholderValue:nil disableUserAction:NO];
+//    XYInfomationItem *item5 = [XYInfomationItem modelWithTitle:@"个人所得税" titleKey:@"XYTaxViewController" type:1 value:@"基于XYInfomationBaseViewController" placeholderValue:nil disableUserAction:YES];
+    XYInfomationItem *item4 = [XYInfomationItem modelWithTitle:@"添加家庭成员信息" titleKey:@"FamilyMemberListViewController" type:XYInfoCellTypeOther value:@"基于XYInfomationBaseViewController" placeholderValue:nil disableUserAction:NO];
+    item4.customCellClass = NSStringFromClass(XYCustomCell.class);
+    XYInfomationItem *item5 = [XYInfomationItem modelWithTitle:@"个人所得税" titleKey:@"XYTaxViewController" type:XYInfoCellTypeOther value:@"基于XYInfomationBaseViewController" placeholderValue:nil disableUserAction:YES];
+    item5.customCellClass = NSStringFromClass(XYCustomCell.class);
     
     section1.dataArray = @[item];
     section2.dataArray = @[item1,item2,item3];
