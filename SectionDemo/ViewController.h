@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "XYInfomationBaseViewController.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : XYInfomationBaseViewController
 
 
 @end
