@@ -121,6 +121,7 @@ static UIView *the_bottom_cell = nil;
             }];
         }
         
+#warning TODO - 设置cell 内边距
         NSInteger offset = 0;
         [cell mas_makeConstraints:^(MASConstraintMaker *make) {
 
@@ -171,9 +172,6 @@ static UIView *the_bottom_cell = nil;
     UIImage *lastBgImage = [UIImage imageNamed:self.dataArray.lastObject.backgroundImage];
     if (lastBgImage) {
         self.backgroundColor = UIColor.clearColor;
-    }else
-    {
-        self.backgroundColor = UIColor.whiteColor;
     }
 }
 
