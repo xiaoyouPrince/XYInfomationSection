@@ -30,7 +30,7 @@
     CGFloat max_y = CGRectGetMaxY(the_bottom_view.frame);
     CGFloat scrollViewH = self.scrollView.frame.size.height;
     if (max_y < scrollViewH) {
-        self.scrollView.contentSize = CGSizeMake(0, self.scrollView.bounds.size.height + 0.5);
+        self.scrollView.contentSize = CGSizeMake(0, scrollViewH + 0.5);
     }
     
     [self.scrollView scrollsToTop];

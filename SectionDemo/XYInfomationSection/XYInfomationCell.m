@@ -373,7 +373,9 @@
     }
     
     // 3. title
-    self.titleLabel.text = model.title;
+    if (model.type != XYInfoCellTypeOther) {
+        self.titleLabel.text = model.title;
+    }
     
     // 4. type value placeholderValue
     if (model.type == XYInfoCellTypeInput) {
@@ -434,7 +436,7 @@
         [self addSubview:label];
         [label mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.greaterThanOrEqualTo(self).offset(15);
-            make.centerY.equalTo(self);
+            make.centerY.equalTo(self).priorityHigh();
             make.bottom.greaterThanOrEqualTo(self).offset(-15);
             make.left.greaterThanOrEqualTo(self.titleLabel.mas_right).offset(15);
             make.right.equalTo(self.accessoryView).offset(0); // 默认无accessoryView
@@ -477,14 +479,14 @@
         if (model.type == XYInfoCellTypeInput) {
             // 默认 _accessoryView = nil
             _accessoryView.hidden = YES;
-            [_accessoryView mas_makeConstraints:^(MASConstraintMaker *make) {
+            [_accessoryView mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.size.mas_equalTo(CGSizeMake(10, 10));
             }];
         }
         if (model.type == XYInfoCellTypeTextView) {
             // 默认 _accessoryView = nil
             _accessoryView.hidden = YES;
-            [_accessoryView mas_makeConstraints:^(MASConstraintMaker *make) {
+            [_accessoryView mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.size.mas_equalTo(CGSizeMake(10, 10));
             }];
         }
@@ -503,7 +505,7 @@
             }
             
             _accessoryView.hidden = NO;
-            [_accessoryView mas_makeConstraints:^(MASConstraintMaker *make) {
+            [_accessoryView mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.size.mas_equalTo(image.size);
             }];
         }
@@ -533,7 +535,7 @@
     if (self.imageView.image) {
         
         [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.equalTo(self);
+            make.centerY.equalTo(self).priorityHigh();
             make.left.equalTo(self).offset(15);
             make.top.greaterThanOrEqualTo(self).offset(8); // 最多和高底8pt
             make.size.mas_equalTo(self.imageView.image.size);
@@ -541,7 +543,7 @@
         
         [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.greaterThanOrEqualTo(self).offset(15);
-            make.centerY.equalTo(self);
+            make.centerY.equalTo(self).priorityHigh();
             make.bottom.greaterThanOrEqualTo(self).offset(-15);
             make.left.equalTo(self.imageView.mas_right).offset(10);
             make.width.equalTo(self).multipliedBy(kTitleRate); // 占整体宽度
@@ -551,7 +553,7 @@
     {
         [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.greaterThanOrEqualTo(self).offset(15);
-            make.centerY.equalTo(self);
+            make.centerY.equalTo(self).priorityHigh();
             make.bottom.greaterThanOrEqualTo(self).offset(-15);
             make.left.equalTo(self).offset(15);
             make.width.equalTo(self).multipliedBy(kTitleRate); // 占整体宽度
@@ -559,7 +561,7 @@
     }
     
     [self.accessoryView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self);
+        make.centerY.equalTo(self).priorityHigh();
         make.right.equalTo(self).offset(-10);
         make.top.greaterThanOrEqualTo(self).offset(8); // 最多和高底8pt
         // 上面已经设置size
@@ -587,7 +589,7 @@
         
         [self.detailLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.greaterThanOrEqualTo(self).offset(15);
-            make.centerY.equalTo(self);
+            make.centerY.equalTo(self).priorityHigh();
             make.bottom.greaterThanOrEqualTo(self).offset(-15);
             make.left.greaterThanOrEqualTo(self.titleLabel.mas_right).offset(15);
             make.right.equalTo(self.accessoryView.mas_left).offset(-5);
@@ -605,8 +607,8 @@
         self.hidden = NO;
         
         // 设置自己默认最低高度
-        [self mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.height.greaterThanOrEqualTo(@(model.def_cellHeight));
+        [self mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.greaterThanOrEqualTo(@(model.def_cellHeight)).priorityHigh();
         }];
         
     }
