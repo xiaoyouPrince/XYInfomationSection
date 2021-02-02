@@ -63,7 +63,7 @@
     
     UIView *contentView = [UIView new];
     contentView.backgroundColor = HEXCOLOR(0xf6f6f6);
-    self.view.backgroundColor = UIColor.whiteColor;
+    self.view.backgroundColor = contentView.backgroundColor;
     
     self.userDetailInfo = [DataTool userModel];
     
