@@ -29,6 +29,9 @@
     UIView *the_bottom_view = self.scrollContentView.subviews.lastObject;
     CGFloat max_y = CGRectGetMaxY(the_bottom_view.frame);
     CGFloat scrollViewH = self.scrollView.frame.size.height;
+    if (@available(iOS 11.0, *)) {
+        scrollViewH = self.scrollView.frame.size.height - self.scrollView.adjustedContentInset.top - self.scrollView.adjustedContentInset.bottom;
+    }
     if (max_y < scrollViewH) {
         self.scrollView.contentSize = CGSizeMake(0, scrollViewH + 0.5);
     }
@@ -92,14 +95,6 @@
     self.headerView.backgroundColor = UIColor.clearColor;
     self.contentView.backgroundColor = UIColor.clearColor;
     self.footerView.backgroundColor = UIColor.clearColor;
-    
-    if (@available(iOS 11.0, *)) {
-        self.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentAutomatic;
-    } else {
-        self.automaticallyAdjustsScrollViewInsets = YES;
-    }
-    
-    
 }
 
 - (void)setHeaderView:(UIView *)headerView
