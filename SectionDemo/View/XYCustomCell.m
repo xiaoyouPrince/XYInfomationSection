@@ -8,6 +8,11 @@
 
 #import "XYCustomCell.h"
 
+@interface XYCustomCell()
+/** titleLabel */
+@property (nonatomic, weak)         UILabel * titleLabel;
+
+@end
 @implementation XYCustomCell
 
 - (instancetype)init
@@ -35,6 +40,8 @@
     titleLabel.textColor = model.titleColor;
     [self addSubview:titleLabel];
     titleLabel.frame = CGRectMake(200, 0, 100, model.def_cellHeight);
+    
+//    self.titleLabel.text = @"Test@implementation XYCustomCell@implementation XYCustomCell@implementation XYCustomCell@implementation XYCustomCell@implementation XYCustomCell@implementation XYCustomCell";
 }
 
 @end

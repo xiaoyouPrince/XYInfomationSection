@@ -19,6 +19,9 @@
 		B42DADA32388551C009E1CC3 /* XYTaxBaseSection.m in Sources */ = {isa = PBXBuildFile; fileRef = B42DADA22388551C009E1CC3 /* XYTaxBaseSection.m */; };
 		B42DADA623885828009E1CC3 /* XYTaxBaseCompanyInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B42DADA523885828009E1CC3 /* XYTaxBaseCompanyInfoCell.m */; };
 		B42DADA923885BF0009E1CC3 /* XYTaxBaseCompanySection.m in Sources */ = {isa = PBXBuildFile; fileRef = B42DADA823885BF0009E1CC3 /* XYTaxBaseCompanySection.m */; };
+		B436E5FD25CAEFC00019050E /* AlipayHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B436E5FC25CAEFC00019050E /* AlipayHeaderView.m */; };
+		B436E60325CB18A20019050E /* AlipaySettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B436E60225CB18A20019050E /* AlipaySettingViewController.m */; };
+		B436E60725CB2A860019050E /* AlipaySettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B436E60625CB2A860019050E /* AlipaySettingCell.m */; };
 		B44A3E5A23866D81001D9E81 /* XYDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = B44A3E5923866D81001D9E81 /* XYDatePickerView.m */; };
 		B44A3E5D2386B8C4001D9E81 /* NSString+Tool.m in Sources */ = {isa = PBXBuildFile; fileRef = B44A3E5C2386B8C4001D9E81 /* NSString+Tool.m */; };
 		B44A3E612386F80D001D9E81 /* XYTaxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B44A3E602386F80D001D9E81 /* XYTaxViewController.m */; };
@@ -123,6 +126,8 @@
 		B45C361B25C667810096DC40 /* IQUIViewController+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = B45C360D25C667810096DC40 /* IQUIViewController+Additions.m */; };
 		B45C361C25C667810096DC40 /* IQKeyboardReturnKeyHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B45C360F25C667810096DC40 /* IQKeyboardReturnKeyHandler.m */; };
 		B46D51AB2385B89000C56CFB /* XYPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = B46D51A92385B89000C56CFB /* XYPickerView.m */; };
+		B47EADC425C9A02900FC9599 /* CommonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B47EADC325C9A02900FC9599 /* CommonViewController.m */; };
+		B47EADC925C9A34B00FC9599 /* AlipayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B47EADC825C9A34B00FC9599 /* AlipayViewController.m */; };
 		B483E15E238FF7D0007DDAB7 /* XYLocationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B483E154238FF7D0007DDAB7 /* XYLocationBar.m */; };
 		B483E15F238FF7D0007DDAB7 /* XYChooseLocationView.m in Sources */ = {isa = PBXBuildFile; fileRef = B483E155238FF7D0007DDAB7 /* XYChooseLocationView.m */; };
 		B483E160238FF7D0007DDAB7 /* XYLocationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B483E156238FF7D0007DDAB7 /* XYLocationCell.m */; };
@@ -214,6 +219,12 @@
 		B42DADA523885828009E1CC3 /* XYTaxBaseCompanyInfoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYTaxBaseCompanyInfoCell.m; sourceTree = "<group>"; };
 		B42DADA723885BF0009E1CC3 /* XYTaxBaseCompanySection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYTaxBaseCompanySection.h; sourceTree = "<group>"; };
 		B42DADA823885BF0009E1CC3 /* XYTaxBaseCompanySection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYTaxBaseCompanySection.m; sourceTree = "<group>"; };
+		B436E5FB25CAEFC00019050E /* AlipayHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlipayHeaderView.h; sourceTree = "<group>"; };
+		B436E5FC25CAEFC00019050E /* AlipayHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlipayHeaderView.m; sourceTree = "<group>"; };
+		B436E60125CB18A20019050E /* AlipaySettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlipaySettingViewController.h; sourceTree = "<group>"; };
+		B436E60225CB18A20019050E /* AlipaySettingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlipaySettingViewController.m; sourceTree = "<group>"; };
+		B436E60525CB2A860019050E /* AlipaySettingCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlipaySettingCell.h; sourceTree = "<group>"; };
+		B436E60625CB2A860019050E /* AlipaySettingCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlipaySettingCell.m; sourceTree = "<group>"; };
 		B44A3E5823866D81001D9E81 /* XYDatePickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYDatePickerView.h; sourceTree = "<group>"; };
 		B44A3E5923866D81001D9E81 /* XYDatePickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYDatePickerView.m; sourceTree = "<group>"; };
 		B44A3E5B2386B8C4001D9E81 /* NSString+Tool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Tool.h"; sourceTree = "<group>"; };
@@ -343,6 +354,10 @@
 		B45C360F25C667810096DC40 /* IQKeyboardReturnKeyHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IQKeyboardReturnKeyHandler.m; sourceTree = "<group>"; };
 		B46D51A92385B89000C56CFB /* XYPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYPickerView.m; sourceTree = "<group>"; };
 		B46D51AA2385B89000C56CFB /* XYPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYPickerView.h; sourceTree = "<group>"; };
+		B47EADC225C9A02900FC9599 /* CommonViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonViewController.h; sourceTree = "<group>"; };
+		B47EADC325C9A02900FC9599 /* CommonViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommonViewController.m; sourceTree = "<group>"; };
+		B47EADC725C9A34B00FC9599 /* AlipayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlipayViewController.h; sourceTree = "<group>"; };
+		B47EADC825C9A34B00FC9599 /* AlipayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlipayViewController.m; sourceTree = "<group>"; };
 		B483E154238FF7D0007DDAB7 /* XYLocationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYLocationBar.m; sourceTree = "<group>"; };
 		B483E155238FF7D0007DDAB7 /* XYChooseLocationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYChooseLocationView.m; sourceTree = "<group>"; };
 		B483E156238FF7D0007DDAB7 /* XYLocationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYLocationCell.m; sourceTree = "<group>"; };
@@ -469,6 +484,7 @@
 				B418918622C1E88000A8B12D /* section0 */,
 				B418918522C1E86700A8B12D /* section1 */,
 				B418918C22C21FB500A8B12D /* section2 */,
+				B47EADC625C9A2FC00FC9599 /* section3 */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -768,6 +784,21 @@
 			path = XYPickerView;
 			sourceTree = "<group>";
 		};
+		B47EADC625C9A2FC00FC9599 /* section3 */ = {
+			isa = PBXGroup;
+			children = (
+				B47EADC725C9A34B00FC9599 /* AlipayViewController.h */,
+				B47EADC825C9A34B00FC9599 /* AlipayViewController.m */,
+				B436E5FB25CAEFC00019050E /* AlipayHeaderView.h */,
+				B436E5FC25CAEFC00019050E /* AlipayHeaderView.m */,
+				B436E60125CB18A20019050E /* AlipaySettingViewController.h */,
+				B436E60225CB18A20019050E /* AlipaySettingViewController.m */,
+				B436E60525CB2A860019050E /* AlipaySettingCell.h */,
+				B436E60625CB2A860019050E /* AlipaySettingCell.m */,
+			);
+			path = section3;
+			sourceTree = "<group>";
+		};
 		B483E153238FF7D0007DDAB7 /* XYChooseLocationView */ = {
 			isa = PBXGroup;
 			children = (
@@ -846,6 +877,8 @@
 				B485158822B8B51500779B6B /* AppDelegate.m */,
 				B485158A22B8B51500779B6B /* ViewController.h */,
 				B485158B22B8B51500779B6B /* ViewController.m */,
+				B47EADC225C9A02900FC9599 /* CommonViewController.h */,
+				B47EADC325C9A02900FC9599 /* CommonViewController.m */,
 				B4F0F8FA2389C1080094B521 /* LYLUnicode.m */,
 				B485158D22B8B51500779B6B /* Main.storyboard */,
 				B485159022B8B51700779B6B /* Assets.xcassets */,
@@ -1138,6 +1171,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B47EADC925C9A34B00FC9599 /* AlipayViewController.m in Sources */,
 				B48515CE22B8E73D00779B6B /* MASViewConstraint.m in Sources */,
 				B44A3E612386F80D001D9E81 /* XYTaxViewController.m in Sources */,
 				B45C361B25C667810096DC40 /* IQUIViewController+Additions.m in Sources */,
@@ -1153,6 +1187,7 @@
 				B485158C22B8B51500779B6B /* ViewController.m in Sources */,
 				B48515C922B8E73D00779B6B /* MASConstraintMaker.m in Sources */,
 				B49398DD23C4D41A00CA3D86 /* XYInfoTextView.m in Sources */,
+				B436E60725CB2A860019050E /* AlipaySettingCell.m in Sources */,
 				B48515EB22B8E76600779B6B /* NSObject+MJCoding.m in Sources */,
 				B483E170238FFB23007DDAB7 /* FMDatabase.m in Sources */,
 				B40F590322BA97AA001C6A53 /* UserInfoViewController.m in Sources */,
@@ -1172,6 +1207,8 @@
 				B45C361525C667810096DC40 /* IQPreviousNextView.m in Sources */,
 				B45C361325C667810096DC40 /* IQBarButtonItem.m in Sources */,
 				B48515F122B8E76600779B6B /* MJFoundation.m in Sources */,
+				B47EADC425C9A02900FC9599 /* CommonViewController.m in Sources */,
+				B436E5FD25CAEFC00019050E /* AlipayHeaderView.m in Sources */,
 				B48515C722B8E73D00779B6B /* ViewController+MASAdditions.m in Sources */,
 				B44D7B202387A0AB00173869 /* XYMoreEducationNewController.m in Sources */,
 				B48515EF22B8E76600779B6B /* NSString+MJExtension.m in Sources */,
@@ -1202,6 +1239,7 @@
 				B44D7B292387A0F900173869 /* XYDabingyiliaoController.m in Sources */,
 				B48515EC22B8E76600779B6B /* MJExtensionConst.m in Sources */,
 				B48515E822B8E76600779B6B /* MJPropertyType.m in Sources */,
+				B436E60325CB18A20019050E /* AlipaySettingViewController.m in Sources */,
 				B483E172238FFB23007DDAB7 /* FMResultSet.m in Sources */,
 				B4E6FCF625C4613E00ABA292 /* XYCustomCell.m in Sources */,
 				B48515CF22B8E73D00779B6B /* MASViewAttribute.m in Sources */,

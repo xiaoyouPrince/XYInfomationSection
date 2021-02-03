@@ -730,6 +730,269 @@ MJCodingImplementation;
     return arrayM;
 }
 
+
++ (NSArray *)AliPayData{
+    
+    NSArray *section1 = @[
+        @{
+            @"imageName": @"ali_1",
+            @"title": @"会员",
+            @"titleKey": @"CommonViewController",
+            @"value": @"600积分待领取",
+            @"type": @1,
+            @"valueCode": @"",
+            @"cellHeight": @50
+        },
+        @{
+            @"imageName": @"ali_2",
+            @"title": @"商家服务",
+            @"titleKey": @"CommonViewController",
+            @"value": @"",
+            @"type": @1,
+            @"valueCode": @"",
+            @"cellHeight": @50
+        }
+    ];
+    NSArray *section2 = @[
+        @{
+            @"imageName": @"ali_3",
+            @"title": @"转账",
+            @"titleKey": @"CommonViewController",
+            @"value": @"",
+            @"type": @1,
+            @"valueCode": @""
+        },
+        @{
+            @"imageName": @"ali_4",
+            @"title": @"所有资产",
+            @"titleKey": @"CommonViewController",
+            @"value": @"账户保障免费升级",
+            @"type": @1,
+            @"valueCode": @"",
+            @"valueColor": UIColor.greenColor
+        },
+        @{
+            @"imageName": @"ali_5",
+            @"title": @"余额",
+            @"titleKey": @"CommonViewController",
+            @"value": @"0.00",
+            @"type": @1,
+            @"valueCode": @""
+        },
+        @{
+            @"imageName": @"ali_6",
+            @"title": @"余额宝",
+            @"titleKey": @"CommonViewController",
+            @"value": @"",
+            @"type": @1,
+            @"valueCode": @""
+        },
+        @{
+            @"imageName": @"ali_7",
+            @"title": @"花呗",
+            @"titleKey": @"CommonViewController",
+            @"value": @"",
+            @"type": @1,
+            @"valueCode": @""
+        },
+        @{
+            @"imageName": @"ali_8",
+            @"title": @"余利宝",
+            @"titleKey": @"CommonViewController",
+            @"value": @"",
+            @"type": @1,
+            @"valueCode": @""
+        },
+        @{
+            @"imageName": @"ali_9",
+            @"title": @"银行卡",
+            @"titleKey": @"CommonViewController",
+            @"value": @"穷逼就银行卡多",
+            @"type": @1,
+            @"valueCode": @""
+        }
+    ];
+    NSArray *section3 = @[
+        @{
+            @"imageName": @"ali_10",
+            @"title": @"芝麻信用",
+            @"titleKey": @"CommonViewController",
+            @"value": @"优秀",
+            @"type": @1,
+            @"valueCode": @"",
+            @"valueColor": UIColor.redColor
+        },
+        @{
+            @"imageName": @"ali_11",
+            @"title": @"蚂蚁保",
+            @"titleKey": @"CommonViewController",
+            @"value": @"",
+            @"type": @1,
+            @"valueCode": @""
+        },
+        @{
+            @"imageName": @"ali_12",
+            @"title": @"相互保",
+            @"titleKey": @"CommonViewController",
+            @"value": @"你的助人月报已公布",
+            @"type": @1,
+            @"valueCode": @""
+        },
+        @{
+            @"imageName": @"ali_13",
+            @"title": @"网商贷",
+            @"titleKey": @"CommonViewController",
+            @"value": @"",
+            @"type": @1,
+            @"valueCode": @""
+        },
+        @{
+            @"imageName": @"ali_14",
+            @"title": @"网商银行",
+            @"titleKey": @"CommonViewController",
+            @"value": @"",
+            @"type": @1,
+            @"valueCode": @""
+        }
+    ];
+    NSArray *section4 = @[
+        @{
+            @"imageName": @"ali_15",
+            @"title": @"小程序",
+            @"titleKey": @"CommonViewController",
+            @"value": @"",
+            @"type": @1,
+            @"valueCode": @""
+        },
+        @{
+            @"imageName": @"ali_16",
+            @"title": @"爱心捐赠",
+            @"titleKey": @"CommonViewController",
+            @"value": @"",
+            @"type": @1,
+            @"valueCode": @""
+        },
+        @{
+            @"imageName": @"ali_17",
+            @"title": @"客户中心",
+            @"titleKey": @"CommonViewController",
+            @"value": @"",
+            @"type": @1,
+            @"valueCode": @""
+        }
+    ];
+    
+    NSArray *array = @[section1,section2,section3,section4];
+    return array;
+}
+
+
++ (NSArray *)AliPaySettingData{
+    
+    NSArray *section1 = @[
+        @{
+            @"imageName": @"",
+            @"title": @"账户和安全",
+            @"titleKey": @"CommonViewController",
+            @"value": @"",
+            @"type": @1,
+            @"valueCode": @"",
+            @"cellHeight": @50
+        },
+        @{
+            @"imageName": @"",
+            @"title": @"支付设置",
+            @"titleKey": @"CommonViewController",
+            @"value": @"",
+            @"type": @1,
+            @"valueCode": @"",
+            @"cellHeight": @50
+        }
+    ];
+    NSArray *section2 = @[
+        @{
+            @"imageName": @"",
+            @"title": @"新消息通知",
+            @"titleKey": @"CommonViewController",
+            @"value": @"",
+            @"type": @1,
+            @"valueCode": @""
+        },
+        @{
+            @"imageName": @"",
+            @"title": @"功能管理",
+            @"titleKey": @"CommonViewController",
+            @"value": @"",
+            @"type": @1,
+            @"valueCode": @"",
+            @"valueColor": UIColor.greenColor
+        },
+        @{
+            @"imageName": @"",
+            @"title": @"隐私",
+            @"titleKey": @"CommonViewController",
+            @"value": @"",
+            @"type": @1,
+            @"valueCode": @""
+        },
+        @{
+            @"imageName": @"",
+            @"title": @"通用",
+            @"titleKey": @"CommonViewController",
+            @"value": @"",
+            @"type": @1,
+            @"valueCode": @""
+        }
+    ];
+    NSArray *section3 = @[
+        @{
+            @"imageName": @"",
+            @"title": @"帮助和反馈",
+            @"titleKey": @"CommonViewController",
+            @"value": @"",
+            @"type": @1,
+            @"valueCode": @"",
+            @"valueColor": UIColor.redColor
+        },
+        @{
+            @"imageName": @"",
+            @"title": @"关于",
+            @"titleKey": @"CommonViewController",
+            @"value": @"Version 1.0.0",
+            @"type": @1,
+            @"valueCode": @"",
+            @"valueColor": UIColor.lightGrayColor
+        }
+    ];
+    NSArray *section4 = @[
+        @{
+            @"imageName": @"",
+            @"title": @"切换登录账户",
+            @"titleKey": @"CommonViewController",
+            @"value": @"",
+            @"type": @3,
+            @"customCellClass": @"AlipaySettingCell",
+            @"cellHeight": @50,
+            @"valueCode": @""
+        }
+    ];
+    NSArray *section5 = @[
+        @{
+            @"imageName": @"",
+            @"title": @"退出登录",
+            @"titleKey": @"CommonViewController",
+            @"value": @"",
+            @"type": @3,
+            @"customCellClass": @"AlipaySettingCell",
+            @"cellHeight": @50,
+            @"valueCode": @""
+        }
+    ];
+    
+    NSArray *array = @[section1,section2,section3,section4,section5];
+    return array;
+}
+
 @end
 
 
