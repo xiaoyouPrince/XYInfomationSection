@@ -83,6 +83,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 微信数据
 + (NSArray *)WechatPrivateData;
 
+/// 微博数据
++ (NSArray *)WeiBoData;
+
 @end
 
 @implementation NSDate (extension)

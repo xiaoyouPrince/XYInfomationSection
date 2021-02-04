@@ -77,6 +77,7 @@
     UILabel *label4 = [[UILabel alloc] init];
     label4.text = @"开启试试";
     UISwitch *open = [UISwitch new];
+    open.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"open"];
     [open addTarget:self action:@selector(openValueChanged:) forControlEvents:UIControlEventValueChanged];
     
     UILabel *label5 = [[UILabel alloc] init];

@@ -25,6 +25,7 @@
 		B436E60E25CBDD950019050E /* WeChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B436E60D25CBDD950019050E /* WeChatViewController.m */; };
 		B436E61325CBF4D00019050E /* WechatTipCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B436E61225CBF4D00019050E /* WechatTipCell.m */; };
 		B436E61725CC10640019050E /* MySwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = B436E61625CC10640019050E /* MySwitch.m */; };
+		B436E61C25CC1B510019050E /* WeiboViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B436E61B25CC1B510019050E /* WeiboViewController.m */; };
 		B44A3E5A23866D81001D9E81 /* XYDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = B44A3E5923866D81001D9E81 /* XYDatePickerView.m */; };
 		B44A3E5D2386B8C4001D9E81 /* NSString+Tool.m in Sources */ = {isa = PBXBuildFile; fileRef = B44A3E5C2386B8C4001D9E81 /* NSString+Tool.m */; };
 		B44A3E612386F80D001D9E81 /* XYTaxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B44A3E602386F80D001D9E81 /* XYTaxViewController.m */; };
@@ -234,6 +235,8 @@
 		B436E61225CBF4D00019050E /* WechatTipCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WechatTipCell.m; sourceTree = "<group>"; };
 		B436E61525CC10640019050E /* MySwitch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MySwitch.h; sourceTree = "<group>"; };
 		B436E61625CC10640019050E /* MySwitch.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MySwitch.m; sourceTree = "<group>"; };
+		B436E61A25CC1B510019050E /* WeiboViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeiboViewController.h; sourceTree = "<group>"; };
+		B436E61B25CC1B510019050E /* WeiboViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeiboViewController.m; sourceTree = "<group>"; };
 		B44A3E5823866D81001D9E81 /* XYDatePickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYDatePickerView.h; sourceTree = "<group>"; };
 		B44A3E5923866D81001D9E81 /* XYDatePickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYDatePickerView.m; sourceTree = "<group>"; };
 		B44A3E5B2386B8C4001D9E81 /* NSString+Tool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Tool.h"; sourceTree = "<group>"; };
@@ -607,6 +610,15 @@
 			path = Wechat;
 			sourceTree = "<group>";
 		};
+		B436E61925CC1B350019050E /* Weibo */ = {
+			isa = PBXGroup;
+			children = (
+				B436E61A25CC1B510019050E /* WeiboViewController.h */,
+				B436E61B25CC1B510019050E /* WeiboViewController.m */,
+			);
+			path = Weibo;
+			sourceTree = "<group>";
+		};
 		B44A3E5723866D4A001D9E81 /* XYDatePickerView */ = {
 			isa = PBXGroup;
 			children = (
@@ -824,6 +836,7 @@
 		B47EADC625C9A2FC00FC9599 /* section3 */ = {
 			isa = PBXGroup;
 			children = (
+				B436E61925CC1B350019050E /* Weibo */,
 				B436E60B25CBDD420019050E /* Wechat */,
 				B436E60925CBD4AD0019050E /* Alipay */,
 			);
@@ -1214,6 +1227,7 @@
 				B418918F22C2203300A8B12D /* FamilyMemberListViewController.m in Sources */,
 				B483E160238FF7D0007DDAB7 /* XYLocationCell.m in Sources */,
 				B4E8ABAE22C3AC470096208A /* BaseNavigationController.m in Sources */,
+				B436E61C25CC1B510019050E /* WeiboViewController.m in Sources */,
 				B44A3E5D2386B8C4001D9E81 /* NSString+Tool.m in Sources */,
 				B485158C22B8B51500779B6B /* ViewController.m in Sources */,
 				B48515C922B8E73D00779B6B /* MASConstraintMaker.m in Sources */,

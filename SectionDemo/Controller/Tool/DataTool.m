@@ -1151,6 +1151,175 @@ MJCodingImplementation;
     return array;
 }
 
++ (NSArray *)WeiBoData{
+    
+    UIImageView *atatar = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"grade"]];
+    atatar.frame = CGRectMake(0, 0, 30, 30);
+    
+    UIView *redDot = [UIView new];
+    redDot.backgroundColor = UIColor.redColor;
+    redDot.layer.cornerRadius = 5;
+    redDot.layer.borderWidth = 2;
+    redDot.layer.borderColor = [UIColor.whiteColor colorWithAlphaComponent:0.85].CGColor;
+    [atatar addSubview:redDot];
+    [redDot mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(atatar).offset(-5);
+        make.right.equalTo(atatar).offset(5);
+        make.size.mas_equalTo(CGSizeMake(10, 10));
+    }];
+    
+    
+    NSArray *section1 = @[
+        @{
+            @"imageName": @"",
+            @"title": @"账号管理",
+            @"titleKey": @"CommonViewController",
+            @"value": @"",
+            @"type": @1,
+            @"valueCode": @"",
+            @"cellHeight": @50,
+            @"accessoryView": atatar
+        },
+        @{
+            @"imageName": @"",
+            @"title": @"账号与安全",
+            @"titleKey": @"CommonViewController",
+            @"value": @"",
+            @"type": @1,
+            @"valueCode": @"",
+            @"cellHeight": @50,
+        }
+    ];
+    
+    NSArray *section2 = @[
+        @{
+            @"imageName": @"",
+            @"title": @"青少年模式",
+            @"titleKey": @"CommonViewController",
+            @"value": @"未开启",
+            @"type": @1,
+            @"valueCode": @""
+        }
+    ];
+    NSArray *section3 = @[
+        @{
+            @"imageName": @"",
+            @"title": @"会员专属设置",
+            @"titleKey": @"CommonViewController",
+            @"value": @"",
+            @"type": @3,
+            @"customCellClass": @"XYCustomCell",
+            @"valueCode": @"",
+            @"valueColor": UIColor.redColor
+        }
+    ];
+    
+    NSArray *section4 = @[
+        @{
+            @"title": @"推送通知设置",
+            @"type": @1,
+            @"customCellClass": @"WechatTipCell",
+            @"value": @"",
+            @"hideSeparateLine": @1
+        },
+        @{
+            @"imageName": @"",
+            @"title": @"屏蔽设置",
+            @"titleKey": @"CommonViewController",
+            @"value": @"",
+            @"type": @1,
+            @"customCellClass": @"AlipaySettingCell",
+            @"cellHeight": @50,
+            @"valueCode": @""
+        },
+        @{
+            @"imageName": @"",
+            @"title": @"隐私设置",
+            @"titleKey": @"CommonViewController",
+            @"value": @"",
+            @"type": @1,
+            @"customCellClass": @"AlipaySettingCell",
+            @"cellHeight": @50,
+            @"valueCode": @""
+        },
+        @{
+            @"imageName": @"",
+            @"title": @"通用设置",
+            @"titleKey": @"CommonViewController",
+            @"value": @"",
+            @"type": @1,
+            @"customCellClass": @"AlipaySettingCell",
+            @"cellHeight": @50,
+            @"valueCode": @"",
+            @"valueColor": UIColor.lightGrayColor
+        }
+    ];
+    
+    MySwitch *swith4 = [MySwitch new];
+    swith4.settingKey = @"护眼模式";
+    swith4.on = [[NSUserDefaults standardUserDefaults] boolForKey:swith4.settingKey];
+    NSArray *section5 = @[
+        @{
+            @"imageName": @"",
+            @"title": @"清理缓存",
+            @"titleKey": @"CommonViewController",
+            @"value": @"181.1MB",
+            @"type": @1,
+            @"customCellClass": @"AlipaySettingCell",
+            @"cellHeight": @50,
+            @"valueCode": @"",
+        },
+        @{
+            @"imageName": @"",
+            @"title": swith4.settingKey,
+            @"titleKey": @"CommonViewController",
+            @"value": @"",
+            @"type": @1,
+            @"customCellClass": @"AlipaySettingCell",
+            @"cellHeight": @50,
+            @"valueCode": @"",
+            @"accessoryView": swith4
+        }
+    ];
+    NSArray *section6 = @[
+        @{
+            @"imageName": @"",
+            @"title": @"客服中心",
+            @"titleKey": @"CommonViewController",
+            @"value": @"",
+            @"type": @1,
+            @"customCellClass": @"AlipaySettingCell",
+            @"cellHeight": @50,
+            @"valueCode": @""
+        },
+        @{
+            @"imageName": @"",
+            @"title": @"关于微博",
+            @"titleKey": @"CommonViewController",
+            @"value": @"",
+            @"type": @1,
+            @"customCellClass": @"AlipaySettingCell",
+            @"cellHeight": @50,
+            @"valueCode": @""
+        }
+    ];
+    
+    NSArray *section7 = @[
+        @{
+            @"imageName": @"",
+            @"title": @"退出当前账号",
+            @"titleKey": @"CommonViewController",
+            @"value": @"",
+            @"type": @3,
+            @"customCellClass": @"AlipaySettingCell",
+            @"cellHeight": @50,
+            @"valueCode": @""
+        }
+    ];
+    
+    NSArray *array = @[section1,section2,section3,section4,section5,section6,section7];
+    return array;
+}
 
 @end
 

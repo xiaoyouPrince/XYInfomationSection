@@ -30,6 +30,7 @@
     [super setModel:model];
     
     _titleLabel.text = model.title;
+    _titleLabel.textColor = UIColor.redColor;
     [_titleLabel mas_updateConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(model.cellHeight);
     }];
