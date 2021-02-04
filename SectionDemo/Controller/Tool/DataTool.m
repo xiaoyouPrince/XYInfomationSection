@@ -7,6 +7,7 @@
 //
 
 #import "DataTool.h"
+#import "MySwitch.h"
 #import "FMDB.h"
 
 @implementation UserModel
@@ -992,6 +993,164 @@ MJCodingImplementation;
     NSArray *array = @[section1,section2,section3,section4,section5];
     return array;
 }
+
++ (NSArray *)WechatPrivateData{
+    
+    MySwitch *swith1 = [MySwitch new];
+    swith1.settingKey = @"添加我为朋友时需要验证";
+    swith1.on = [[NSUserDefaults standardUserDefaults] boolForKey:swith1.settingKey];
+    
+    NSArray *section1 = @[
+        @{
+            @"imageName": @"",
+            @"title": swith1.settingKey,
+            @"titleKey": @"CommonViewController",
+            @"value": @"",
+            @"type": @1,
+            @"valueCode": @"",
+            @"cellHeight": @50,
+            @"accessoryView": swith1
+        }
+    ];
+    
+    MySwitch *swith2 = [MySwitch new];
+    swith2.settingKey = @"向我推荐通讯录朋友";
+    swith2.on = [[NSUserDefaults standardUserDefaults] boolForKey:swith2.settingKey];
+    NSArray *section2 = @[
+        @{
+            @"imageName": @"",
+            @"title": @"添加我的方式",
+            @"titleKey": @"CommonViewController",
+            @"value": @"",
+            @"type": @1,
+            @"valueCode": @""
+        },
+        @{
+            @"imageName": @"",
+            @"title": swith2.settingKey,
+            @"titleKey": @"CommonViewController",
+            @"value": @"",
+            @"type": @1,
+            @"valueCode": @"",
+            @"valueColor": UIColor.greenColor,
+            @"accessoryView": swith2
+        },
+        @{
+            @"title": @"开启后，为你推荐已经开通微信的手机联系人",
+            @"type": @3,
+            @"customCellClass": @"WechatTipCell",
+            @"backgroundColor": HEXCOLOR(0xf6f6f6),
+            @"hideSeparateLine": @1
+        }
+    ];
+    NSArray *section3 = @[
+        @{
+            @"imageName": @"",
+            @"title": @"通讯录黑名单",
+            @"titleKey": @"CommonViewController",
+            @"value": @"",
+            @"type": @1,
+            @"valueCode": @"",
+            @"valueColor": UIColor.redColor
+        }
+    ];
+    
+    
+    MySwitch *swith3 = [MySwitch new];
+    swith3.settingKey = @"允许陌生人查看十条朋友圈";
+    swith3.on = [[NSUserDefaults standardUserDefaults] boolForKey:swith3.settingKey];
+    NSArray *section4 = @[
+        @{
+            @"title": @"朋友圈和视频动态",
+            @"type": @3,
+            @"customCellClass": @"WechatTipCell",
+            @"backgroundColor": HEXCOLOR(0xf6f6f6),
+            @"hideSeparateLine": @1
+        },
+        @{
+            @"imageName": @"",
+            @"title": @"不让他(她)看",
+            @"titleKey": @"CommonViewController",
+            @"value": @"",
+            @"type": @1,
+            @"customCellClass": @"AlipaySettingCell",
+            @"cellHeight": @50,
+            @"valueCode": @""
+        },
+        @{
+            @"imageName": @"",
+            @"title": @"不看他",
+            @"titleKey": @"CommonViewController",
+            @"value": @"",
+            @"type": @1,
+            @"customCellClass": @"AlipaySettingCell",
+            @"cellHeight": @50,
+            @"valueCode": @""
+        },
+        @{
+            @"imageName": @"",
+            @"title": @"允许朋友查看朋友圈的范围",
+            @"titleKey": @"CommonViewController",
+            @"value": @"最近一个月",
+            @"type": @1,
+            @"customCellClass": @"AlipaySettingCell",
+            @"cellHeight": @50,
+            @"valueCode": @"",
+            @"valueColor": UIColor.lightGrayColor
+        },
+        @{
+            @"imageName": @"",
+            @"title": swith3.settingKey,
+            @"titleKey": @"CommonViewController",
+            @"value": @"",
+            @"type": @1,
+            @"customCellClass": @"WechatTipCell",
+            @"cellHeight": @50,
+            @"valueCode": @"",
+            @"accessoryView": swith3
+        }
+    ];
+    
+    MySwitch *swith4 = [MySwitch new];
+    swith4.settingKey = @"朋友圈更新提醒";
+    swith4.on = [[NSUserDefaults standardUserDefaults] boolForKey:swith4.settingKey];
+    NSArray *section5 = @[
+        @{
+            @"imageName": @"",
+            @"title": swith4.settingKey,
+            @"titleKey": @"CommonViewController",
+            @"value": @"",
+            @"type": @1,
+            @"customCellClass": @"AlipaySettingCell",
+            @"cellHeight": @50,
+            @"valueCode": @"",
+            @"accessoryView": swith4
+        },
+        @{
+            @"title": @"关闭后，有朋友发表朋友圈时，界面下方的“发现”切换按钮上不再出现红点提示。",
+            @"type": @3,
+            @"customCellClass": @"WechatTipCell",
+            @"backgroundColor": HEXCOLOR(0xf6f6f6),
+            @"hideSeparateLine": @1
+        }
+    ];
+    NSArray *section6 = @[
+        @{
+            @"imageName": @"",
+            @"title": @"授权管理",
+            @"titleKey": @"CommonViewController",
+            @"value": @"",
+            @"type": @1,
+            @"customCellClass": @"AlipaySettingCell",
+            @"cellHeight": @50,
+            @"valueCode": @""
+        }
+    ];
+    
+    NSArray *array = @[section1,section2,section3,section4,section5,section6];
+    return array;
+}
+
 
 @end
 

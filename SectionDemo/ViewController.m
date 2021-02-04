@@ -93,7 +93,7 @@
     XYInfomationItem *item4 = [XYInfomationItem modelWithTitle:@"添加家庭成员信息" titleKey:@"FamilyMemberListViewController" type:1 value:@"基于XYInfomationBaseViewController" placeholderValue:nil disableUserAction:NO];
     XYInfomationItem *item5 = [XYInfomationItem modelWithTitle:@"个人所得税" titleKey:@"XYTaxViewController" type:1 value:@"基于XYInfomationBaseViewController" placeholderValue:nil disableUserAction:YES];
     XYInfomationItem *item6 = [XYInfomationItem modelWithTitle:@"支付宝" titleKey:@"AlipayViewController" type:XYInfoCellTypeChoose value:@"个人中心页面" placeholderValue:nil disableUserAction:NO];
-    XYInfomationItem *item7 = [XYInfomationItem modelWithTitle:@"微信" titleKey:@"WeChatViewController" type:XYInfoCellTypeChoose value:@"设置页面" placeholderValue:nil disableUserAction:YES];
+    XYInfomationItem *item7 = [XYInfomationItem modelWithTitle:@"微信" titleKey:@"WeChatViewController" type:XYInfoCellTypeChoose value:@"隐私设置页面" placeholderValue:nil disableUserAction:YES];
     item7.customCellClass = NSStringFromClass(XYCustomCell.class);
     XYInfomationItem *item8 = [XYInfomationItem modelWithTitle:@"微博" titleKey:@"WeiboViewController" type:XYInfoCellTypeChoose value:@"设置页面" placeholderValue:nil disableUserAction:YES];
     item7.customCellClass = NSStringFromClass(XYCustomCell.class);

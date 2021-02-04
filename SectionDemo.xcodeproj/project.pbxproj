@@ -22,6 +22,9 @@
 		B436E5FD25CAEFC00019050E /* AlipayHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B436E5FC25CAEFC00019050E /* AlipayHeaderView.m */; };
 		B436E60325CB18A20019050E /* AlipaySettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B436E60225CB18A20019050E /* AlipaySettingViewController.m */; };
 		B436E60725CB2A860019050E /* AlipaySettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B436E60625CB2A860019050E /* AlipaySettingCell.m */; };
+		B436E60E25CBDD950019050E /* WeChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B436E60D25CBDD950019050E /* WeChatViewController.m */; };
+		B436E61325CBF4D00019050E /* WechatTipCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B436E61225CBF4D00019050E /* WechatTipCell.m */; };
+		B436E61725CC10640019050E /* MySwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = B436E61625CC10640019050E /* MySwitch.m */; };
 		B44A3E5A23866D81001D9E81 /* XYDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = B44A3E5923866D81001D9E81 /* XYDatePickerView.m */; };
 		B44A3E5D2386B8C4001D9E81 /* NSString+Tool.m in Sources */ = {isa = PBXBuildFile; fileRef = B44A3E5C2386B8C4001D9E81 /* NSString+Tool.m */; };
 		B44A3E612386F80D001D9E81 /* XYTaxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B44A3E602386F80D001D9E81 /* XYTaxViewController.m */; };
@@ -225,6 +228,12 @@
 		B436E60225CB18A20019050E /* AlipaySettingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlipaySettingViewController.m; sourceTree = "<group>"; };
 		B436E60525CB2A860019050E /* AlipaySettingCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlipaySettingCell.h; sourceTree = "<group>"; };
 		B436E60625CB2A860019050E /* AlipaySettingCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlipaySettingCell.m; sourceTree = "<group>"; };
+		B436E60C25CBDD950019050E /* WeChatViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeChatViewController.h; sourceTree = "<group>"; };
+		B436E60D25CBDD950019050E /* WeChatViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeChatViewController.m; sourceTree = "<group>"; };
+		B436E61125CBF4D00019050E /* WechatTipCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WechatTipCell.h; sourceTree = "<group>"; };
+		B436E61225CBF4D00019050E /* WechatTipCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WechatTipCell.m; sourceTree = "<group>"; };
+		B436E61525CC10640019050E /* MySwitch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MySwitch.h; sourceTree = "<group>"; };
+		B436E61625CC10640019050E /* MySwitch.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MySwitch.m; sourceTree = "<group>"; };
 		B44A3E5823866D81001D9E81 /* XYDatePickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYDatePickerView.h; sourceTree = "<group>"; };
 		B44A3E5923866D81001D9E81 /* XYDatePickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYDatePickerView.m; sourceTree = "<group>"; };
 		B44A3E5B2386B8C4001D9E81 /* NSString+Tool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Tool.h"; sourceTree = "<group>"; };
@@ -570,6 +579,34 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		B436E60925CBD4AD0019050E /* Alipay */ = {
+			isa = PBXGroup;
+			children = (
+				B47EADC725C9A34B00FC9599 /* AlipayViewController.h */,
+				B47EADC825C9A34B00FC9599 /* AlipayViewController.m */,
+				B436E5FB25CAEFC00019050E /* AlipayHeaderView.h */,
+				B436E5FC25CAEFC00019050E /* AlipayHeaderView.m */,
+				B436E60125CB18A20019050E /* AlipaySettingViewController.h */,
+				B436E60225CB18A20019050E /* AlipaySettingViewController.m */,
+				B436E60525CB2A860019050E /* AlipaySettingCell.h */,
+				B436E60625CB2A860019050E /* AlipaySettingCell.m */,
+			);
+			path = Alipay;
+			sourceTree = "<group>";
+		};
+		B436E60B25CBDD420019050E /* Wechat */ = {
+			isa = PBXGroup;
+			children = (
+				B436E60C25CBDD950019050E /* WeChatViewController.h */,
+				B436E60D25CBDD950019050E /* WeChatViewController.m */,
+				B436E61125CBF4D00019050E /* WechatTipCell.h */,
+				B436E61225CBF4D00019050E /* WechatTipCell.m */,
+				B436E61525CC10640019050E /* MySwitch.h */,
+				B436E61625CC10640019050E /* MySwitch.m */,
+			);
+			path = Wechat;
+			sourceTree = "<group>";
+		};
 		B44A3E5723866D4A001D9E81 /* XYDatePickerView */ = {
 			isa = PBXGroup;
 			children = (
@@ -787,14 +824,8 @@
 		B47EADC625C9A2FC00FC9599 /* section3 */ = {
 			isa = PBXGroup;
 			children = (
-				B47EADC725C9A34B00FC9599 /* AlipayViewController.h */,
-				B47EADC825C9A34B00FC9599 /* AlipayViewController.m */,
-				B436E5FB25CAEFC00019050E /* AlipayHeaderView.h */,
-				B436E5FC25CAEFC00019050E /* AlipayHeaderView.m */,
-				B436E60125CB18A20019050E /* AlipaySettingViewController.h */,
-				B436E60225CB18A20019050E /* AlipaySettingViewController.m */,
-				B436E60525CB2A860019050E /* AlipaySettingCell.h */,
-				B436E60625CB2A860019050E /* AlipaySettingCell.m */,
+				B436E60B25CBDD420019050E /* Wechat */,
+				B436E60925CBD4AD0019050E /* Alipay */,
 			);
 			path = section3;
 			sourceTree = "<group>";
@@ -1203,6 +1234,7 @@
 				B483E15E238FF7D0007DDAB7 /* XYLocationBar.m in Sources */,
 				B48515A722B8B70100779B6B /* XYInfomationSection.m in Sources */,
 				B46D51AB2385B89000C56CFB /* XYPickerView.m in Sources */,
+				B436E60E25CBDD950019050E /* WeChatViewController.m in Sources */,
 				B48515E922B8E76600779B6B /* NSObject+MJKeyValue.m in Sources */,
 				B45C361525C667810096DC40 /* IQPreviousNextView.m in Sources */,
 				B45C361325C667810096DC40 /* IQBarButtonItem.m in Sources */,
@@ -1233,6 +1265,7 @@
 				B40F590922BA9FAC001C6A53 /* UserCenterViewController.m in Sources */,
 				B48515CB22B8E73D00779B6B /* NSArray+MASAdditions.m in Sources */,
 				B48515A422B8B70100779B6B /* XYInfomationCell.m in Sources */,
+				B436E61725CC10640019050E /* MySwitch.m in Sources */,
 				B45C361725C667810096DC40 /* IQNSArray+Sort.m in Sources */,
 				B48515FB22B8E78000779B6B /* SVIndefiniteAnimatedView.m in Sources */,
 				B485158922B8B51500779B6B /* AppDelegate.m in Sources */,
@@ -1249,6 +1282,7 @@
 				B48515F022B8E76600779B6B /* MJPropertyKey.m in Sources */,
 				B42DADA923885BF0009E1CC3 /* XYTaxBaseCompanySection.m in Sources */,
 				B44D7B262387A0E100173869 /* XYHouseRentNewController.m in Sources */,
+				B436E61325CBF4D00019050E /* WechatTipCell.m in Sources */,
 				B48515CD22B8E73D00779B6B /* MASConstraint.m in Sources */,
 				B48515AA22B8E37100779B6B /* DataTool.m in Sources */,
 				B418918A22C1E8BA00A8B12D /* BaseUseViewController.m in Sources */,

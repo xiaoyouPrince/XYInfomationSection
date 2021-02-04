@@ -80,6 +80,9 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSArray *)AliPayData;
 + (NSArray *)AliPaySettingData;
 
+/// 微信数据
++ (NSArray *)WechatPrivateData;
+
 @end
 
 @implementation NSDate (extension)
