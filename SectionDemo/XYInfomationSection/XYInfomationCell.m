@@ -166,6 +166,7 @@
 @property (weak, nonatomic) UITextField *inputTF; // inputType
 @property (weak, nonatomic) XYInfoTextView *inputTV;  // tvType
 @property (weak, nonatomic) UIView *accessoryView;
+@property (strong, nonatomic) UIView *seprateLine;
 
 
 
@@ -208,6 +209,10 @@
         UIView *accessoryView = [[UIView alloc] init];
         self.accessoryView = accessoryView;
         [self addSubview:accessoryView];
+        
+        // seprateLine
+        UIView *seprateLine = [UIView new];
+        self.seprateLine = seprateLine;
     }
     return self;
 }
@@ -221,7 +226,12 @@
     self.inputTV.delegate = self;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textViewTextChanged:) name:UITextViewTextDidChangeNotification object:nil];
     
-    self.backgroundColor = UIColor.clearColor;
+    if (self.model.backgroundColor) {
+        self.backgroundColor = self.model.backgroundColor;
+    }else{
+        self.backgroundColor = UIColor.clearColor;
+    }
+    
     self.titleLabel.font = self.model.titleFont;
     self.titleLabel.textColor = self.model.titleColor;
     
@@ -240,8 +250,12 @@
     
     
     // 添加一个底部的线
-    UIView *line = [UIView new];
-    line.backgroundColor = HEXCOLOR(0xeaeaea);
+    UIView *line = self.seprateLine;
+    if (self.model.isHideSeparateLine) {
+        line.backgroundColor = UIColor.clearColor;
+    }else{
+        line.backgroundColor = HEXCOLOR(0xeaeaea);
+    }
     [self addSubview:line];
     [line mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.mas_bottom).offset(0);
@@ -249,6 +263,7 @@
         make.right.equalTo(self).offset(-15);
         make.height.mas_equalTo(0.5);
     }];
+    
 }
 
 
@@ -532,6 +547,7 @@
     // ....  内部title. 字体&颜色  value 字体和颜色
     
     // 8. 约束
+    CGFloat titleRate = MAX(kTitleRate, model.titleWidthRate);
     if (self.imageView.image) {
         
         [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -546,7 +562,7 @@
             make.centerY.equalTo(self).priorityHigh();
             make.bottom.greaterThanOrEqualTo(self).offset(-15);
             make.left.equalTo(self.imageView.mas_right).offset(10);
-            make.width.equalTo(self).multipliedBy(kTitleRate); // 占整体宽度
+            make.width.equalTo(self).multipliedBy(titleRate); // 占整体宽度
         }];
         
     }else
@@ -556,7 +572,7 @@
             make.centerY.equalTo(self).priorityHigh();
             make.bottom.greaterThanOrEqualTo(self).offset(-15);
             make.left.equalTo(self).offset(15);
-            make.width.equalTo(self).multipliedBy(kTitleRate); // 占整体宽度
+            make.width.equalTo(self).multipliedBy(titleRate); // 占整体宽度
         }];
     }
     
