@@ -227,6 +227,11 @@ static UIView *the_bottom_cell = nil;
     }
     
     // 2.更新数据
+    // 2.1 更新item，防止脏数据
+    for (XYInfomationItem *item in self.dataArray) {
+        item.fold = NO;
+    }
+    // 2.2 更新最新 fold 状态
     for (NSNumber *indexNumber in self.foldIndexs) {
         NSInteger index = [indexNumber integerValue];
         XYInfomationItem *item = self.dataArray[index];
@@ -244,13 +249,6 @@ static UIView *the_bottom_cell = nil;
     
     
     // 4.不保存当前折叠状态
-    for (NSNumber *indexNumber in self.foldIndexs) {
-        NSInteger index = [indexNumber integerValue];
-        XYInfomationItem *item = self.dataArray[index];
-        if (item.isFold) {
-            item.fold = !item.isFold;
-        }
-    }
     [_foldIndexs removeAllObjects];
 }
 
