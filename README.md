@@ -4,6 +4,13 @@
 
 ### 更新
 
+**Version 1.0.0 2021年2月5日**
+1. 支持完全自定义cell，需同时指定 type = other ,且指定 customCellClass 为自定义cell 类名
+2. 新增 item api, 可控制单cell背景色，是否展示分割线，title占比等
+3. 优化 section 对象折/叠展示cell 底层逻辑
+4. 新增更多自定义 cell 的 Demo。demo 采用更简洁的数据为王的加载方式，简洁，清晰 <br>
+支付宝 - 【我的】-【设置】<br> 微信 - 【隐私设置】<br> 微博 - 【设置页面】
+
 **Version 0.4.0 2020年3月4日**
 1. 增加对 XYInfomationCell 样式自定义的支持，新增 title/value/placeholder 的颜色、字体设置接口
 2. 增加 XYInfomationSection 中设置 separateColor 和 separateInset 支持
@@ -50,6 +57,12 @@
 **个人所得税**是一个综合模块，包括「子女教育」「继续教育」「住房贷款」「住房租金」「大病医疗」「赡养老人」6个独立税种。每个页面都会收集用户的相关信息。每个页面均有不同的用户输入监听，根据用户输入信息动态填充信息、隐藏信息、调整信息等，示例如下，详情请下载 DEMO 可看
 
 <image src="image/tax_01.png" width=270 height=536/> <image src="image/tax_02.png" width=270 height=536/> <image src="image/tax_03.png" width=270 height=536/> <image src="image/tax_04.png" width=270 height=536/> <image src="image/tax_05.png" width=270 height=536/> <image src="image/tax_06.png" width=270 height=536/>
+
+4.自定义示例(几个独立仿写DEMO 支付宝-我的-设置 、微信-隐私设置 、 微博-设置)
+
+可以打开【支付宝/微信/微博】的相关页面来对比一下还原度。有兴趣可以看一下源码，支付宝页面相对复杂源码 150 行，微信、微博均为 70 行。 **之所以此DEMO源码较少，是因为 XYInfomationSection 核心在于写交互类表单，详见个人所得税DEMO**
+
+<image src="image/alipay_01.png" width=270 height=536/> <image src="image/alipay_02.png" width=270 height=536/> <image src="image/wechat.png" width=270 height=536/> <image src="image/weibo.png" width=270 height=536/>
 
 ### XYInfomationSection 优势
 
