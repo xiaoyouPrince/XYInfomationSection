@@ -76,6 +76,16 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param pid 父级id
 + (NSArray *)cityArrayForPid:(NSString *)pid;
 
+/// 返回支付宝页面数据
++ (NSArray *)AliPayData;
++ (NSArray *)AliPaySettingData;
+
+/// 微信数据
++ (NSArray *)WechatPrivateData;
+
+/// 微博数据
++ (NSArray *)WeiBoData;
+
 @end
 
 @implementation NSDate (extension)

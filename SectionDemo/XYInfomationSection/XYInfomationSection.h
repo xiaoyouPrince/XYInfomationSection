@@ -15,7 +15,7 @@ typedef void(^SectionCellClickBlock)(NSInteger index,XYInfomationCell *cell);
 
 @interface XYInfomationSection : UIView
 
-// 需要在设置数据源之前设置，样式
+/// 需要在设置数据源之前设置，样式
 @property (nonatomic) UIEdgeInsets separatorInset;
 @property (nonatomic) UIColor* separatorColor;
 

@@ -36,6 +36,8 @@
 
 /** 数据 */
 @property(nonatomic , strong)     UserModel *userDetailInfo;
+/** customContentView */
+@property (nonatomic, weak)         UIView * customContentView;
 
 @end
 
@@ -46,11 +48,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // getContent
+    [self setContentView:[self getContentView]];
+    
+}
+
+#pragma mark - user content all in the blow
+
+- (UIView *)getContentView {
+    
     self.title = @"SectionDemo";
     
     [SVProgressHUD setBackgroundColor:UIColor.lightGrayColor];
     
-    self.view.backgroundColor = HEXCOLOR(0xf6f6f6);
+    UIView *contentView = [UIView new];
+    contentView.backgroundColor = HEXCOLOR(0xf6f6f6);
+    self.view.backgroundColor = contentView.backgroundColor;
+    
     self.userDetailInfo = [DataTool userModel];
     
     UILabel *label1 = [[UILabel alloc] init];
@@ -63,48 +77,57 @@
     UILabel *label4 = [[UILabel alloc] init];
     label4.text = @"开启试试";
     UISwitch *open = [UISwitch new];
+    open.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"open"];
     [open addTarget:self action:@selector(openValueChanged:) forControlEvents:UIControlEventValueChanged];
     
+    UILabel *label5 = [[UILabel alloc] init];
+    label5.text = @"自定义示例";
     
     XYInfomationSection *section1 = [XYInfomationSection new];
     XYInfomationSection *section2 = [XYInfomationSection new];
     XYInfomationSection *section3 = [XYInfomationSection new];
+    XYInfomationSection *section4 = [XYInfomationSection new];
     XYInfomationItem *item = [XYInfomationItem modelWithTitle:@"基本使用" titleKey:@"BaseUseViewController" type:1 value:@"仅使用XYInfomationSection,自己处理页面内部布局" placeholderValue:nil disableUserAction:YES];
     XYInfomationItem *item1 = [XYInfomationItem modelWithTitle:@"个人中心页面" titleKey:@"UserCenterViewController" type:1 value:@"基于XYInfomationBaseViewController" placeholderValue:nil disableUserAction:YES];
     XYInfomationItem *item2 = [XYInfomationItem modelWithTitle:@"用户详细信息页面" titleKey:@"UserInfoViewController" type:1 value:@"基于XYInfomationBaseViewController" placeholderValue:nil disableUserAction:YES];
     XYInfomationItem *item3 = [XYInfomationItem modelWithTitle:@"设置页面" titleKey:@"SettingViewController" type:1 value:@"基于XYInfomationBaseViewController" placeholderValue:nil disableUserAction:YES];
-//    XYInfomationItem *item4 = [XYInfomationItem modelWithTitle:@"添加家庭成员信息" titleKey:@"FamilyMemberListViewController" type:1 value:@"基于XYInfomationBaseViewController" placeholderValue:nil disableUserAction:NO];
-//    XYInfomationItem *item5 = [XYInfomationItem modelWithTitle:@"个人所得税" titleKey:@"XYTaxViewController" type:1 value:@"基于XYInfomationBaseViewController" placeholderValue:nil disableUserAction:YES];
-    XYInfomationItem *item4 = [XYInfomationItem modelWithTitle:@"添加家庭成员信息" titleKey:@"FamilyMemberListViewController" type:XYInfoCellTypeOther value:@"基于XYInfomationBaseViewController" placeholderValue:nil disableUserAction:NO];
-    item4.customCellClass = NSStringFromClass(XYCustomCell.class);
-    XYInfomationItem *item5 = [XYInfomationItem modelWithTitle:@"个人所得税" titleKey:@"XYTaxViewController" type:XYInfoCellTypeOther value:@"基于XYInfomationBaseViewController" placeholderValue:nil disableUserAction:YES];
-    item5.customCellClass = NSStringFromClass(XYCustomCell.class);
-    section3.separatorInset = UIEdgeInsetsMake(10, 50, 20, 40);
-    section3.separatorColor = UIColor.redColor;
+    XYInfomationItem *item4 = [XYInfomationItem modelWithTitle:@"添加家庭成员信息" titleKey:@"FamilyMemberListViewController" type:1 value:@"基于XYInfomationBaseViewController" placeholderValue:nil disableUserAction:NO];
+    XYInfomationItem *item5 = [XYInfomationItem modelWithTitle:@"个人所得税" titleKey:@"XYTaxViewController" type:1 value:@"基于XYInfomationBaseViewController" placeholderValue:nil disableUserAction:YES];
+    XYInfomationItem *item6 = [XYInfomationItem modelWithTitle:@"支付宝" titleKey:@"AlipayViewController" type:XYInfoCellTypeChoose value:@"个人中心页面" placeholderValue:nil disableUserAction:NO];
+    XYInfomationItem *item7 = [XYInfomationItem modelWithTitle:@"微信" titleKey:@"WeChatViewController" type:XYInfoCellTypeChoose value:@"隐私设置页面" placeholderValue:nil disableUserAction:YES];
+    item7.customCellClass = NSStringFromClass(XYCustomCell.class);
+    XYInfomationItem *item8 = [XYInfomationItem modelWithTitle:@"微博" titleKey:@"WeiboViewController" type:XYInfoCellTypeChoose value:@"设置页面" placeholderValue:nil disableUserAction:YES];
+    item7.customCellClass = NSStringFromClass(XYCustomCell.class);
+//    section4.separatorInset = UIEdgeInsetsMake(10, 50, 20, 10);
+//    section4.separatorColor = UIColor.yellowColor;
+//    section4.backgroundColor = UIColor.redColor;
     
     section1.dataArray = @[item];
     section2.dataArray = @[item1,item2,item3];
     section3.dataArray = @[item4,item5];
+    section4.dataArray = @[item6,item7,item8];
     
-    [self.view addSubview:label1];
-    [self.view addSubview:label2];
-    [self.view addSubview:label3];
-    [self.view addSubview:label4];
-    [self.view addSubview:open];
-    [self.view addSubview:section1];
-    [self.view addSubview:section2];
-    [self.view addSubview:section3];
+    [contentView addSubview:label1];
+    [contentView addSubview:label2];
+    [contentView addSubview:label3];
+    [contentView addSubview:label4];
+    [contentView addSubview:open];
+    [contentView addSubview:label5];
+    [contentView addSubview:section1];
+    [contentView addSubview:section2];
+    [contentView addSubview:section3];
+    [contentView addSubview:section4];
     
     CGFloat margin = 15;
     [label1 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view).offset(100);
-        make.left.equalTo(self.view).offset(15);
-        make.right.equalTo(self.view).offset(-15);
+        make.top.equalTo(contentView).offset(25);
+        make.left.equalTo(contentView).offset(15);
+        make.right.equalTo(contentView).offset(-15);
     }];
     
     [open mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(label1).offset(0);
-        make.right.equalTo(self.view).offset(-15);
+        make.right.equalTo(contentView).offset(-15);
     }];
     
     [label4 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -114,42 +137,52 @@
     
     [section1 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(label1.mas_bottom).offset(margin);
-        make.left.equalTo(self.view).offset(15);
-        make.right.equalTo(self.view).offset(-15);
+        make.left.equalTo(contentView).offset(15);
+        make.right.equalTo(contentView).offset(-15);
     }];
     [label2 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(section1.mas_bottom).offset(2*margin);
-        make.left.equalTo(self.view).offset(15);
-        make.right.equalTo(self.view).offset(-15);
+        make.left.equalTo(contentView).offset(15);
+        make.right.equalTo(contentView).offset(-15);
     }];
     [section2 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(label2.mas_bottom).offset(margin);
-        make.left.equalTo(self.view).offset(15);
-        make.right.equalTo(self.view).offset(-15);
+        make.left.equalTo(contentView).offset(15);
+        make.right.equalTo(contentView).offset(-15);
     }];
     [label3 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(section2.mas_bottom).offset(2*margin);
-        make.left.equalTo(self.view).offset(15);
-        make.right.equalTo(self.view).offset(-15);
+        make.left.equalTo(contentView).offset(15);
+        make.right.equalTo(contentView).offset(-15);
     }];
     [section3 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(label3.mas_bottom).offset(margin);
-        make.left.equalTo(self.view).offset(15);
-        make.right.equalTo(self.view).offset(-15);
+        make.left.equalTo(contentView).offset(15);
+        make.right.equalTo(contentView).offset(-15);
+    }];
+    [label5 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(section3.mas_bottom).offset(2*margin);
+        make.left.equalTo(contentView).offset(15);
+        make.right.equalTo(contentView).offset(-15);
+    }];
+    [section4 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(label5.mas_bottom).offset(margin);
+        make.left.equalTo(contentView).offset(15);
+        make.right.equalTo(contentView).offset(-15);
+        make.bottom.equalTo(contentView.mas_bottom).offset(-25);
     }];
     
-    
-    [self.view setNeedsLayout];
-    [self.view layoutIfNeeded];
-    
     // 点击回调
-    NSArray *sections = @[section1,section2,section3];
+    NSArray *sections = @[section1,section2,section3,section4];
     for (XYInfomationSection *section in sections) {
         section.cellClickBlock = ^(NSInteger index, XYInfomationCell * _Nonnull cell) {
             NSLog(@"index = %ld",index);
             [self didClickInfoCell:cell];
         };
     }
+    
+    self.customContentView = contentView;
+    return contentView;
 }
 
 - (void)didClickInfoCell:(XYInfomationCell *)cell
@@ -166,7 +199,7 @@
     [[NSUserDefaults standardUserDefaults] setBool:sender.isOn forKey:@"open"];
     
     NSMutableArray *sections = @[].mutableCopy;
-    for (UIView *view in self.view.subviews) {
+    for (UIView *view in self.customContentView.subviews) {
         if ([view isKindOfClass:XYInfomationSection.class]) {
             [sections addObject:view];
         }

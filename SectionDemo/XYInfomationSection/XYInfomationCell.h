@@ -160,6 +160,13 @@ typedef NS_ENUM(NSUInteger, XYInfoCellType) {
 ///  custom cell class - 当type == other 时候有效
 @property (nonatomic, strong)   NSString *customCellClass;
 
+///  cell 的指定 backgroundColor， default is clearColor
+@property (nonatomic, strong)   UIColor *backgroundColor;
+///  是否隐藏分割线 - default is NO 默认会展示cell底部分割线，如果要隐藏设置此属性为 YES
+@property (nonatomic, assign, getter=isHideSeparateLine)   BOOL hideSeparateLine;
+///  cell title占整个cell 宽度的比例 default is 0.3 【赋值需要在 0~1.0 之间】
+@property (nonatomic, assign)   CGFloat titleWidthRate;
+
 /// 创建方法(通过dictionary创建)
 + (instancetype)modelWithDict:(NSDictionary *)dict;
 

@@ -377,6 +377,13 @@
         
         // 1.进行参数校验,这里进行强检验，使用者可以根据
         for (XYInfomationItem *item in section.dataArray) {
+            
+            // 被【隐藏/折叠】的不校验
+            if (item.isFold){
+                continue;
+            }
+            
+            // “remark” 作为选填key,忽略
             if ([item.titleKey isEqualToString:@"remark"]) {
                 continue;
             }

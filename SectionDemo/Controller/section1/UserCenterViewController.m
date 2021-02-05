@@ -93,7 +93,7 @@
     headerCell.frame = CGRectMake(0, 0, ScreenW, 60);
     [headerCell sizeToFit];
     [headerCell mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(headerCell.bounds.size.height);
+        make.height.mas_equalTo(headerCell.bounds.size.height).priorityHigh();
     }];
     [self setHeaderView:headerCell edgeInsets:UIEdgeInsetsMake(10, 15, 10, 15)];
     // self.headerView = headerCell;
