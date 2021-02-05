@@ -48,7 +48,7 @@
     {
         self.layer.cornerRadius = 0;
         self.backgroundColor = UIColor.whiteColor;
-        self.clipsToBounds = NO;
+        self.clipsToBounds = YES;
         self.translatesAutoresizingMaskIntoConstraints = NO;
     }
 }
