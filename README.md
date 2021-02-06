@@ -62,7 +62,7 @@
 
 可以打开【支付宝/微信/微博】的相关页面来对比一下还原度。有兴趣可以看一下源码，支付宝页面相对复杂源码 150 行，微信、微博均为 70 行。 **之所以此DEMO源码较少，是因为 XYInfomationSection 核心在于写交互类表单，详见个人所得税DEMO**
 
-<image src="image/alipay_01.png" width=270 height=536/> <image src="image/alipay_02.png" width=270 height=536/> <image src="image/wechat.png" width=270 height=536/> <image src="image/weibo.png" width=270 height=536/>
+<image src="image/alipay_01.png" width=270 height=584.3/> <image src="image/alipay_02.png" width=270 height=584.3/> <image src="image/wechat.png" width=270 height=584.3/> <image src="image/weibo.png" width=270 height=584.3/>
 
 ### XYInfomationSection 优势
 
