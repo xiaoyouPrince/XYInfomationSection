@@ -162,6 +162,57 @@
     [self hasSetupContent];
 }
 
+- (void)setContentWithData:(NSArray *)dataArray
+                itemConfig:(void(^)(XYInfomationItem *item))config
+             sectionConfig:(nullable void(^)(XYInfomationSection *item))sectionConfig
+           sectionDistance:(CGFloat)sectionDistance
+         contentEdgeInsets:(UIEdgeInsets)edgeInsets
+            cellClickBlock:(SectionCellClickBlock)cellClickBlock{
+    
+    if (dataArray.count == 0) {return;}
+    
+    UIView *contentView = [UIView new];
+    NSArray *dataArr = dataArray;
+    UIView *the_last_view = nil;
+    int index = -1;
+    for (NSArray *dictArr in dataArr) {
+        index++;
+        XYInfomationSection *section = [XYInfomationSection new];
+        if (sectionConfig) {
+            sectionConfig(section);
+        }
+        NSMutableArray *dataArray = @[].mutableCopy;
+        for (NSDictionary *dict in dictArr) {
+            XYInfomationItem *item = [XYInfomationItem modelWithDict:dict];
+            if (config) {
+                config(item);
+            }
+            [dataArray addObject:item];
+        }
+        section.dataArray = dataArray;
+        
+        [contentView addSubview:section];
+        [section mas_makeConstraints:^(MASConstraintMaker *make) {
+            if (the_last_view) {
+                make.top.equalTo(the_last_view.mas_bottom).offset(sectionDistance);
+            }else
+            {
+                make.top.equalTo(contentView);
+            }
+            make.left.equalTo(contentView);
+            make.right.equalTo(contentView);
+            if (index == dataArr.count-1) {
+                make.bottom.equalTo(contentView);
+            }
+        }];
+        
+        the_last_view = section;
+        section.cellClickBlock = cellClickBlock;
+    }
+    
+    [self setContentView:contentView edgeInsets:edgeInsets];
+}
+
 
 - (void)hasSetupContent{
     // 只要有内容设置就展示对应的scrollView(页面的所有内容)

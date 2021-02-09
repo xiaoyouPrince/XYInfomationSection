@@ -1220,7 +1220,7 @@ MJCodingImplementation;
             @"type": @1,
             @"customCellClass": @"WechatTipCell",
             @"value": @"",
-            @"hideSeparateLine": @1
+            @"hideSeparateLine": @0
         },
         @{
             @"imageName": @"",

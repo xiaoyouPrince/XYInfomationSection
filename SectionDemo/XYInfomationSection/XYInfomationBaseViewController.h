@@ -32,6 +32,20 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setContentView:(UIView * _Nonnull)contentView edgeInsets:(UIEdgeInsets)edgeInsets;
 - (void)setFooterView:(UIView * _Nonnull)footerView edgeInsets:(UIEdgeInsets)edgeInsets;
 
+/// 通过数据直接快速创建contentView
+/// @param dataArray 数据数组
+/// @param itemConfig 对于每个item 进行额外设置的回调
+/// @param sectionConfig 对于每个section 进行额外设置的回调
+/// @param sectionDistance 每个 section 之间的间距
+/// @param edgeInsets 内容整体的内边距
+/// @param cellClickBlock cell 被点击的回调
+- (void)setContentWithData:(NSArray *)dataArray
+                itemConfig:(nullable void(^)(XYInfomationItem *item))itemConfig
+             sectionConfig:(nullable void(^)(XYInfomationSection *section))sectionConfig
+           sectionDistance:(CGFloat)sectionDistance
+         contentEdgeInsets:(UIEdgeInsets)edgeInsets
+            cellClickBlock:(SectionCellClickBlock)cellClickBlock;
+
 @end
 
 NS_ASSUME_NONNULL_END

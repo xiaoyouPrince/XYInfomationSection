@@ -108,45 +108,14 @@
 
 - (void)setupMedium{
     
-    UIView *contentView = [UIView new];
-    
     NSArray *dataArr = [DataTool AliPayData];
-    UIView *the_last_view = nil;
-    int index = -1;
-    for (NSArray *dictArr in dataArr) {
-        index++;
-        XYInfomationSection *section = [XYInfomationSection new];
-        NSMutableArray *dataArray = @[].mutableCopy;
-        for (NSDictionary *dict in dictArr) {
-            XYInfomationItem *item = [XYInfomationItem modelWithDict:dict];
-            [dataArray addObject:item];
-        }
-        section.dataArray = dataArray;
-        
-        [contentView addSubview:section];
-        [section mas_makeConstraints:^(MASConstraintMaker *make) {
-            if (the_last_view) {
-                make.top.equalTo(the_last_view.mas_bottom).offset(10);
-            }else
-            {
-                make.top.equalTo(contentView);
-            }
-            make.left.equalTo(contentView);
-            make.right.equalTo(contentView);
-            if (index == dataArr.count-1) {
-                make.bottom.equalTo(contentView);
-            }
-        }];
-        
-        the_last_view = section;
-        section.cellClickBlock = ^(NSInteger index, XYInfomationCell * _Nonnull cell) {
-            UIViewController *detail = [NSClassFromString(cell.model.titleKey) new];
-            detail.title = cell.model.title;
-            [self.navigationController pushViewController:detail animated:YES];
-        };
-    }
+    __weak typeof(AlipayViewController) *weakSelf = self;
     
-    [self setContentView:contentView edgeInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
+    [self setContentWithData:dataArr itemConfig:nil sectionConfig:nil sectionDistance:10 contentEdgeInsets:UIEdgeInsetsMake(10, 10, 10, 10) cellClickBlock:^(NSInteger index, XYInfomationCell * _Nonnull cell) {
+        UIViewController *detail = [NSClassFromString(cell.model.titleKey) new];
+        detail.title = cell.model.title;
+        [weakSelf.navigationController pushViewController:detail animated:YES];
+    }];
 }
 
 - (void)setupFooter{
