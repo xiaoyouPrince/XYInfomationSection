@@ -228,7 +228,7 @@
     
     if (self.model.backgroundColor) {
         self.backgroundColor = self.model.backgroundColor;
-    }else{
+    }else if (!self.backgroundColor){
         self.backgroundColor = UIColor.clearColor;
     }
     
@@ -248,6 +248,15 @@
     placeholderLabel.textColor = self.model.placeholderColor;
     self.inputTV.placeholderColor = self.model.placeholderColor;
     
+    // 隐藏subView，需自定义实现
+    if (self.model.type == XYInfoCellTypeOther) {
+        self.imageView.hidden = YES;
+        self.titleLabel.hidden = YES;
+        self.titleLabel.hidden = YES;
+        self.inputTV.hidden = YES;
+        self.inputTF.hidden = YES;
+        //[self.subviews makeObjectsPerformSelector:@selector(setHidden:) withObject:@YES];
+    }
     
     // 添加一个底部的线
     UIView *line = self.seprateLine;
