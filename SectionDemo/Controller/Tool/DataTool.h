@@ -6,7 +6,7 @@
 //  Copyright © 2019年 渠晓友. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -86,6 +86,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 微博数据
 + (NSArray *)WeiBoData;
 
+/// 自定义数据
++ (NSArray *)customData;
+
 @end
 
 @implementation NSDate (extension)
@@ -96,6 +99,34 @@ NS_ASSUME_NONNULL_BEGIN
     fmt.dateFormat = format;
     
     return [fmt stringFromDate:self];
+}
+
+@end
+
+@interface UIColor (extension)
++ (UIColor *)colorWithHex:(NSString *)hex;
+@end
+@implementation UIColor (extension)
+
++ (UIColor *)colorWithHex:(NSString *)hex{
+    NSString *r = [hex substringWithRange:NSMakeRange(0, 2)];
+    NSString *g = [hex substringWithRange:NSMakeRange(2, 2)];
+    NSString *b = [hex substringWithRange:NSMakeRange(4, 2)];
+    
+    float rf = 0;
+    float gf = 0;
+    float bf = 0;
+    
+    NSScanner *scanner = [NSScanner scannerWithString:r];
+    [scanner scanFloat:&rf];
+    
+    scanner = [NSScanner scannerWithString:g];
+    [scanner scanFloat:&gf];
+    
+    scanner = [NSScanner scannerWithString:b];
+    [scanner scanFloat:&bf];
+    
+    return [UIColor colorWithRed:rf/255.0 green:gf/255.0 blue:bf/255.0 alpha:1.0];
 }
 
 @end

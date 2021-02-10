@@ -177,6 +177,10 @@
 		B48515FB22B8E78000779B6B /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = B48515F822B8E78000779B6B /* SVIndefiniteAnimatedView.m */; };
 		B48515FC22B8E78000779B6B /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B48515F922B8E78000779B6B /* SVProgressHUD.bundle */; };
 		B49398DD23C4D41A00CA3D86 /* XYInfoTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = B49398DC23C4D41A00CA3D86 /* XYInfoTextView.m */; };
+		B4C25FE525D37FFB0034C3E2 /* PersonInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C25FE425D37FFB0034C3E2 /* PersonInfoController.swift */; };
+		B4C25FE925D39E740034C3E2 /* PersonInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C25FE825D39E740034C3E2 /* PersonInfoCell.swift */; };
+		B4C25FEC25D3AD510034C3E2 /* PersonInfoHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C25FEB25D3AD510034C3E2 /* PersonInfoHeaderCell.swift */; };
+		B4C25FEF25D3AD5D0034C3E2 /* PersonInfoDutyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C25FEE25D3AD5D0034C3E2 /* PersonInfoDutyCell.swift */; };
 		B4E6FCF625C4613E00ABA292 /* XYCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E6FCF525C4613E00ABA292 /* XYCustomCell.m */; };
 		B4E835B82390E12700349AC3 /* visa_delete@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4E835B72390E12700349AC3 /* visa_delete@3x.png */; };
 		B4E8ABAE22C3AC470096208A /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E8ABAD22C3AC470096208A /* BaseNavigationController.m */; };
@@ -464,6 +468,11 @@
 		B48515FD22B8E84700779B6B /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		B49398DB23C4D41A00CA3D86 /* XYInfoTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYInfoTextView.h; sourceTree = "<group>"; };
 		B49398DC23C4D41A00CA3D86 /* XYInfoTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYInfoTextView.m; sourceTree = "<group>"; };
+		B4C25FE325D37FFB0034C3E2 /* SectionDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SectionDemo-Bridging-Header.h"; sourceTree = "<group>"; };
+		B4C25FE425D37FFB0034C3E2 /* PersonInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonInfoController.swift; sourceTree = "<group>"; };
+		B4C25FE825D39E740034C3E2 /* PersonInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonInfoCell.swift; sourceTree = "<group>"; };
+		B4C25FEB25D3AD510034C3E2 /* PersonInfoHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonInfoHeaderCell.swift; sourceTree = "<group>"; };
+		B4C25FEE25D3AD5D0034C3E2 /* PersonInfoDutyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonInfoDutyCell.swift; sourceTree = "<group>"; };
 		B4E6FCF425C4613E00ABA292 /* XYCustomCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYCustomCell.h; sourceTree = "<group>"; };
 		B4E6FCF525C4613E00ABA292 /* XYCustomCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYCustomCell.m; sourceTree = "<group>"; };
 		B4E835B72390E12700349AC3 /* visa_delete@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "visa_delete@3x.png"; sourceTree = "<group>"; };
@@ -836,6 +845,7 @@
 		B47EADC625C9A2FC00FC9599 /* section3 */ = {
 			isa = PBXGroup;
 			children = (
+				B4C25FE225D37FCF0034C3E2 /* PersonInfo */,
 				B436E61925CC1B350019050E /* Weibo */,
 				B436E60B25CBDD420019050E /* Wechat */,
 				B436E60925CBD4AD0019050E /* Alipay */,
@@ -929,6 +939,7 @@
 				B485159222B8B51700779B6B /* LaunchScreen.storyboard */,
 				B485159522B8B51700779B6B /* Info.plist */,
 				B485159622B8B51700779B6B /* main.m */,
+				B4C25FE325D37FFB0034C3E2 /* SectionDemo-Bridging-Header.h */,
 				B48515FD22B8E84700779B6B /* PrefixHeader.pch */,
 				B483E173238FFB56007DDAB7 /* cityArray.sqlite */,
 			);
@@ -1048,6 +1059,17 @@
 			path = SVProgressHUD;
 			sourceTree = "<group>";
 		};
+		B4C25FE225D37FCF0034C3E2 /* PersonInfo */ = {
+			isa = PBXGroup;
+			children = (
+				B4C25FE425D37FFB0034C3E2 /* PersonInfoController.swift */,
+				B4C25FE825D39E740034C3E2 /* PersonInfoCell.swift */,
+				B4C25FEB25D3AD510034C3E2 /* PersonInfoHeaderCell.swift */,
+				B4C25FEE25D3AD5D0034C3E2 /* PersonInfoDutyCell.swift */,
+			);
+			path = PersonInfo;
+			sourceTree = "<group>";
+		};
 		B4E8ABAB22C3ABDB0096208A /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -1089,6 +1111,7 @@
 				TargetAttributes = {
 					B485158322B8B51500779B6B = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1220;
 					};
 				};
 			};
@@ -1232,6 +1255,7 @@
 				B485158C22B8B51500779B6B /* ViewController.m in Sources */,
 				B48515C922B8E73D00779B6B /* MASConstraintMaker.m in Sources */,
 				B49398DD23C4D41A00CA3D86 /* XYInfoTextView.m in Sources */,
+				B4C25FEC25D3AD510034C3E2 /* PersonInfoHeaderCell.swift in Sources */,
 				B436E60725CB2A860019050E /* AlipaySettingCell.m in Sources */,
 				B48515EB22B8E76600779B6B /* NSObject+MJCoding.m in Sources */,
 				B483E170238FFB23007DDAB7 /* FMDatabase.m in Sources */,
@@ -1259,6 +1283,7 @@
 				B44D7B202387A0AB00173869 /* XYMoreEducationNewController.m in Sources */,
 				B48515EF22B8E76600779B6B /* NSString+MJExtension.m in Sources */,
 				B45C361425C667810096DC40 /* IQUIView+IQKeyboardToolbar.m in Sources */,
+				B4C25FE525D37FFB0034C3E2 /* PersonInfoController.swift in Sources */,
 				B418919422C2209000A8B12D /* PersonalTaxBaseViewController.m in Sources */,
 				B45C361025C667810096DC40 /* IQTextView.m in Sources */,
 				B48515C622B8E73D00779B6B /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
@@ -1266,6 +1291,7 @@
 				B483E171238FFB23007DDAB7 /* FMDatabasePool.m in Sources */,
 				B40F590622BA9C72001C6A53 /* SettingViewController.m in Sources */,
 				B45C361125C667810096DC40 /* IQToolbar.m in Sources */,
+				B4C25FE925D39E740034C3E2 /* PersonInfoCell.swift in Sources */,
 				B483E16F238FFB23007DDAB7 /* FMDatabaseAdditions.m in Sources */,
 				B48515C822B8E73D00779B6B /* MASCompositeConstraint.m in Sources */,
 				B485159722B8B51700779B6B /* main.m in Sources */,
@@ -1294,6 +1320,7 @@
 				B42DADA623885828009E1CC3 /* XYTaxBaseCompanyInfoCell.m in Sources */,
 				B48515EE22B8E76600779B6B /* NSObject+MJClass.m in Sources */,
 				B48515F022B8E76600779B6B /* MJPropertyKey.m in Sources */,
+				B4C25FEF25D3AD5D0034C3E2 /* PersonInfoDutyCell.swift in Sources */,
 				B42DADA923885BF0009E1CC3 /* XYTaxBaseCompanySection.m in Sources */,
 				B44D7B262387A0E100173869 /* XYHouseRentNewController.m in Sources */,
 				B436E61325CBF4D00019050E /* WechatTipCell.m in Sources */,
@@ -1443,6 +1470,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J9CJUEB6H8;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
@@ -1456,6 +1484,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.xiaoyou.secd;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SectionDemo/SectionDemo-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1464,6 +1495,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J9CJUEB6H8;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
@@ -1477,6 +1509,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.xiaoyou.secd;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SectionDemo/SectionDemo-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

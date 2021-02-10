@@ -98,6 +98,7 @@
     item7.customCellClass = NSStringFromClass(XYCustomCell.class);
     XYInfomationItem *item8 = [XYInfomationItem modelWithTitle:@"微博" titleKey:@"WeiboViewController" type:XYInfoCellTypeChoose value:@"设置页面" placeholderValue:nil disableUserAction:YES];
     item7.customCellClass = NSStringFromClass(XYCustomCell.class);
+    XYInfomationItem *item9 = [XYInfomationItem modelWithTitle:@"自定义" titleKey:@"SectionDemo.PersonInfoController" type:XYInfoCellTypeChoose value:@"个人信息" placeholderValue:nil disableUserAction:YES];
 //    section4.separatorInset = UIEdgeInsetsMake(10, 50, 20, 10);
 //    section4.separatorColor = UIColor.yellowColor;
 //    section4.backgroundColor = UIColor.redColor;
@@ -105,7 +106,7 @@
     section1.dataArray = @[item];
     section2.dataArray = @[item1,item2,item3];
     section3.dataArray = @[item4,item5];
-    section4.dataArray = @[item6,item7,item8];
+    section4.dataArray = @[item6,item7,item8,item9];
     
     [contentView addSubview:label1];
     [contentView addSubview:label2];

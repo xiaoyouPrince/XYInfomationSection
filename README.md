@@ -4,10 +4,14 @@
 
 ### 更新
 
+**Version 1.0.1 2021年2月10日**
+1. XYInfomationBaseViewController 底层新增面向section数据的API，快速根据数据创建内容
+2. 新增纯自定义个人中心页面 Demo
+
 **Version 1.0.0 2021年2月5日**
 1. 支持完全自定义cell，需同时指定 type = other ,且指定 customCellClass 为自定义cell 类名
 2. 新增 item api, 可控制单cell背景色，是否展示分割线，title占比等
-3. 优化 section 对象折/叠展示cell 底层逻辑
+3. 优化 section 对象折叠/展示cell 底层逻辑
 4. 新增更多自定义 cell 的 Demo。demo 采用更简洁的数据为王的加载方式，简洁，清晰 <br>
 支付宝 - 【我的】-【设置】<br> 微信 - 【隐私设置】<br> 微博 - 【设置页面】
 
@@ -60,7 +64,7 @@
 
 4.自定义示例(几个独立仿写DEMO 支付宝-我的-设置 、微信-隐私设置 、 微博-设置)
 
-可以打开【支付宝/微信/微博】的相关页面来对比一下还原度。有兴趣可以看一下源码，支付宝页面相对复杂源码 150 行，微信、微博均为 70 行。 **之所以此DEMO源码较少，是因为 XYInfomationSection 核心在于写交互类表单，详见个人所得税DEMO**
+可以打开【支付宝/微信/微博】的相关页面来对比一下还原度。有兴趣可以看一下源码，支付宝页面相对复杂源码 130 行，微信、微博均为 30 行。 **之所以此DEMO源码较少，是因为 XYInfomationSection 核心在于写交互类表单，详见个人所得税DEMO**
 
 <image src="image/alipay_01.png" width=270 height=584.3/> <image src="image/alipay_02.png" width=270 height=584.3/> <image src="image/wechat.png" width=270 height=584.3/> <image src="image/weibo.png" width=270 height=584.3/>
 

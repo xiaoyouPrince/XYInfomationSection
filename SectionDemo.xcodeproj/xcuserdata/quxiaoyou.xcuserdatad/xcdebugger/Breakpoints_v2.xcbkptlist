@@ -48,8 +48,8 @@
             filePath = "SectionDemo/XYInfomationSection/XYInfomationCell.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "617"
-            endingLineNumber = "617"
+            startingLineNumber = "626"
+            endingLineNumber = "626"
             landmarkName = "-setModel:"
             landmarkType = "7">
          </BreakpointContent>
