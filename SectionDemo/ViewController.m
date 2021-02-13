@@ -7,8 +7,6 @@
 //
 
 #import "ViewController.h"
-#import "XYInfomationSection.h"
-#import "XYCustomCell.h"
 
 // 此页面为菜单列表页面
 /**
@@ -30,6 +28,13 @@
      -> 继承自 XYInfomationBaseViewController
          section 3.1 -> 添加家庭成员信息
          section 3.2 -> 个人所得税
+ 
+ section4 自定义Cell实例: 需自实现cell
+     -> 继承自 XYInfomationBaseViewController
+         section 4.1 ->
+         section 4.2 ->
+         section 4.3 ->
+         section 4.4 ->
  */
 
 @interface ViewController ()<UIGestureRecognizerDelegate>
@@ -95,9 +100,7 @@
     XYInfomationItem *item5 = [XYInfomationItem modelWithTitle:@"个人所得税" titleKey:@"XYTaxViewController" type:1 value:@"基于XYInfomationBaseViewController" placeholderValue:nil disableUserAction:YES];
     XYInfomationItem *item6 = [XYInfomationItem modelWithTitle:@"支付宝" titleKey:@"AlipayViewController" type:XYInfoCellTypeChoose value:@"个人中心页面" placeholderValue:nil disableUserAction:NO];
     XYInfomationItem *item7 = [XYInfomationItem modelWithTitle:@"微信" titleKey:@"WeChatViewController" type:XYInfoCellTypeChoose value:@"隐私设置页面" placeholderValue:nil disableUserAction:YES];
-    item7.customCellClass = NSStringFromClass(XYCustomCell.class);
     XYInfomationItem *item8 = [XYInfomationItem modelWithTitle:@"微博" titleKey:@"WeiboViewController" type:XYInfoCellTypeChoose value:@"设置页面" placeholderValue:nil disableUserAction:YES];
-    item7.customCellClass = NSStringFromClass(XYCustomCell.class);
     XYInfomationItem *item9 = [XYInfomationItem modelWithTitle:@"自定义" titleKey:@"SectionDemo.PersonInfoController" type:XYInfoCellTypeChoose value:@"个人信息" placeholderValue:nil disableUserAction:YES];
 //    section4.separatorInset = UIEdgeInsetsMake(10, 50, 20, 10);
 //    section4.separatorColor = UIColor.yellowColor;
