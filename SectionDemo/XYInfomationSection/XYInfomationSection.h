@@ -15,9 +15,16 @@ typedef void(^SectionCellClickBlock)(NSInteger index,XYInfomationCell *cell);
 
 @interface XYInfomationSection : UIView
 
-/// 需要在设置数据源之前设置，样式
+/// 分割线内边距
+/// @note 需要在设置数据源之前设置
 @property (nonatomic) UIEdgeInsets separatorInset;
+/// 分割线颜色
+/// @note 需要在设置数据源之前设置
 @property (nonatomic) UIColor* separatorColor;
+/// 内部 cell 间距高度
+/// @Discussion 此属性设置后默认self.bgColor=.clear 且 cell.bgColor=.white
+/// @note 需要在设置数据源之前设置
+@property (nonatomic) CGFloat separatorHeight;
 
 /** dataArray : 存放XYInfomationItem对象的数据源 */
 @property(nonatomic , strong)     NSArray <XYInfomationItem *>*dataArray;

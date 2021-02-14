@@ -108,7 +108,7 @@ static UIView *the_bottom_cell = nil;
             }
         };
         
-        // 添加底边和内边距
+        // cell 底部分割线颜色和内边距
         if (self.separatorColor) {
             UIView *lineView = cell.subviews.lastObject;
             lineView.backgroundColor = self.separatorColor;
@@ -121,8 +121,8 @@ static UIView *the_bottom_cell = nil;
             }];
         }
         
-#warning TODO - 设置cell 内边距
-        NSInteger offset = 0;
+        // cell 间隔的间距
+        NSInteger offset = self.separatorHeight ?: 0;
         [cell mas_makeConstraints:^(MASConstraintMaker *make) {
 
             
@@ -137,8 +137,12 @@ static UIView *the_bottom_cell = nil;
             make.right.equalTo(weakSelf);
         }];
         
+        // 如设置cell内部间距，默认self.bgColor=.clear 且 cell.bgColor=.white
+        UIView *lineView = cell.subviews.lastObject;
+        lineView.hidden = (offset);
         if (offset) {
-            cell.backgroundColor = UIColor.greenColor;
+            self.backgroundColor = UIColor.clearColor;
+            cell.backgroundColor = cell.model.backgroundColor ?: UIColor.whiteColor;
         }
         
         // 设置此cell为底部的cell
