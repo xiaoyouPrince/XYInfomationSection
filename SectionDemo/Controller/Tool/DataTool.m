@@ -1330,7 +1330,7 @@ MJCodingImplementation;
             @"value": @"",
             @"type": @3,
             @"customCellClass": @"SectionDemo.PersonInfoHeaderCell",
-            @"cellHeight": @250,
+            @"cellHeight": @215,
             @"valueCode": @"",
         }
     ];
@@ -1344,7 +1344,7 @@ MJCodingImplementation;
             @"value": @"蚂蚁金服有限公司",
             @"type": @3,
             @"customCellClass": @"SectionDemo.PersonInfoCell",
-            @"cellHeight": @120,
+            @"cellHeight": @115,
             @"valueCode": @"",
             @"accessoryView": [[UIImageView alloc] initWithImage:image]
         },
@@ -1355,7 +1355,7 @@ MJCodingImplementation;
             @"value": @"财富规划师",
             @"type": @3,
             @"customCellClass": @"SectionDemo.PersonInfoCell",
-            @"cellHeight": @120,
+            @"cellHeight": @115,
             @"valueCode": @"",
             @"accessoryView": [[UIImageView alloc] initWithImage:image]
         },
@@ -1366,7 +1366,7 @@ MJCodingImplementation;
             @"value": @"支付宝",
             @"type": @3,
             @"customCellClass": @"SectionDemo.PersonInfoCell",
-            @"cellHeight": @120,
+            @"cellHeight": @115,
             @"valueCode": @"",
             @"accessoryView": [[UIImageView alloc] initWithImage:image]
         },
@@ -1377,7 +1377,7 @@ MJCodingImplementation;
             @"value": @"xiaoyouPrince@163.com",
             @"type": @3,
             @"customCellClass": @"SectionDemo.PersonInfoCell",
-            @"cellHeight": @120,
+            @"cellHeight": @115,
             @"valueCode": @"",
             @"accessoryView": [[UIImageView alloc] initWithImage:image]
         },

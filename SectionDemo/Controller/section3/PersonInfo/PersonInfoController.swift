@@ -18,9 +18,9 @@ class PersonInfoController: XYInfomationBaseViewController {
         self.view.backgroundColor = UIColor(red: color, green: color, blue: color, alpha: 1)
         self.setContentWithData(DataTool.customData(), itemConfig: nil, sectionConfig: { (section) in
             section.layer.cornerRadius = 0
-            section.separatorHeight = 10
+//            section.separatorHeight = 10
         }, sectionDistance: 10, contentEdgeInsets: .zero) { (index, cell) in
-            print(cell.model.title)
+            SVProgressHUD.showSuccess(withStatus: cell.model.title)
         }
     }
 }
