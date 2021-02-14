@@ -4,9 +4,14 @@
 
 ### 更新
 
+**Version 1.0.2 2021年2月14日**
+1. XYInfomationSection 新增 separatorHeight 属性，方便直接通过一个组实现分组效果。
+2. 优化性能多组实现的性能
+
 **Version 1.0.1 2021年2月10日**
 1. XYInfomationBaseViewController 底层新增面向section数据的API，快速根据数据创建内容
-2. 新增纯自定义个人中心页面 Demo
+2. 优化自定义Cell的底层实现
+3. 新增纯自定义个人中心页面 Demo
 
 **Version 1.0.0 2021年2月5日**
 1. 支持完全自定义cell，需同时指定 type = other ,且指定 customCellClass 为自定义cell 类名
@@ -62,11 +67,11 @@
 
 <image src="image/tax_01.png" width=270 height=536/> <image src="image/tax_02.png" width=270 height=536/> <image src="image/tax_03.png" width=270 height=536/> <image src="image/tax_04.png" width=270 height=536/> <image src="image/tax_05.png" width=270 height=536/> <image src="image/tax_06.png" width=270 height=536/>
 
-4.自定义示例(几个独立仿写DEMO 支付宝-我的-设置 、微信-隐私设置 、 微博-设置)
+4.自定义示例(几个独立仿写DEMO 支付宝-我的-设置 、微信-隐私设置 、 微博-设置 、个人中心页)
 
-可以打开【支付宝/微信/微博】的相关页面来对比一下还原度。有兴趣可以看一下源码，支付宝页面相对复杂源码 130 行，微信、微博均为 30 行。 **之所以此DEMO源码较少，是因为 XYInfomationSection 核心在于写交互类表单，详见个人所得税DEMO**
+可以打开【支付宝/微信/微博】的相关页面来对比一下还原度。有兴趣可以看一下源码，支付宝页面相对复杂源码 130 行，微信、微博、个人中心页均为 30 行。 **之所以此DEMO源码较少，是因为 XYInfomationSection 核心在于写交互类表单，详见个人所得税DEMO**
 
-<image src="image/alipay_01.png" width=270 height=584.3/> <image src="image/alipay_02.png" width=270 height=584.3/> <image src="image/wechat.png" width=270 height=584.3/> <image src="image/weibo.png" width=270 height=584.3/>
+<image src="image/alipay_01.png" width=270 height=584.3/> <image src="image/alipay_02.png" width=270 height=584.3/> <image src="image/wechat.png" width=270 height=584.3/> <image src="image/weibo.png" width=270 height=584.3/> <image src="image/personInfo.png" width=270 height=584.3/>
 
 ### XYInfomationSection 优势
 
