@@ -126,6 +126,117 @@ section.cellClickBlock = ^(NSInteger index, XYInfomationCell * _Nonnull cell) {
 };
 ```
 
+- 推荐使用 XYInfomationBaseViewController 的方法。面向数据构建页面，使用更简单
+
+```
+1. 创建自己的页面，继承自 XYInfomationBaseViewController
+2. veiwDidLoad 方法中调用自身创建 content 方法
+
+// OC 版本示例
+@implementation WeiboViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    [self setContentWithData:[DataTool WeiBoData] itemConfig:nil sectionConfig:nil  sectionDistance:20 contentEdgeInsets:UIEdgeInsetsMake(20, 0, 20, 0) cellClickBlock:^(NSInteger index, XYInfomationCell * _Nonnull cell) {
+    	// 处理cell点击事件
+    }];   
+}
+
+// Swift 版本示例
+class PersonInfoController: XYInfomationBaseViewController {
+  
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        let color: CGFloat = 0.95
+        self.view.backgroundColor = UIColor(red: color, green: color, blue: color, alpha: 1)
+        self.setContentWithData(DataTool.customData(), itemConfig: nil, sectionConfig: nil, sectionDistance: 10, contentEdgeInsets: .zero) { (index, cell) in
+            // 这里处理cell点击事件
+        }
+    }
+}
+
+# 构造数据格式如下
++ (NSArray *)customData{
+    NSArray *section1 = @[
+        @{
+            @"imageName": @"grade",
+            @"title": @"更换头像",
+            @"titleKey": @"",
+            @"value": @"",
+            @"type": @3,
+            @"customCellClass": @"SectionDemo.PersonInfoHeaderCell",
+            @"cellHeight": @215,
+            @"valueCode": @"",
+        }
+    ];
+    
+    UIImage *image = [UIImage imageNamed:@"rightArraw_gray2"];
+    NSArray *section2 = @[
+        @{
+            @"imageName": @"",
+            @"title": @"企业名称",
+            @"titleKey": @"",
+            @"value": @"蚂蚁金服有限公司",
+            @"type": @3,
+            @"customCellClass": @"SectionDemo.PersonInfoCell",
+            @"cellHeight": @115,
+            @"valueCode": @"",
+            @"accessoryView": [[UIImageView alloc] initWithImage:image]
+        }];
+	NSArray *array = @[section1,section2];
+	return array;
+}
+```
+
+- 使用自定义Cell
+
+```
+1. 创建自定义cell 继承自 XYInfomationCell
+2. 实现 init 方法。并在内部构建自己的cell 子视图与布局.(Swift 需要实现 override init(frame: CGRect) 方法)
+3. 重写 ’- setModel:‘ 方法, 根据model 数据来给cell子组件赋值。(Swfit 需要重写model属性的为计算属性，并监听didSet方法即可)
+
+// OC 版本示例
+@implementation XYCustomCell
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        // 这里创建 cell 的 subView
+    }
+    return self;
+}
+
+- (void)setModel:(XYInfomationItem *)model
+{
+    [super setModel:model];
+    // 在这里给自己subView的内容赋值
+}
+
+// Swift 版本示例
+class PersonInfoCell: XYInfomationCell {
+    
+    let titleLabel = UILabel()
+    let descLabel = UILabel()
+    
+    override init(frame: CGRect) {
+        super.init(frame: CGRect.zero)
+                
+        // init and setup subviews
+    }
+    
+    override var model: XYInfomationItem{
+        didSet{
+        		
+        		// 给内容赋值
+            titleLabel.text = model.title
+            descLabel.text = model.value
+        }
+    }
+}
+```
+
 - 详情请查看Demo中对不同功能的具体实现
 
 
