@@ -4,6 +4,9 @@
 
 ### 更新
 
+**Version 1.0.3 2021年2月19日**
+1. XYInfomationBaseViewController 优化回调，方便回调时知道是第几组
+
 **Version 1.0.2 2021年2月14日**
 1. XYInfomationSection 新增 separatorHeight 属性，方便直接通过一个组实现分组效果。
 2. 优化性能多组实现的性能
