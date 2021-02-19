@@ -178,6 +178,7 @@
     for (NSArray *dictArr in dataArr) {
         index++;
         XYInfomationSection *section = [XYInfomationSection new];
+        section.tag = index;
         if (sectionConfig) {
             sectionConfig(section);
         }
