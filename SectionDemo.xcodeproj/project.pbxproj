@@ -176,6 +176,7 @@
 		B48515FA22B8E78000779B6B /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = B48515F722B8E78000779B6B /* SVProgressHUD.m */; };
 		B48515FB22B8E78000779B6B /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = B48515F822B8E78000779B6B /* SVIndefiniteAnimatedView.m */; };
 		B48515FC22B8E78000779B6B /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B48515F922B8E78000779B6B /* SVProgressHUD.bundle */; };
+		B489F5482652A17800B2DA02 /* XYInfomationTipCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B489F5472652A17800B2DA02 /* XYInfomationTipCell.m */; };
 		B49398DD23C4D41A00CA3D86 /* XYInfoTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = B49398DC23C4D41A00CA3D86 /* XYInfoTextView.m */; };
 		B4C25FE525D37FFB0034C3E2 /* PersonInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C25FE425D37FFB0034C3E2 /* PersonInfoController.swift */; };
 		B4C25FE925D39E740034C3E2 /* PersonInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C25FE825D39E740034C3E2 /* PersonInfoCell.swift */; };
@@ -466,6 +467,8 @@
 		B48515F822B8E78000779B6B /* SVIndefiniteAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVIndefiniteAnimatedView.m; sourceTree = "<group>"; };
 		B48515F922B8E78000779B6B /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
 		B48515FD22B8E84700779B6B /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		B489F5462652A17800B2DA02 /* XYInfomationTipCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYInfomationTipCell.h; sourceTree = "<group>"; };
+		B489F5472652A17800B2DA02 /* XYInfomationTipCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYInfomationTipCell.m; sourceTree = "<group>"; };
 		B49398DB23C4D41A00CA3D86 /* XYInfoTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYInfoTextView.h; sourceTree = "<group>"; };
 		B49398DC23C4D41A00CA3D86 /* XYInfoTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYInfoTextView.m; sourceTree = "<group>"; };
 		B4C25FE325D37FFB0034C3E2 /* SectionDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SectionDemo-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -958,6 +961,8 @@
 				B40F58FD22BA90EA001C6A53 /* XYInfomationBaseViewController.m */,
 				B49398DB23C4D41A00CA3D86 /* XYInfoTextView.h */,
 				B49398DC23C4D41A00CA3D86 /* XYInfoTextView.m */,
+				B489F5462652A17800B2DA02 /* XYInfomationTipCell.h */,
+				B489F5472652A17800B2DA02 /* XYInfomationTipCell.m */,
 			);
 			path = XYInfomationSection;
 			sourceTree = "<group>";
@@ -1264,6 +1269,7 @@
 				B42DADA32388551C009E1CC3 /* XYTaxBaseSection.m in Sources */,
 				B483E16E238FFB23007DDAB7 /* FMDatabaseQueue.m in Sources */,
 				B45C361825C667810096DC40 /* IQUITextFieldView+Additions.m in Sources */,
+				B489F5482652A17800B2DA02 /* XYInfomationTipCell.m in Sources */,
 				B40F58FF22BA90EA001C6A53 /* XYInfomationBaseViewController.m in Sources */,
 				B4F0F8FB2389C1080094B521 /* LYLUnicode.m in Sources */,
 				B44D7B232387A0C900173869 /* XYHouseLoansController.m in Sources */,

@@ -27,6 +27,11 @@
     [self setContentWithData:[DataTool WechatPrivateData] itemConfig:^(XYInfomationItem * _Nonnull item) {
         item.titleWidthRate = 0.6;
         item.titleFont = [UIFont boldSystemFontOfSize:16];
+        if (item.type == XYInfoCellTypeTip) {
+            item.tipEdgeInsets = UIEdgeInsetsMake(10, 15, 10, 15);
+            item.titleColor = UIColor.lightGrayColor;
+            item.titleFont = [UIFont systemFontOfSize:13];
+        }
     } sectionConfig:^(XYInfomationSection * _Nonnull section) {
         section.layer.cornerRadius = 0;
     }  sectionDistance:10 contentEdgeInsets:UIEdgeInsetsMake(0, 0, 30, 0) cellClickBlock:^(NSInteger index, XYInfomationCell * _Nonnull cell) {
