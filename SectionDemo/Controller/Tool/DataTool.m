@@ -1038,7 +1038,7 @@ MJCodingImplementation;
         @{
             @"title": @"开启后，为你推荐已经开通微信的手机联系人",
             @"type": @3,
-            @"customCellClass": @"WechatTipCell",
+//            @"customCellClass": @"XYInfomationTipCell",
             @"backgroundColor": HEXCOLOR(0xf6f6f6),
             @"hideSeparateLine": @1
         }
@@ -1063,7 +1063,7 @@ MJCodingImplementation;
         @{
             @"title": @"朋友圈和视频动态",
             @"type": @3,
-            @"customCellClass": @"WechatTipCell",
+//            @"customCellClass": @"WechatTipCell",
             @"backgroundColor": HEXCOLOR(0xf6f6f6),
             @"hideSeparateLine": @1
         },
@@ -1129,7 +1129,7 @@ MJCodingImplementation;
         @{
             @"title": @"关闭后，有朋友发表朋友圈时，界面下方的“发现”切换按钮上不再出现红点提示。",
             @"type": @3,
-            @"customCellClass": @"WechatTipCell",
+//            @"customCellClass": @"WechatTipCell",
             @"backgroundColor": HEXCOLOR(0xf6f6f6),
             @"hideSeparateLine": @1
         }
