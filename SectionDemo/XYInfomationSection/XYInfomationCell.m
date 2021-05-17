@@ -94,6 +94,13 @@
     return _placeholderFont;
 }
 
+- (UIEdgeInsets)tipEdgeInsets{
+    if (!_tipEdgeInsets.top) {
+        return UIEdgeInsetsMake(10, 20, 10, 20);
+    }
+    return _tipEdgeInsets;
+}
+
 + (instancetype)modelWithTitle:(NSString *)title
                       titleKey:(NSString *)titleKey
                           type:(XYInfoCellType)type
@@ -304,6 +311,13 @@
             cell.model = model;
         }
             break;
+        case XYInfoCellTypeTip:
+        {
+            cell = [NSClassFromString(@"XYInfomationTipCell") new];
+            cell->_cell_type = XYInfoCellTypeTip;
+            cell.model = model;
+        }
+            break;
         case XYInfoCellTypeOther: // 如果是自定义类型，那就根据model中自定义类来创建
         {
             if (NSClassFromString(model.customCellClass)) {
@@ -371,6 +385,9 @@
             inputTV.textAlignment = NSTextAlignmentLeft;
             inputTV.font = [UIFont systemFontOfSize:14];
         }
+    }else if (model.type == XYInfoCellTypeTip)
+    {
+        return;
     }
     
     

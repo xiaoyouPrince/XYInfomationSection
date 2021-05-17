@@ -57,6 +57,7 @@ typedef NS_ENUM(NSUInteger, XYInfoCellType) {
     XYInfoCellTypeInput = 0,    // default is input
     XYInfoCellTypeChoose,       // 用于弹出下拉框选择的
     XYInfoCellTypeTextView,     // 可以用于多行输入的，textView
+    XYInfoCellTypeTip,          // 展示tip 信息的cell，类似微信设置内的 tip
     XYInfoCellTypeOther,        // 日后扩展，例如cell内部的右边的view
 };
 
@@ -166,6 +167,9 @@ typedef NS_ENUM(NSUInteger, XYInfoCellType) {
 @property (nonatomic, assign, getter=isHideSeparateLine)   BOOL hideSeparateLine;
 ///  cell title占整个cell 宽度的比例 default is 0.3 【赋值需要在 0~1.0 之间】
 @property (nonatomic, assign)   CGFloat titleWidthRate;
+
+/** Tip 类型cell 专用, default is top/bottom 10, left/right 20 */
+@property (nonatomic, assign)   UIEdgeInsets tipEdgeInsets;
 
 /// 创建方法(通过dictionary创建)
 + (instancetype)modelWithDict:(NSDictionary *)dict;
