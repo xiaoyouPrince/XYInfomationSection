@@ -57,8 +57,8 @@ typedef NS_ENUM(NSUInteger, XYInfoCellType) {
     XYInfoCellTypeInput = 0,    // default is input
     XYInfoCellTypeChoose,       // 用于弹出下拉框选择的
     XYInfoCellTypeTextView,     // 可以用于多行输入的，textView
-    XYInfoCellTypeTip,          // 展示tip 信息的cell，类似微信设置内的 tip
     XYInfoCellTypeOther,        // 日后扩展，例如cell内部的右边的view
+    XYInfoCellTypeTip,          // 展示tip 信息的cell，类似微信设置内的 tip
 };
 
 @interface XYInfomationItem : NSObject
