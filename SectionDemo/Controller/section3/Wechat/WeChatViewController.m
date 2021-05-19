@@ -35,6 +35,10 @@
     } sectionConfig:^(XYInfomationSection * _Nonnull section) {
         section.layer.cornerRadius = 0;
     }  sectionDistance:10 contentEdgeInsets:UIEdgeInsetsMake(0, 0, 30, 0) cellClickBlock:^(NSInteger index, XYInfomationCell * _Nonnull cell) {
+        if (cell.model.type == XYInfoCellTypeSwitch) {
+            [SVProgressHUD showSuccessWithStatus:[NSString stringWithFormat:@"%@ 被设置为%@",cell.model.title,cell.model.isOn?@"开启":@"关闭"]];
+            return;
+        }
         UIViewController *detail = [NSClassFromString(cell.model.titleKey) new];
         detail.title = cell.model.title;
         [weakSelf.navigationController pushViewController:detail animated:YES];
