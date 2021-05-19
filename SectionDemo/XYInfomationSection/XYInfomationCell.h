@@ -59,6 +59,7 @@ typedef NS_ENUM(NSUInteger, XYInfoCellType) {
     XYInfoCellTypeTextView,     // 可以用于多行输入的，textView
     XYInfoCellTypeOther,        // 日后扩展，例如cell内部的右边的view
     XYInfoCellTypeTip,          // 展示tip 信息的cell，类似微信设置内的 tip
+    XYInfoCellTypeSwitch,       // 展示开关类型 信息的cell，开启某项服务，以当前 item.titleKey 为key
 };
 
 @interface XYInfomationItem : NSObject
@@ -170,6 +171,9 @@ typedef NS_ENUM(NSUInteger, XYInfoCellType) {
 
 /** Tip 类型cell 专用, default is top/bottom 10, left/right 20 */
 @property (nonatomic, assign)   UIEdgeInsets tipEdgeInsets;
+
+/** Switch 类型cell 专用, default is NO */
+@property (nonatomic, assign, getter=isOn)   BOOL on;
 
 /// 创建方法(通过dictionary创建)
 + (instancetype)modelWithDict:(NSDictionary *)dict;

@@ -101,6 +101,21 @@
     return _tipEdgeInsets;
 }
 
+- (NSString *)titleKey{
+    if (!_titleKey) {
+        return _title;
+    }
+    return _titleKey;
+}
+
+- (BOOL)isOn{
+    return [NSUserDefaults.standardUserDefaults boolForKey:self.titleKey];
+}
+
+- (void)setOn:(BOOL)on{
+    [NSUserDefaults.standardUserDefaults setBool:on forKey:self.titleKey];
+}
+
 + (instancetype)modelWithTitle:(NSString *)title
                       titleKey:(NSString *)titleKey
                           type:(XYInfoCellType)type
@@ -315,6 +330,13 @@
         {
             cell = [NSClassFromString(@"XYInfomationTipCell") new];
             cell->_cell_type = XYInfoCellTypeTip;
+            cell.model = model;
+        }
+            break;
+        case XYInfoCellTypeSwitch:
+        {
+            cell = [NSClassFromString(@"XYInfomationSwitchCell") new];
+            cell->_cell_type = XYInfoCellTypeSwitch;
             cell.model = model;
         }
             break;
