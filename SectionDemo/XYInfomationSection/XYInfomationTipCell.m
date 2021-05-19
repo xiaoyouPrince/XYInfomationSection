@@ -7,6 +7,7 @@
 //
 
 #import "XYInfomationTipCell.h"
+#import "Masonry.h"
 
 @implementation XYInfomationTipCell
 {

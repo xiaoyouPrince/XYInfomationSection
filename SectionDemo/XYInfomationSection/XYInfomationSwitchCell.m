@@ -7,6 +7,7 @@
 //
 
 #import "XYInfomationSwitchCell.h"
+#import "Masonry.h"
 
 @implementation XYInfomationSwitchCell
 {
