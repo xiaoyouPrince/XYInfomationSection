@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   s.author           		= { 'xiaoyouPrince' => 'xiaoyouPrince@163.com' }
   s.source           		= { :git => 'https://github.com/xiaoyouPrince/XYInfomationSection.git', :tag => s.version.to_s }
 
-  s.ios.deployment_target 	= '8.0'
+  s.ios.deployment_target 	= '9.0'
   s.requires_arc 			= true
 
   s.source_files 			= 'SectionDemo/XYInfomationSection/**/*.{h,m,xib}'

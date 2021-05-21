@@ -4,6 +4,11 @@
 
 ### 更新
 
+**Version 1.1.0 2021年5月19日**
+1. 增加对设置功能支持，新增 XYInfomationTipCell/XYInfomationSwitchCell两种类型cell
+2. XYInfoCellType 新增 XYInfoCellTypeTip/XYInfoCellTypeSwitch 可直接指定cell类型
+3. 微信设置页面使用两种新 cell 部分重写。
+
 **Version 1.0.3 2021年2月19日**
 1. XYInfomationBaseViewController 优化回调，方便回调时知道是第几组
 
