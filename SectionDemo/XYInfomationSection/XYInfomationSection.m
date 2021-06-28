@@ -96,6 +96,11 @@ static UIView *the_bottom_cell = nil;
     int index = -1;
     for (XYInfomationItem *item in self.dataArray) {
         index++;
+        // 对于折叠的数据，直接过滤，提升性能
+        if (self.isImprovePerformance && item.isFold) {
+            continue;
+        }
+        
         
         XYInfomationCell *cell = [XYInfomationCell cellWithModel:item];
         cell.translatesAutoresizingMaskIntoConstraints = NO;

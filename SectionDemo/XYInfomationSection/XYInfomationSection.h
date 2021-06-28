@@ -47,7 +47,15 @@ typedef void(^SectionCellClickBlock)(NSInteger index,XYInfomationCell *cell);
 /** 展开数据 */
 - (void)unfoldAllCells;
 
-/** 获取 section 中内部所有的参数 key-values */
+/** 是否开启性能优化， default is NO
+    @Discussion开启性能优化后，不会创建被设置为 \b折叠 的cell，同样获取所有参数时候也会忽略被折叠的cell
+    @note 具体场景如: 是否有配偶. 展开组仍需要监听内部证件类型、证件号码 并自动填充生日信息
+ */
+@property (nonatomic, assign, getter=isImprovePerformance)      BOOL improvePerformance;
+
+/** 获取 section 中内部所有的参数 key-values
+    @note 如果开启 improvePerformance = YES 则取值也忽略折叠项目
+ */
 @property(nonatomic , strong , readonly)     NSDictionary *contentKeyValues;
 
 @end
