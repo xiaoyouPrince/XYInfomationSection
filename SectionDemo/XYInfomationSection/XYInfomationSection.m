@@ -12,7 +12,13 @@
 @interface XYInfomationSection ()
 /** foldIndexs */
 @property (nonatomic, strong)       NSMutableArray * foldIndexs;
+@property (nonatomic, strong)       UIImageView *snapCell;
 @end
+
+@interface XYInfomationSection (CellMove)
+- (void)addGesture;
+@end
+
 @implementation XYInfomationSection
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -38,6 +44,8 @@
  */
 - (void)baseUIConfig:(BOOL)original{
     _foldIndexs = @[].mutableCopy;
+    
+    [self addGesture];
     
     if (!original) { // 创建默认style
         self.layer.cornerRadius = 10;
@@ -300,6 +308,109 @@ static UIView *the_bottom_cell = nil;
 - (void)dealloc
 {
     the_bottom_cell = nil;
+}
+
+@end
+
+@implementation XYInfomationSection (CellMove)
+
+- (void)addGesture
+{
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(procesLongPress:)];
+    longPress.minimumPressDuration = 1.0f;
+    [self addGestureRecognizer:longPress];
+}
+
+- (void)procesLongPress:(UILongPressGestureRecognizer *)press {
+    NSLog(@"longPress ---- %zd",press.state);
+    NSLog(@"longPressView = %@",press.view);
+    CGPoint currentPoint = [press locationInView:press.view];
+    NSLog(@"longPressView.loacation = %@",NSStringFromCGPoint(currentPoint));
+    
+    switch (press.state) {
+        case UIGestureRecognizerStateBegan:
+            [self procesLongPressBeginWithCurrentPoint:currentPoint];
+            break;
+        case UIGestureRecognizerStateChanged:
+            [self procesLongPressMovedWithCurrentPoint:currentPoint];
+            break;
+        case UIGestureRecognizerStateCancelled:
+        case UIGestureRecognizerStateEnded:
+            [self procesLongPressEndWithCurrentPoint:currentPoint];
+            break;
+        default:
+            break;
+    }
+}
+
+- (XYInfomationCell *)cellWithCurrentPoint:(CGPoint)point{
+    XYInfomationCell *thePressCell = nil;
+    for (XYInfomationCell *cell in self.subviews) {
+        if (CGRectContainsPoint(cell.frame, point) && [cell isKindOfClass:XYInfomationCell.class]) {
+            thePressCell = cell;
+        }
+    }
+    return thePressCell;
+}
+
+- (UIImageView *)snapshotViewWithInputView:(UIView *)inputView
+{
+    UIGraphicsBeginImageContextWithOptions(inputView.bounds.size, NO, 0);
+    [inputView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    UIImageView *snapshot = [[UIImageView alloc] initWithImage:image];
+    return snapshot;
+}
+
+- (void)procesLongPressBeginWithCurrentPoint:(CGPoint)point{
+    XYInfomationCell *cell = [self cellWithCurrentPoint:point];
+    cell.backgroundColor = UIColor.redColor;
+    if (!cell) { return; }
+    
+    UIImageView *snapView = [self snapshotViewWithInputView:cell];
+    snapView.layer.shadowColor = [UIColor grayColor].CGColor;
+    snapView.layer.masksToBounds = NO;
+    snapView.layer.cornerRadius = 0;
+    snapView.layer.shadowOffset = CGSizeMake(-5, 0);
+    snapView.layer.shadowOpacity = 0.4;
+    snapView.layer.shadowRadius = 5;
+    
+    snapView.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, snapView.frame.size.width, snapView.frame.size.height);
+    [self addSubview:snapView];
+    self.snapCell = snapView;
+
+    cell.hidden = YES;
+    
+    [UIView animateWithDuration:0.25 animations:^{
+        self.snapCell.center = CGPointMake(snapView.center.x, snapView.center.y - 5); // 上移5pt,模拟动画
+    }];
+}
+
+- (void)procesLongPressMovedWithCurrentPoint:(CGPoint)point{
+    
+    // cell 跟手移动
+    self.snapCell.center = CGPointMake(self.snapCell.center.x, point.y - 5);
+    
+    // 后面的cell 也要根据当前point 配合滑动动画
+    XYInfomationCell *bgCell = [self cellWithCurrentPoint:point];
+    if (!bgCell) { return; }
+    
+    CGRect cellTopRect = CGRectMake(bgCell.frame.origin.x, bgCell.frame.origin.x, bgCell.frame.size.width, bgCell.frame.size.height/2);
+    if (CGRectContainsPoint(cellTopRect, self.snapCell.center)) {
+        [UIView animateWithDuration:0.25 animations:^{
+//            bgCell.center = CGPointMake(self.snapCell.center.x, self.snapCell.bounds.size.height / 2);
+//            bgCell.frame = bgCell.frame;
+//            bgCell.center = CGPointMake(self.snapCell.center.x, self.snapCell.bounds.size.height / 2 + bgCell.center.y);
+        }];
+    }
+}
+
+- (void)procesLongPressEndWithCurrentPoint:(CGPoint)point{
+    
+    self.snapCell.hidden = YES;
+    [self.snapCell removeFromSuperview];
+    
 }
 
 @end
