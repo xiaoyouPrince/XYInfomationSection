@@ -17,6 +17,7 @@
 @property (nonatomic, assign)       CGPoint lastPoint;
 @property (nonatomic, strong)       UIImageView *snapCell;
 @property (nonatomic, strong)       NSMutableArray <XYInfomationItem *>*tempDataArray;
+@property (nonatomic, strong)       NSMutableArray <UIImageView*>*tempSnapCells;
 @end
 
 @interface XYInfomationSection (CellMove)
@@ -375,6 +376,7 @@ static NSTimeInterval CellMoveAnimationTime = 0.25;
     for (XYInfomationCell *cell in self.subviews) {
         UIImageView *snap = [self snapshotViewWithInputView:cell];
         if (snap) {
+            snap.tag = cell.tag;
             [snaps addObject:snap];
             snap.frame = cell.frame;
             cell.hidden = YES;
@@ -384,6 +386,8 @@ static NSTimeInterval CellMoveAnimationTime = 0.25;
     for (UIView *snap in snaps) {
         [self addSubview:snap];
     }
+    
+    self.tempSnapCells = snaps;
 }
 
 - (UIImageView *)snapshotViewWithInputView:(UIView *)inputView
@@ -420,6 +424,7 @@ static NSTimeInterval CellMoveAnimationTime = 0.25;
     snapView.layer.shadowOpacity = 0.4;
     snapView.layer.shadowRadius = 5;
     self.snapCell = snapView;
+    self.snapCell.tag = [self getCellIndexWithCurrentPoint:point];
     
     [UIView animateWithDuration:0.25 animations:^{
         self.snapCell.center = CGPointMake(snapView.center.x, snapView.center.y - 5); // 上移5pt,模拟动画
@@ -432,29 +437,40 @@ static NSTimeInterval CellMoveAnimationTime = 0.25;
     self.snapCell.center = CGPointMake(self.snapCell.center.x, point.y - 5);
     
     // 后面的cell 也要根据当前point 配合滑动动画
-    UIImageView *bgSnapCell = [self cellSnapWithCurrentPoint:point];
-    if (!bgSnapCell) { return; }
+//    UIImageView *bgSnapCell = [self cellSnapWithCurrentPoint:point];
+//    if (!bgSnapCell) { return; }
     
-    CGRect cellTopRect = CGRectMake(bgSnapCell.frame.origin.x, bgSnapCell.frame.origin.y, bgSnapCell.frame.size.width, bgSnapCell.frame.size.height/2);
-    CGRect cellBottomRect = CGRectMake(bgSnapCell.frame.origin.x, bgSnapCell.frame.origin.y + bgSnapCell.frame.size.height/2, bgSnapCell.frame.size.width, bgSnapCell.frame.size.height/2);
+//    CGRect cellTopRect = CGRectMake(bgSnapCell.frame.origin.x, bgSnapCell.frame.origin.y, bgSnapCell.frame.size.width, bgSnapCell.frame.size.height/2);
+//    CGRect cellBottomRect = CGRectMake(bgSnapCell.frame.origin.x, bgSnapCell.frame.origin.y + bgSnapCell.frame.size.height/2, bgSnapCell.frame.size.width, bgSnapCell.frame.size.height/2);
+//
+//    if (CGRectContainsPoint(bgSnapCell.frame, self.lastPoint) &&
+//        !CGRectContainsPoint(cellTopRect, self.lastPoint) &&
+//        CGRectContainsPoint(cellTopRect, point)) { // 从下到上
+//        [UIView animateWithDuration:CellMoveAnimationTime animations:^{
+//            CGPoint center = bgSnapCell.center;
+//            center.y += self.snapCell.bounds.size.height;
+//            bgSnapCell.center = center;
+//        }];
+//    }
+//    if (CGRectContainsPoint(bgSnapCell.frame, self.lastPoint) &&
+//              !CGRectContainsPoint(cellBottomRect, self.lastPoint) &&
+//              CGRectContainsPoint(cellBottomRect, point)){ // 从上到下
+//        [UIView animateWithDuration:CellMoveAnimationTime animations:^{
+//            CGPoint center = bgSnapCell.center;
+//            center.y -= self.snapCell.bounds.size.height;
+//            bgSnapCell.center = center;
+//        }];
+//    }
     
-    if (CGRectContainsPoint(bgSnapCell.frame, self.lastPoint) &&
-        !CGRectContainsPoint(cellTopRect, self.lastPoint) &&
-        CGRectContainsPoint(cellTopRect, point)) { // 从下到上
-        [UIView animateWithDuration:CellMoveAnimationTime animations:^{
-            CGPoint center = bgSnapCell.center;
-            center.y += self.snapCell.bounds.size.height;
-            bgSnapCell.center = center;
-        }];
+    
+    NSInteger currentIndex = [self getCellIndexWithCurrentPoint:point];
+    if (currentIndex < 0 || currentIndex >= self.tempSnapCells.count) {
+        return;
     }
-    if (CGRectContainsPoint(bgSnapCell.frame, self.lastPoint) &&
-              !CGRectContainsPoint(cellBottomRect, self.lastPoint) &&
-              CGRectContainsPoint(cellBottomRect, point)){ // 从上到下
-        [UIView animateWithDuration:CellMoveAnimationTime animations:^{
-            CGPoint center = bgSnapCell.center;
-            center.y -= self.snapCell.bounds.size.height;
-            bgSnapCell.center = center;
-        }];
+    
+    
+    if (currentIndex != self.snapCell.tag) {
+        [self moveCellSnapFrom:self.snapCell.tag to:currentIndex];
     }
     
     // 数据源处理
@@ -467,8 +483,67 @@ static NSTimeInterval CellMoveAnimationTime = 0.25;
     self.snapCell.hidden = YES;
     [self.snapCell removeFromSuperview];
     
+    [self refreshSectionWithDataArray:self.tempDataArray];
+    
+}
+- (NSInteger)getCellIndexWithCurrentPoint:(CGPoint)point{
+    NSInteger result = -1;
+//    if (CGRectContainsPoint(self.bounds, point) == false) {
+//        return result;
+//    }
+//
+//    for (UIView *subview in self.subviews) {
+//        if (CGRectContainsPoint(self.frame, point)) {
+//            result = subview.tag;
+//            return result;
+//        }
+//    }
+//
+//    return result;
     
     
+    for (UIView *snap in self.subviews) {
+        result += 1;
+        if (CGRectContainsPoint(snap.frame, point)) {
+            break;
+        }
+    }
+    
+    return result;
+    
+}
+
+- (void)moveCellSnapFrom:(NSInteger)fromIndex to:(NSInteger)toIndex{
+    
+    if (labs(fromIndex - toIndex) == 1) { // 相邻移动
+        
+        XYInfomationCell *f_c = self.subviews[fromIndex];
+        XYInfomationCell *t_c = self.subviews[toIndex];
+        f_c.hidden = NO;
+        f_c.backgroundColor = UIColor.yellowColor;
+        t_c.hidden = NO;
+        t_c.backgroundColor = UIColor.yellowColor;
+        UIImageView *fromCell = [self snapshotViewWithInputView:f_c];
+        fromCell.frame = f_c.frame;
+        UIImageView *toCell_bg = [self snapshotViewWithInputView:t_c];
+        toCell_bg.frame = t_c.frame;
+        UIImageView *toCell = self.tempSnapCells[toIndex];
+        f_c.hidden = YES;
+        t_c.hidden = YES;
+        
+        CGRect tempRect = toCell_bg.frame;
+        CGRect toRect = fromCell.frame;
+        CGRect fromRect = tempRect;
+        
+        [UIView animateWithDuration:CellMoveAnimationTime animations:^{
+            toCell.frame = toRect;
+            fromCell.frame = fromRect;
+        }];
+    }
+    
+    [self.tempDataArray exchangeObjectAtIndex:fromIndex withObjectAtIndex:toIndex];
+    [self.tempSnapCells exchangeObjectAtIndex:fromIndex withObjectAtIndex:toIndex];
+    self.snapCell.tag = toIndex;
 }
 
 @end
