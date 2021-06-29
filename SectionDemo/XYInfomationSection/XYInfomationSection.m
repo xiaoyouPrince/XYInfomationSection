@@ -16,6 +16,7 @@
 /** cell 长按移动相关 */
 @property (nonatomic, assign)       CGPoint lastPoint;
 @property (nonatomic, strong)       UIImageView *snapCell;
+@property (nonatomic, strong)       NSMutableArray <XYInfomationItem *>*tempDataArray;
 @end
 
 @interface XYInfomationSection (CellMove)
@@ -395,6 +396,16 @@ static NSTimeInterval CellMoveAnimationTime = 0.25;
     return snapshot;
 }
 
+- (NSMutableArray<XYInfomationItem *> *)tempDataArray{
+    if (_tempDataArray == nil) {
+        _tempDataArray = @[].mutableCopy;
+        for (XYInfomationItem *item in self.dataArray) {
+            [_tempDataArray addObject:item.mutableCopy];
+        }
+    }
+    return _tempDataArray;
+}
+
 - (void)procesLongPressBeginWithCurrentPoint:(CGPoint)point{
     
     self.lastPoint = point;
@@ -446,6 +457,8 @@ static NSTimeInterval CellMoveAnimationTime = 0.25;
         }];
     }
     
+    // 数据源处理
+    
     self.lastPoint = point;
 }
 
@@ -453,6 +466,8 @@ static NSTimeInterval CellMoveAnimationTime = 0.25;
     
     self.snapCell.hidden = YES;
     [self.snapCell removeFromSuperview];
+    
+    
     
 }
 
