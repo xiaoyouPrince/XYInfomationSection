@@ -12,6 +12,9 @@
 @interface XYInfomationSection ()
 /** foldIndexs */
 @property (nonatomic, strong)       NSMutableArray * foldIndexs;
+
+/** cell 长按移动相关 */
+@property (nonatomic, assign)       CGPoint lastPoint;
 @property (nonatomic, strong)       UIImageView *snapCell;
 @end
 
@@ -314,6 +317,8 @@ static UIView *the_bottom_cell = nil;
 
 @implementation XYInfomationSection (CellMove)
 
+static NSTimeInterval CellMoveAnimationTime = 0.25;
+
 - (void)addGesture
 {
     UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(procesLongPress:)];
@@ -322,10 +327,10 @@ static UIView *the_bottom_cell = nil;
 }
 
 - (void)procesLongPress:(UILongPressGestureRecognizer *)press {
-    NSLog(@"longPress ---- %zd",press.state);
-    NSLog(@"longPressView = %@",press.view);
+//    NSLog(@"longPress ---- %zd",press.state);
+//    NSLog(@"longPressView = %@",press.view);
     CGPoint currentPoint = [press locationInView:press.view];
-    NSLog(@"longPressView.loacation = %@",NSStringFromCGPoint(currentPoint));
+//    NSLog(@"longPressView.loacation = %@",NSStringFromCGPoint(currentPoint));
     
     switch (press.state) {
         case UIGestureRecognizerStateBegan:
@@ -353,6 +358,33 @@ static UIView *the_bottom_cell = nil;
     return thePressCell;
 }
 
+- (UIImageView *)cellSnapWithCurrentPoint:(CGPoint)point{
+    UIImageView *cellSnap = nil;
+    for (UIView *cell in self.subviews) {
+        if (CGRectContainsPoint(cell.frame, point) && [cell isKindOfClass:UIImageView.class] && cell != self.snapCell) {
+            cellSnap = (UIImageView*)cell;
+        }
+    }
+    return cellSnap;
+}
+
+- (void)makeAllCell2Snap{
+    
+    NSMutableArray *snaps = @[].mutableCopy;
+    for (XYInfomationCell *cell in self.subviews) {
+        UIImageView *snap = [self snapshotViewWithInputView:cell];
+        if (snap) {
+            [snaps addObject:snap];
+            snap.frame = cell.frame;
+            cell.hidden = YES;
+        }
+    }
+    
+    for (UIView *snap in snaps) {
+        [self addSubview:snap];
+    }
+}
+
 - (UIImageView *)snapshotViewWithInputView:(UIView *)inputView
 {
     UIGraphicsBeginImageContextWithOptions(inputView.bounds.size, NO, 0);
@@ -364,23 +396,19 @@ static UIView *the_bottom_cell = nil;
 }
 
 - (void)procesLongPressBeginWithCurrentPoint:(CGPoint)point{
-    XYInfomationCell *cell = [self cellWithCurrentPoint:point];
-    cell.backgroundColor = UIColor.redColor;
-    if (!cell) { return; }
     
-    UIImageView *snapView = [self snapshotViewWithInputView:cell];
+    self.lastPoint = point;
+    [self makeAllCell2Snap];
+    
+    UIImageView *snapView = [self cellSnapWithCurrentPoint:point];
+    snapView.backgroundColor = UIColor.redColor;
     snapView.layer.shadowColor = [UIColor grayColor].CGColor;
     snapView.layer.masksToBounds = NO;
     snapView.layer.cornerRadius = 0;
     snapView.layer.shadowOffset = CGSizeMake(-5, 0);
     snapView.layer.shadowOpacity = 0.4;
     snapView.layer.shadowRadius = 5;
-    
-    snapView.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, snapView.frame.size.width, snapView.frame.size.height);
-    [self addSubview:snapView];
     self.snapCell = snapView;
-
-    cell.hidden = YES;
     
     [UIView animateWithDuration:0.25 animations:^{
         self.snapCell.center = CGPointMake(snapView.center.x, snapView.center.y - 5); // 上移5pt,模拟动画
@@ -393,17 +421,32 @@ static UIView *the_bottom_cell = nil;
     self.snapCell.center = CGPointMake(self.snapCell.center.x, point.y - 5);
     
     // 后面的cell 也要根据当前point 配合滑动动画
-    XYInfomationCell *bgCell = [self cellWithCurrentPoint:point];
-    if (!bgCell) { return; }
+    UIImageView *bgSnapCell = [self cellSnapWithCurrentPoint:point];
+    if (!bgSnapCell) { return; }
     
-    CGRect cellTopRect = CGRectMake(bgCell.frame.origin.x, bgCell.frame.origin.x, bgCell.frame.size.width, bgCell.frame.size.height/2);
-    if (CGRectContainsPoint(cellTopRect, self.snapCell.center)) {
-        [UIView animateWithDuration:0.25 animations:^{
-//            bgCell.center = CGPointMake(self.snapCell.center.x, self.snapCell.bounds.size.height / 2);
-//            bgCell.frame = bgCell.frame;
-//            bgCell.center = CGPointMake(self.snapCell.center.x, self.snapCell.bounds.size.height / 2 + bgCell.center.y);
+    CGRect cellTopRect = CGRectMake(bgSnapCell.frame.origin.x, bgSnapCell.frame.origin.y, bgSnapCell.frame.size.width, bgSnapCell.frame.size.height/2);
+    CGRect cellBottomRect = CGRectMake(bgSnapCell.frame.origin.x, bgSnapCell.frame.origin.y + bgSnapCell.frame.size.height/2, bgSnapCell.frame.size.width, bgSnapCell.frame.size.height/2);
+    
+    if (CGRectContainsPoint(bgSnapCell.frame, self.lastPoint) &&
+        !CGRectContainsPoint(cellTopRect, self.lastPoint) &&
+        CGRectContainsPoint(cellTopRect, point)) { // 从下到上
+        [UIView animateWithDuration:CellMoveAnimationTime animations:^{
+            CGPoint center = bgSnapCell.center;
+            center.y += self.snapCell.bounds.size.height;
+            bgSnapCell.center = center;
         }];
     }
+    if (CGRectContainsPoint(bgSnapCell.frame, self.lastPoint) &&
+              !CGRectContainsPoint(cellBottomRect, self.lastPoint) &&
+              CGRectContainsPoint(cellBottomRect, point)){ // 从上到下
+        [UIView animateWithDuration:CellMoveAnimationTime animations:^{
+            CGPoint center = bgSnapCell.center;
+            center.y -= self.snapCell.bounds.size.height;
+            bgSnapCell.center = center;
+        }];
+    }
+    
+    self.lastPoint = point;
 }
 
 - (void)procesLongPressEndWithCurrentPoint:(CGPoint)point{
