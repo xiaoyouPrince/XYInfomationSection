@@ -58,6 +58,19 @@ typedef void(^SectionCellClickBlock)(NSInteger index,XYInfomationCell *cell);
  */
 @property(nonatomic , strong , readonly)     NSDictionary *contentKeyValues;
 
+/*--------------------------------------------------------*/
+// 编辑模式，cell 是否支持长按排序相关接口
+/*--------------------------------------------------------*/
+
+/// 设置为编辑模式，支持长按排序， default is NO
+@property (nonatomic, assign, getter=isEditMode)     BOOL editMode;
+
+// 某个 cell 是否支持被移动，在item 内设置
+
+// UI 移动完成后回调，告诉外界，如需网络请求后台则可以给后台发
+
+
+
 @end
 
 NS_ASSUME_NONNULL_END
