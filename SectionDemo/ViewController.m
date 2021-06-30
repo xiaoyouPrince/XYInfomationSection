@@ -202,6 +202,23 @@
         }];
         return snap;
     };
+    section4.sectionCellHasMoved = ^(XYInfomationSection * _Nonnull section, NSArray * _Nonnull oldData, NSArray * _Nonnull newData) {
+        
+        // 模拟耗时操作
+        [SVProgressHUD show];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                int success = arc4random() % 2;
+                if (success) {
+                    [SVProgressHUD showSuccessWithStatus:@"修改成功"];
+                    [section refreshSectionWithDataArray:newData];
+                }else{
+                    [SVProgressHUD showErrorWithStatus:@"修改失败"];
+                    [section refreshSectionWithDataArray:oldData];
+                }
+            });
+        });
+    };
     for (XYInfomationSection *section in sections) {
         section.editMode = YES;
         section.cellClickBlock = ^(NSInteger index, XYInfomationCell * _Nonnull cell) {

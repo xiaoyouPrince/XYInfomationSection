@@ -517,7 +517,12 @@ static NSTimeInterval CellMoveAnimationTime = 0.25;
     // NSLog(@"原本数据源 %@",self.dataArray);
     // NSLog(@"最新数据源 %@",self.tempDataArray);
     if (self.sectionCellHasMoved) { // 外界处理是否移动成功，使用新旧数据源
-        self.sectionCellHasMoved(self, self.dataArray, self.tempDataArray);
+        NSMutableArray *oldData = @[].mutableCopy;
+        for (XYInfomationItem *item in self.dataArray) {
+            [oldData addObject:item.mutableCopy];
+        }
+        self.sectionCellHasMoved(self, oldData, self.tempDataArray);
+        [self refreshSectionWithDataArray:self.tempDataArray];
     }else{ // 默认移动成功，成功后 self.dataArray 会被更新
         [self refreshSectionWithDataArray:self.tempDataArray];
     }

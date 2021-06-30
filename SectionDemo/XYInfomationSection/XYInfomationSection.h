@@ -80,7 +80,15 @@ typedef void(^SectionCellClickBlock)(NSInteger index,XYInfomationCell *cell);
     @Discussion 默认不实现此 block 就会使用新数据。如果请求网络，则刷新数据即可。
     @Discussion 示例代码:
     @code
-            ss
+     section.sectionCellHasMoved = ^(XYInfomationSection * _Nonnull section, NSArray * _Nonnull oldData, NSArray * _Nonnull newData) {
+         /// 执行具体操作，确定是否可以移动成功,成功/失败需手动刷新数据
+         if (success) {
+             [section refreshSectionWithDataArray:newData];
+         }else{
+             [section refreshSectionWithDataArray:oldData];
+         }
+     };
+    @endcode
  */
 @property (nonatomic, copy)        void (^sectionCellHasMoved)(XYInfomationSection *section, NSArray *oldData,  NSArray *newData) ;
 
