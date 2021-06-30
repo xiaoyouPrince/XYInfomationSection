@@ -14,6 +14,7 @@
 @property (nonatomic, strong)       NSMutableArray * foldIndexs;
 
 /** cell 长按移动相关 */
+@property (nonatomic, strong)       UILongPressGestureRecognizer *longPress;
 @property (nonatomic, assign)       CGPoint lastPoint;
 @property (nonatomic, strong)       UIImageView *snapCell;
 @property (nonatomic, strong)       NSMutableArray <XYInfomationItem *>*tempDataArray;
@@ -321,9 +322,16 @@ static UIView *the_bottom_cell = nil;
 
 static NSTimeInterval CellMoveAnimationTime = 0.25;
 
+- (void)setEditMode:(BOOL)editMode{
+    _editMode = editMode;
+    self.longPress.enabled = editMode;
+}
+
 - (void)addGesture
 {
     UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(procesLongPress:)];
+    longPress.enabled = self.editMode;
+    self.longPress = longPress;
     longPress.minimumPressDuration = 1.0f;
     [self addGestureRecognizer:longPress];
 }
@@ -474,7 +482,6 @@ static NSTimeInterval CellMoveAnimationTime = 0.25;
     }
     
     // 数据源处理
-    
     self.lastPoint = point;
 }
 
