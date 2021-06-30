@@ -23,6 +23,7 @@
 
 @interface XYInfomationSection (CellMove)
 - (void)addGesture;
+- (void)moveCellSnapFrom:(NSInteger)fromIndex to:(NSInteger)toIndex;
 @end
 
 @implementation XYInfomationSection
@@ -311,6 +312,11 @@ static UIView *the_bottom_cell = nil;
     return [dict copy];
 }
 
+- (void)moveCellFrom:(NSInteger)fromIndex to:(NSInteger)toIndex{
+    [self moveCellSnapFrom:fromIndex to:toIndex];
+    [self refreshSectionWithDataArray:self.tempDataArray];
+}
+
 - (void)dealloc
 {
     the_bottom_cell = nil;
@@ -527,8 +533,8 @@ static NSTimeInterval CellMoveAnimationTime = 0.25;
         for (XYInfomationItem *item in self.dataArray) {
             [oldData addObject:item.mutableCopy];
         }
-        self.sectionCellHasMoved(self, oldData, self.tempDataArray);
         [self refreshSectionWithDataArray:self.tempDataArray];
+        self.sectionCellHasMoved(self, oldData, self.tempDataArray);
     }else{ // 默认移动成功，成功后 self.dataArray 会被更新
         [self refreshSectionWithDataArray:self.tempDataArray];
     }

@@ -92,6 +92,10 @@ typedef void(^SectionCellClickBlock)(NSInteger index,XYInfomationCell *cell);
  */
 @property (nonatomic, copy)        void (^sectionCellHasMoved)(XYInfomationSection *section, NSArray *oldData,  NSArray *newData) ;
 
+/// 直接移动 内部cell
+/// @param fromIndex fromIndex
+/// @param toIndex toIndex
+- (void)moveCellFrom:(NSInteger)fromIndex to:(NSInteger)toIndex;
 
 
 @end
