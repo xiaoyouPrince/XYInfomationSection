@@ -75,9 +75,14 @@ typedef void(^SectionCellClickBlock)(NSInteger index,XYInfomationCell *cell);
 
 // 某个 cell 是否支持被移动，在item 内设置
 
-// UI 移动完成后回调，告诉外界，如需网络请求后台则可以给后台发
-/** UI 移动操作完成回调 */
-//@property (nonatomic, copy)        BOOL(^)() ;
+/** UI 移动操作完成回调
+    @Discussion cell 移动完成会回调此 block， 可在此 Block 中确定更新完是否使用新数据。
+    @Discussion 默认不实现此 block 就会使用新数据。如果请求网络，则刷新数据即可。
+    @Discussion 示例代码:
+    @code
+            ss
+ */
+@property (nonatomic, copy)        void (^sectionCellHasMoved)(XYInfomationSection *section, NSArray *oldData,  NSArray *newData) ;
 
 
 

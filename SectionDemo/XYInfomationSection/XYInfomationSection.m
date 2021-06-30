@@ -458,7 +458,6 @@ static NSTimeInterval CellMoveAnimationTime = 0.25;
     
     // 禁止出界
     CGFloat snapHeight = self.snapCell.bounds.size.height;
-    CGPoint point_ = point;
     if (point.y < snapHeight/2) {
         point.y = snapHeight/2;
     }
@@ -496,14 +495,14 @@ static NSTimeInterval CellMoveAnimationTime = 0.25;
 //    }
     
     
-    NSInteger currentIndex = [self getCellIndexWithCurrentPoint:point];
-    if (currentIndex < 0 || currentIndex >= self.tempSnapCells.count) {
+    NSInteger toIndex = [self getCellIndexWithCurrentPoint:point];
+    if (toIndex < 0 || toIndex >= self.tempSnapCells.count) {
         return;
     }
     
-    
-    if (currentIndex != self.snapCell.tag) {
-        [self moveCellSnapFrom:self.snapCell.tag to:currentIndex];
+    NSInteger fromIndex = self.snapCell.tag;
+    if (toIndex != self.snapCell.tag) {
+        [self moveCellSnapFrom:fromIndex to:toIndex];
     }
     
     // 数据源处理
@@ -515,23 +514,18 @@ static NSTimeInterval CellMoveAnimationTime = 0.25;
     self.snapCell.hidden = YES;
     [self.snapCell removeFromSuperview];
     
-    [self refreshSectionWithDataArray:self.tempDataArray];
+    // NSLog(@"原本数据源 %@",self.dataArray);
+    // NSLog(@"最新数据源 %@",self.tempDataArray);
+    if (self.sectionCellHasMoved) { // 外界处理是否移动成功，使用新旧数据源
+        self.sectionCellHasMoved(self, self.dataArray, self.tempDataArray);
+    }else{ // 默认移动成功，成功后 self.dataArray 会被更新
+        [self refreshSectionWithDataArray:self.tempDataArray];
+    }
 }
+
 - (NSInteger)getCellIndexWithCurrentPoint:(CGPoint)point{
-    NSInteger result = -1;
-//    if (CGRectContainsPoint(self.bounds, point) == false) {
-//        return result;
-//    }
-//
-//    for (UIView *subview in self.subviews) {
-//        if (CGRectContainsPoint(self.frame, point)) {
-//            result = subview.tag;
-//            return result;
-//        }
-//    }
-//
-//    return result;
     
+    NSInteger result = -1;
     
     for (UIView *snap in self.subviews) {
         result += 1;
@@ -541,7 +535,6 @@ static NSTimeInterval CellMoveAnimationTime = 0.25;
     }
     
     return result;
-    
 }
 
 - (void)moveCellSnapFrom:(NSInteger)fromIndex to:(NSInteger)toIndex{
