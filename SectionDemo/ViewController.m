@@ -178,6 +178,30 @@
     
     // 点击回调
     NSArray *sections = @[section1,section2,section3,section4];
+    section2.customMovableCellwithSnap = ^UIView * _Nonnull(UIImageView * _Nonnull cellSnap) {
+        return cellSnap;
+    };
+    section3.customMovableCellwithSnap = ^UIView * _Nonnull(UIImageView * _Nonnull cellSnap) {
+        cellSnap.backgroundColor = UIColor.greenColor;
+        cellSnap.layer.shadowColor = [UIColor yellowColor].CGColor;
+        cellSnap.layer.masksToBounds = NO;
+        cellSnap.layer.cornerRadius = 0;
+        cellSnap.layer.shadowOffset = CGSizeMake(-5, 0);
+        cellSnap.layer.shadowOpacity = 0.9;
+        cellSnap.layer.shadowRadius = 5;
+        return cellSnap;
+    };
+    section4.customMovableCellwithSnap = ^UIView * _Nonnull(UIImageView * _Nonnull cellSnap) {
+        UIView *snap = UIView.new;
+        snap.backgroundColor = UIColor.systemPinkColor;
+        UILabel *label = [[UILabel alloc] init];
+        label.text = @"兄弟，把我放哪里啊";
+        [snap addSubview:label];
+        [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.center.equalTo(label.superview);
+        }];
+        return snap;
+    };
     for (XYInfomationSection *section in sections) {
         section.editMode = YES;
         section.cellClickBlock = ^(NSInteger index, XYInfomationCell * _Nonnull cell) {
