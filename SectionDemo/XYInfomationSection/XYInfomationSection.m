@@ -417,6 +417,12 @@ static NSTimeInterval CellMoveAnimationTime = 0.25;
     }
     return _tempDataArray;
 }
+- (NSMutableArray<UIImageView *> *)tempSnapCells{
+    if (!_tempSnapCells) {
+        [self makeAllCell2Snap];
+    }
+    return _tempSnapCells;
+}
 
 - (void)procesLongPressBeginWithCurrentPoint:(CGPoint)point{
     
@@ -545,26 +551,11 @@ static NSTimeInterval CellMoveAnimationTime = 0.25;
 - (void)moveCellSnapFrom:(NSInteger)fromIndex to:(NSInteger)toIndex{
     
     XYInfomationCell *f_c = self.subviews[fromIndex];
-    XYInfomationCell *t_c = self.subviews[toIndex];
-    f_c.hidden = NO;
-    f_c.backgroundColor = UIColor.yellowColor;
-    t_c.hidden = NO;
-    t_c.backgroundColor = UIColor.yellowColor;
-    UIImageView *fromCell = [self snapshotViewWithInputView:f_c];
-    fromCell.frame = f_c.frame;
-    UIImageView *toCell_bg = [self snapshotViewWithInputView:t_c];
-    toCell_bg.frame = t_c.frame;
     UIImageView *toCell = self.tempSnapCells[toIndex];
-    f_c.hidden = YES;
-    t_c.hidden = YES;
-    
-    CGRect tempRect = toCell_bg.frame;
-    CGRect toRect = fromCell.frame;
-    CGRect fromRect = tempRect;
+    CGRect toRect = f_c.frame;
     
     [UIView animateWithDuration:CellMoveAnimationTime animations:^{
         toCell.frame = toRect;
-        fromCell.frame = fromRect;
     }];
     
     [self.tempDataArray exchangeObjectAtIndex:fromIndex withObjectAtIndex:toIndex];
