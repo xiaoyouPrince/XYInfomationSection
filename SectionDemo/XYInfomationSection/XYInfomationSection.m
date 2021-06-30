@@ -424,13 +424,28 @@ static NSTimeInterval CellMoveAnimationTime = 0.25;
     [self makeAllCell2Snap];
     
     UIImageView *snapView = [self cellSnapWithCurrentPoint:point];
-    snapView.backgroundColor = UIColor.redColor;
-    snapView.layer.shadowColor = [UIColor grayColor].CGColor;
-    snapView.layer.masksToBounds = NO;
-    snapView.layer.cornerRadius = 0;
-    snapView.layer.shadowOffset = CGSizeMake(-5, 0);
-    snapView.layer.shadowOpacity = 0.4;
-    snapView.layer.shadowRadius = 5;
+    if (self.customMovableCellwithSnap) {
+        UIView *customSnap = self.customMovableCellwithSnap(snapView);
+        if (customSnap == snapView) { // 修改后的原来cellSnap
+            // 直接使用，无需额外操作
+        }else{
+            UIView *contentView = [[UIView alloc] initWithFrame:snapView.bounds];
+            [snapView addSubview:contentView];
+            
+            [contentView addSubview:customSnap];
+            customSnap.frame = contentView.bounds;
+        }
+    }else{
+        snapView.backgroundColor = UIColor.whiteColor;
+        snapView.layer.shadowColor = [UIColor grayColor].CGColor;
+        snapView.layer.masksToBounds = NO;
+        snapView.layer.cornerRadius = 0;
+        snapView.layer.shadowOffset = CGSizeMake(-5, 0);
+        snapView.layer.shadowOpacity = 0.4;
+        snapView.layer.shadowRadius = 5;
+    }
+
+    [self bringSubviewToFront:snapView];
     self.snapCell = snapView;
     self.snapCell.tag = [self getCellIndexWithCurrentPoint:point];
     

@@ -58,16 +58,26 @@ typedef void(^SectionCellClickBlock)(NSInteger index,XYInfomationCell *cell);
  */
 @property(nonatomic , strong , readonly)     NSDictionary *contentKeyValues;
 
+#pragma mark - 编辑模式、长按滑动
+
 /*--------------------------------------------------------*/
-// 编辑模式，cell 是否支持长按排序相关接口
+/// @name 编辑模式，cell 是否支持长按排序相关接口
 /*--------------------------------------------------------*/
 
 /// 设置为编辑模式，支持长按排序， default is NO
 @property (nonatomic, assign, getter=isEditMode)     BOOL editMode;
 
+/** cell 长按选中之后可自定义设置cell 样式，入参为被选中 cel l截图
+    @Discussion 自定义被长按选中的cell 样式，入参为当前被选中cell截图，返回值为 UIView  对象，如无需自定义就不用实现此 block
+    @Discussion 返回值可以直接为修改过的原截图，也可以是自定义 view
+ */
+@property (nonatomic, copy)         UIView *(^customMovableCellwithSnap)(UIImageView *cellSnap);
+
 // 某个 cell 是否支持被移动，在item 内设置
 
 // UI 移动完成后回调，告诉外界，如需网络请求后台则可以给后台发
+/** UI 移动操作完成回调 */
+//@property (nonatomic, copy)        BOOL(^)() ;
 
 
 
