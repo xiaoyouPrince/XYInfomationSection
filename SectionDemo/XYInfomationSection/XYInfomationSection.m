@@ -441,6 +441,16 @@ static NSTimeInterval CellMoveAnimationTime = 0.25;
 
 - (void)procesLongPressMovedWithCurrentPoint:(CGPoint)point{
     
+    // 禁止出界
+    CGFloat snapHeight = self.snapCell.bounds.size.height;
+    CGPoint point_ = point;
+    if (point.y < snapHeight/2) {
+        point.y = snapHeight/2;
+    }
+    if (point.y > self.bounds.size.height - snapHeight/2) {
+        point.y = self.bounds.size.height - snapHeight/2;
+    }
+    
     // cell 跟手移动
     self.snapCell.center = CGPointMake(self.snapCell.center.x, point.y - 5);
     
