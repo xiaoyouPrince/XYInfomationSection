@@ -179,6 +179,7 @@
     // 点击回调
     NSArray *sections = @[section1,section2,section3,section4];
     for (XYInfomationSection *section in sections) {
+        section.editMode = YES;
         section.cellClickBlock = ^(NSInteger index, XYInfomationCell * _Nonnull cell) {
             NSLog(@"index = %ld",index);
             [self didClickInfoCell:cell];
