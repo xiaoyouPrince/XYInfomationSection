@@ -528,16 +528,15 @@ static NSTimeInterval CellMoveAnimationTime = 0.25;
     self.snapCell.hidden = YES;
     [self.snapCell removeFromSuperview];
     
-    // NSLog(@"原本数据源 %@",self.dataArray);
-    // NSLog(@"最新数据源 %@",self.tempDataArray);
-    if (self.sectionCellHasMoved) { // 外界处理是否移动成功，使用新旧数据源
+    if (self.sectionCellHasMoved) { // 通知外界移动完成，并传回旧数据
         NSMutableArray *oldData = @[].mutableCopy;
         for (XYInfomationItem *item in self.dataArray) {
             [oldData addObject:item.mutableCopy];
         }
         [self refreshSectionWithDataArray:self.tempDataArray];
-        self.sectionCellHasMoved(self, oldData, self.tempDataArray);
-    }else{ // 默认移动成功，成功后 self.dataArray 会被更新
+        self.sectionCellHasMoved(self, oldData);
+    }else{
+        // 默认移动成功，成功后 self.dataArray 会被更新
         [self refreshSectionWithDataArray:self.tempDataArray];
     }
 }
@@ -587,6 +586,10 @@ static NSTimeInterval CellMoveAnimationTime = 0.25;
         if (completed) {
             completed();
         }
+        
+        // 移除局部变量，后续使用再单独创建
+        self.tempDataArray = nil;
+        self.tempSnapCells = nil;
     }];
     
     [self.tempDataArray exchangeObjectAtIndex:fromIndex withObjectAtIndex:toIndex];
