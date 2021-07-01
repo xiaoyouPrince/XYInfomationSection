@@ -96,6 +96,7 @@ typedef void(^SectionCellClickBlock)(NSInteger index,XYInfomationCell *cell);
 /// @param fromIndex fromIndex
 /// @param toIndex toIndex
 - (void)moveCellFrom:(NSInteger)fromIndex to:(NSInteger)toIndex;
+- (void)moveCellFrom:(NSInteger)fromIndex to:(NSInteger)toIndex completed:(nullable dispatch_block_t)completed;
 
 
 @end

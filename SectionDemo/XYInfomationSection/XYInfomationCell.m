@@ -176,6 +176,11 @@
     return item;
 }
 
+- (NSString *)description{
+    
+    return [NSString stringWithFormat:@"<%@> %zd: title:%@", NSStringFromClass(self.class), self, self.title];
+}
+
 @end
 
 #define kTitleRate 0.3  // 设置titleLabel占整体宽度比例

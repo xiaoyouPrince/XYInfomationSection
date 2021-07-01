@@ -222,7 +222,10 @@
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         dispatch_async(dispatch_get_main_queue(), ^{
-            [section4 moveCellFrom:3 to:2];
+            NSLog(@"dataArray - before = %@",section4.dataArray);
+            [section4 moveCellFrom:3 to:0 completed:^{
+                NSLog(@"dataArray - after = %@",section4.dataArray);
+            }];
         });
     });
     

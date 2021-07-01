@@ -23,7 +23,7 @@
 
 @interface XYInfomationSection (CellMove)
 - (void)addGesture;
-- (void)moveCellSnapFrom:(NSInteger)fromIndex to:(NSInteger)toIndex;
+- (void)exchangeCellSnapFrom:(NSInteger)fromIndex with:(NSInteger)toIndex completed:(dispatch_block_t)completed;
 @end
 
 @implementation XYInfomationSection
@@ -313,8 +313,10 @@ static UIView *the_bottom_cell = nil;
 }
 
 - (void)moveCellFrom:(NSInteger)fromIndex to:(NSInteger)toIndex{
-    [self moveCellSnapFrom:fromIndex to:toIndex];
-    [self refreshSectionWithDataArray:self.tempDataArray];
+    [self moveCellFrom:fromIndex to:toIndex completed:nil];
+}
+- (void)moveCellFrom:(NSInteger)fromIndex to:(NSInteger)toIndex completed:(dispatch_block_t)completed{
+    [self exchangeCellSnapFrom:fromIndex with:toIndex completed:completed];
 }
 
 - (void)dealloc
@@ -567,6 +569,28 @@ static NSTimeInterval CellMoveAnimationTime = 0.25;
     [self.tempDataArray exchangeObjectAtIndex:fromIndex withObjectAtIndex:toIndex];
     [self.tempSnapCells exchangeObjectAtIndex:fromIndex withObjectAtIndex:toIndex];
     self.snapCell.tag = toIndex;
+}
+
+- (void)exchangeCellSnapFrom:(NSInteger)fromIndex with:(NSInteger)toIndex completed:(dispatch_block_t)completed{
+    
+    UIImageView *fromCell = self.tempSnapCells[fromIndex];
+    UIImageView *toCell = self.tempSnapCells[toIndex];
+    
+    CGRect toRect = fromCell.frame;
+    CGRect fromRect = toCell.frame;
+    
+    [UIView animateWithDuration:CellMoveAnimationTime animations:^{
+        fromCell.frame = fromRect;
+        toCell.frame = toRect;
+    } completion:^(BOOL finished) {
+        [self refreshSectionWithDataArray:self.tempDataArray];
+        if (completed) {
+            completed();
+        }
+    }];
+    
+    [self.tempDataArray exchangeObjectAtIndex:fromIndex withObjectAtIndex:toIndex];
+    [self.tempSnapCells exchangeObjectAtIndex:fromIndex withObjectAtIndex:toIndex];
 }
 
 @end
