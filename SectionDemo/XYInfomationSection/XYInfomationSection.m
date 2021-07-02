@@ -572,6 +572,20 @@ static NSTimeInterval CellMoveAnimationTime = 0.25;
 
 - (void)exchangeCellSnapFrom:(NSInteger)fromIndex with:(NSInteger)toIndex completed:(dispatch_block_t)completed{
     
+//    __block CGFloat y = fromIndex * 50;
+//    [self procesLongPressBeginWithCurrentPoint:CGPointMake(0, y)];
+//    [NSTimer scheduledTimerWithTimeInterval:0.016 repeats:YES block:^(NSTimer * _Nonnull timer) {
+//
+//        y -= 3; // 时间/距离 = 合理的像素数
+//        [self procesLongPressMovedWithCurrentPoint:CGPointMake(0, y)];
+//
+//        if (y == toIndex * 50) {
+//            [self procesLongPressEndWithCurrentPoint:CGPointMake(0, y)];
+//            [timer invalidate];
+//        }
+//    }];
+//    return;
+    
     UIImageView *fromCell = self.tempSnapCells[fromIndex];
     UIImageView *toCell = self.tempSnapCells[toIndex];
     
