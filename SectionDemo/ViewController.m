@@ -206,22 +206,29 @@
         
         // 模拟耗时操作
         [SVProgressHUD show];
-        NSLog(@"dataArray - orign = %@",section.dataArray);
+        
+        NSLog(@"-------------cellHasMoved-log-begin-----------------");
+        NSLog(@"原数据 = %@",oldData);
+        NSLog(@"新数据 = %@",section.dataArray);
+        NSLog(@"-------------cellHasMoved-log-end-----------------");
+        
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             dispatch_async(dispatch_get_main_queue(), ^{
                 int success = arc4random() % 2;
                 if (success) {
                     [SVProgressHUD showSuccessWithStatus:@"修改成功"];
-                    NSLog(@"dataArray - after = %@",section.dataArray);
+                    NSLog(@"dataArray -修改成功- 新数据 = %@",section.dataArray);
                 }else{
                     [SVProgressHUD showErrorWithStatus:@"修改失败"];
-                    NSLog(@"dataArray - before = %@",oldData);
+                    NSLog(@"dataArray -修改失败- 旧数据 = %@",oldData);
                     [section refreshSectionWithDataArray:oldData];
                 }
             });
         });
     };
     
+    
+    // 测试代码手动移动 cell 位置从 3 -> 0
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         dispatch_async(dispatch_get_main_queue(), ^{
             NSLog(@"dataArray - before = %@",section4.dataArray);
