@@ -6,7 +6,8 @@
 **Version 1.2.0 2021年7月31日**
 1. 核心功能为新增长按可重新排序功能，新增相关 api
 2. 支持自定义cell长按滑动样式。 提供cell长按排序完成后回到，可在回调中确定是否使用新排序。 提供直接移动内部cell的api，方便使用
-3. 完整版 version 1.2.0 版本文档： [sss]()
+3. 完整版 version 1.2.0 版本文档： [v1.2.0 文档](doc/v1.2.0.md)
+4. 新增支持长按滑动的 Demo 与截图
 
 **Version 1.1.0 2021年5月19日**
 1. 增加对设置功能支持，新增 XYInfomationTipCell/XYInfomationSwitchCell两种类型cell
