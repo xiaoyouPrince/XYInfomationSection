@@ -19,6 +19,7 @@
 @property (nonatomic, strong)       UIImageView *snapCell;
 @property (nonatomic, strong)       NSMutableArray <XYInfomationItem *>*tempDataArray;
 @property (nonatomic, strong)       NSMutableArray <UIImageView*>*tempSnapCells;
+@property (nonatomic, strong)       NSMutableArray <XYInfomationItem *>*theOldDataBeforeCellMove;
 @end
 
 @interface XYInfomationSection (CellMove)
@@ -435,6 +436,8 @@ static NSTimeInterval CellMoveAnimationTime = 0.25;
 - (void)procesLongPressBeginWithCurrentPoint:(CGPoint)point{
     
     self.lastPoint = point;
+    // 此处也证明，array 本身深拷贝，其内容数据，浅拷贝
+    self.theOldDataBeforeCellMove = [self.dataArray mutableCopy];
     [self makeAllCell2Snap];
     
     UIImageView *snapView = [self cellSnapWithCurrentPoint:point];
@@ -530,7 +533,7 @@ static NSTimeInterval CellMoveAnimationTime = 0.25;
     
     if (self.sectionCellHasMoved) { // 通知外界移动完成，并传回旧数据
         NSMutableArray *oldData = @[].mutableCopy;
-        for (XYInfomationItem *item in self.dataArray) {
+        for (XYInfomationItem *item in self.theOldDataBeforeCellMove) {
             [oldData addObject:item.mutableCopy];
         }
         [self refreshSectionWithDataArray:self.tempDataArray];
