@@ -485,33 +485,6 @@ static NSTimeInterval CellMoveAnimationTime = 0.25;
     // cell 跟手移动
     self.snapCell.center = CGPointMake(self.snapCell.center.x, point.y - 5);
     
-    // 后面的cell 也要根据当前point 配合滑动动画
-//    UIImageView *bgSnapCell = [self cellSnapWithCurrentPoint:point];
-//    if (!bgSnapCell) { return; }
-    
-//    CGRect cellTopRect = CGRectMake(bgSnapCell.frame.origin.x, bgSnapCell.frame.origin.y, bgSnapCell.frame.size.width, bgSnapCell.frame.size.height/2);
-//    CGRect cellBottomRect = CGRectMake(bgSnapCell.frame.origin.x, bgSnapCell.frame.origin.y + bgSnapCell.frame.size.height/2, bgSnapCell.frame.size.width, bgSnapCell.frame.size.height/2);
-//
-//    if (CGRectContainsPoint(bgSnapCell.frame, self.lastPoint) &&
-//        !CGRectContainsPoint(cellTopRect, self.lastPoint) &&
-//        CGRectContainsPoint(cellTopRect, point)) { // 从下到上
-//        [UIView animateWithDuration:CellMoveAnimationTime animations:^{
-//            CGPoint center = bgSnapCell.center;
-//            center.y += self.snapCell.bounds.size.height;
-//            bgSnapCell.center = center;
-//        }];
-//    }
-//    if (CGRectContainsPoint(bgSnapCell.frame, self.lastPoint) &&
-//              !CGRectContainsPoint(cellBottomRect, self.lastPoint) &&
-//              CGRectContainsPoint(cellBottomRect, point)){ // 从上到下
-//        [UIView animateWithDuration:CellMoveAnimationTime animations:^{
-//            CGPoint center = bgSnapCell.center;
-//            center.y -= self.snapCell.bounds.size.height;
-//            bgSnapCell.center = center;
-//        }];
-//    }
-    
-    
     NSInteger toIndex = [self getCellIndexWithCurrentPoint:point];
     if (toIndex < 0 || toIndex >= self.tempSnapCells.count) {
         return;
@@ -574,20 +547,6 @@ static NSTimeInterval CellMoveAnimationTime = 0.25;
 }
 
 - (void)exchangeCellSnapFrom:(NSInteger)fromIndex with:(NSInteger)toIndex completed:(dispatch_block_t)completed{
-    
-//    __block CGFloat y = fromIndex * 50;
-//    [self procesLongPressBeginWithCurrentPoint:CGPointMake(0, y)];
-//    [NSTimer scheduledTimerWithTimeInterval:0.016 repeats:YES block:^(NSTimer * _Nonnull timer) {
-//
-//        y -= 3; // 时间/距离 = 合理的像素数
-//        [self procesLongPressMovedWithCurrentPoint:CGPointMake(0, y)];
-//
-//        if (y == toIndex * 50) {
-//            [self procesLongPressEndWithCurrentPoint:CGPointMake(0, y)];
-//            [timer invalidate];
-//        }
-//    }];
-//    return;
     
     UIImageView *fromCell = self.tempSnapCells[fromIndex];
     UIImageView *toCell = self.tempSnapCells[toIndex];
