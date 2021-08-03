@@ -3,6 +3,9 @@
 一组可自定义的表单组件 **XYInfomationSection**.
 
 ### 更新
+**Version 1.3.0 2021年8月3日**
+1. XYInfomationBaseViewController 新增内嵌方法，支持将内容嵌入到原有的 viewController，从而无需影响原有的类继承结构
+
 **Version 1.2.0 2021年7月31日**
 1. 核心功能为新增长按可重新排序功能，新增相关 api
 2. 支持自定义cell长按滑动样式。 提供cell长按排序完成后回到，可在回调中确定是否使用新排序。 提供直接移动内部cell的api，方便使用
