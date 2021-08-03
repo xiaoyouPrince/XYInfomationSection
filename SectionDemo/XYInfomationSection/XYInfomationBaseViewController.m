@@ -220,4 +220,27 @@
     self.scrollView.hidden = NO;
 }
 
++ (instancetype)nestedInVC:(UIViewController *)parentVC withContentOfData:(NSArray *)dataArray itemConfig:(void (^)(XYInfomationItem * _Nonnull))itemConfig sectionConfig:(void (^)(XYInfomationSection * _Nonnull))sectionConfig sectionDistance:(CGFloat)sectionDistance contentEdgeInsets:(UIEdgeInsets)edgeInsets cellClickBlock:(SectionCellClickBlock)cellClickBlock{
+    
+    XYInfomationBaseViewController *instance;
+    for (UIViewController *childVC in parentVC.childViewControllers) {
+        if ([childVC isKindOfClass:self]) {
+            XYInfomationBaseViewController *currentVC = (XYInfomationBaseViewController *)childVC;
+            instance = currentVC;
+            break;
+        }
+    }
+    
+    if (!instance) {
+        instance = [XYInfomationBaseViewController new];
+        [parentVC addChildViewController:instance];
+    }
+    
+    [parentVC.view addSubview:instance.view];
+    
+    [instance setContentWithData:dataArray itemConfig:itemConfig sectionConfig:sectionConfig sectionDistance:sectionDistance contentEdgeInsets:edgeInsets cellClickBlock:cellClickBlock];
+    
+    return instance;
+}
+
 @end

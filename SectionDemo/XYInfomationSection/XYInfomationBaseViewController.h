@@ -46,6 +46,22 @@ NS_ASSUME_NONNULL_BEGIN
          contentEdgeInsets:(UIEdgeInsets)edgeInsets
             cellClickBlock:(SectionCellClickBlock)cellClickBlock;
 
+/// 快速创建一个内嵌的VC
+/// @param parentVC 要嵌入的VC
+/// @param dataArray 数据数组
+/// @param itemConfig 对于每个item 进行额外设置的回调
+/// @param sectionConfig 对于每个section 进行额外设置的回调
+/// @param sectionDistance 每个 section 之间的间距
+/// @param edgeInsets 内容整体的内边距
+/// @param cellClickBlock cell 被点击的回调
++ (instancetype)nestedInVC:(UIViewController *)parentVC
+         withContentOfData:(NSArray *)dataArray
+                itemConfig:(nullable void(^)(XYInfomationItem *item))itemConfig
+             sectionConfig:(nullable void(^)(XYInfomationSection *section))sectionConfig
+           sectionDistance:(CGFloat)sectionDistance
+         contentEdgeInsets:(UIEdgeInsets)edgeInsets
+            cellClickBlock:(SectionCellClickBlock)cellClickBlock;
+
 @end
 
 NS_ASSUME_NONNULL_END
