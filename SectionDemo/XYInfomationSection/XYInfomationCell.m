@@ -347,12 +347,21 @@
             break;
         case XYInfoCellTypeOther: // 如果是自定义类型，那就根据model中自定义类来创建
         {
-            if (NSClassFromString(model.customCellClass)) {
-                cell = [NSClassFromString(model.customCellClass) new];
-            }else
-            {
+            if ([model.customCellClass isKindOfClass:[NSNull class]]) {
                 @throw [[NSException alloc] initWithName:@"入参错误" reason:@"model.type为Other，必须传入 customCellClass" userInfo:nil];
             }
+            
+            // 兼容旧版本，v1.3之前定义 String 类型
+            if ([model.customCellClass isKindOfClass:[NSString class]]) {
+                NSString *className = (NSString *)model.customCellClass;
+                if (NSClassFromString(className)) {
+                    cell = [NSClassFromString(className) new];
+                }
+            } else {
+                // 新版改为 Class 直接注册，提升性能
+                cell = [model.customCellClass new];
+            }
+            
             cell->_cell_type = XYInfoCellTypeOther;
             cell.model = model;
         }

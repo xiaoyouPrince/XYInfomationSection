@@ -65,6 +65,7 @@ typedef NS_ENUM(NSUInteger, XYInfoCellType) {
 @interface XYInfomationItem : NSObject
 /**
  图片名 default is nil
+ @note 若使用此属性，应使用本地图片。若传入网络图地址，会从网络下载，比较耗时
  */
 @property(nonatomic , copy)     NSString *imageName;
 /**
@@ -160,7 +161,7 @@ typedef NS_ENUM(NSUInteger, XYInfoCellType) {
 @property (nonatomic, strong)   UIFont *placeholderFont;
 
 ///  custom cell class - 当type == other 时候有效
-@property (nonatomic, strong)   NSString *customCellClass;
+@property (nonatomic, strong)   Class customCellClass;
 
 ///  cell 的指定 backgroundColor， default is clearColor
 @property (nonatomic, strong)   UIColor *backgroundColor;
