@@ -1321,7 +1321,7 @@ MJCodingImplementation;
     return array;
 }
 
-+ (NSArray *)customData{
++ (NSArray *)customData:(Class)clz{
     NSArray *section1 = @[
         @{
             @"imageName": @"grade",
@@ -1329,7 +1329,7 @@ MJCodingImplementation;
             @"titleKey": @"",
             @"value": @"",
             @"type": @3,
-            @"customCellClass": @"SectionDemo.PersonInfoHeaderCell",
+            @"customCellClass": clz,//@"SectionDemo.PersonInfoHeaderCell",
             @"cellHeight": @215,
             @"valueCode": @"",
         }

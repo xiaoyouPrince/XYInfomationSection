@@ -87,7 +87,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSArray *)WeiBoData;
 
 /// 自定义数据
-+ (NSArray *)customData;
++ (NSArray *)customData:(Class)clz;
 
 @end
 

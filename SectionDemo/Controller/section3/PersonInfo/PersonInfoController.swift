@@ -16,7 +16,7 @@ class PersonInfoController: XYInfomationBaseViewController {
         super.viewDidLoad()
         let color: CGFloat = 0.95
         self.view.backgroundColor = UIColor(red: color, green: color, blue: color, alpha: 1)
-        self.setContentWithData(DataTool.customData(), itemConfig: nil, sectionConfig: { (section) in
+        self.setContentWithData(DataTool.customData(PersonInfoHeaderCell.self), itemConfig: nil, sectionConfig: { (section) in
             section.layer.cornerRadius = 0
 //            section.separatorHeight = 10
         }, sectionDistance: 10, contentEdgeInsets: .zero) { (index, cell) in
