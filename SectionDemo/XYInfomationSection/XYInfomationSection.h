@@ -32,6 +32,10 @@ typedef void(^SectionCellClickBlock)(NSInteger index,XYInfomationCell *cell);
 /** cell被点击的时候回调 @note 这里只有在cellType为choose时候会调用，如果是input类型那就直接调用键盘进行输入了 */
 @property(nonatomic , copy)     SectionCellClickBlock cellClickBlock;
 
+/**
+ 刷新数据，对每个cell数据重新赋值
+ */
+- (void)refreshData;
 /** 使用数据源刷新 section UI */
 - (void)refreshSectionWithDataArray:(NSArray <XYInfomationItem *> *)dataArray;
 

@@ -142,6 +142,10 @@ typedef NS_ENUM(NSUInteger, XYInfoCellType) {
  model中额外的数据对象。default is nil
  */
 @property(nonatomic , strong)   id obj;
+/**
+ model中额外扩展对象。可应对 obj 有特殊用途不想再硬塞到obj的情况
+ */
+@property (nonatomic, strong)   NSDictionary<NSString*,id>* dict;
 
 /// 一些 cell 内部元素的 textColor, font,
 

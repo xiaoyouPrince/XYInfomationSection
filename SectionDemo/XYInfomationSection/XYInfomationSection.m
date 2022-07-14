@@ -176,6 +176,15 @@ static UIView *the_bottom_cell = nil;
 }
 
 #warning todo - will add 刷新数据
+- (void)refreshData {
+    for (UIView *subView in self.subviews) {
+        if ([subView isKindOfClass:XYInfomationCell.class]) {
+            XYInfomationCell *cell = (XYInfomationCell *)subView;
+            cell.model = cell.model;
+        }
+    }
+}
+
 - (void)refreshSectionWithDataArray:(NSArray *)dataArray
 {
 //    if (self.dataArray.count != dataArray) {
@@ -192,6 +201,7 @@ static UIView *the_bottom_cell = nil;
 }
 
 - (void)resetSelfBgColor{
+    if (self.dataArray.lastObject.backgroundImage == nil){return;}
     
     // 如果内部的cell设置背景图片就，设置
     UIImage *lastBgImage = [UIImage imageNamed:self.dataArray.lastObject.backgroundImage];
