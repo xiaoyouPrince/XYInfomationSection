@@ -39,7 +39,7 @@
 /// 默认设置的cell高度
 - (CGFloat)def_cellHeight
 {
-    if (_cellHeight >= 50) {
+    if (_cellHeight > 0) {
         return _cellHeight;
     }
     return 50.f;
