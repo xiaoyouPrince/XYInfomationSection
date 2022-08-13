@@ -18,7 +18,10 @@ class PersonInfoController: XYInfomationBaseViewController {
         self.view.backgroundColor = UIColor(red: color, green: color, blue: color, alpha: 1)
         self.setContentWithData(DataTool.customData(PersonInfoHeaderCell.self), itemConfig: nil, sectionConfig: { (section) in
             section.layer.cornerRadius = 0
-//            section.separatorHeight = 10
+            section.separatorHeight = 10
+            section.separatorInset = .init(top: 0, left: 50, bottom: 0, right: 10)
+            section.separatorColor = UIColor.red
+            section.showLastSeparatorLine = true
         }, sectionDistance: 10, contentEdgeInsets: .zero) { (index, cell) in
             SVProgressHUD.showSuccess(withStatus: cell.model.title)
         }

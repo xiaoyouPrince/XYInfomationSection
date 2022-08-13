@@ -166,6 +166,12 @@ static UIView *the_bottom_cell = nil;
             cell.backgroundColor = cell.model.backgroundColor ?: UIColor.whiteColor;
         }
         
+        if (self.showLastSeparatorLine) {
+            [lineView mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(cell.mas_bottom).offset(-0.5);
+            }];
+        }
+        
         // 设置此cell为底部的cell
         the_bottom_cell = cell;
     }

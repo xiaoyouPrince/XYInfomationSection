@@ -25,6 +25,10 @@ typedef void(^SectionCellClickBlock)(NSInteger index,XYInfomationCell *cell);
 /// @Discussion 此属性设置后默认self.bgColor=.clear 且 cell.bgColor=.white
 /// @note 需要在设置数据源之前设置
 @property (nonatomic) CGFloat separatorHeight;
+/// 是否展示最后一个cell的底部分割线
+/// @Discussion 默认为 NO，不展示最后一个cell分割线，设置 YES 展示
+/// @note 需要在设置数据源之前设置
+@property (nonatomic) BOOL showLastSeparatorLine;
 
 /** dataArray : 存放XYInfomationItem对象的数据源 */
 @property(nonatomic , strong)     NSArray <XYInfomationItem *>*dataArray;
