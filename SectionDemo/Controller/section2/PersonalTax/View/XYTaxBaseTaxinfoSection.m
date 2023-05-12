@@ -228,7 +228,7 @@
 - (void)addBtnClick:(UIButton *)sender
 {
     // 添加一个新组 & 更新底部约束
-    __weak UIView *componentView = [self buildComponentUI];
+    UIView *componentView = [self buildComponentUI];
     [self.topView addSubview:componentView];
     
     XYTaxBaseSection *header = componentView.subviews.firstObject;

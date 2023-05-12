@@ -44,6 +44,19 @@ typedef void(^XYDatePickerDoneBlock)(NSDate *choosenDate);
         datePicker.frame = CGRectMake(0, kScreenH+toolBarHight, kScreenW, pickerHight);
         datePicker.backgroundColor = [UIColor whiteColor];
         datePicker.locale = [NSLocale localeWithLocaleIdentifier:@"zh_Hans_CN"];
+        
+        if (@available(iOS 13.4, *)) {
+            datePicker.preferredDatePickerStyle = UIDatePickerStyleWheels;
+            datePicker.frame = CGRectMake((kScreenW - datePicker.bounds.size.width)/2, kScreenH+toolBarHight, datePicker.bounds.size.width, pickerHight);
+            
+            UIView *content = [UIView new];
+            [datePicker addSubview:content];
+            [datePicker sendSubviewToBack:content];
+            content.backgroundColor = UIColor.whiteColor;
+            content.frame = CGRectMake(-(kScreenW - datePicker.bounds.size.width)/2, 0, kScreenW, pickerHight);
+        } else {
+            // Fallback on earlier versions
+        }
         _datePicker = datePicker;
     }
     return _datePicker;
