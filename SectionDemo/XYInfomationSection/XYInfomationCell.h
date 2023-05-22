@@ -180,6 +180,9 @@ typedef NS_ENUM(NSUInteger, XYInfoCellType) {
 /** Switch 类型cell 专用, default is NO */
 @property (nonatomic, assign, getter=isOn)   BOOL on;
 
+/** 是否支持左滑删除功能, default is NO */
+@property (nonatomic, assign)   BOOL supportSwipe;
+
 /// 创建方法(通过dictionary创建)
 + (instancetype)modelWithDict:(NSDictionary *)dict;
 
