@@ -753,7 +753,7 @@
 {
     // 文字已经修改了，修改自己的数据模型
     UITextField *tf = noty.object;
-    // NSLog(@"tv文字修改 --- %@",tv.text);
+    // Console(@"tv文字修改 --- %@",tv.text);
     
     if (tf == self.inputTF) { // 回调，值调用有用的一次，上面无用的打印会有多次
         self.model.value = self.inputTF.text;
@@ -774,7 +774,7 @@
 {
     // 文字已经修改了，修改自己的数据模型
     UITextView *tv = noty.object;
-    //NSLog(@"tv文字修改 --- %@",tv.text);
+    //Console(@"tv文字修改 --- %@",tv.text);
     
     if (tv == self.inputTV) { // 回调，值调用有用的一次，上面无用的打印会有多次
         self.model.value = self.inputTV.text;
@@ -889,11 +889,31 @@ void doAnimationWithCompletion(dispatch_block_t blk, void(^completion)(BOOL));
 }
 
 - (void)swipeContentViewTaped:(UITapGestureRecognizer *)tap {
-    
+    [self resetInitialState];
+}
+
+- (void)resetInitialState{
     doAnimationWithCompletion(^{
         [self resetFrame];
     }, ^(BOOL completed) {
+        [self removeSwipeContentView];
         [self removeAllActionButtons];
+    });
+}
+
+/// 设置滑动结束状态
+- (void)setSwipeEndState{
+    
+    [self addSwipeContentView];
+    
+    CGFloat maxSwipeWidth = 0;
+    for (UIView *actionView in [self actionBtns]) {
+        maxSwipeWidth += actionView.frame.size.width;
+    }
+    
+    doAnimation(^{
+        CGPoint currentCenter = self.center;
+        self.center = CGPointMake(self.bounds.size.width / 2 - maxSwipeWidth, currentCenter.y);
     });
 }
 
@@ -916,7 +936,7 @@ void doAnimationWithCompletion(dispatch_block_t blk, void(^completion)(BOOL));
 }
 
 - (void)deleteAction{
-    NSLog(@"deleteAction");
+    Console(@"deleteAction");
 }
 
 - (void)dragAction:(UIPanGestureRecognizer *)pan {
@@ -943,25 +963,26 @@ void doAnimationWithCompletion(dispatch_block_t blk, void(^completion)(BOOL));
     CGFloat xFromCenter = [pan translationInView:self].x;
     CGFloat yFromCenter = [pan translationInView:self].y;
     
-    NSLog(@"当前滑动位置 - %@", NSStringFromCGPoint([pan translationInView:self]));
+    Console(@"当前滑动位置 - %@", NSStringFromCGPoint([pan translationInView:self]));
     
     if (yFromCenter > 0) {
-        NSLog(@"down");
+        Console(@"down");
     }else{
-        NSLog(@"up---%f",yFromCenter);
+        Console(@"up---%f",yFromCenter);
     }
     
     if (xFromCenter < 0) { // left
-        NSLog(@"left");
+        Console(@"left");
     }else{
-        NSLog(@"right---%f",xFromCenter);
+        Console(@"right---%f",xFromCenter);
     }
     
     switch (pan.state) {
         case UIGestureRecognizerStateBegan:
-            NSLog(@"begin");
+            Console(@"begin");
             
             // 清空上一次状态
+#warning(@"这里会每次创建,视觉上没有问题,但是性能上待优化")
             btns = nil;
             maxSwipeWidth = 0;
             origin = self.frame.origin;
@@ -974,12 +995,13 @@ void doAnimationWithCompletion(dispatch_block_t blk, void(^completion)(BOOL));
             for (UIView * btn in btns) {
                 index += 1;
                 [self addSubview:btn];
+                
                 btn.frame = CGRectMake(self.frame.size.width + maxSwipeWidth,
                                        0,
                                        btn.frame.size.width,
                                        self.frame.size.height);
                 btn.tag = 1000 + index;
-                maxSwipeWidth += btn.frame.size.width;
+                maxSwipeWidth += btn.bounds.size.width;
             }
             
             // 记录起始位置
@@ -988,7 +1010,7 @@ void doAnimationWithCompletion(dispatch_block_t blk, void(^completion)(BOOL));
             break;
             
         case UIGestureRecognizerStateChanged:
-            NSLog(@"change");
+            Console(@"change");
             
             CGPoint currentCenter = swipeStartCenter;
             currentCenter.x += xFromCenter;
@@ -996,7 +1018,7 @@ void doAnimationWithCompletion(dispatch_block_t blk, void(^completion)(BOOL));
             break;
             
         case UIGestureRecognizerStateEnded:
-            NSLog(@"end");
+            Console(@"end");
             
             // 拿到当前方向 (起止位置比较)
             // 左滑，且起始点为原点，超过50%，划过去 --- 反之复原
@@ -1004,28 +1026,24 @@ void doAnimationWithCompletion(dispatch_block_t blk, void(^completion)(BOOL));
             
             CGFloat velocity = [pan velocityInView:self].x;
             CGFloat inertiaThreshold = 100.0; //points per second
-            NSLog(@"velocity = %lf", velocity);
             
-            if (velocity > inertiaThreshold) { // 收起
-                NSLog(@"velocity > 100");
+            if (velocity > inertiaThreshold) { // 收起,复原位置
+                Console(@"velocity > 100");
                 
-                [self removeSwipeContentView];
-                
-                doAnimationWithCompletion(^{
-                    [self resetFrame];
-                }, ^(BOOL finish) {
-                    [self removeAllActionButtons];
-                });
+                [self resetInitialState];
             }
             else if (velocity < -inertiaThreshold) { // left 弹出
-                NSLog(@"velocity < -100");
+                Console(@"velocity < -100");
                 
-                [self addSwipeContentView];
+                [self setSwipeEndState];
+            }
+            else{ // 无惯性,看是否超过滑出阀值(50dp)
                 
-                doAnimation(^{
-                    CGPoint currentCenter = self.center;
-                    self.center = CGPointMake(self.bounds.size.width / 2 - maxSwipeWidth, currentCenter.y);
-                });
+                if (xFromCenter < -50){ // 滑出
+                    [self setSwipeEndState];
+                }else{ // 复位
+                    [self resetInitialState];
+                }
             }
             
             break;

@@ -19,22 +19,21 @@
 #define iPhoneX (UIApplication.sharedApplication.statusBarFrame.size.height != 20)
 #define kNavHeight (UIApplication.sharedApplication.statusBarFrame.size.height + 44)  // statusBarH + TopBarH
 
-
-
+#ifdef DEBUG
+#define Console(...) NSLog(__VA_ARGS__)
+#else
+#define Console(...)
+#endif
 
 
 /*!
- 
  @note todos
  
  1. 设置cell高度  default is 50pt
  内部属性有两个
  cellHeight(用户自定义 cell高度)
  def_cellHeight(readonly 默认50)，
- 
  */
-
-
 
 /*!
  
