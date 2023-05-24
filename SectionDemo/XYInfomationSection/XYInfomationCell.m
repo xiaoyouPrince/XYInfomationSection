@@ -222,8 +222,6 @@
 
 @property (strong, nonatomic) UIPanGestureRecognizer *tapGestureRecognizer;
 @property (strong, nonatomic) UIPanGestureRecognizer *panGestureRecognizer;
-@property (assign, nonatomic) CGPoint originalPoint;
-
 
 /** cellType */
 @property(nonatomic, assign ,readonly)     XYInfoCellType cell_type;
@@ -844,47 +842,6 @@ void doAnimationWithCompletion(dispatch_block_t blk, void(^completion)(BOOL));
     return true;
 }
 
-- (void)processSwipeGesture:(UISwipeGestureRecognizer *)swipe{
-    if ([self canSwip] == NO) { return; }
-    
-    NSLog(@"aaa ---- swipe.state = %ld", swipe.state);
-    
-    return;
-    if (self.frame.origin.x < 0) { return; }
-    
-    static BOOL endSwipe = YES;
-    static NSArray *btns = nil;
-    static CGFloat maxSwipeWide = 0;
-    
-    if (endSwipe) {
-        endSwipe = NO;
-        // 获取按钮 - 需要指定宽度 - 计算最大可以滑动宽度
-        btns = [self actionBtns];
-        for (UIView * btn in btns) {
-            //[self.superview addSubview:btn];
-            [self addSubview:btn];
-            btn.frame = CGRectMake(self.frame.size.width,0, btn.frame.size.width, self.frame.size.height);
-            maxSwipeWide += btn.frame.size.width;
-        }
-    
-    }
-    
-    switch (swipe.state) {
-        case UIGestureRecognizerStateEnded:
-        {
-            endSwipe = YES;
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [UIView animateWithDuration:0.25 animations:^{
-                    self.frame = CGRectMake(self.frame.origin.x - maxSwipeWide, self.frame.origin.y, self.frame.size.width, self.frame.size.height);
-                }];
-            });
-            break;
-        }
-        default:
-            break;
-    }
-}
-
 - (BOOL)canSwip{
     return YES;//self.model.supportSwipe;
 }
@@ -927,7 +884,8 @@ void doAnimationWithCompletion(dispatch_block_t blk, void(^completion)(BOOL));
 }
 
 - (void)resetFrame {
-    self.center = self.originalPoint;
+    CGPoint currentCenter = self.center;
+    self.center = CGPointMake(self.bounds.size.width / 2, currentCenter.y);
 }
 
 - (void)swipeContentViewTaped:(UITapGestureRecognizer *)tap {
@@ -964,35 +922,29 @@ void doAnimationWithCompletion(dispatch_block_t blk, void(^completion)(BOOL));
 - (void)dragAction:(UIPanGestureRecognizer *)pan {
     if ([self canSwip] == NO) { return; }
     
+    /*
+     滑动删除功能逻辑
+     
+     1. 滑动开始, 判断是否是横向滑动, 纵向滑动 return
+     2. 横向滑动, cell 根据滑动内容位移
+        2.1 启动从当前滑动位置启动, 记录位移起始点
+        2.2 滑动过程中,以起始点计算位移位置滚动
+        2.3 滑动停止,将 cell 停止到目标位置
+            2.3.1 滑动停止时候是否有惯性,根据惯性和滑动方向自动设置为复原或者目标位置
+            2.3.2 如果没有惯性,则根据固定滑动位移决定设置复原或者目标位置
+     */
+    
     // 支持左右滑动，
-    static BOOL endSwipe = YES;
     static NSArray *btns = nil;
     static CGFloat maxSwipeWidth = 0;
     static CGPoint origin;
-    
-    if (endSwipe) {
-        endSwipe = NO;
-        btns = nil;
-        maxSwipeWidth = 0;
-        origin = self.frame.origin;
-        
-        // 获取按钮 - 需要指定宽度 - 计算最大可以滑动宽度
-        btns = [self actionBtns];
-        int index = -1;
-        for (UIView * btn in btns) {
-            index += 1;
-            [self addSubview:btn];
-            btn.frame = CGRectMake(self.frame.size.width + maxSwipeWidth,
-                                   0,
-                                   btn.frame.size.width,
-                                   self.frame.size.height);
-            btn.tag = 1000 + index;
-            maxSwipeWidth += btn.frame.size.width;
-        }
-    }
+    static CGPoint swipeStartCenter;
     
     CGFloat xFromCenter = [pan translationInView:self].x;
     CGFloat yFromCenter = [pan translationInView:self].y;
+    
+    NSLog(@"当前滑动位置 - %@", NSStringFromCGPoint([pan translationInView:self]));
+    
     if (yFromCenter > 0) {
         NSLog(@"down");
     }else{
@@ -1008,20 +960,43 @@ void doAnimationWithCompletion(dispatch_block_t blk, void(^completion)(BOOL));
     switch (pan.state) {
         case UIGestureRecognizerStateBegan:
             NSLog(@"begin");
-            _originalPoint = self.center;
+            
+            // 清空上一次状态
+            btns = nil;
+            maxSwipeWidth = 0;
+            origin = self.frame.origin;
+            [self removeAllActionButtons];
+            [self removeSwipeContentView];
+            
+            // 获取按钮 - 需要指定宽度 - 计算最大可以滑动宽度
+            btns = [self actionBtns];
+            int index = -1;
+            for (UIView * btn in btns) {
+                index += 1;
+                [self addSubview:btn];
+                btn.frame = CGRectMake(self.frame.size.width + maxSwipeWidth,
+                                       0,
+                                       btn.frame.size.width,
+                                       self.frame.size.height);
+                btn.tag = 1000 + index;
+                maxSwipeWidth += btn.frame.size.width;
+            }
+            
+            // 记录起始位置
+            swipeStartCenter = self.center;
+            
             break;
             
         case UIGestureRecognizerStateChanged:
             NSLog(@"change");
             
-            //CGFloat centerX = MIN(self.originalPoint.x, self.originalPoint.x + xFromCenter);
-            CGFloat centerX = xFromCenter;
-            self.center = CGPointMake(centerX, self.originalPoint.y);
+            CGPoint currentCenter = swipeStartCenter;
+            currentCenter.x += xFromCenter;
+            self.center = currentCenter;
             break;
             
         case UIGestureRecognizerStateEnded:
             NSLog(@"end");
-            endSwipe = YES;
             
             // 拿到当前方向 (起止位置比较)
             // 左滑，且起始点为原点，超过50%，划过去 --- 反之复原
@@ -1029,33 +1004,27 @@ void doAnimationWithCompletion(dispatch_block_t blk, void(^completion)(BOOL));
             
             CGFloat velocity = [pan velocityInView:self].x;
             CGFloat inertiaThreshold = 100.0; //points per second
+            NSLog(@"velocity = %lf", velocity);
             
-            if (velocity > inertiaThreshold) {
+            if (velocity > inertiaThreshold) { // 收起
                 NSLog(@"velocity > 100");
-            }
-            else if (velocity < -inertiaThreshold) {
-                NSLog(@"velocity < -100");
-            }
-            
-            return;
-            
-            
-            // 滑过50% 且起始弹出，否则收起
-            if (fabs(xFromCenter) >= (maxSwipeWidth/2) && origin.x == 0) { // 弹出
                 
-                [self addSwipeContentView];
-                
-                doAnimation(^{
-                    self.center = CGPointMake(self.originalPoint.x - maxSwipeWidth, self.originalPoint.y);
-                });
-            }else{ // 收起
-                [self removeAllActionButtons];
                 [self removeSwipeContentView];
                 
                 doAnimationWithCompletion(^{
                     [self resetFrame];
                 }, ^(BOOL finish) {
                     [self removeAllActionButtons];
+                });
+            }
+            else if (velocity < -inertiaThreshold) { // left 弹出
+                NSLog(@"velocity < -100");
+                
+                [self addSwipeContentView];
+                
+                doAnimation(^{
+                    CGPoint currentCenter = self.center;
+                    self.center = CGPointMake(self.bounds.size.width / 2 - maxSwipeWidth, currentCenter.y);
                 });
             }
             
