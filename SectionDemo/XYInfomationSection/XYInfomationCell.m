@@ -46,6 +46,42 @@
 #import <objc/runtime.h>
 #import "Masonry.h"
 
+@implementation XYInfomationItemSwipeConfig : NSObject
+
++ (XYInfomationItemSwipeConfig *)standardDeleteAction {
+    XYInfomationItemSwipeConfig *config = [[XYInfomationItemSwipeConfig alloc] init];
+    config.canSwipe = YES;
+    config.type = 1;
+    config.actionBtns = ^NSArray<UIView *> * _Nonnull(XYInfomationCell * _Nonnull cell) {
+        
+        NSString *title = @"delete";
+        CGFloat width = 80;
+        UIColor *color = UIColor.systemRedColor;
+        
+        UIButton *delete = [UIButton new];
+        [delete setTitle:title forState:UIControlStateNormal];
+        delete.bounds = CGRectMake(0, 0, width, 100);
+        delete.backgroundColor = color;
+        
+        [delete addTarget:self action:@selector(deleteBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        
+        return @[delete];
+    };
+    return config;
+}
+
++ (void)deleteBtnClick:(UIButton *)sender {
+    
+    if ([sender.superview isKindOfClass:XYInfomationCell.class]) {
+        XYInfomationCell *cell = (XYInfomationCell *)sender.superview;
+        cell.model.fold = YES;
+        cell.model = cell.model;// just modify self
+    }
+}
+
+
+@end
+
 @implementation XYInfomationItem
 
 /// 创建方法(通过dictionary创建)
@@ -843,26 +879,16 @@ void doAnimationWithCompletion(dispatch_block_t blk, void(^completion)(BOOL));
 }
 
 - (BOOL)canSwip{
-    return YES;//self.model.supportSwipe;
+    return self.model.swipeConfig.canSwipe;
 }
 
 - (NSArray<UIView *> *)actionBtns{
     
-    UIView *a = [UIView new];
-    a.bounds = CGRectMake(0, 0, 100, 100);
-    a.backgroundColor = UIColor.redColor;
+    if (self.model.swipeConfig.actionBtns) {
+        return self.model.swipeConfig.actionBtns(self);
+    }
     
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(deleteAction)];
-    [a addGestureRecognizer:tap];
-    
-    UIView *a2 = [UIView new];
-    a2.bounds = CGRectMake(100, 0, 100, 100);
-    a2.backgroundColor = UIColor.greenColor;
-    
-    UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(deleteAction)];
-    [a2 addGestureRecognizer:tap2];
-    
-    return @[a, a2];
+    return @[];
 }
 
 - (UIView *)swipeContentView {
@@ -901,15 +927,20 @@ void doAnimationWithCompletion(dispatch_block_t blk, void(^completion)(BOOL));
     });
 }
 
+- (CGFloat)getMaxSwipeWidth{
+    CGFloat maxSwipeWidth = 0;
+    for (UIView *actionView in [self actionBtns]) {
+        maxSwipeWidth += actionView.frame.size.width;
+    }
+    return maxSwipeWidth;
+}
+
 /// 设置滑动结束状态
 - (void)setSwipeEndState{
     
     [self addSwipeContentView];
     
-    CGFloat maxSwipeWidth = 0;
-    for (UIView *actionView in [self actionBtns]) {
-        maxSwipeWidth += actionView.frame.size.width;
-    }
+    CGFloat maxSwipeWidth = [self getMaxSwipeWidth];
     
     doAnimation(^{
         CGPoint currentCenter = self.center;
@@ -935,8 +966,15 @@ void doAnimationWithCompletion(dispatch_block_t blk, void(^completion)(BOOL));
     }
 }
 
-- (void)deleteAction{
-    Console(@"deleteAction");
+- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event{
+
+    CGFloat maxSwipeWidth = [self getMaxSwipeWidth];
+    CGRect totalRect = CGRectMake(0, 0, self.frame.size.width + maxSwipeWidth, self.frame.size.height);
+    if (CGRectContainsPoint(totalRect, point)) {
+        return YES;
+    }
+    
+    return [super pointInside:point withEvent:event];
 }
 
 - (void)dragAction:(UIPanGestureRecognizer *)pan {
@@ -1017,6 +1055,7 @@ void doAnimationWithCompletion(dispatch_block_t blk, void(^completion)(BOOL));
             self.center = currentCenter;
             break;
             
+        case UIGestureRecognizerStateCancelled:
         case UIGestureRecognizerStateEnded:
             Console(@"end");
             

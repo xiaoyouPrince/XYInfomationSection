@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "SectionDemo-Swift.h"
 
 // 此页面为菜单列表页面
 /**
@@ -56,6 +57,94 @@
     // getContent
     [self setContentView:[self getContentView]];
     
+    // new demo for swipe delete, add 2023年 5月25日 星期四 18时41分06秒 CST
+    SwipeDemoViewController *swipe = [SwipeDemoViewController new];
+    [swipe viewDidLoad];
+    [self setFooterView:swipe.contentView edgeInsets:UIEdgeInsetsMake(10, 20, 20, 20)];
+    
+    
+    
+}
+
+- (UIView *)buttonWithTitle:(NSString *)title width:(CGFloat)width color:(UIColor *)color {
+    
+    UIButton *a = [UIButton new];
+    [a setTitle:title forState:UIControlStateNormal];
+    a.bounds = CGRectMake(0, 0, width, 100);
+    a.backgroundColor = color;
+    
+    [a addTarget:self action:@selector(deleteActionBtn:) forControlEvents:UIControlEventTouchUpInside];
+    
+    return a;
+}
+
+- (UIView *)labelWithTitle:(NSString *)title width:(CGFloat)width color:(UIColor *)color{
+    
+    UILabel *a = [UILabel new];
+    a.text = title;
+    a.bounds = CGRectMake(0, 0, width, 100);
+    a.backgroundColor = color;
+    a.textAlignment = NSTextAlignmentCenter;
+    a.userInteractionEnabled = YES;
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(deleteAction:)];
+    [a addGestureRecognizer:tap];
+    return a;
+}
+
+- (NSArray<UIView *> *)actionBtns:(int)type{
+    
+    if (type == 0) {
+        UIView *delete = [self buttonWithTitle:@"delete" width:80 color: UIColor.redColor];
+        
+        UIView *more = [self buttonWithTitle:@"more" width:60 color: UIColor.greenColor];
+        
+        return @[delete, more];
+    }
+    
+    UIView *delete = [self labelWithTitle:@"delete" width:80 color: UIColor.yellowColor];
+
+    UIView *more = [self labelWithTitle:@"more" width:60 color: UIColor.grayColor];
+
+    return @[delete, more];
+}
+
+- (void)realActionWithTitle:(NSString *)title cell:(XYInfomationCell *)cell{
+    
+    if ([title isEqualToString:@"delete"]) {
+        cell.model.fold = YES;
+        cell.model = cell.model;// just modify self
+        
+    }else if ([title isEqualToString:@"more"]) {
+        [SVProgressHUD showInfoWithStatus:@"点击了更多, 当前 demo 做复位功能"];
+        XYInfomationSection *section = (XYInfomationSection *)cell.superview;
+        for (XYInfomationItem *item in section.dataArray) {
+            item.fold = NO;
+        }
+        
+        [section unfoldAllCells];
+    }
+}
+
+- (void)deleteAction:(UITapGestureRecognizer *)tap{
+    Console(@"deleteAction -- tap.view.tag = %ld", tap.view.tag);
+    
+    UILabel *label = (UILabel *)tap.view;
+    NSString *title = label.text;
+    XYInfomationCell *cell = (XYInfomationCell *)tap.view.superview;
+    
+    [self realActionWithTitle:title cell:cell];
+}
+
+- (void)deleteActionBtn:(UIButton *)sender{
+    Console(@"deleteAction -- sender.tag = %ld", sender.tag);
+
+    UIButton *label = (UIButton *)sender;
+    NSString *title = label.currentTitle;
+    
+    XYInfomationCell *cell = (XYInfomationCell *)sender.superview;
+    
+    [self realActionWithTitle:title cell:cell];
 }
 
 #pragma mark - user content all in the blow
@@ -105,6 +194,32 @@
 //    section4.separatorInset = UIEdgeInsetsMake(10, 50, 20, 10);
 //    section4.separatorColor = UIColor.yellowColor;
 //    section4.backgroundColor = UIColor.redColor;
+    
+    // 设置 swipe delete 功能
+    NSArray *items = @[item,
+                       item1,
+                       item2,
+                       item3,
+                       item4,
+                       item5,
+                       item6,
+                       item7,
+                       item8,
+                       item9];
+    for (XYInfomationItem *item in items) {
+        XYInfomationItemSwipeConfig *config = [[XYInfomationItemSwipeConfig alloc] init];
+        config.canSwipe = YES;
+        config.type = 1;
+        config.actionBtns = ^NSArray<UIView *> * _Nonnull(XYInfomationCell * _Nonnull cell) {
+            
+            if (arc4random() % 2){
+                return [self actionBtns:0];
+            }else{
+                return [self actionBtns:1];
+            }
+        };
+        item.swipeConfig = config;
+    }
     
     section1.dataArray = @[item];
     section2.dataArray = @[item1,item2,item3];

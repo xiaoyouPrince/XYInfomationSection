@@ -179,6 +179,7 @@
 		B48515FC22B8E78000779B6B /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B48515F922B8E78000779B6B /* SVProgressHUD.bundle */; };
 		B489F5482652A17800B2DA02 /* XYInfomationTipCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B489F5472652A17800B2DA02 /* XYInfomationTipCell.m */; };
 		B49398DD23C4D41A00CA3D86 /* XYInfoTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = B49398DC23C4D41A00CA3D86 /* XYInfoTextView.m */; };
+		B4A1B02A2A1F754B00074471 /* SwipeDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A1B0292A1F754B00074471 /* SwipeDemoViewController.swift */; };
 		B4C25FE525D37FFB0034C3E2 /* PersonInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C25FE425D37FFB0034C3E2 /* PersonInfoController.swift */; };
 		B4C25FE925D39E740034C3E2 /* PersonInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C25FE825D39E740034C3E2 /* PersonInfoCell.swift */; };
 		B4C25FEC25D3AD510034C3E2 /* PersonInfoHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C25FEB25D3AD510034C3E2 /* PersonInfoHeaderCell.swift */; };
@@ -474,6 +475,7 @@
 		B489F5472652A17800B2DA02 /* XYInfomationTipCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYInfomationTipCell.m; sourceTree = "<group>"; };
 		B49398DB23C4D41A00CA3D86 /* XYInfoTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYInfoTextView.h; sourceTree = "<group>"; };
 		B49398DC23C4D41A00CA3D86 /* XYInfoTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYInfoTextView.m; sourceTree = "<group>"; };
+		B4A1B0292A1F754B00074471 /* SwipeDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeDemoViewController.swift; sourceTree = "<group>"; };
 		B4C25FE325D37FFB0034C3E2 /* SectionDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SectionDemo-Bridging-Header.h"; sourceTree = "<group>"; };
 		B4C25FE425D37FFB0034C3E2 /* PersonInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonInfoController.swift; sourceTree = "<group>"; };
 		B4C25FE825D39E740034C3E2 /* PersonInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonInfoCell.swift; sourceTree = "<group>"; };
@@ -512,6 +514,7 @@
 				B418918522C1E86700A8B12D /* section1 */,
 				B418918C22C21FB500A8B12D /* section2 */,
 				B47EADC625C9A2FC00FC9599 /* section3 */,
+				B4A1B0282A1F743100074471 /* session4 */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1069,6 +1072,14 @@
 			path = SVProgressHUD;
 			sourceTree = "<group>";
 		};
+		B4A1B0282A1F743100074471 /* session4 */ = {
+			isa = PBXGroup;
+			children = (
+				B4A1B0292A1F754B00074471 /* SwipeDemoViewController.swift */,
+			);
+			path = session4;
+			sourceTree = "<group>";
+		};
 		B4C25FE225D37FCF0034C3E2 /* PersonInfo */ = {
 			isa = PBXGroup;
 			children = (
@@ -1250,6 +1261,7 @@
 			files = (
 				B47EADC925C9A34B00FC9599 /* AlipayViewController.m in Sources */,
 				B48515CE22B8E73D00779B6B /* MASViewConstraint.m in Sources */,
+				B4A1B02A2A1F754B00074471 /* SwipeDemoViewController.swift in Sources */,
 				B44A3E612386F80D001D9E81 /* XYTaxViewController.m in Sources */,
 				B45C361B25C667810096DC40 /* IQUIViewController+Additions.m in Sources */,
 				B4F0F8F42389A84E0094B521 /* XYTaxBaseTaxinfoSection.m in Sources */,

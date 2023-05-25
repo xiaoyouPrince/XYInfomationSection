@@ -52,6 +52,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class XYInfomationCell;
+
 typedef NS_ENUM(NSUInteger, XYInfoCellType) {
     XYInfoCellTypeInput = 0,    // default is input
     XYInfoCellTypeChoose,       // 用于弹出下拉框选择的
@@ -60,6 +62,25 @@ typedef NS_ENUM(NSUInteger, XYInfoCellType) {
     XYInfoCellTypeTip,          // 展示tip 信息的cell，类似微信设置内的 tip
     XYInfoCellTypeSwitch,       // 展示开关类型 信息的cell，开启某项服务，以当前 item.titleKey 为key
 };
+
+@interface XYInfomationItemSwipeConfig : NSObject
+
+/**
+ 是否支持swipe
+ 对应的按钮和回调
+ */
+/** canSwipe */
+@property (nonatomic, assign)         BOOL canSwipe;
+
+/** swipeType */
+@property (nonatomic, assign)         NSInteger type;
+
+@property (nonatomic, copy)           NSArray <UIView *> *(^actionBtns)(XYInfomationCell *cell);
+
+@property (class, nonatomic, readonly)         XYInfomationItemSwipeConfig *standardDeleteAction;
+
+@end
+
 
 @interface XYInfomationItem : NSObject
 /**
@@ -181,6 +202,9 @@ typedef NS_ENUM(NSUInteger, XYInfoCellType) {
 
 /** 是否支持左滑删除功能, default is NO */
 @property (nonatomic, assign)   BOOL supportSwipe;
+
+/** 滑动功能配置 */
+@property (nonatomic, strong)       XYInfomationItemSwipeConfig * swipeConfig;
 
 /// 创建方法(通过dictionary创建)
 + (instancetype)modelWithDict:(NSDictionary *)dict;
