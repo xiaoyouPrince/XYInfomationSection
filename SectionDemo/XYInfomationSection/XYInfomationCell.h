@@ -266,6 +266,9 @@ typedef void(^XYInfomationCellTouchBlock)(XYInfomationCell *cell);
 /** 自己整体的touch 回调 */
 @property(nonatomic , copy)    XYInfomationCellTouchBlock cellTouchBlock;
 
+/** 设置滑动功能之后,用户自定义事件可以手动复位 */
+- (void)resetInitialState;
+
 /**
  快速创建一个infoCell
  
