@@ -310,8 +310,9 @@ static UIView *the_bottom_cell = nil;
                 [dict setObject:@"" forKey:model.titleKey];
             }
             
-        }else // input 类型也优先取 code，一般情况不会存在，如果有即用户特意添加的
-        {
+        }else
+        if ([[cell valueForKey:@"cell_type"] integerValue] == XYInfoCellTypeInput || [[cell valueForKey:@"cell_type"] integerValue] == XYInfoCellTypeTextView) {
+            // input 类型也优先取 code，一般情况不会存在，如果有即用户特意添加的
             if (model.valueCode) {
                 [dict setObject:model.valueCode forKey:model.titleKey];
             }else
@@ -322,6 +323,16 @@ static UIView *the_bottom_cell = nil;
                 {
                     [dict setObject:@"" forKey:model.titleKey];
                 }
+            }
+        } else
+        if ([[cell valueForKey:@"cell_type"] integerValue] == XYInfoCellTypeSwitch) {
+            BOOL isOn = [NSUserDefaults.standardUserDefaults boolForKey:model.titleKey];
+            
+            if (isOn) {
+                [dict setObject:@"1" forKey:model.titleKey];
+            }else
+            {
+                [dict setObject:@"0" forKey:model.titleKey];
             }
         }
     }
