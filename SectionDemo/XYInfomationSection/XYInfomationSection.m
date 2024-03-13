@@ -107,6 +107,9 @@ static UIView *the_bottom_cell = nil;
 {
     // 移除之前内容
     [self.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    if (self.dataArray.count == 0) {
+        return;
+    }
     
     // 根据内容数组来创建对应的cells，自己适应高度
     int index = -1;
