@@ -507,13 +507,22 @@
     if (model.imageName) { // 如果有图片就修改titleLabel左边约束
         // 图片[网络图片 || 本地图片]
         UIImage *image = [UIImage imageNamed:model.imageName];
-        if (!image) { // 非本地图片
-            NSURL *url = [NSURL URLWithString:model.imageName];
-            NSData *data = [NSData dataWithContentsOfURL:url];
-            image = [UIImage imageWithData:data];
-        }
         self.imageView.image = image;
         
+        if (!image) { // 非本地图片
+            dispatch_async(dispatch_get_global_queue(QOS_CLASS_UTILITY, 0), ^{
+                NSURL *url = [NSURL URLWithString:model.imageName];
+                NSData *data = [NSData dataWithContentsOfURL:url];
+                UIImage *image = [UIImage imageWithData:data];
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if (image) {
+                        self.imageView.image = image;
+                        [self layoutImageView];
+                    }
+                });
+            });
+        }
     }
     
     // 3. title
@@ -767,6 +776,45 @@
     }
 }
 
+- (void)layoutImageView {
+    CGFloat titleRate = MAX(kTitleRate, self.model.titleWidthRate);
+    
+    if (self.imageView.image) {
+        [self.imageView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(self).priorityHigh();
+            make.left.equalTo(self).offset(15);
+            make.top.greaterThanOrEqualTo(self).offset(8); // 最多和高底8pt
+            
+            if (self.model.cellHeight) {
+                CGSize size = self.imageView.image.size;
+                CGFloat realHeight = self.model.cellHeight - 16;
+                CGFloat realWidth = realHeight / size.height * size.width;
+                make.size.mas_equalTo(CGSizeMake(realWidth, realHeight));
+            } else {
+                make.size.mas_equalTo(self.imageView.image.size);
+            }
+        }];
+        
+        [self.titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top.greaterThanOrEqualTo(self).offset(15);
+            make.centerY.equalTo(self).priorityHigh();
+            make.bottom.greaterThanOrEqualTo(self).offset(-15);
+            make.left.equalTo(self.imageView.mas_right).offset(10);
+            make.width.equalTo(self).multipliedBy(titleRate); // 占整体宽度
+        }];
+        
+    }else
+    {
+        [self.titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top.greaterThanOrEqualTo(self).offset(15);
+            make.centerY.equalTo(self).priorityHigh();
+            make.bottom.greaterThanOrEqualTo(self).offset(-15);
+            make.left.equalTo(self).offset(15);
+            make.width.equalTo(self).multipliedBy(titleRate); // 占整体宽度
+        }];
+    }
+}
+
 - (void)layoutSubviews
 {
     [super layoutSubviews];
@@ -894,7 +942,7 @@ void doAnimationWithCompletion(dispatch_block_t blk, void(^completion)(BOOL));
 - (UIView *)swipeContentView {
     
     UIView *swipeContentView = nil;
-
+    
     swipeContentView = objc_getAssociatedObject(self, @selector(swipeContentView));
     if (swipeContentView == nil)
     {
@@ -953,7 +1001,7 @@ void doAnimationWithCompletion(dispatch_block_t blk, void(^completion)(BOOL));
 }
 
 - (void)removeSwipeContentView{
-   [[self swipeContentView] removeFromSuperview];
+    [[self swipeContentView] removeFromSuperview];
 }
 
 - (void)removeAllActionButtons{
@@ -967,7 +1015,7 @@ void doAnimationWithCompletion(dispatch_block_t blk, void(^completion)(BOOL));
 }
 
 - (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event{
-
+    
     CGFloat maxSwipeWidth = [self getMaxSwipeWidth];
     CGRect totalRect = CGRectMake(0, 0, self.frame.size.width + maxSwipeWidth, self.frame.size.height);
     if (CGRectContainsPoint(totalRect, point)) {

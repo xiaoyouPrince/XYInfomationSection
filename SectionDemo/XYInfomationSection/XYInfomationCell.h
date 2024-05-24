@@ -121,7 +121,7 @@ typedef NS_ENUM(NSUInteger, XYInfoCellType) {
  */
 @property(nonatomic , copy)     NSString *backgroundImage;
 /**
- cellHeight:用户自己设置的初始化cellHeight 默认0，如果其值小于50 会取 def_celleHeight
+ cellHeight:用户自己设置的初始化cellHeight 默认0，如果其值小于等于0 会取 def_celleHeight
  */
 @property(nonatomic , assign)     CGFloat cellHeight;
 /**
